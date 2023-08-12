@@ -16,7 +16,9 @@ export const NavBar: React.FC<NavBarProps> = () => {
         <AppBar position='static'>
           <Toolbar variant="dense" sx={{ backgroundColor: 'black' }} >
             <Box sx={{ flexGrow: 1 }}>
-              <img src={logo} alt="manege logo" width={110} height={110} />
+              <Link to='/'>
+                <img src={logo} alt="manege logo" width={110} height={110} />
+              </Link>
             </Box>
 
             <Box sx={{ flexGrow: 1 }}></Box>
