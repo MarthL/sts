@@ -25,7 +25,7 @@ export const HomePage = () => {
           projectsCollection.map((project: any) => {
             return (
               <Box>
-                <CardProject key={project.id} name={project.name} description={project.description}></CardProject>
+                <CardProject key={project.id} project_name={project.project_name} description={project.description}></CardProject>
               </Box>
             )
           })

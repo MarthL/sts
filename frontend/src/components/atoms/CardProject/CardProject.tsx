@@ -3,12 +3,12 @@ import { Card, CardContent, CardMedia, CardActions, Button, Typography } from '@
 
 interface CardProjectProps {
   key: number;
-  name: string;
+  project_name: string;
   description: string;
 }
 
 export const CardProject = (props: CardProjectProps) => {
-  const { name, description, key } = props;
+  const { project_name, description, key } = props;
   return (
     <>
       <Card sx={{ maxWidth: 350, height: 350 }}>
@@ -24,7 +24,7 @@ export const CardProject = (props: CardProjectProps) => {
             overflow: 'hidden',
             WebkitBoxOrient: 'vertical',
             WebkitLineClamp: 1,
-          }}>{name}</Typography>
+          }}>{project_name}</Typography>
           <Typography variant="body1" color="initial" sx={{
             display: '-webkit-box',
             overflow: 'hidden',

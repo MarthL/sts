@@ -2,11 +2,7 @@ import { Exclude, Expose } from 'class-transformer';
 import { IsNotEmpty } from 'class-validator';
 
 @Exclude()
-export default class ProjectsResponseDto {
-  @Exclude()
-  @IsNotEmpty()
-  id: number;
-
+export default class createProjectDto {
   @Expose()
   @IsNotEmpty()
   project_name: string;

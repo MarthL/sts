@@ -1,8 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Body } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Projects } from './projects.entity';
 import ProjectsResponseDto from './DTO/projectsResponse.dto';
+import CreateProjectDto from './DTO/createProject.dto';
 
 @Injectable()
 export class ProjectsService {
@@ -11,13 +12,20 @@ export class ProjectsService {
     private projectsRepository: Repository<Projects>,
   ) {}
 
+  // GetAll
   async getProjects(): Promise<Projects[]> {
     return await this.projectsRepository.find();
   }
 
+  // GetById
   async getProjectById(id: number): Promise<ProjectsResponseDto> {
     return await this.projectsRepository.findOne({
       where: { id },
     });
+  }
+
+  // Post
+  async post(@Body() createReq: CreateProjectDto): Promise<CreateProjectDto> {
+    return await this.projectsRepository.save(createReq);
   }
 }

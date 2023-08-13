@@ -4,14 +4,11 @@ import { ApiProperty } from '@nestjs/swagger';
 @Entity()
 export class Projects {
   @PrimaryGeneratedColumn()
-  @ApiProperty()
   id: number;
 
   @Column()
-  @ApiProperty()
-  name: string;
+  project_name: string;
 
   @Column()
-  @ApiProperty()
   description: string;
 }

@@ -12,7 +12,7 @@ async function bootstrap() {
     .setDescription('The Manege API description. ')
     .setVersion('1.0')
     .addTag('Swagger')
-    .addTag('Projects', "Opérations liées aux projects de l'API")
+    .addTag('Projects', 'Method related to the Projects of the API')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
