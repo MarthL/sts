@@ -1,4 +1,4 @@
-import { Injectable, Body } from '@nestjs/common';
+import { Injectable, Body, Param } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Projects } from './projects.entity';
@@ -27,5 +27,13 @@ export class ProjectsService {
   // Post
   async post(@Body() createReq: CreateProjectDto): Promise<CreateProjectDto> {
     return await this.projectsRepository.save(createReq);
+  }
+
+  // Patch
+  async patch(
+    @Param('id') id: number,
+    @Body() updateReq: ProjectsResponseDto,
+  ): Promise<any> {
+    return this.projectsRepository.update(id, updateReq);
   }
 }
