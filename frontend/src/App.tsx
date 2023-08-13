@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       <NavBar />
-      <Container maxWidth="sm" sx={{ marginTop: "10px" }}>
+      <Container maxWidth="xl" sx={{ marginTop: "10px" }}>
         <Routes>
           <Route path="/" element={<HomePage />}></Route>
           <Route path="/profile" element={<ProfilePage />}></Route>
