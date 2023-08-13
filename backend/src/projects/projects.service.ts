@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Projects } from './projects.entity';
+import ProjectsResponseDto from './DTO/projectsResponse.dto';
 
 @Injectable()
 export class ProjectsService {
@@ -11,7 +12,12 @@ export class ProjectsService {
   ) {}
 
   async getProjects(): Promise<Projects[]> {
-    // Change return type to string[](stirng Array)
     return await this.projectsRepository.find();
+  }
+
+  async getProjectById(id: number): Promise<ProjectsResponseDto> {
+    return await this.projectsRepository.findOne({
+      where: { id },
+    });
   }
 }
