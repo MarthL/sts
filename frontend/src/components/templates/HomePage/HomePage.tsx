@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { CardProject } from '../../atoms/CardProject/CardProject';
-import { Box } from '@mui/material';
+import { CardProject } from '../../molecules/CardProject/CardProject';
+import { Box, Typography } from '@mui/material';
 import { getProjects } from '../../../api/projects';
 
 export const HomePage = () => {
@@ -20,6 +20,7 @@ export const HomePage = () => {
 
   return (
     <>
+      <Typography variant="h3" color="initial"> Welcome, John Doe </Typography>
       <Box display={'flex'} flexDirection={'row'} justifyContent={'center'} flexWrap={'wrap'} gap={20}>
         {
           projectsCollection.map((project: any) => {
