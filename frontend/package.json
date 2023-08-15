@@ -24,7 +24,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "sass": "sass --watch ./frontend/src/assets/styles/main.scss ./frontend/src/index.css",
+    "sass": "sass --watch ./src/assets/styles/main.scss ./src/index.css",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

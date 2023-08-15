@@ -1,14 +1,24 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ProjectsController } from './projects/projects.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ProjectsService } from './projects/projects.service';
 import { Projects } from './projects/projects.entity';
 import { ProjectsModule } from './projects/projects.module';
 
+import { JwtModule } from '@nestjs/jwt';
+import { PassportModule } from '@nestjs/passport';
+import { JwtStrategy } from './auth/jwt.strategy'; // Créez cette classe
+import { AuthService } from './auth/auth.service';
+import { AuthController } from './auth/auth.controller';
+import { AuthLogin } from './auth/authlogin.service';
+
 @Module({
   imports: [
+    PassportModule.register({ defaultStrategy: 'jwt' }),
+    JwtModule.register({
+      secret: 'yourSecretKey', // Changez ceci par votre clé secrète
+      signOptions: { expiresIn: '3h' }, // Durée de validité du token
+    }),
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
@@ -18,9 +28,11 @@ import { ProjectsModule } from './projects/projects.module';
       entities: [Projects],
       synchronize: true,
     }),
+    TypeOrmModule.forFeature([Projects]),
     ProjectsModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [AuthController],
+  providers: [JwtStrategy, AuthService, AuthLogin],
+  exports: [PassportModule, JwtModule],
 })
 export class AppModule {}

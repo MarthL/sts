@@ -1,6 +1,8 @@
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+require('dotenv').config();
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -11,8 +13,10 @@ async function bootstrap() {
     .setTitle('Manege')
     .setDescription('The Manege API description. ')
     .setVersion('1.0')
-    .addTag('Swagger')
+    .addBearerAuth()
     .addTag('Projects', 'Method related to the Projects of the API')
+    .addTag('Users', 'Method related to the Projects of the API')
+    .addTag('Auth', 'Authentication features')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
