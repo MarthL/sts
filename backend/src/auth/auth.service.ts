@@ -10,13 +10,10 @@ export class AuthService {
     return this.jwtService.signAsync(payload);
   }
 
-  async validateUserAndGetProjectId(
-    username: string,
-    password: string,
-  ): Promise<number | null> {
+  async validateUser(username: string, password: string): Promise<any> {
     // Simulez la validation de l'utilisateur
     if (username === 'martin' && password === 'test') {
-      return 1;
+      return { username, password };
     }
     return null;
   }

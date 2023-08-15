@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Projects } from './projects/projects.entity';
 import { ProjectsModule } from './projects/projects.module';
+import { UsersModule } from './users/users.module';
 
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
@@ -11,12 +12,13 @@ import { JwtStrategy } from './auth/jwt.strategy'; // Créez cette classe
 import { AuthService } from './auth/auth.service';
 import { AuthController } from './auth/auth.controller';
 import { AuthLogin } from './auth/authlogin.service';
+import { Users } from './users/users.entity';
 
 @Module({
   imports: [
     PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.register({
-      secret: 'yourSecretKey', // Changez ceci par votre clé secrète
+      secret: process.env.JWT_SECRET || 'defaultSecret', // Changez ceci par votre clé secrète
       signOptions: { expiresIn: '3h' }, // Durée de validité du token
     }),
     TypeOrmModule.forRoot({
@@ -25,11 +27,12 @@ import { AuthLogin } from './auth/authlogin.service';
       port: 3306,
       username: 'root',
       database: 'sts',
-      entities: [Projects],
+      entities: [Projects, Users],
       synchronize: true,
     }),
-    TypeOrmModule.forFeature([Projects]),
+    TypeOrmModule.forFeature([Projects, Users]),
     ProjectsModule,
+    UsersModule,
   ],
   controllers: [AuthController],
   providers: [JwtStrategy, AuthService, AuthLogin],

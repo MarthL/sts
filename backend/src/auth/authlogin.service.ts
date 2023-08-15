@@ -9,18 +9,15 @@ export class AuthLogin {
     username: string,
     password: string,
   ): Promise<{ accessToken: string }> {
-    // Vérifiez les informations d'identification et obtenez l'ID du projet
-    const projectId = await this.authService.validateUserAndGetProjectId(
-      username,
-      password,
-    );
+    // Vérifiez les informations d'identification de l'utilisateur
+    const user = await this.authService.validateUser(username, password);
 
-    if (!projectId) {
+    if (!user) {
       throw new UnauthorizedException('Invalid credentials');
     }
 
     // Générez le token JWT en utilisant le service AuthService
-    const accessToken = await this.authService.generateJwtToken(projectId);
+    const accessToken = await this.authService.generateJwtToken(user);
 
     return { accessToken };
   }

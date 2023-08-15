@@ -1,6 +1,5 @@
 import { Controller, Post, Body, HttpCode } from '@nestjs/common';
-import { AuthLogin } from './authlogin.service'; // Importez AuthLogin depuis le même dossier
-
+import { AuthLogin } from './authlogin.service';
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authLogin: AuthLogin) {}
@@ -14,6 +13,7 @@ export class AuthController {
     console.log('username', username);
     console.log('password', password);
     const result = await this.authLogin.loginUser(username, password);
-    return result;
+    console.log(result.accessToken);
+    return { accessToken: result.accessToken };
   }
 }
