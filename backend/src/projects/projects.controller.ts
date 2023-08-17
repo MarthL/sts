@@ -7,13 +7,7 @@ import {
   Body,
   UseGuards,
 } from '@nestjs/common';
-import {
-  ApiCreatedResponse,
-  ApiOkResponse,
-  ApiResponse,
-  ApiQuery,
-  ApiTags,
-} from '@nestjs/swagger';
+import { ApiTags } from '@nestjs/swagger';
 import { ProjectsService } from './projects.service';
 // import ProjectsResponseDto from './DTO/projectsResponse.dto'; // DTO
 import createProjectDto from './DTO/createProject.dto';
