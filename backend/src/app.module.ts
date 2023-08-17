@@ -5,6 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Projects } from './projects/projects.entity';
 import { ProjectsModule } from './projects/projects.module';
 import { UsersModule } from './users/users.module';
+import { AuthModule } from './auth/auth.module';
 
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
@@ -33,6 +34,7 @@ import { Users } from './users/users.entity';
     TypeOrmModule.forFeature([Projects, Users]),
     ProjectsModule,
     UsersModule,
+    AuthModule,
   ],
   controllers: [AuthController],
   providers: [JwtStrategy, AuthService, AuthLogin],

@@ -31,4 +31,10 @@ export class UsersService {
 
     return user;
   }
+
+  async checkUserExist(username: string): Promise<Users | undefined> {
+    return this.userRepository.findOne({
+      where: { username },
+    });
+  }
 }

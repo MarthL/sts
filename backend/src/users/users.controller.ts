@@ -6,6 +6,7 @@ import { JwtAuthGuard } from './../auth/jwt.auth.guard';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-userDto.dto';
 import { ApiTags } from '@nestjs/swagger';
+import { UnauthorizedException } from '@nestjs/common';
 
 @ApiTags('Users')
 @Controller('users')
@@ -27,13 +28,16 @@ export class UsersController {
   }
 
   @Post('login')
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   async logIn(@Body() loginUserDto: CreateUserDto) {
-    console.log('test');
     const accessToken = await this.authLogin.loginUser(
       loginUserDto.username,
       loginUserDto.password,
     );
+
+    if (!accessToken) {
+      throw new UnauthorizedException('Invalid credentials');
+    }
 
     return { accessToken };
   }
