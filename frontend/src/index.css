@@ -1,4 +1,12 @@
 body {
+  color: white;
+}
+
+.paper {
+  background-color: whitesmoke !important;
+}
+
+body {
   margin: 0px;
 }
 

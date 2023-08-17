@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":["assets/styles/main.scss"],"names":[],"mappings":"AAAA;EACE","file":"index.css"}
+{"version":3,"sourceRoot":"","sources":["components/templates/ProfilePage/ProfilePage.scss","assets/styles/main.scss"],"names":[],"mappings":"AAAA;EACE;;;AAGF;EACE;;;ACHF;EACE","file":"index.css"}
