@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavBar } from './components/organisms/NavBar/NavBar';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { Container } from '@mui/material';
@@ -8,7 +8,15 @@ import { LoginPage } from './components/templates/LoginPage/LoginPage';
 
 
 function App() {
-  const [isConnected, setIsConnected] = useState(false); // for login
+  const [isConnected, setIsConnected] = useState(false);
+
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      setIsConnected(true);
+    }
+  }, [])
+
+
 
   return (
     <>

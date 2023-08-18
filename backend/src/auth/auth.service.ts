@@ -35,7 +35,6 @@ export class AuthService {
   }
 
   async validateUser(username: string, password: string): Promise<any> {
-    // Simulez la validation de l'utilisateur en récupérant les données de l'utilisateur depuis votre source de données
     const user = await this.findUserByUsername(username);
     // console.log('User:', user);
     if (user && (await this.comparePasswords(password, user.password))) {

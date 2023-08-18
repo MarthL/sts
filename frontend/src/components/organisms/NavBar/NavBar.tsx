@@ -1,7 +1,9 @@
 import React from 'react';
 import './NavBar.scss';
+import { Navigate } from 'react-router-dom';
 import { AppBar, Toolbar, Box, IconButton, Tooltip } from '@mui/material';
 import { Home, People, Person } from '@mui/icons-material';
+import { ExitToApp } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import logo from './../../../assets/img/black_logo.png';
 
@@ -48,6 +50,19 @@ export const NavBar: React.FC<NavBarProps> = () => {
                 <Tooltip title="Profile">
                   <IconButton>
                     <Person color="primary" sx={{ "&:hover": { color: "white" } }} />
+                  </IconButton>
+                </Tooltip>
+              </Link>
+            </Box>
+
+            <Box mx={1}>
+              <Link to='/' onClick={() => {
+                localStorage.removeItem('token')
+                window.location.reload();
+              }}>
+                <Tooltip title="Logout">
+                  <IconButton>
+                    <ExitToApp color="primary" sx={{ "&:hover": { color: "white" } }} />
                   </IconButton>
                 </Tooltip>
               </Link>
