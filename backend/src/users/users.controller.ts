@@ -1,6 +1,6 @@
 // users/users.controller.ts
 
-import { Controller, Post, Body, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, UseGuards } from '@nestjs/common';
 import { AuthLogin } from './../auth/authlogin.service';
 import { JwtAuthGuard } from './../auth/jwt.auth.guard';
 import { UsersService } from './users.service';
@@ -15,6 +15,11 @@ export class UsersController {
     private readonly usersService: UsersService,
     private readonly authLogin: AuthLogin,
   ) {}
+
+  @Get('currentuser')
+  async getCurrentUser(username: string) {
+    return this.usersService.checkUserExist(username);
+  }
 
   @Post('signup')
   async signUp(@Body() createUserDto: CreateUserDto) {

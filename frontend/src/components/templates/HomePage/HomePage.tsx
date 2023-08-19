@@ -5,7 +5,6 @@ import { getProjects } from '../../../api/projects';
 
 export const HomePage = () => {
 
-
   const [projectsCollection, setProjectsCollection] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
