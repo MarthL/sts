@@ -37,7 +37,7 @@ export class UsersService {
       select: {
         id: true,
         username: true,
-        password: false,
+        password: true,
       },
       where: { username },
     });

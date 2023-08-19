@@ -11,7 +11,7 @@ export class AuthLogin {
   ): Promise<{ accessToken: string }> {
     // Vérifiez les informations d'identification de l'utilisateur
     const user = await this.authService.validateUser(username, password);
-
+    console.log(user);
     if (!user) {
       throw new UnauthorizedException('Invalid credentials');
     }
