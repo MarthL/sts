@@ -1,18 +1,33 @@
 import React, { useEffect } from 'react';
+import { Navigate } from 'react-router-dom';
 import { Container, Typography, Button, TextField, Box, Link, Grid, Paper, Avatar } from '@mui/material';
 import { Waves } from '../../molecules/Waves/Waves';
-import logo from './../../../assets/img/black_logo.png'
+import logo from './../../../assets/img/black_logo.png';
+import { logIn } from '../../../api/login';
 
 export const LoginPage = () => {
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+
+    const email = data.get('email') as string | null;
+    const password = data.get('password') as string | null;
+
+    if (email !== null && password !== null) {
+      logIn(email, password)
+        .then((res: any) => {
+          if (res.status === 201) {
+            localStorage.setItem('token', res.data.accessToken.accessToken);
+            window.location.reload();
+          }
+        })
+        .catch((error) => {
+          console.log(error)
+        });
+    }
   };
+
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';

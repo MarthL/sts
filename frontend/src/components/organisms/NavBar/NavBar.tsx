@@ -1,7 +1,9 @@
 import React from 'react';
 import './NavBar.scss';
+import { Navigate } from 'react-router-dom';
 import { AppBar, Toolbar, Box, IconButton, Tooltip } from '@mui/material';
 import { Home, People, Person } from '@mui/icons-material';
+import { ExitToApp } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import logo from './../../../assets/img/black_logo.png';
 
@@ -27,7 +29,7 @@ export const NavBar: React.FC<NavBarProps> = () => {
               <Link to='/'>
                 <Tooltip title="Home">
                   <IconButton aria-label='Home'>
-                    <Home color='primary' sx={{ "&:hover": { color: "white" } }} />
+                    <Home color='primary' sx={{ "&:hover": { color: "white" }, fontSize: 30 }} />
                   </IconButton>
                 </Tooltip>
               </Link>
@@ -36,7 +38,7 @@ export const NavBar: React.FC<NavBarProps> = () => {
             <Box mx={1}>
               <Tooltip title="Collaborators">
                 <IconButton >
-                  <People color='primary' sx={{ "&:hover": { color: "white" } }} />
+                  <People color='primary' sx={{ "&:hover": { color: "white" }, fontSize: 30 }} />
                 </IconButton>
               </Tooltip>
             </Box>
@@ -47,7 +49,20 @@ export const NavBar: React.FC<NavBarProps> = () => {
               <Link to='/profile'>
                 <Tooltip title="Profile">
                   <IconButton>
-                    <Person color="primary" sx={{ "&:hover": { color: "white" } }} />
+                    <Person color="primary" sx={{ "&:hover": { color: "white" }, fontSize: 30 }} />
+                  </IconButton>
+                </Tooltip>
+              </Link>
+            </Box>
+
+            <Box mx={1}>
+              <Link to='/' onClick={() => {
+                localStorage.removeItem('token')
+                window.location.reload();
+              }}>
+                <Tooltip title="Logout">
+                  <IconButton>
+                    <ExitToApp color="primary" sx={{ "&:hover": { color: "white" }, fontSize: 30 }} />
                   </IconButton>
                 </Tooltip>
               </Link>
