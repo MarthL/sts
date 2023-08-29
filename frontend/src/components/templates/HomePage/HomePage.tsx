@@ -12,22 +12,20 @@ export const HomePage = () => {
 
 
   useEffect(() => {
-    getProjects().then((res) => {
+    getProjects().then(async (res) => {
       setProjectsCollection(res);
       setIsLoaded(true)
     });
-  }, [])
 
-  useEffect(() => {
     getCurrentUser().then(async (res) => {
-      setCurrentUser(res.username);
+      setCurrentUser(res.username[0].toUpperCase() + res.username.slice(1));
     });
   }, [])
 
 
   return (
     <>
-      <Typography variant="h3" color="initial"> Welcome, {currentUser[0].toUpperCase() + currentUser.slice(1)} </Typography>
+      <Typography variant="h3" color="initial"> Welcome, {currentUser} </Typography>
       <Box display={'flex'} flexDirection={'row'} justifyContent={'center'} flexWrap={'wrap'} gap={20}>
         {
           projectsCollection.map((project: any) => {
@@ -38,15 +36,6 @@ export const HomePage = () => {
             )
           })
         }
-        {/* <Box>
-          <CardProject></CardProject>
-        </Box>
-        <Box>
-          <CardProject></CardProject>
-        </Box>
-        <Box>
-          <CardProject></CardProject>
-        </Box> */}
       </Box>
     </>
   )
