@@ -42,7 +42,7 @@ export const LoginPage = () => {
         <Paper sx={{ margin: '25px', padding: '25px' }}>
           <Box
             sx={{
-              marginTop: 8,
+              marginTop: 3,
               display: "flex",
               flexDirection: "column",
               alignItems: "center",

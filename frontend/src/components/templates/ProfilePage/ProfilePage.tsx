@@ -1,9 +1,11 @@
 import React from 'react';
 import { Grid, Avatar, Paper, Typography, Box } from '@mui/material';
 import { ProgressProfile } from '../../molecules/ProgressProfile/ProgressProfile';
+import { getCurrentUser } from '../../../api/users';
 import styles from './ProfilePage.module.scss';
 
 export const ProfilePage = () => {
+
   return (
     <>
       <Grid container spacing={3}>
