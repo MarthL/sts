@@ -1,10 +1,19 @@
 // users/users.controller.ts
 
-import { Controller, Get, Post, Body, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Delete,
+  Param,
+  UseGuards,
+} from '@nestjs/common';
 import { AuthLogin } from './../auth/authlogin.service';
 import { JwtAuthGuard } from './../auth/jwt.auth.guard';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-userDto.dto';
+import { DeleteUserDto } from './DTO/delete-userDto.dto';
 import { ApiTags } from '@nestjs/swagger';
 import { UnauthorizedException } from '@nestjs/common';
 
@@ -16,11 +25,25 @@ export class UsersController {
     private readonly authLogin: AuthLogin,
   ) {}
 
+  // GetAll
+  @Get('')
+  async getUsers() {
+    return this.usersService.getAllusers();
+  }
+
+  // Delete by username
+  @Delete(':username')
+  async deleteUser(@Param('username') username: string): Promise<any> {
+    return await this.usersService.DeleteUserByName(username);
+  }
+
+  // getCurrentUser
   @Get('currentuser')
   async getCurrentUser(username: string) {
     return this.usersService.checkUserExist(username);
   }
 
+  // Create a user
   @Post('signup')
   async signUp(@Body() createUserDto: CreateUserDto) {
     const user = await this.usersService.createUser(createUserDto);
@@ -32,6 +55,7 @@ export class UsersController {
     return { user, accessToken };
   }
 
+  // Login as user
   @Post('login')
   // @UseGuards(JwtAuthGuard)
   async logIn(@Body() loginUserDto: CreateUserDto) {
