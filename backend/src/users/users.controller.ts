@@ -31,10 +31,21 @@ export class UsersController {
     return this.usersService.getAllusers();
   }
 
+  @Get(':id')
+  async getProjectById(@Param('id') id: number) {
+    return await this.usersService.getUserById(id);
+  }
+
   // Delete by username
   @Delete(':username')
   async deleteUser(@Param('username') username: string): Promise<any> {
-    return await this.usersService.DeleteUserByName(username);
+    return await this.usersService.deleteUserByName(username);
+  }
+
+  // delete by Id
+  @Delete(':id')
+  async deleteUserById(@Param('id') id: number): Promise<any> {
+    return await this.usersService.deleteUserById(id);
   }
 
   // getCurrentUser

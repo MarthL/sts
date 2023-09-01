@@ -12,7 +12,7 @@ export class UsersService {
     private userRepository: Repository<Users>,
   ) {}
 
-  async getAllusers() {
+  async getAllusers(): Promise<Users[]> {
     const userCollection = await this.userRepository.find({
       select: {
         id: true,
@@ -24,9 +24,34 @@ export class UsersService {
     return userCollection;
   }
 
-  // TODO : add typing
-  async DeleteUserByName(userToDelete: string): Promise<any> {
-    console.log('it works, inside the function ');
+  // GetById
+  async getUserById(id: number): Promise<any> {
+    return await this.userRepository.findOne({
+      where: { id },
+    });
+  }
+
+  async deleteUserById(userId: number): Promise<any> {
+    console.log('delete user by id...');
+    const existingUser = await this.userRepository.findOne({
+      select: {
+        id: true,
+      },
+      where: {
+        id: userId,
+      },
+    });
+    console.log('user found : ', existingUser);
+
+    if (existingUser) {
+      return await this.userRepository.delete({ id: userId });
+    } else {
+      throw new HttpException('User cannot be found', 404);
+    }
+  }
+
+  // TODO : typing on promise
+  async deleteUserByName(userToDelete: string): Promise<any> {
     const existingUser = await this.userRepository.findOne({
       select: {
         username: true,
