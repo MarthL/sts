@@ -25,6 +25,11 @@ export class UsersController {
     private readonly authLogin: AuthLogin,
   ) {}
 
+  @Get('')
+  async getAllUsers(): Promise<any> {
+    return this.usersService.getAllUsers();
+  }
+
   @Get('currentuser')
   async getCurrentUser(username: string): Promise<UserResponseDto> {
     return this.usersService.checkUserExist(username);
