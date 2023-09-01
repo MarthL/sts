@@ -5,13 +5,8 @@ import {
   Get,
   Post,
   Body,
-<<<<<<< HEAD
   Param,
   Delete,
-=======
-  Delete,
-  Param,
->>>>>>> e090fd22faf5dede52acb68530856caf3491e627
   UseGuards,
 } from '@nestjs/common';
 import { AuthLogin } from './../auth/authlogin.service';
@@ -31,13 +26,6 @@ export class UsersController {
     private readonly authLogin: AuthLogin,
   ) {}
 
-<<<<<<< HEAD
-  @Get('')
-  async getAllUsers(): Promise<any> {
-    return this.usersService.getAllUsers();
-  }
-
-=======
   // GetAll
   @Get('')
   async getUsers() {
@@ -51,21 +39,12 @@ export class UsersController {
   }
 
   // getCurrentUser
->>>>>>> e090fd22faf5dede52acb68530856caf3491e627
   @Get('currentuser')
   async getCurrentUser(username: string): Promise<UserResponseDto> {
     return this.usersService.checkUserExist(username);
   }
 
-<<<<<<< HEAD
-  @Get(':id')
-  async getUserById(@Param('id') id: number): Promise<UserResponseDto> {
-    return this.usersService.getUserById(id);
-  }
-
-=======
   // Create a user
->>>>>>> e090fd22faf5dede52acb68530856caf3491e627
   @Post('signup')
   async signUp(@Body() createUserDto: CreateUserDto) {
     const user = await this.usersService.createUser(createUserDto);
