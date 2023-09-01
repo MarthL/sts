@@ -36,11 +36,13 @@ export const NavBar: React.FC<NavBarProps> = () => {
             </Box>
 
             <Box mx={1}>
-              <Tooltip title="Collaborators">
-                <IconButton >
-                  <People color='primary' sx={{ "&:hover": { color: "white" }, fontSize: 30 }} />
-                </IconButton>
-              </Tooltip>
+              <Link to='/collaborators'>
+                <Tooltip title="Collaborators">
+                  <IconButton >
+                    <People color='primary' sx={{ "&:hover": { color: "white" }, fontSize: 30 }} />
+                  </IconButton>
+                </Tooltip>
+              </Link>
             </Box>
 
             <Box />

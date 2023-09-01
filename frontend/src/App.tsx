@@ -5,6 +5,7 @@ import { Container } from '@mui/material';
 import { ProfilePage } from './components/templates/ProfilePage/ProfilePage';
 import { HomePage } from './components/templates/HomePage/HomePage';
 import { LoginPage } from './components/templates/LoginPage/LoginPage';
+import { CollaboratorsPage } from './components/templates/CollaboratorsPage/CollaboratorsPage';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/profile" element={<ProfilePage />} />
+                <Route path="/collaborators" element={<CollaboratorsPage />} />
               </Routes>
             </Container>
           </>
