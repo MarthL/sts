@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { CardProject } from '../../molecules/CardProject/CardProject';
 import { Box, Typography } from '@mui/material';
 import { getProjects } from '../../../api/projects';
-import { getCurrentUser } from '../../../api/users';
 
 export const HomePage = () => {
 
@@ -15,10 +14,10 @@ export const HomePage = () => {
       setProjectsCollection(res);
       setIsLoaded(true)
     });
-
-    getCurrentUser().then(async (res) => {
-      setCurrentUser(res.username[0].toUpperCase() + res.username.slice(1));
-    });
+    const storedName = localStorage.getItem('name');
+    if (storedName !== null) {
+      setCurrentUser(storedName[0].toUpperCase() + storedName.slice(1));
+    }
   }, [])
 
 
