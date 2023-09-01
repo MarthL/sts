@@ -10,7 +10,6 @@ export const HomePage = () => {
   const [currentUser, setCurrentUser] = useState('');
   const [isLoaded, setIsLoaded] = useState(false);
 
-
   useEffect(() => {
     getProjects().then(async (res) => {
       setProjectsCollection(res);
