@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { Users } from './users.entity';
 import { CreateUserDto } from './dto/create-userDto.dto';
 import { UserResponseDto } from './DTO/userResponseDto.dto';
+import { DeleteUserDto } from './DTO/delete-userDto.dto';
 import * as bcrypt from 'bcrypt';
 
 @Injectable()
@@ -26,7 +27,7 @@ export class UsersService {
   }
 
   // TODO : add typing
-  async DeleteUserByName(userToDelete: string): Promise<any> {
+  async DeleteUserByName(userToDelete: string): Promise<DeleteUserDto> {
     console.log('it works, inside the function ');
     const existingUser = await this.userRepository.findOne({
       select: {
