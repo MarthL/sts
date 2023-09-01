@@ -71,7 +71,22 @@ export class UsersService {
     });
   }
 
-  async getUserById(userId: number): Promise<UserResponseDto | undefined> {
-    return this.userRepository.findOneBy({ id: userId });
+  async getUserById(userId: number): Promise<UserResponseDto | HttpException> {
+    const user = await this.userRepository.findOne({
+      select: {
+        id: true,
+        username: true,
+        password: true,
+      },
+      where: {
+        id: userId,
+      },
+    });
+
+    if (!user) {
+      throw new HttpException('User not found', 404);
+    }
+
+    return user;
   }
 }

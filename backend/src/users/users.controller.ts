@@ -17,6 +17,7 @@ import { DeleteUserDto } from './DTO/delete-userDto.dto';
 import { ApiTags } from '@nestjs/swagger';
 import { UnauthorizedException } from '@nestjs/common';
 import { UserResponseDto } from './DTO/userResponseDto.dto';
+import { HttpException } from '@nestjs/common';
 
 @ApiTags('Users')
 @Controller('users')
@@ -30,6 +31,13 @@ export class UsersController {
   @Get('')
   async getUsers() {
     return this.usersService.getAllusers();
+  }
+
+  @Get(':id')
+  async getUserById(
+    @Param('id') id: number,
+  ): Promise<UserResponseDto | HttpException> {
+    return this.usersService.getUserById(id);
   }
 
   // Delete by username
