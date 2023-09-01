@@ -36,4 +36,8 @@ export class ProjectsService {
   ): Promise<any> {
     return this.projectsRepository.update(id, updateReq);
   }
+
+  async deleteById(id: number): Promise<any> {
+    return this.projectsRepository.delete(id);
+  }
 }

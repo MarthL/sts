@@ -4,6 +4,7 @@ import {
   Post,
   Patch,
   Param,
+  Delete,
   Body,
   UseGuards,
 } from '@nestjs/common';
@@ -34,6 +35,11 @@ export class ProjectsController {
   @Post('')
   async create(@Body() project: createProjectDto): Promise<createProjectDto> {
     return this.projectsService.post(project);
+  }
+
+  @Delete(':id')
+  async deleteById(@Param('id') id: number): Promise<any> {
+    return this.projectsService.deleteById(id);
   }
 
   @Patch(':id')
