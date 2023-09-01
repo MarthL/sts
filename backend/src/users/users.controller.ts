@@ -1,12 +1,21 @@
 // users/users.controller.ts
 
-import { Controller, Get, Post, Body, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Delete,
+  UseGuards,
+} from '@nestjs/common';
 import { AuthLogin } from './../auth/authlogin.service';
 import { JwtAuthGuard } from './../auth/jwt.auth.guard';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-userDto.dto';
 import { ApiTags } from '@nestjs/swagger';
 import { UnauthorizedException } from '@nestjs/common';
+import { UserResponseDto } from './DTO/userResponseDto.dto';
 
 @ApiTags('Users')
 @Controller('users')
@@ -17,8 +26,13 @@ export class UsersController {
   ) {}
 
   @Get('currentuser')
-  async getCurrentUser(username: string) {
+  async getCurrentUser(username: string): Promise<UserResponseDto> {
     return this.usersService.checkUserExist(username);
+  }
+
+  @Get(':id')
+  async getUserById(@Param('id') id: number): Promise<UserResponseDto> {
+    return this.usersService.getUserById(id);
   }
 
   @Post('signup')
