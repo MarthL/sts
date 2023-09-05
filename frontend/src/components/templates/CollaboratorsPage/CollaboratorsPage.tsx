@@ -4,7 +4,7 @@ import { UserListCustom } from '../../molecules/UserListCustom/UserListCustom';
 import { getAllUsers } from '../../../api/users';
 
 interface User {
-  username: string;
+  username: string,
 }
 
 export const CollaboratorsPage: React.FC = () => {

@@ -12,7 +12,7 @@ export const UserListCustom = (props: UserListProps) => {
 
   return (
     <>
-      <ListItem sx={{ width: '100%', border: 'solid 1px black', marginBlock: '10px' }}>
+      <ListItem sx={{ width: '100%', borderBottom: 1, marginBlock: '10px' }}>
         <ListItemAvatar>
           <Avatar />
         </ListItemAvatar>
