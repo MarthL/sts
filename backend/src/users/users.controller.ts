@@ -56,12 +56,12 @@ export class UsersController {
   @Post('signup')
   async signUp(@Body() createUserDto: CreateUserDto) {
     const user = await this.usersService.createUser(createUserDto);
-    const accessToken = await this.authLogin.loginUser(
-      user.username,
-      user.password,
-    );
+    // const accessToken = await this.authLogin.loginUser(
+    //   user.username,
+    //   user.password,
+    // );
 
-    return { user, accessToken };
+    return { user };
   }
 
   // Login as user
