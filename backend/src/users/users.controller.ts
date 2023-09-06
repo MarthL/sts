@@ -8,6 +8,7 @@ import {
   Param,
   Delete,
   UseGuards,
+  Query,
 } from '@nestjs/common';
 import { AuthLogin } from './../auth/authlogin.service';
 import { JwtAuthGuard } from './../auth/jwt.auth.guard';
@@ -18,6 +19,7 @@ import { ApiTags } from '@nestjs/swagger';
 import { UnauthorizedException } from '@nestjs/common';
 import { UserResponseDto } from './DTO/userResponseDto.dto';
 import { HttpException } from '@nestjs/common';
+import { ApiQuery, ApiResponse } from '@nestjs/swagger';
 
 @ApiTags('Users')
 @Controller('users')
@@ -46,21 +48,24 @@ export class UsersController {
     return await this.usersService.DeleteUserByName(username);
   }
 
-  // getCurrentUser
+  // getCurrentUser for Auth only
   @Get('currentuser')
   async getCurrentUser(username: string): Promise<UserResponseDto> {
     return this.usersService.checkUserExist(username);
+  }
+
+  @Get('loggedUser/:user')
+  async getLoggedUser(
+    @Param('user') username: string,
+  ): Promise<UserResponseDto> {
+    console.log('username : ', username);
+    return this.usersService.getLoggedUser(username);
   }
 
   // Create a user
   @Post('signup')
   async signUp(@Body() createUserDto: CreateUserDto) {
     const user = await this.usersService.createUser(createUserDto);
-    // const accessToken = await this.authLogin.loginUser(
-    //   user.username,
-    //   user.password,
-    // );
-
     return { user };
   }
 

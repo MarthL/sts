@@ -1,10 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Grid, Avatar, Paper, Typography, Box } from '@mui/material';
 import { ProgressProfile } from '../../molecules/ProgressProfile/ProgressProfile';
-import { getCurrentUser } from '../../../api/users';
+import { getUserLogged } from '../../../api/users';
 import styles from './ProfilePage.module.scss';
 
 export const ProfilePage = () => {
+
+  const [user, setUser] = useState();
+
+  useEffect(() => {
+    const username = localStorage.getItem('name'); // Assurez-vous que la clé 'name' est correcte
+    if (username) {
+      getUserLogged(username)
+        .then((res) => {
+          setUser(res);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  }, []);
 
   return (
     <>

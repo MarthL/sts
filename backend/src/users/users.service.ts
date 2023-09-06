@@ -71,6 +71,19 @@ export class UsersService {
     });
   }
 
+  async getLoggedUser(username: any): Promise<any> {
+    const loggedUser = await this.userRepository.findOne({
+      where: {
+        username: username,
+      },
+    });
+
+    if (!loggedUser) {
+      throw new HttpException('User not found', 404);
+    }
+    return loggedUser;
+  }
+
   async getUserById(userId: number): Promise<UserResponseDto | HttpException> {
     const user = await this.userRepository.findOne({
       select: {

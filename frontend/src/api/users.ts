@@ -1,7 +1,8 @@
+/* eslint-disable no-template-curly-in-string */
 import { axiosClient } from "./axios";
 
-export async function getCurrentUser() {
-  return axiosClient.get('/users/currentuser')
+export async function getUserLogged(username: any) {
+  return axiosClient.get(`/users/loggedUser/${username}`)
   .then((response) => {
     return response.data;
   })

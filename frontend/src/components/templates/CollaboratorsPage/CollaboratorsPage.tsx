@@ -21,11 +21,12 @@ export const CollaboratorsPage: React.FC = () => {
 
   return (
     <>
+
+      <Typography variant="h3" color="initial">Collaborators List</Typography>
       <List sx={{ width: '100%', flexWrap: 'wrap' }}>
         {userCollection.map((user) =>
           <UserListCustom username={user.username as string} avatar="none" />
         )}
-        {/* <UserListCustom /> */}
       </List >
     </>
   )
