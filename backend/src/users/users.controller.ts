@@ -50,7 +50,7 @@ export class UsersController {
 
   // getCurrentUser for Auth only
   @Get('currentuser')
-  async getCurrentUser(username: string): Promise<UserResponseDto> {
+  async getCurrentUser(username: string): Promise<any> {
     return this.usersService.checkUserExist(username);
   }
 

@@ -13,4 +13,12 @@ export class UserResponseDto {
   @IsString()
   @MinLength(6)
   password: string;
+
+  @IsString()
+  @MinLength(2)
+  family_name: string;
+
+  @IsString()
+  @MinLength(2)
+  job: string;
 }

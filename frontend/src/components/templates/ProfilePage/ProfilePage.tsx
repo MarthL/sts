@@ -4,9 +4,18 @@ import { ProgressProfile } from '../../molecules/ProgressProfile/ProgressProfile
 import { getUserLogged } from '../../../api/users';
 import styles from './ProfilePage.module.scss';
 
+interface User {
+  username: string,
+  id: number,
+  password: string,
+  family_name: string,
+  job: string,
+}
+
 export const ProfilePage = () => {
 
-  const [user, setUser] = useState();
+
+  const [user, setUser] = useState<User>()
 
   useEffect(() => {
     const username = localStorage.getItem('name'); // Assurez-vous que la clé 'name' est correcte
@@ -20,6 +29,7 @@ export const ProfilePage = () => {
         });
     }
   }, []);
+
 
   return (
     <>
@@ -35,7 +45,7 @@ export const ProfilePage = () => {
               sx={{ bgcolor: '#F94C10', width: '100px', height: '100px', margin: '10px auto' }}
             >
             </Avatar>
-            <Typography variant="h6" color="initial" align='center' fontWeight={'bold'}>John Doe</Typography>
+            <Typography variant="h6" color="initial" align='center' fontWeight={'bold'}>{user?.username} {user?.family_name} </Typography>
             <Typography variant="body1" color="blue" align='center' fontWeight={'bold'}>UX Deisgner</Typography>
             <Typography variant="body2" color="initial" padding={2} textAlign={'center'} fontStyle={'italic'}>I am looking for some awesome project where I can contribute through creativity and cool stuff !</Typography>
             <Paper sx={{ margin: '0 10% 10px 10%' }} className={styles.paperColor}>

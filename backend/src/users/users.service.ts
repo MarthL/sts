@@ -66,6 +66,8 @@ export class UsersService {
         id: true,
         username: true,
         password: true,
+        family_name: true,
+        job: true,
       },
       where: { username },
     });
@@ -73,6 +75,12 @@ export class UsersService {
 
   async getLoggedUser(username: any): Promise<any> {
     const loggedUser = await this.userRepository.findOne({
+      select: {
+        username: true,
+        password: true,
+        family_name: true,
+        job: true,
+      },
       where: {
         username: username,
       },
