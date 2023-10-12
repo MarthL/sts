@@ -3,22 +3,22 @@ import { IsNotEmpty, IsString, MinLength, IsNumber } from 'class-validator';
 export class UserResponseDto {
   @IsNotEmpty()
   @IsNumber()
-  id: number;
+  id!: number;
 
   @IsNotEmpty()
   @IsString()
-  username: string;
+  username!: string;
 
   @IsNotEmpty()
   @IsString()
   @MinLength(6)
-  password: string;
+  password!: string;
 
   @IsString()
   @MinLength(2)
-  family_name: string;
+  family_name!: string;
 
   @IsString()
   @MinLength(2)
-  job: string;
+  job_id?: string;
 }

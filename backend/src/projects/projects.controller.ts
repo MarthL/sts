@@ -11,9 +11,9 @@ import {
 import { ApiTags } from '@nestjs/swagger';
 import { ProjectsService } from './projects.service';
 // import ProjectsResponseDto from './DTO/projectsResponse.dto'; // DTO
-import createProjectDto from './DTO/createProject.dto';
-import ProjectsResponseDto from './DTO/projectsResponse.dto';
-import updateProjectDto from './DTO/updateProjectDto.dto';
+import createProjectDto from '../DTO/Projects/createProject.dto';
+import ProjectsResponseDto from '../DTO/Projects/projectsResponse.dto';
+import updateProjectDto from '../DTO/Projects/updateProjectDto.dto';
 import { JwtAuthGuard } from './../auth/jwt.auth.guard';
 
 @ApiTags('Projects')
@@ -38,7 +38,7 @@ export class ProjectsController {
   }
 
   @Delete(':id')
-  async deleteById(@Param('id') id: number): Promise<any> {
+  async deleteById(@Param('id') id: number): Promise<ProjectsResponseDto> {
     return this.projectsService.deleteById(id);
   }
 

@@ -2,9 +2,9 @@ import { Injectable, ConflictException, HttpException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Users } from './users.entity';
-import { CreateUserDto } from './dto/create-userDto.dto';
-import { UserResponseDto } from './DTO/userResponseDto.dto';
-import { DeleteUserDto } from './DTO/delete-userDto.dto';
+import { CreateUserDto } from '../DTO/User/create-userDto.dto';
+import { UserResponseDto } from '../DTO/User/userResponseDto.dto';
+import { DeleteUserDto } from '../DTO/User/delete-userDto.dto';
 import * as bcrypt from 'bcrypt';
 
 @Injectable()
@@ -27,7 +27,7 @@ export class UsersService {
   }
 
   // TODO : add typing
-  async DeleteUserByName(userToDelete: string): Promise<DeleteUserDto> {
+  async DeleteUserByName(userToDelete: string): Promise<any> {
     console.log('it works, inside the function ');
     const existingUser = await this.userRepository.findOne({
       select: {
@@ -60,14 +60,14 @@ export class UsersService {
     return this.userRepository.save(user);
   }
 
-  async checkUserExist(username: string): Promise<Users | undefined> {
+  async checkUserExist(username: string): Promise<Users | null> {
     return this.userRepository.findOne({
       select: {
         id: true,
         username: true,
         password: true,
         family_name: true,
-        job: true,
+        job_id: true,
       },
       where: { username },
     });
@@ -79,7 +79,7 @@ export class UsersService {
         username: true,
         password: true,
         family_name: true,
-        job: true,
+        job_id: true,
       },
       where: {
         username: username,
@@ -92,12 +92,13 @@ export class UsersService {
     return loggedUser;
   }
 
-  async getUserById(userId: number): Promise<UserResponseDto | HttpException> {
+  async getUserById(userId: number): Promise<Users | HttpException> {
     const user = await this.userRepository.findOne({
       select: {
         id: true,
         username: true,
         password: true,
+        job_id: true,
       },
       where: {
         id: userId,

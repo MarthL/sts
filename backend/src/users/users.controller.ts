@@ -13,12 +13,13 @@ import {
 import { AuthLogin } from './../auth/authlogin.service';
 import { JwtAuthGuard } from './../auth/jwt.auth.guard';
 import { UsersService } from './users.service';
-import { CreateUserDto } from './dto/create-userDto.dto';
-import { DeleteUserDto } from './DTO/delete-userDto.dto';
+import { CreateUserDto } from '../DTO/User/create-userDto.dto';
+import { DeleteUserDto } from '../DTO/User/delete-userDto.dto';
 import { ApiTags } from '@nestjs/swagger';
 import { UnauthorizedException } from '@nestjs/common';
-import { UserResponseDto } from './DTO/userResponseDto.dto';
+import { UserResponseDto } from '../DTO/User/userResponseDto.dto';
 import { HttpException } from '@nestjs/common';
+import { Users } from './users.entity';
 import { ApiQuery, ApiResponse } from '@nestjs/swagger';
 
 @ApiTags('Users')
@@ -36,9 +37,7 @@ export class UsersController {
   }
 
   @Get(':id')
-  async getUserById(
-    @Param('id') id: number,
-  ): Promise<UserResponseDto | HttpException> {
+  async getUserById(@Param('id') id: number): Promise<any> {
     return this.usersService.getUserById(id);
   }
 

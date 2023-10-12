@@ -5,13 +5,13 @@ import { IsNotEmpty } from 'class-validator';
 export default class ProjectsResponseDto {
   @Exclude()
   @IsNotEmpty()
-  id?: number;
+  id!: number;
 
   @Expose()
   @IsNotEmpty()
-  project_name: string;
+  project_name!: string;
 
   @Expose()
   @IsNotEmpty()
-  description: string;
+  description!: string;
 }
