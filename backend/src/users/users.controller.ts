@@ -5,11 +5,13 @@ import { HttpException } from '@nestjs/common';
 import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
 
 import { Users } from './users.entity';
+import { Projects } from 'src/projects/projects.entity';
 
 import { JwtAuthGuard } from './../auth/jwt.auth.guard';
 
 import { UsersService } from './users.service';
 import { AuthLogin } from './../auth/authlogin.service';
+import { ProjectsService } from 'src/projects/projects.service';
 
 import { CreateUserDto } from '../DTO/User/create-userDto.dto';
 import { DeleteUserDto } from '../DTO/User/delete-userDto.dto';
@@ -23,6 +25,7 @@ import { UnauthorizedException, ParseIntPipe } from '@nestjs/common';
 export class UsersController {
   constructor(
     private readonly usersService: UsersService,
+    private readonly projectsService: ProjectsService,
     private readonly authLogin: AuthLogin,
   ) {}
 
@@ -38,6 +41,13 @@ export class UsersController {
     @Param('id', ParseIntPipe) id: number,
   ): Promise<UserResponseDto | HttpException> {
     return this.usersService.getUserById(id);
+  }
+
+  // get all projects of user
+  @Get(':id/projects')
+  async getUserProjects(@Param('id', ParseIntPipe) userId: number) {
+    const projects = await this.usersService.getUserProjects(userId);
+    return { projects };
   }
 
   // Delete by username

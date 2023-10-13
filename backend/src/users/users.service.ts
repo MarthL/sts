@@ -44,6 +44,20 @@ export class UsersService {
     return plainToClass(UserResponseDto, user);
   }
 
+  // get projects of user
+  async getUserProjects(userId: number) {
+    const user = await this.userRepository.findOne({
+      relations: ['projects'],
+      where: {
+        id: userId,
+      },
+    });
+    if (!user) {
+      throw new HttpException('User not found', 404);
+    }
+    return user.projects;
+  }
+
   // TODO : add typing
   async DeleteUserByName(userToDelete: string): Promise<any> {
     const existingUser = await this.userRepository.findOne({
