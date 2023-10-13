@@ -32,5 +32,5 @@ export class Users {
 
   @ManyToMany(() => Projects)
   @JoinTable()
-  projects: Projects[];
+  projectsCollection: Projects[];
 }

@@ -44,10 +44,10 @@ export class UsersService {
     return plainToClass(UserResponseDto, user);
   }
 
-  // get projects of user
+  // getAll projects of user
   async getUserProjects(userId: number) {
     const user = await this.userRepository.findOne({
-      relations: ['projects'],
+      relations: ['projectsCollection'],
       where: {
         id: userId,
       },
@@ -55,7 +55,7 @@ export class UsersService {
     if (!user) {
       throw new HttpException('User not found', 404);
     }
-    return user.projects;
+    return user.projectsCollection;
   }
 
   // TODO : add typing
