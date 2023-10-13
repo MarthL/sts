@@ -32,6 +32,7 @@ export class UsersController {
     return this.usersService.getAllusers();
   }
 
+  // GetById
   @Get(':id')
   async getUserById(
     @Param('id', ParseIntPipe) id: number,

@@ -1,7 +1,7 @@
 import { Expose } from 'class-transformer';
 import { IsNotEmpty } from 'class-validator';
 
-export default class JobResponseDto {
+export class JobResponseDto {
   @IsNotEmpty()
   id: number;
 

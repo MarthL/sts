@@ -46,7 +46,6 @@ export class UsersService {
 
   // TODO : add typing
   async DeleteUserByName(userToDelete: string): Promise<any> {
-    console.log('it works, inside the function ');
     const existingUser = await this.userRepository.findOne({
       select: {
         username: true,
