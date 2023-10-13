@@ -15,7 +15,8 @@ Backend        | Progression | Comment
 Auth           | ✅          | -
 Docker         | In progress | Need to solve the errors 
 Roles          | To do       | Need to make the backend 
-Users          | In progress | Still need to implement some relations 
-Projects       | In progress | Still need to implement some methods
-Job            | To do       | Need to make the backend 
-JobField       | To do       | Need to make the backend 
+Users          | ✅ | - 
+Projects       | ✅ | -
+Job            | ✅       | - 
+JobField       | To do       | Need to make the backend
+allUsersfromSameJob       | To do       | Need to make the backend
