@@ -4,7 +4,8 @@ Frontend       | Progression | Comment
 HomePage       | ✅          | - 
 CollaboratorPage | In progress | Display just the collection atm 
 ProfilePage    | In progress | Display some informations and need design 
-ProjectsPage   | In progress | Display the informations and need design 
+ProjectsPage   | In progress | Display the informations and need design
+Light / Dark mode   | To do       | Still need to check for design
 
 <br><br><br>
 
