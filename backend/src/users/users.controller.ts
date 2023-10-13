@@ -67,7 +67,6 @@ export class UsersController {
 
   // Login as user
   @Post('login')
-  // @UseGuards(JwtAuthGuard)
   async logIn(@Body() loginUserDto: UserLoginDto) {
     const accessToken = await this.authLogin.loginUser(
       loginUserDto.username,

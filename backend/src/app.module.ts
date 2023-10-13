@@ -34,7 +34,7 @@ import { JobFieldModule } from './job-field/job-field.module';
       port: 3306,
       username: 'root',
       database: 'sts',
-      entities: [Projects, Users, Job],
+      entities: [Projects, Users, Job, JobField],
       synchronize: true,
     }),
     TypeOrmModule.forFeature([Projects, Users]),
