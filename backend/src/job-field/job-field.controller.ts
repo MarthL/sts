@@ -1,4 +1,4 @@
 import { Controller } from '@nestjs/common';
 
-@Controller('job-field')
+@Controller('/job-field')
 export class JobFieldController {}

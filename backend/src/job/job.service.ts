@@ -12,6 +12,8 @@ export class JobService {
   constructor(
     @InjectRepository(Job)
     private JobRepository: Repository<Job>,
+    @InjectRepository(JobField)
+    private JobFieldRepository: Repository<JobField>,
   ) {}
 
   // getAll
@@ -28,12 +30,28 @@ export class JobService {
     return plainToClass(JobResponseDto, job);
   }
 
-  // // postJob
-  // async createJob(createJobDto: CreateJobDto): Promise<any> {
-  //   const { job_title, job_field } = createJobDto;
-  //   const jobFieldENtity = await this.JobFieldRepository.findOne({});
-  //   this.JobRepository.save({ ...createJobDto });
-  // }
+  // post
+  async createJob(createJobDto: CreateJobDto): Promise<any> {
+    const { job_title, job_field } = createJobDto;
+
+    let jobFieldEntity: JobField | undefined;
+    if (job_field) {
+      jobFieldEntity = await this.JobFieldRepository.findOne({
+        where: { id: job_field },
+      });
+    }
+
+    const newJob = new Job();
+    newJob.job_title = job_title;
+
+    if (jobFieldEntity) {
+      newJob.jobField = jobFieldEntity;
+    }
+
+    const savedJob = await this.JobRepository.save(newJob);
+
+    return savedJob;
+  }
 
   // deleteById
   async deleteById(id: number): Promise<any> {

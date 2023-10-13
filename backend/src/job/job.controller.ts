@@ -7,7 +7,9 @@ import {
   Delete,
   Body,
   ParseIntPipe,
+  Injectable,
 } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 import { ApiTags } from '@nestjs/swagger';
 
 import { JobService } from './job.service';
@@ -16,6 +18,7 @@ import { CreateJobDto } from 'src/DTO/Job/createJobDto.dto';
 
 @ApiTags('Job')
 @Controller('/jobs')
+@Injectable()
 export class JobController {
   constructor(private readonly jobService: JobService) {}
 
@@ -29,11 +32,11 @@ export class JobController {
     return await this.jobService.getJobById(id);
   }
 
-  // @Post('')
-  // async postJob(@Body() createJobDto: CreateJobDto) {
-  //   const newJob = await this.jobService.createJob(createJobDto);
-  //   return { newJob };
-  // }
+  @Post('')
+  async postJob(@Body() createJobDto: CreateJobDto) {
+    const newJob = await this.jobService.createJob(createJobDto);
+    return { newJob };
+  }
 
   @Delete(':id')
   async deleteJob(@Param('id', ParseIntPipe) id: number): Promise<any> {
