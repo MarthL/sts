@@ -6,15 +6,14 @@ import {
   Param,
   Delete,
   Body,
-  UseGuards,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
+
 import { ProjectsService } from './projects.service';
-// import ProjectsResponseDto from './DTO/projectsResponse.dto'; // DTO
+
 import createProjectDto from '../DTO/Projects/createProject.dto';
 import ProjectsResponseDto from '../DTO/Projects/projectsResponse.dto';
 import updateProjectDto from '../DTO/Projects/updateProjectDto.dto';
-import { JwtAuthGuard } from './../auth/jwt.auth.guard';
 
 @ApiTags('Projects')
 @Controller('/projects')

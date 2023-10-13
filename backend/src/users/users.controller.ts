@@ -1,26 +1,22 @@
 // users/users.controller.ts
 
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Param,
-  Delete,
-  UseGuards,
-  Query,
-} from '@nestjs/common';
-import { AuthLogin } from './../auth/authlogin.service';
+import { ApiTags, ApiQuery, ApiResponse } from '@nestjs/swagger';
+import { HttpException } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
+
+import { Users } from './users.entity';
+
 import { JwtAuthGuard } from './../auth/jwt.auth.guard';
+
 import { UsersService } from './users.service';
+import { AuthLogin } from './../auth/authlogin.service';
+
 import { CreateUserDto } from '../DTO/User/create-userDto.dto';
 import { DeleteUserDto } from '../DTO/User/delete-userDto.dto';
-import { ApiTags } from '@nestjs/swagger';
-import { UnauthorizedException } from '@nestjs/common';
 import { UserResponseDto } from '../DTO/User/userResponseDto.dto';
-import { HttpException } from '@nestjs/common';
-import { Users } from './users.entity';
-import { ApiQuery, ApiResponse } from '@nestjs/swagger';
+import { UserLoginDto } from 'src/DTO/User/user-loginDto.dto';
+
+import { UnauthorizedException, ParseIntPipe } from '@nestjs/common';
 
 @ApiTags('Users')
 @Controller('users')
@@ -37,7 +33,9 @@ export class UsersController {
   }
 
   @Get(':id')
-  async getUserById(@Param('id') id: number): Promise<any> {
+  async getUserById(
+    @Param('id', ParseIntPipe) id: number,
+  ): Promise<Users | HttpException> {
     return this.usersService.getUserById(id);
   }
 
@@ -57,7 +55,6 @@ export class UsersController {
   async getLoggedUser(
     @Param('user') username: string,
   ): Promise<UserResponseDto> {
-    console.log('username : ', username);
     return this.usersService.getLoggedUser(username);
   }
 
@@ -71,7 +68,7 @@ export class UsersController {
   // Login as user
   @Post('login')
   // @UseGuards(JwtAuthGuard)
-  async logIn(@Body() loginUserDto: CreateUserDto) {
+  async logIn(@Body() loginUserDto: UserLoginDto) {
     const accessToken = await this.authLogin.loginUser(
       loginUserDto.username,
       loginUserDto.password,

@@ -1,4 +1,5 @@
 import { IsNotEmpty, IsString, MinLength, IsNumber } from 'class-validator';
+import { OneToMany } from 'typeorm';
 
 export class UserResponseDto {
   @IsNotEmpty()

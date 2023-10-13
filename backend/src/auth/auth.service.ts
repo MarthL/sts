@@ -37,20 +37,15 @@ export class AuthService {
   async validateUser(username: string, password: string): Promise<any> {
     try {
       const user = await this.findUserByUsername(username);
-      console.log(user);
       if (
         user &&
         user.password &&
         (await this.comparePasswords(password, user.password))
       ) {
         const { password: _, ...result } = user;
-        console.log('user :', user);
-        console.log('result :', result);
         return result;
       }
-      return null;
     } catch (error) {
-      // Handle the error appropriately, such as logging it.
       console.error('Error validating user:', error);
       return null;
     }

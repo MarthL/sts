@@ -14,7 +14,7 @@ export class UsersService {
     private userRepository: Repository<Users>,
   ) {}
 
-  async getAllusers() {
+  async getAllusers(): Promise<Users[]> {
     const userCollection = await this.userRepository.find({
       select: {
         id: true,
@@ -48,15 +48,11 @@ export class UsersService {
 
   async createUser(createUserDto: CreateUserDto): Promise<Users> {
     const { username, password } = createUserDto;
-
-    // Hash du mot de passe
-    const hashedPassword = await bcrypt.hash(password, 10); // 10 est le nombre de tours de hachage
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     const user = new Users();
     user.username = username;
-    user.password = hashedPassword; // Utilisez le mot de passe hashé
-
-    // Enregistrez l'utilisateur dans la base de données
+    user.password = hashedPassword;
     return this.userRepository.save(user);
   }
 
@@ -67,7 +63,6 @@ export class UsersService {
         username: true,
         password: true,
         family_name: true,
-        job_id: true,
       },
       where: { username },
     });
@@ -79,7 +74,6 @@ export class UsersService {
         username: true,
         password: true,
         family_name: true,
-        job_id: true,
       },
       where: {
         username: username,
@@ -94,12 +88,8 @@ export class UsersService {
 
   async getUserById(userId: number): Promise<Users | HttpException> {
     const user = await this.userRepository.findOne({
-      select: {
-        id: true,
-        username: true,
-        password: true,
-        job_id: true,
-      },
+      relations: ['job'],
+      select: ['id', 'username', 'password', 'job'],
       where: {
         id: userId,
       },

@@ -6,17 +6,16 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
-    "target": "ES2019", // Mise à jour de la cible ES vers ES2019
+    "target": "es2017",
     "sourceMap": true,
     "outDir": "./dist",
-    "rootDir": "./src", // Spécification du répertoire source
     "baseUrl": "./",
     "incremental": true,
     "skipLibCheck": true,
-    "strict": true, // Activation de la stricte vérification
-    "noImplicitAny": false, // Vous pouvez activer la vérification pour éviter les types 'any'
+    "strictNullChecks": false,
+    "noImplicitAny": false,
     "strictBindCallApply": false,
-    "forceConsistentCasingInFileNames": true, // Vous pouvez activer cette option pour renforcer la cohérence des noms de fichiers
-    "noFallthroughCasesInSwitch": true // Activer cette option pour détecter les cases de commutation sans chute
+    "forceConsistentCasingInFileNames": false,
+    "noFallthroughCasesInSwitch": false
   }
 }
