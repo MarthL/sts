@@ -13,6 +13,7 @@ Backend        | Progression | Comment
 <img width=200/>|<img width=500/>
 Auth           | ✅          | -
 Docker         | In progress | Need to solve the errors 
+Roles          | To do       | Need to make the backend 
 Users          | In progress | Still need to implement some relations 
 Projects       | In progress | Still need to implement some methods
 Job            | To do       | Need to make the backend 
