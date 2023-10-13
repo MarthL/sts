@@ -5,9 +5,14 @@ import { UsersService } from './users.service';
 import { Users } from './users.entity';
 import { AuthModule } from '../auth/auth.module';
 import { AuthLogin } from '../auth/authlogin.service';
+import { ProjectsModule } from 'src/projects/projects.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Users]), forwardRef(() => AuthModule)],
+  imports: [
+    TypeOrmModule.forFeature([Users]),
+    ProjectsModule,
+    forwardRef(() => AuthModule),
+  ],
   controllers: [UsersController],
   providers: [UsersService, AuthLogin],
   exports: [UsersService],
