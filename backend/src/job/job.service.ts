@@ -1,11 +1,12 @@
-export class JobService {}
 import { Injectable, Body, Param } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Job } from './job.entity';
+import JobResponseDto from 'src/DTO/Job/jobResponseDto.dto';
+import { plainToClass } from 'class-transformer';
 
 @Injectable()
-export class ProjectsService {
+export class JobService {
   constructor(
     @InjectRepository(Job)
     private JobRepository: Repository<Job>,
@@ -17,9 +18,11 @@ export class ProjectsService {
   }
 
   // GetById
-  async getJobById(id: number): Promise<any> {
-    return await this.JobRepository.findOne({
+  async getJobById(id: number): Promise<JobResponseDto> {
+    const job = await this.JobRepository.findOne({
       where: { id },
+      relations: ['jobField'],
     });
+    return plainToClass(JobResponseDto, job);
   }
 }

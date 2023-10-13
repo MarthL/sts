@@ -13,14 +13,17 @@ export class Users {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column('varchar')
   username: string;
 
-  @Column()
+  @Column('varchar')
   password: string;
 
-  @Column()
+  @Column('varchar')
   family_name: string;
+
+  @Column('int')
+  yop: number;
 
   @ManyToOne(() => Job, (job) => job.users)
   job: Job;
