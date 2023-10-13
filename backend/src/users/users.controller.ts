@@ -13,8 +13,8 @@ import { AuthLogin } from './../auth/authlogin.service';
 
 import { CreateUserDto } from '../DTO/User/create-userDto.dto';
 import { DeleteUserDto } from '../DTO/User/delete-userDto.dto';
-import { UserResponseDto } from '../DTO/User/userResponseDto.dto';
 import { UserLoginDto } from 'src/DTO/User/user-loginDto.dto';
+import { UserResponseDto } from 'src/DTO/User/userResponseDto.dto';
 
 import { UnauthorizedException, ParseIntPipe } from '@nestjs/common';
 
@@ -35,7 +35,7 @@ export class UsersController {
   @Get(':id')
   async getUserById(
     @Param('id', ParseIntPipe) id: number,
-  ): Promise<Users | HttpException> {
+  ): Promise<UserResponseDto | HttpException> {
     return this.usersService.getUserById(id);
   }
 
@@ -47,7 +47,7 @@ export class UsersController {
 
   // getCurrentUser for Auth only
   @Get('currentuser')
-  async getCurrentUser(username: string): Promise<any> {
+  async getCurrentUser(username: string): Promise<UserResponseDto> {
     return this.usersService.checkUserExist(username);
   }
 

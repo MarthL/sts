@@ -1,8 +1,7 @@
 import { IsNotEmpty, IsString, MinLength, IsNumber } from 'class-validator';
-import { Exclude } from 'class-transformer';
 import { OneToMany } from 'typeorm';
 
-export class UserResponseDto {
+export class UserLoginDto {
   @IsNotEmpty()
   @IsNumber()
   id!: number;
@@ -13,15 +12,6 @@ export class UserResponseDto {
 
   @IsNotEmpty()
   @IsString()
-  @Exclude()
   @MinLength(2)
-  password: string;
-
-  @IsString()
-  @MinLength(2)
-  family_name: string;
-
-  @IsString()
-  @MinLength(2)
-  job_id?: string;
+  password!: string;
 }
