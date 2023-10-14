@@ -13,6 +13,7 @@ Backend        | Progression | Comment
 -------------  | ----------- | ------------------------------------------------------------
 <img width=200/>|<img width=500/>
 Auth           | ✅          | -
+loggedUser           | In progress          | Provide informations through profilepage
 Docker         | In progress | Need to solve the errors 
 Roles          | To do       | Need to make the backend 
 Users          | ✅ | - 
