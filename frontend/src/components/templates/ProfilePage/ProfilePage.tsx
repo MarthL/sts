@@ -5,20 +5,22 @@ import { getUserLogged } from '../../../api/users';
 import styles from './ProfilePage.module.scss';
 
 interface User {
-  username: string,
   id: number,
-  password: string,
+  username: string,
   family_name: string,
-  job: string,
+  password: string,
+  job: {
+    id: number,
+    job_title: string,
+  }
 }
 
-export const ProfilePage = () => {
-
+export const ProfilePage: React.FC<any> = () => {
 
   const [user, setUser] = useState<User>()
 
   useEffect(() => {
-    const username = localStorage.getItem('name'); // Assurez-vous que la clé 'name' est correcte
+    const username = localStorage.getItem('name');
     if (username) {
       getUserLogged(username)
         .then((res) => {

@@ -102,14 +102,10 @@ export class UsersService {
 
   async getLoggedUser(username: string): Promise<UserResponseDto> {
     const loggedUser = await this.userRepository.findOne({
-      select: {
-        username: true,
-        password: true,
-        family_name: true,
-      },
       where: {
         username: username,
       },
+      relations: ['job'],
     });
 
     if (!loggedUser) {

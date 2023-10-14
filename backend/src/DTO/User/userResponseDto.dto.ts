@@ -5,11 +5,11 @@ import { OneToMany } from 'typeorm';
 export class UserResponseDto {
   @IsNotEmpty()
   @IsNumber()
-  id!: number;
+  id: number;
 
   @IsNotEmpty()
   @IsString()
-  username!: string;
+  username: string;
 
   @IsNotEmpty()
   @IsString()
