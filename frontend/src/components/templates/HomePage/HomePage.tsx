@@ -23,7 +23,7 @@ export const HomePage = () => {
 
   return (
     <>
-      <Typography variant="h3" color="initial"> Welcome, {currentUser} </Typography>
+      <Typography variant="h3"> Welcome, {currentUser} </Typography>
       <Box display={'flex'} flexDirection={'row'} justifyContent={'center'} flexWrap={'wrap'} gap={20}>
         {
           projectsCollection.map((project: any) => {
