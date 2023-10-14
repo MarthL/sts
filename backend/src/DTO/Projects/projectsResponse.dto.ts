@@ -1,9 +1,9 @@
 import { Exclude } from 'class-transformer';
-import { IsNotEmpty } from 'class-validator';
+import { IsNotEmpty, IsInt } from 'class-validator';
 
 export default class ProjectsResponseDto {
-  @Exclude()
   @IsNotEmpty()
+  @IsInt()
   id: number;
 
   @IsNotEmpty()

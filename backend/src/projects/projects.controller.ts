@@ -6,14 +6,17 @@ import {
   Param,
   Delete,
   Body,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
 import { ProjectsService } from './projects.service';
 
+import { Projects } from './projects.entity';
+
 import createProjectDto from '../DTO/Projects/createProject.dto';
 import ProjectsResponseDto from '../DTO/Projects/projectsResponse.dto';
-import updateProjectDto from '../DTO/Projects/updateProjectDto.dto';
+import { updateProjectDto } from '../DTO/Projects/updateProjectDto.dto';
 
 @ApiTags('Projects')
 @Controller('/projects')
@@ -21,12 +24,12 @@ export class ProjectsController {
   constructor(private readonly projectsService: ProjectsService) {}
 
   @Get()
-  async getAll() {
+  async getAll(): Promise<Projects[]> {
     return this.projectsService.getProjects();
   }
 
   @Get(':id')
-  async getProjectById(@Param('id') id: number) {
+  async getProjectById(@Param('id', ParseIntPipe) id: number) {
     return await this.projectsService.getProjectById(id);
   }
 
@@ -36,7 +39,9 @@ export class ProjectsController {
   }
 
   @Delete(':id')
-  async deleteById(@Param('id') id: number): Promise<ProjectsResponseDto> {
+  async deleteById(
+    @Param('id', ParseIntPipe) id: number,
+  ): Promise<ProjectsResponseDto> {
     return this.projectsService.deleteById(id);
   }
 
