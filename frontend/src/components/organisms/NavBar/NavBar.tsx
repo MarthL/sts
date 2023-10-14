@@ -5,13 +5,16 @@ import { AppBar, Toolbar, Box, IconButton, Tooltip } from '@mui/material';
 import { Home, People, Person } from '@mui/icons-material';
 import { ExitToApp } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
+import { Switch } from '@mui/material';
 import logo from './../../../assets/img/black_logo.png';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
 
 interface NavBarProps {
 
 };
 
-export const NavBar: React.FC<NavBarProps> = () => {
+export const NavBar: React.FC<any> = ({ isDarkTheme, toggleTheme }) => {
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
@@ -23,7 +26,8 @@ export const NavBar: React.FC<NavBarProps> = () => {
               </Link>
             </Box>
 
-            <Box sx={{ flexGrow: 1 }}></Box>
+            <Box sx={{ flexGrow: 1 }}>
+            </Box>
 
             <Box mx={1}>
               <Link to='/'>
@@ -73,6 +77,28 @@ export const NavBar: React.FC<NavBarProps> = () => {
           </Toolbar>
         </AppBar>
       </Box >
+
+      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+        {isDarkTheme ? <Brightness7Icon sx={{ color: 'white' }} /> : <Brightness4Icon />}
+        <Switch
+          checked={isDarkTheme}
+          color='success'
+          onChange={toggleTheme}
+          sx={{
+            '& .MuiSwitch-thumb': {
+              color: 'white', // Couleur du bouton
+            },
+            '& .MuiSwitch-track': {
+              color: 'white', // Couleur du track
+            },
+            '&:not(.Mui-checked)': {
+              '& .MuiSwitch-track': {
+                color: 'white', // Couleur du track lorsque le switch est "off"
+              },
+            },
+          }}
+        />
+      </Box>
     </>
   )
 }

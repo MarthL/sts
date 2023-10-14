@@ -19,13 +19,13 @@ export const CardProject = (props: CardProjectProps) => {
           alt="Paella dish"
         />
         <CardContent>
-          <Typography variant="h5" color="initial" sx={{
+          <Typography variant="h5" sx={{
             display: '-webkit-box',
             overflow: 'hidden',
             WebkitBoxOrient: 'vertical',
             WebkitLineClamp: 1,
           }}>{project_name}</Typography>
-          <Typography variant="body1" color="initial" sx={{
+          <Typography variant="body1" sx={{
             display: '-webkit-box',
             overflow: 'hidden',
             WebkitBoxOrient: 'vertical',
