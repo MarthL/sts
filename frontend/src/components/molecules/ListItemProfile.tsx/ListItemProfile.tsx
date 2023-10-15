@@ -14,7 +14,7 @@ export const ListItemProfile: React.FC<ListItemProfileProps> = (props: ListItemP
 
   return (
     <>
-      <List>
+      <List sx={{ marginTop: 0, marginBottom: 0, paddingTop: 0, paddingBottom: 0 }}>
         <ListItem disablePadding>
           <ListItemButton
             selected={selectedIndex === index}
