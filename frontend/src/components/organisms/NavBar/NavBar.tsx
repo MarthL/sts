@@ -17,9 +17,9 @@ interface NavBarProps {
 export const NavBar: React.FC<any> = ({ isDarkTheme, toggleTheme }) => {
   return (
     <>
-      <Box sx={{ flexGrow: 1 }}>
-        <AppBar position='static'>
-          <Toolbar variant="dense" sx={{ backgroundColor: 'black' }} >
+      <Box sx={{ flexGrow: 1 }} >
+        <AppBar position='static' sx={{ backgroundColor: isDarkTheme ? 'default' : 'white' }}>
+          <Toolbar variant="dense" >
             <Box sx={{ flexGrow: 1 }}>
               <Link to='/'>
                 <img src={logo} alt="manege logo" width={110} height={110} />
@@ -33,7 +33,7 @@ export const NavBar: React.FC<any> = ({ isDarkTheme, toggleTheme }) => {
               <Link to='/'>
                 <Tooltip title="Home">
                   <IconButton aria-label='Home'>
-                    <Home color='primary' sx={{ "&:hover": { color: "white" }, fontSize: 30 }} />
+                    <Home color='primary' sx={{ "&:hover": { color: "black" }, fontSize: 30 }} />
                   </IconButton>
                 </Tooltip>
               </Link>
@@ -43,7 +43,7 @@ export const NavBar: React.FC<any> = ({ isDarkTheme, toggleTheme }) => {
               <Link to='/collaborators'>
                 <Tooltip title="Collaborators">
                   <IconButton >
-                    <People color='primary' sx={{ "&:hover": { color: "white" }, fontSize: 30 }} />
+                    <People color='primary' sx={{ "&:hover": { color: "black" }, fontSize: 30 }} />
                   </IconButton>
                 </Tooltip>
               </Link>
@@ -55,7 +55,7 @@ export const NavBar: React.FC<any> = ({ isDarkTheme, toggleTheme }) => {
               <Link to='/profile'>
                 <Tooltip title="Profile">
                   <IconButton>
-                    <Person color="primary" sx={{ "&:hover": { color: "white" }, fontSize: 30 }} />
+                    <Person color="primary" sx={{ "&:hover": { color: "black" }, fontSize: 30 }} />
                   </IconButton>
                 </Tooltip>
               </Link>
@@ -68,7 +68,7 @@ export const NavBar: React.FC<any> = ({ isDarkTheme, toggleTheme }) => {
               }}>
                 <Tooltip title="Logout">
                   <IconButton>
-                    <ExitToApp color="primary" sx={{ "&:hover": { color: "white" }, fontSize: 30 }} />
+                    <ExitToApp color="primary" sx={{ "&:hover": { color: "black" }, fontSize: 30 }} />
                   </IconButton>
                 </Tooltip>
               </Link>

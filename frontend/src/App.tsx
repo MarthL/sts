@@ -7,7 +7,7 @@ import { HomePage } from './components/templates/HomePage/HomePage';
 import { LoginPage } from './components/templates/LoginPage/LoginPage';
 import { CollaboratorsPage } from './components/templates/CollaboratorsPage/CollaboratorsPage';
 import { ThemeProvider, createTheme } from '@mui/material';
-import { lime, purple, lightBlue } from '@mui/material/colors';
+import { lime, blue, } from '@mui/material/colors';
 import { Switch } from '@mui/material';
 
 function App() {
@@ -19,7 +19,21 @@ function App() {
     palette: {
       mode: 'light',
       primary: {
-        main: '#1976D2',
+        main: blue[600],
+      },
+      secondary: {
+        main: '#000000', // Couleur de vos icônes en mode clair
+      },
+      background: {
+        default: '#FFFFFF', // Couleur de fond de la barre de navigation en mode clair
+      },
+      text: {
+        primary: '#000000', // Couleur du texte en mode clair
+      },
+    },
+    typography: {
+      allVariants: {
+        color: 'black', // Couleur du texte en mode clair
       },
     },
   });
