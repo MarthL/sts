@@ -18,11 +18,11 @@ export const NavBar: React.FC<any> = ({ isDarkTheme, toggleTheme }) => {
   return (
     <>
       <Box sx={{ flexGrow: 1 }} >
-        <AppBar position='static' sx={{ backgroundColor: isDarkTheme ? 'default' : 'white' }}>
-          <Toolbar variant="dense" >
+        <AppBar position='fixed' sx={{ backgroundColor: isDarkTheme ? 'default' : 'white' }}>
+          <Toolbar variant="dense" sx={{ marginTop: '5px' }}>
             <Box sx={{ flexGrow: 1 }}>
               <Link to='/'>
-                <img src={logo} alt="manege logo" width={110} height={110} />
+                <img src={logo} alt="manege logo" width={80} height={80} />
               </Link>
             </Box>
 
@@ -75,30 +75,33 @@ export const NavBar: React.FC<any> = ({ isDarkTheme, toggleTheme }) => {
             </Box>
 
           </Toolbar>
+          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+            {isDarkTheme ? <Brightness7Icon sx={{ color: 'white' }} /> : <Brightness4Icon sx={{ color: 'black' }} />}
+            <Switch
+              checked={isDarkTheme}
+              color='success'
+              onChange={toggleTheme}
+              sx={{
+                '& .MuiSwitch-thumb': {
+                  color: 'white', // Couleur du bouton
+                },
+                '& .MuiSwitch-track': {
+                  color: 'white', // Couleur du track
+                },
+                '&:not(.Mui-checked)': {
+                  '& .MuiSwitch-track': {
+                    color: 'white', // Couleur du track lorsque le switch est "off"
+                  },
+                },
+              }}
+            />
+          </Box>
         </AppBar>
       </Box >
-
-      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
-        {isDarkTheme ? <Brightness7Icon sx={{ color: 'white' }} /> : <Brightness4Icon />}
-        <Switch
-          checked={isDarkTheme}
-          color='success'
-          onChange={toggleTheme}
-          sx={{
-            '& .MuiSwitch-thumb': {
-              color: 'white', // Couleur du bouton
-            },
-            '& .MuiSwitch-track': {
-              color: 'white', // Couleur du track
-            },
-            '&:not(.Mui-checked)': {
-              '& .MuiSwitch-track': {
-                color: 'white', // Couleur du track lorsque le switch est "off"
-              },
-            },
-          }}
-        />
+      <Box height={200}>
       </Box>
+
+
     </>
   )
 }
