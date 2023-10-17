@@ -5,6 +5,7 @@ HomePage       | ✅          | -
 CollaboratorPage | In progress | Display just the collection atm 
 ProfilePage    | In progress | Display some informations and need design 
 ProjectsPage   | In progress | Display the informations and need design
+Loader    | To do | Check if BE is ok or not
 Light / Dark mode   | ✅       | -
 
 <br><br><br>
