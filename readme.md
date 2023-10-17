@@ -22,3 +22,5 @@ Projects       | ✅ | -
 Job            | ✅       | - 
 JobField       | To do       | Need to make the backend
 allUsersfromSameJob       | To do       | Need to make the backend
+
+PlotlyJS
