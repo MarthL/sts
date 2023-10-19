@@ -41,10 +41,15 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
         </Grid>
         <Grid item xs={1}></Grid>
         <Grid item xs={4} marginBottom={5} marginTop={5}>
-          <TextField type='text' label={'Last Name'} fullWidth />
+          <TextField type='text' label={'Last Name'} fullWidth value={user?.family_name} />
         </Grid>
         <Grid item xs={1}></Grid>
         <Grid item xs={1}></Grid>
+
+        <Grid item xs={9} marginBottom={5}>
+          <TextField type="text" label={"Position"} fullWidth sx={{ margin: 'auto' }} value={user?.job.job_title} />
+        </Grid>
+        <Grid item xs={3}></Grid>
 
 
         <Grid item xs={9} marginBottom={5}>
