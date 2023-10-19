@@ -56,7 +56,7 @@ export const ProfilePage: React.FC<any> = () => {
         </Grid>
         <Grid item xs={9}>
           <Paper elevation={0} variant="outlined">
-            <EditProfile />
+            <EditProfile user={user} />
           </Paper>
         </Grid>
       </Grid >

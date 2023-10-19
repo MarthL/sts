@@ -37,6 +37,16 @@ function App() {
       },
     },
     components: {
+      MuiInputLabel: {
+        styleOverrides: {
+          shrink: {
+            transform: 'translate(14px, -6px)',
+            'input[data-empty="true"] ~ &': {
+              transform: 'translate(14px, 10px)',
+            }
+          }
+        }
+      }
     }
   });
 
