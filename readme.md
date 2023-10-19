@@ -23,4 +23,9 @@ Job            | ✅       | -
 JobField       | To do       | Need to make the backend
 allUsersfromSameJob       | To do       | Need to make the backend
 
+Backlog       | ID | Description
+-------------  | ----------- | ------------------------------------------------------------
+<img width=200/>|<img width=500/>
+labelInput       | 01          | If I reload the page in myprofile, the label is not well displayed. I need to use The router once.  
+
 PlotlyJS
