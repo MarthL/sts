@@ -3,22 +3,34 @@ import { Grid, Avatar, Paper, Typography, Box } from '@mui/material';
 import { ProgressProfile } from '../../molecules/ProgressProfile/ProgressProfile';
 import { getUserLogged } from '../../../api/users';
 import styles from './ProfilePage.module.scss';
+import { List, ListItem, ListItemText, ListItemButton, ListItemIcon } from '@mui/material';
+import { Edit, Tune, Security } from '@mui/icons-material';
+import { ListItemProfile } from '../../molecules/ListItemProfile.tsx/ListItemProfile';
+import { EditProfile } from './EditProfile/EditProfile';
 
 interface User {
-  username: string,
   id: number,
-  password: string,
+  username: string,
   family_name: string,
-  job: string,
+  password: string,
+  job: {
+    id: number,
+    job_title: string,
+  }
 }
 
-export const ProfilePage = () => {
+export const ProfilePage: React.FC<any> = () => {
 
+  const [selectedIndex, setSelectedIndex] = useState(1);
+
+  const handleListItemClick = (index: number) => {
+    setSelectedIndex(index);
+  };
 
   const [user, setUser] = useState<User>()
 
   useEffect(() => {
-    const username = localStorage.getItem('name'); // Assurez-vous que la clé 'name' est correcte
+    const username = localStorage.getItem('name');
     if (username) {
       getUserLogged(username)
         .then((res) => {
@@ -33,59 +45,19 @@ export const ProfilePage = () => {
 
   return (
     <>
-      <Grid container spacing={3}>
+      <Grid container>
         <Grid item xs={3}>
           <Paper elevation={0}
-            variant="outlined"
-            sx={{ height: "80vh" }}
-            className={styles.paperColor}
-          >
-            <Avatar
-              alt="avatar"
-              sx={{ bgcolor: '#F94C10', width: '100px', height: '100px', margin: '10px auto' }}
-            >
-            </Avatar>
-            <Typography variant="h6" align='center' fontWeight={'bold'}>{user?.username} {user?.family_name} </Typography>
-            <Typography variant="body1" color="blue" align='center' fontWeight={'bold'}>UX Deisgner</Typography>
-            <Typography variant="body2" padding={2} textAlign={'center'} fontStyle={'italic'}>I am looking for some awesome project where I can contribute through creativity and cool stuff !</Typography>
-            <Paper sx={{ margin: '0 10% 10px 10%' }} className={styles.paperColor}>
-              <Typography variant="body2"> <Box component="span" fontWeight={'bold'}> Years Of XP: </Box> 2 </Typography>
-              <Typography variant="body2"> <Box component="span" fontWeight={'bold'}> Daily Rate: </Box> 560 € </Typography>
-              <Typography variant="body2"> <Box component="span" fontWeight={'bold'}> Location: </Box> New-York </Typography>
-            </Paper>
+            variant="outlined">
+            <ListItemProfile icon={<Edit />} text={'Edit Profile'} index={1} selectedIndex={selectedIndex} handleListItemClick={handleListItemClick}></ListItemProfile>
+            <ListItemProfile icon={<Security />} text={'Security and Password'} index={2} selectedIndex={selectedIndex} handleListItemClick={handleListItemClick}></ListItemProfile>
+            <ListItemProfile icon={<Tune />} text={'Advanced Settings'} index={3} selectedIndex={selectedIndex} handleListItemClick={handleListItemClick}></ListItemProfile>
           </Paper>
-
         </Grid>
-        <Grid item xs={12} sm container spacing={2}>
-          <Grid item xs={6}>
-            <Paper variant="outlined" sx={{ height: '90%' }} className={styles.paperColor}>
-              <Typography variant="body1" padding={3}>Bio</Typography>
-              <Typography variant="body2" padding={3} textAlign={'justify'}>
-                Designer graphique passionné par l'art de traduire des idées en visuels percutants. Avec [nombre] années d'expérience, je fusionne créativité et précision pour créer des designs fonctionnels et esthétiques. Chaque projet est une opportunité d'explorer de nouvelles perspectives, d'expérimenter avec les formes, les couleurs et les textures. Mon objectif est de captiver l'attention et de communiquer des messages clairs à travers mes créations. De la conception de logos distinctifs à la réalisation de supports de communication engageants, chaque détail compte. Ensemble, nous pouvons donner vie à vos visions et créer des visuels qui laissent une impression durable
-              </Typography>
-            </Paper>
-          </Grid>
-          <Grid item xs={6}>
-            <Paper variant="outlined" className={styles.paperColor}>
-              <Typography variant="body1" padding={3}>Motivations</Typography>
-              <ProgressProfile name="determinate" value={50}></ProgressProfile>
-              <ProgressProfile name="management" value={30}></ProgressProfile>
-              <ProgressProfile name="design" value={90}></ProgressProfile>
-              <ProgressProfile name="WebDesign" value={30}></ProgressProfile>
-            </Paper>
-          </Grid>
-          <Grid item xs={6}>
-            <Paper variant="outlined" className={styles.paperColor}>Personality</Paper>
-          </Grid>
-          <Grid item xs={6}>
-            <Paper variant="outlined" className={styles.paperColor}>Bio2</Paper>
-          </Grid>
-          <Grid item xs={6}>
-            <Paper variant="outlined" className={styles.paperColor}>Goals</Paper>
-          </Grid>
-          <Grid item xs={6}>
-            <Paper variant="outlined" className={styles.paperColor}>Worked for this brands</Paper>
-          </Grid>
+        <Grid item xs={9}>
+          <Paper elevation={0} variant="outlined">
+            <EditProfile user={user} />
+          </Paper>
         </Grid>
       </Grid >
     </>
