@@ -36,6 +36,8 @@ function App() {
         color: 'black', // Couleur du texte en mode clair
       },
     },
+    components: {
+    }
   });
 
   const darkTheme = createTheme({
@@ -72,7 +74,6 @@ function App() {
       setIsConnected(true);
     }
   }, [])
-
 
 
   return (

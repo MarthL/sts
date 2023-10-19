@@ -6,6 +6,7 @@ import styles from './ProfilePage.module.scss';
 import { List, ListItem, ListItemText, ListItemButton, ListItemIcon } from '@mui/material';
 import { Edit, Tune, Security } from '@mui/icons-material';
 import { ListItemProfile } from '../../molecules/ListItemProfile.tsx/ListItemProfile';
+import { EditProfile } from './EditProfile/EditProfile';
 
 interface User {
   id: number,
@@ -51,12 +52,11 @@ export const ProfilePage: React.FC<any> = () => {
             <ListItemProfile icon={<Edit />} text={'Edit Profile'} index={1} selectedIndex={selectedIndex} handleListItemClick={handleListItemClick}></ListItemProfile>
             <ListItemProfile icon={<Security />} text={'Security and Password'} index={2} selectedIndex={selectedIndex} handleListItemClick={handleListItemClick}></ListItemProfile>
             <ListItemProfile icon={<Tune />} text={'Advanced Settings'} index={3} selectedIndex={selectedIndex} handleListItemClick={handleListItemClick}></ListItemProfile>
-
           </Paper>
         </Grid>
         <Grid item xs={9}>
           <Paper elevation={0} variant="outlined">
-            <Typography variant="h5" >Edit profile</Typography>
+            <EditProfile />
           </Paper>
         </Grid>
       </Grid >
