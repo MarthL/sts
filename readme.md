@@ -28,6 +28,7 @@ allUsersfromSameJob       | To do       | Need to make the backend
 Backlog       | ID | Description
 -------------  | ----------- | ------------------------------------------------------------
 <img width=200/>|<img width=500/>
-labelInput       | 01          | If I reload the page in myprofile, the label is not well displayed. I need to use The router once.  
+labelInput       | 01          | If I reload the page in myprofile, the label is not well displayed. I need to use The router once.
+EnvConfig       | 02          | Need to make configuration with .env for DB connexion  
 
 PlotlyJS
