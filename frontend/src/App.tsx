@@ -38,15 +38,11 @@ function App() {
     },
     components: {
       MuiInputLabel: {
-        styleOverrides: {
-          shrink: {
-            'input[data-empty="true"] ~ &': {
-              transform: 'translate(14px, 10px)',
-            }
-          }
-        }
-      }
-    }
+        defaultProps: {
+          shrink: true,
+        },
+      },
+    },
   });
 
   const darkTheme = createTheme({
@@ -68,6 +64,13 @@ function App() {
     typography: {
       allVariants: {
         color: '#FFFFFF',
+      },
+    },
+    components: {
+      MuiInputLabel: {
+        defaultProps: {
+          shrink: true,
+        },
       },
     },
   });
