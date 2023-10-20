@@ -21,6 +21,7 @@ Users          | ✅ | -
 Projects       | ✅ | -
 Job            | ✅       | - 
 JobField       | To do       | Need to make the backend
+Method add job to user       | To do       | Need to make the backend
 allUsersfromSameJob       | To do       | Need to make the backend
 
 <br><br><br>
