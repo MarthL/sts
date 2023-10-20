@@ -1,12 +1,12 @@
 Frontend       | Progression | Comment
 -------------  | ----------- | ------------------------------------------------------------
 <img width=200/>|<img width=500/>
-HomePage       | ✅          | - 
+HomePage       | ✅          | -
+Light / Dark mode   | ✅       | -
 CollaboratorPage | In progress | Display just the collection atm 
 ProfilePage    | In progress | Display some informations and need design 
 ProjectsPage   | In progress | Display the informations and need design
 Loader    | To do | Check if BE is ok or not
-Light / Dark mode   | ✅       | -
 
 <br><br><br>
 
@@ -14,12 +14,12 @@ Backend        | Progression | Comment
 -------------  | ----------- | ------------------------------------------------------------
 <img width=200/>|<img width=500/>
 Auth           | ✅          | -
-loggedUser           | In progress          | Provide informations through profilepage
-Docker         | In progress | Need to solve the errors 
-Roles          | To do       | Need to make the backend 
 Users          | ✅ | - 
 Projects       | ✅ | -
 Job            | ✅       | - 
+loggedUser           | In progress          | Provide informations through profilepage
+Docker         | In progress | Need to solve the errors 
+Roles          | To do       | Need to make the backend 
 JobField       | To do       | Need to make the backend
 Method add job to user       | To do       | Need to make the backend
 allUsersfromSameJob       | To do       | Need to make the backend
