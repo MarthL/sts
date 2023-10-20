@@ -23,13 +23,13 @@ Roles          | To do       | Need to make the backend
 JobField       | To do       | Need to make the backend
 Method add job to user       | To do       | Need to make the backend
 allUsersfromSameJob       | To do       | Need to make the backend
+EditProfile       | To do       | Adapt User entity with edit profile fields + create patch method
 
 <br><br><br>
 
 Backlog       | ID | Description
 -------------  | ----------- | ------------------------------------------------------------
 <img width=200/>|<img width=500/>
-labelInput       | 01          | If I reload the page in myprofile, the label is not well displayed. I need to use The router once.
 EnvConfig       | 02          | Need to make configuration with .env for DB connexion  
 
 PlotlyJS
