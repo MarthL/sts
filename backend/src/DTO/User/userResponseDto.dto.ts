@@ -24,4 +24,12 @@ export class UserResponseDto {
   @IsString()
   @MinLength(2)
   job_id?: string;
+
+  @IsString()
+  @MinLength(2)
+  phone_number: string;
+
+  @IsString()
+  @MinLength(2)
+  email: string;
 }

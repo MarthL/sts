@@ -27,6 +27,12 @@ export class Users {
   @Column('int')
   yop: number;
 
+  @Column('varchar')
+  phone_number: string;
+
+  @Column('varchar')
+  email: string;
+
   @ManyToOne(() => Job, (job) => job.users)
   job: Job;
 
