@@ -83,13 +83,27 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
         <Grid item xs={3}></Grid>
 
         <Grid item xs={9} marginBottom={5}>
-          <TextField type="text" {...register("yop")} label={"Years of XP"} fullWidth sx={{ margin: 'auto' }} InputLabelProps={{ shrink: true }} />
+          <TextField
+            fullWidth
+            type="text"
+            {...register("yop")}
+            label={"Years of XP"}
+            sx={{ margin: 'auto' }}
+            InputLabelProps={{ shrink: true }}
+          />
         </Grid>
         <Grid item xs={3}></Grid>
 
 
         <Grid item xs={9} marginBottom={5}>
-          <TextField type="text" {...register("email")} label={"Email"} fullWidth sx={{ margin: 'auto' }} InputLabelProps={{ shrink: true }} />
+          <TextField
+            type="text"
+            {...register("email")}
+            label={"Email"}
+            fullWidth
+            sx={{ margin: 'auto' }}
+            InputLabelProps={{ shrink: true }}
+          />
         </Grid>
         <Grid item xs={3}></Grid>
 
@@ -105,21 +119,41 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
         <Grid item xs={3}></Grid>
 
         <Grid item xs={4}>
-          <TextField type='text' {...register("city")} label={'City'} fullWidth InputLabelProps={{ shrink: true }} />
+          <TextField type="text"
+            {...register("city")}
+            label={'City'}
+            fullWidth
+            InputLabelProps={{ shrink: true }}
+          />
         </Grid>
         <Grid item xs={1}></Grid>
         <Grid item xs={4} marginBottom={5}>
-          <TextField type='text' {...register("state")} label={'State'} fullWidth InputLabelProps={{ shrink: true }} />
+          <TextField type="text"
+            {...register("state")}
+            label={'State'}
+            fullWidth
+            InputLabelProps={{ shrink: true }}
+          />
         </Grid>
         <Grid item xs={1}></Grid>
         <Grid item xs={1}></Grid>
 
         <Grid item xs={4}>
-          <TextField type='text' {...register("zip_code")} label={'Zip Code'} fullWidth InputLabelProps={{ shrink: true }} />
+          <TextField type="text"
+            {...register("zip_code")}
+            label={'Zip Code'}
+            fullWidth
+            InputLabelProps={{ shrink: true }}
+          />
         </Grid>
         <Grid item xs={1}></Grid>
         <Grid item xs={4} marginBottom={5}>
-          <TextField type='text' {...register("country")} label={'Country'} fullWidth InputLabelProps={{ shrink: true }} />
+          <TextField type="text"
+            {...register("country")}
+            label={'Country'}
+            fullWidth
+            InputLabelProps={{ shrink: true }}
+          />
         </Grid>
         <Grid item xs={1}></Grid>
         <Grid item xs={1}></Grid>
