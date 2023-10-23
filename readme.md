@@ -15,8 +15,8 @@ Requirements Linux/MacOS:
 First, Make sure that mySQL is up and running, then create a database with the name "sts"
 
 ```SQL
-CREATE DATABASE sts
-USE sts
+CREATE DATABASE sts;
+USE sts;
 ```
 
 Next, Run the backend by going into ["./backend"](./backend) and executing the following
