@@ -1,3 +1,39 @@
+## Requirements
+
+Requirements Windows:
+- wampp64
+- npm
+- nodeJS
+
+Requirements Linux/MacOS:
+- mySQL
+- npm
+- nodeJS
+
+## Installation/Usage
+
+First, Make sure that mySQL is up and running, then create a database with the name "sts"
+
+```SQL
+CREATE DATABASE sts
+USE sts
+```
+
+Next, Run the backend by going into ["./backend"](./backend) and executing the following
+
+```sh
+npm run start
+```
+
+Wait until the backend connects with the database then go to the frontend ["./frontend"](./frontend)
+and execute the following commands
+
+```sh
+npm run start:dev
+```
+
+## Todo List
+
 Frontend       | Progression | Comment
 -------------  | ----------- | ------------------------------------------------------------
 <img width=200/>|<img width=500/>
@@ -34,36 +70,4 @@ EnvConfig       | 02          | Need to make configuration with .env for DB conn
 
 PlotlyJS
 
-## Requirements
 
-Requirements Windows:
-- wampp64
-- npm
-- nodeJS
-
-Requirements Linux/MacOS:
-- mySQL
-- npm
-- nodeJS
-
-## Installation/Usage
-
-First, Make sure that mySQL is up and running, then create a database with the name "sts"
-
-```SQL
-CREATE DATABASE sts
-USE sts
-```
-
-Next, Run the backend by going into ["./backend"](./backend) and executing the following
-
-```sh
-npm run start
-```
-
-Wait until the backend connects with the database then go to the frontend ["./frontend"](./frontend)
-and execute the following commands
-
-```sh
-npm run start:dev
-```
