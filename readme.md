@@ -22,6 +22,8 @@ USE sts
 Next, Run the backend by going into ["./backend"](./backend) and executing the following
 
 ```sh
+# First time install the missing node modules using:
+# npm i
 npm run start
 ```
 
@@ -29,6 +31,8 @@ Wait until the backend connects with the database then go to the frontend ["./fr
 and execute the following commands
 
 ```sh
+# First time install the missing node modules using:
+# npm i
 npm run start:dev
 ```
 
