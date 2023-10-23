@@ -24,7 +24,7 @@ Next, Run the backend by going into ["./backend"](./backend) and executing the f
 ```sh
 # First time install the missing node modules using:
 # npm i
-npm run start
+npm run start:dev
 ```
 
 Wait until the backend connects with the database then go to the frontend ["./frontend"](./frontend)
@@ -33,7 +33,7 @@ and execute the following commands
 ```sh
 # First time install the missing node modules using:
 # npm i
-npm run start:dev
+npm run start
 ```
 
 ## Todo List
