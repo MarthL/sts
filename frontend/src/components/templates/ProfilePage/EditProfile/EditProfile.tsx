@@ -2,6 +2,7 @@ import { Typography, TextField, Input, Button, Box, Grid, Avatar } from '@mui/ma
 import { CustomInput } from '../../../atoms/InputForm/CustomInput';
 import { useForm } from 'react-hook-form';
 import { useState, useEffect } from 'react';
+import { editUser } from '../../../../api/users';
 
 // TODO :    defaultValue={this.props.val}
 // onChange={handleChange}
@@ -26,6 +27,7 @@ interface EditProfileProps {
 
 export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
 
+  const [id, setId] = useState(user?.id);
   const [username, setUsername] = useState(user?.username);
   const [familyName, setFamilyName] = useState(user?.family_name);
   const [job, setJob] = useState(user?.job?.job_title);
@@ -35,6 +37,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
 
   useEffect(() => {
     if (user) {
+      setId(user.id);
       user?.username ? setUsername(user.username) : setUsername('');
       setFamilyName(user.family_name ? user.family_name : '')
       setJob(user.job?.job_title ? user.job.job_title : '');
@@ -73,7 +76,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
   return (
     <>
       <Typography variant="h5" marginLeft={3}>Edit Profile</Typography>
-      <Grid container marginLeft={3} component={'form'} onSubmit={handleSubmit((data) => console.log(data))}>
+      <Grid container marginLeft={3} component={'form'} onSubmit={handleSubmit((data) => user?.id ? editUser(user.id, data) : console.error(`Datas :  ${data} cannot be send, missing id user`))}>
 
         <Grid item xs={2}></Grid>
         <Grid item xs={1}></Grid>
@@ -154,7 +157,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
 
         <Grid item xs={9} marginBottom={5}>
           <TextField type="text"
-            {...register("phone")}
+            {...register("phone_number")}
             value={phone}
             onChange={handlePhoneChange}
             label={"Contact Number"}
