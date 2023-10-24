@@ -11,6 +11,9 @@ interface User {
   username: string,
   family_name: string,
   password: string,
+  yop: number,
+  email: string,
+  phone_number: string,
   job?: {
     id?: number,
     job_title?: string,
@@ -24,15 +27,45 @@ interface EditProfileProps {
 export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
 
   const [username, setUsername] = useState(user?.username);
+  const [familyName, setFamilyName] = useState(user?.family_name);
+  const [job, setJob] = useState(user?.job?.job_title);
+  const [yop, setYop] = useState(user?.yop);
+  const [email, setEmail] = useState(user?.email);
+  const [phone, setPhone] = useState(user?.phone_number);
 
   useEffect(() => {
     if (user) {
-      setUsername(user.username);
+      user?.username ? setUsername(user.username) : setUsername('');
+      setFamilyName(user.family_name ? user.family_name : '')
+      setJob(user.job?.job_title ? user.job.job_title : '');
+      setYop(user?.yop ? user.yop : 0);
+      setEmail(user?.email ? user.email : '');
+      setPhone(user?.phone_number ? user.phone_number : '');
     }
   }, [user]);
 
   const handleUserNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(event.target.value);
+  }
+
+  const handleFamilyNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFamilyName(event.target.value);
+  }
+
+  const handleJobChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setJob(event.target.value);
+  }
+
+  const handleYopChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setYop(parseInt(event.target.value));
+  }
+
+  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(event.target.value);
+  }
+
+  const handlePhoneChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPhone(event.target.value);
   }
 
   const { register, handleSubmit } = useForm();
@@ -65,7 +98,14 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
         </Grid>
         <Grid item xs={1}></Grid>
         <Grid item xs={4} marginBottom={5} marginTop={5}>
-          <TextField type='text' {...register("family_name")} label={'Last Name'} fullWidth placeholder={user?.family_name} InputLabelProps={{ shrink: true }} />
+          <TextField type='text'
+            {...register("family_name")}
+            label={'Last Name'}
+            fullWidth
+            value={familyName}
+            onChange={handleFamilyNameChange}
+            InputLabelProps={{ shrink: true }}
+          />
         </Grid>
         <Grid item xs={1}></Grid>
         <Grid item xs={1}></Grid>
@@ -76,7 +116,8 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
             label={"Position"}
             fullWidth
             sx={{ margin: 'auto' }}
-            placeholder={user?.job?.job_title ? user?.job.job_title : ''}
+            value={job}
+            onChange={handleJobChange}
             InputLabelProps={{ shrink: true }}
           />
         </Grid>
@@ -87,6 +128,8 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
             fullWidth
             type="text"
             {...register("yop")}
+            value={yop}
+            onChange={handleYopChange}
             label={"Years of XP"}
             sx={{ margin: 'auto' }}
             InputLabelProps={{ shrink: true }}
@@ -99,6 +142,8 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
           <TextField
             type="text"
             {...register("email")}
+            value={email}
+            onChange={handleEmailChange}
             label={"Email"}
             fullWidth
             sx={{ margin: 'auto' }}
@@ -108,7 +153,14 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
         <Grid item xs={3}></Grid>
 
         <Grid item xs={9} marginBottom={5}>
-          <TextField type="text" {...register("phone")} label={"Contact Number"} fullWidth sx={{ margin: 'auto' }} InputLabelProps={{ shrink: true }} />
+          <TextField type="text"
+            {...register("phone")}
+            value={phone}
+            onChange={handlePhoneChange}
+            label={"Contact Number"}
+            fullWidth sx={{ margin: 'auto' }}
+            InputLabelProps={{ shrink: true }}
+          />
         </Grid>
         <Grid item xs={3}></Grid>
 

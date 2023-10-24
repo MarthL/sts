@@ -13,6 +13,9 @@ interface User {
   username: string,
   family_name: string,
   password: string,
+  yop: number,
+  email: string,
+  phone_number: string,
   job: {
     id: number,
     job_title: string,
