@@ -4,9 +4,6 @@ import { useForm } from 'react-hook-form';
 import { useState, useEffect } from 'react';
 import { editUser } from '../../../../api/users';
 
-// TODO :    defaultValue={this.props.val}
-// onChange={handleChange}
-
 interface User {
   id: number,
   username: string,

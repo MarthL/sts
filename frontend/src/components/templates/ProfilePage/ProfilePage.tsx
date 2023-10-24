@@ -7,6 +7,7 @@ import { List, ListItem, ListItemText, ListItemButton, ListItemIcon } from '@mui
 import { Edit, Tune, Security } from '@mui/icons-material';
 import { ListItemProfile } from '../../molecules/ListItemProfile.tsx/ListItemProfile';
 import { EditProfile } from './EditProfile/EditProfile';
+import { SecurityPassword } from './SecurityPassword/SecurityPassword';
 
 interface User {
   id: number,
@@ -45,6 +46,11 @@ export const ProfilePage: React.FC<any> = () => {
     }
   }, []);
 
+  const componentToRender = [
+    <EditProfile user={user} />,
+    <SecurityPassword user={user} />
+  ];
+
 
   return (
     <>
@@ -59,7 +65,7 @@ export const ProfilePage: React.FC<any> = () => {
         </Grid>
         <Grid item xs={9}>
           <Paper elevation={0} variant="outlined">
-            <EditProfile user={user} />
+            {componentToRender[selectedIndex - 1]}
           </Paper>
         </Grid>
       </Grid >
