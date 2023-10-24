@@ -73,11 +73,21 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
 
   const { register, handleSubmit } = useForm();
 
+  const sendForm = (id: number, data: any) => {
+    const filteredData = Object.keys(data).reduce((acc: any, key) => {
+      if (data[key] !== '') {
+        acc[key] = data[key];
+      }
+      return acc;
+    }, {});
+
+    editUser(id, filteredData)
+  }
+
   return (
     <>
       <Typography variant="h5" marginLeft={3}>Edit Profile</Typography>
-      <Grid container marginLeft={3} component={'form'} onSubmit={handleSubmit((data) => user?.id ? editUser(user.id, data) : console.error(`Datas :  ${data} cannot be send, missing id user`))}>
-
+      <Grid container marginLeft={3} component={'form'} onSubmit={handleSubmit((data) => user?.id ? sendForm(user.id, data) : console.error(`Datas :  ${data} cannot be send, missing id user`))}>
         <Grid item xs={2}></Grid>
         <Grid item xs={1}></Grid>
         <Grid item xs={1}></Grid>

@@ -26,8 +26,28 @@ export class UserResponseDto {
   job_id?: number;
 
   @IsString()
+  @MinLength(5)
+  address: string;
+
+  @IsString()
   @MinLength(2)
-  phone_number: string;
+  phone_number?: string;
+
+  @IsString()
+  @MinLength(3)
+  city: string;
+
+  @IsNumber()
+  @MinLength(3)
+  state?: number;
+
+  @IsNumber()
+  @MinLength(2)
+  zip_code?: number;
+
+  @IsString()
+  @MinLength(3)
+  country?: string;
 
   @IsString()
   @MinLength(2)

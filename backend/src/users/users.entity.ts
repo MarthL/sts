@@ -34,6 +34,21 @@ export class Users {
   @Column('varchar')
   email: string;
 
+  @Column()
+  address: string;
+
+  @Column()
+  city: string;
+
+  @Column()
+  state?: number;
+
+  @Column()
+  zip_code?: number;
+
+  @Column()
+  country?: string;
+
   @ManyToOne(() => Job, (job) => job.users)
   @JoinColumn({ name: 'job_id' })
   job?: Job;
