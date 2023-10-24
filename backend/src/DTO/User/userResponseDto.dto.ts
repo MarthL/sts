@@ -23,7 +23,7 @@ export class UserResponseDto {
 
   @IsString()
   @MinLength(2)
-  job_id?: string;
+  job_id?: number;
 
   @IsString()
   @MinLength(2)

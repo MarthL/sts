@@ -5,6 +5,7 @@ import {
   ManyToMany,
   ManyToOne,
   JoinTable,
+  JoinColumn,
 } from 'typeorm';
 
 import { Job } from 'src/job/job.entity';
@@ -34,7 +35,8 @@ export class Users {
   email: string;
 
   @ManyToOne(() => Job, (job) => job.users)
-  job: Job;
+  @JoinColumn({ name: 'job_id' })
+  job?: Job;
 
   @ManyToMany(() => Projects)
   @JoinTable()

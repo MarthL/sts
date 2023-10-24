@@ -126,6 +126,10 @@ export class UsersService {
     @Param('id', ParseIntPipe) id: number,
     @Body() updateReq: UserResponseDto,
   ): Promise<any> {
+    const { job_id, ...fields } = updateReq;
+    if (job_id !== undefined) {
+      return this.userRepository.update(id, { job: { id: job_id } });
+    }
     return this.userRepository.update(id, updateReq);
   }
 }
