@@ -46,7 +46,8 @@ Light / Dark mode   | ✅       | -
 CollaboratorPage | In progress | Display just the collection atm 
 ProfilePage    | In progress | Must handle error from FE with redlabel error
 ProjectsPage   | In progress | Display the informations and need design
-Loader    | To do | Check if BE is ok or not
+Loader    | To do | Implement for Homepage, editProfile...
+ConfirmModalProfile    | To do | Implement modal to inform user and changes are saved (or not).
 
 <br><br><br>
 
@@ -71,7 +72,8 @@ EditProfile       | To do       | Adapt User entity with edit profile fields + c
 Backlog       | ID | Description
 -------------  | ----------- | ------------------------------------------------------------
 <img width=200/>|<img width=500/>
-EnvConfig       | 02          | Need to make configuration with .env for DB connexion  
+EnvConfig       | 02          | Need to make configuration with .env for DB connexion
+NaN EditProfile Yop       | 03         | When delete yop to rewrite it, we should not display "NaN". We should dynamically put 0.  
 
 PlotlyJS
 
