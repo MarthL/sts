@@ -128,8 +128,8 @@ export class UsersService {
   ): Promise<any> {
     const { job_id, ...fields } = updateReq;
     if (job_id !== undefined) {
-      return this.userRepository.update(id, { job: { id: job_id } });
+      return this.userRepository.update(id, { ...fields, job: { id: job_id } });
     }
-    return this.userRepository.update(id, updateReq);
+    return this.userRepository.update(id, fields);
   }
 }
