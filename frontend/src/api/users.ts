@@ -20,3 +20,13 @@ export async function getAllUsers() {
     console.log(error)
   })
 }
+
+export async function editUser(id: number, data: any) {
+  return axiosClient.patch('users/' + id, data)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+}

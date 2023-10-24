@@ -5,6 +5,7 @@ import {
   ManyToMany,
   ManyToOne,
   JoinTable,
+  JoinColumn,
 } from 'typeorm';
 
 import { Job } from 'src/job/job.entity';
@@ -27,8 +28,30 @@ export class Users {
   @Column('int')
   yop: number;
 
+  @Column('varchar')
+  phone_number: string;
+
+  @Column('varchar')
+  email: string;
+
+  @Column()
+  address: string;
+
+  @Column()
+  city: string;
+
+  @Column()
+  state?: number;
+
+  @Column()
+  zip_code?: number;
+
+  @Column()
+  country?: string;
+
   @ManyToOne(() => Job, (job) => job.users)
-  job: Job;
+  @JoinColumn({ name: 'job_id' })
+  job?: Job;
 
   @ManyToMany(() => Projects)
   @JoinTable()

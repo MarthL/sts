@@ -1,4 +1,11 @@
-import { Injectable, ConflictException, HttpException } from '@nestjs/common';
+import {
+  Injectable,
+  ConflictException,
+  HttpException,
+  Body,
+  Param,
+  ParseIntPipe,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Users } from './users.entity';
@@ -112,5 +119,17 @@ export class UsersService {
       throw new HttpException('User not found', 404);
     }
     return plainToClass(UserResponseDto, loggedUser);
+  }
+
+  // Patch
+  async patch(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateReq: UserResponseDto,
+  ): Promise<any> {
+    const { job_id, ...fields } = updateReq;
+    if (job_id !== undefined) {
+      return this.userRepository.update(id, { ...fields, job: { id: job_id } });
+    }
+    return this.userRepository.update(id, fields);
   }
 }

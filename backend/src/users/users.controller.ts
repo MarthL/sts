@@ -2,7 +2,15 @@
 
 import { ApiTags, ApiQuery, ApiResponse } from '@nestjs/swagger';
 import { HttpException } from '@nestjs/common';
-import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Delete,
+  Patch,
+} from '@nestjs/common';
 
 import { UsersService } from './users.service';
 import { AuthLogin } from './../auth/authlogin.service';
@@ -82,5 +90,14 @@ export class UsersController {
     }
 
     return { accessToken };
+  }
+
+  // Patch
+  @Patch(':id')
+  async updateProject(
+    @Param('id') id: number,
+    @Body() updateReq: UserResponseDto,
+  ): Promise<UserResponseDto> {
+    return await this.usersService.patch(id, updateReq);
   }
 }
