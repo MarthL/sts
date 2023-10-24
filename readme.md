@@ -44,7 +44,7 @@ Frontend       | Progression | Comment
 HomePage       | ✅          | -
 Light / Dark mode   | ✅       | -
 CollaboratorPage | In progress | Display just the collection atm 
-ProfilePage    | In progress | Display some informations and need design 
+ProfilePage    | In progress | Must handle error from FE with redlabel error
 ProjectsPage   | In progress | Display the informations and need design
 Loader    | To do | Check if BE is ok or not
 
@@ -61,6 +61,7 @@ loggedUser           | In progress          | Provide informations through profi
 Docker         | In progress | Need to solve the errors 
 Roles          | To do       | Need to make the backend 
 JobField       | To do       | Need to make the backend
+Address + CP + zipcode            | To do       | Be careful, editprofile features needs to still working. Implement on backend Tables for address, which will be relation with user. Please check for Job tables  
 Method add job to user       | To do       | Need to make the backend
 allUsersfromSameJob       | To do       | Need to make the backend
 EditProfile       | To do       | Adapt User entity with edit profile fields + create patch method
