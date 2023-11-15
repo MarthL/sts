@@ -1,26 +1,32 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { JwtModule } from '@nestjs/jwt';
+
+import { AuthController } from './auth/auth.controller';
+
 import { Projects } from './projects/projects.entity';
+import { Users } from './users/users.entity';
+import { Job } from './job/job.entity';
+import { JobField } from './job-field/job-field.entity';
+
 import { ProjectsModule } from './projects/projects.module';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
-
-import { JwtModule } from '@nestjs/jwt';
+import { JobModule } from './job/job.module';
 import { PassportModule } from '@nestjs/passport';
-import { JwtStrategy } from './auth/jwt.strategy'; // Créez cette classe
+
 import { AuthService } from './auth/auth.service';
-import { AuthController } from './auth/auth.controller';
 import { AuthLogin } from './auth/authlogin.service';
-import { Users } from './users/users.entity';
+
+import { JwtStrategy } from './auth/jwt.strategy';
+import { JobFieldModule } from './job-field/job-field.module';
 
 @Module({
   imports: [
     PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.register({
-      secret: process.env.JWT_SECRET || 'defaultSecret', // Changez ceci par votre clé secrète
-      signOptions: { expiresIn: '3h' }, // Durée de validité du token
+      secret: process.env.JWT_SECRET || 'defaultSecret',
+      signOptions: { expiresIn: '3h' }, // doesn't work
     }),
     TypeOrmModule.forRoot({
       type: 'mysql',
@@ -28,13 +34,15 @@ import { Users } from './users/users.entity';
       port: 3306,
       username: 'root',
       database: 'sts',
-      entities: [Projects, Users],
+      entities: [Projects, Users, Job, JobField],
       synchronize: true,
     }),
     TypeOrmModule.forFeature([Projects, Users]),
     ProjectsModule,
     UsersModule,
     AuthModule,
+    JobModule,
+    JobFieldModule,
   ],
   controllers: [AuthController],
   providers: [JwtStrategy, AuthService, AuthLogin],

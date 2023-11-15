@@ -8,6 +8,6 @@ export class Projects {
   @Column()
   project_name: string;
 
-  @Column()
+  @Column('text')
   description: string;
 }

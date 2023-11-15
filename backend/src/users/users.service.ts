@@ -1,11 +1,25 @@
-import { Injectable, ConflictException, HttpException } from '@nestjs/common';
+import {
+  Injectable,
+  ConflictException,
+  HttpException,
+  Body,
+  Param,
+  ParseIntPipe,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Users } from './users.entity';
+<<<<<<< HEAD
 import { CreateUserDto } from './DTO/create-userDto.dto';
 import { UserResponseDto } from './DTO/userResponseDto.dto';
 import { DeleteUserDto } from './DTO/delete-userDto.dto';
+=======
+import { CreateUserDto } from '../DTO/User/create-userDto.dto';
+import { UserResponseDto } from 'src/DTO/User/userResponseDto.dto';
+import { DeleteUserDto } from '../DTO/User/delete-userDto.dto';
+>>>>>>> 10a04de39fb856511c1255b48d92f22f50994791
 import * as bcrypt from 'bcrypt';
+import { plainToClass } from 'class-transformer';
 
 @Injectable()
 export class UsersService {
@@ -14,7 +28,8 @@ export class UsersService {
     private userRepository: Repository<Users>,
   ) {}
 
-  async getAllusers() {
+  // getAll()
+  async getAllusers(): Promise<Users[]> {
     const userCollection = await this.userRepository.find({
       select: {
         id: true,
@@ -26,9 +41,38 @@ export class UsersService {
     return userCollection;
   }
 
+  // getById
+  async getUserById(userId: number): Promise<UserResponseDto | HttpException> {
+    const user = await this.userRepository.findOne({
+      relations: ['job'],
+      where: {
+        id: userId,
+      },
+    });
+
+    if (!user) {
+      throw new HttpException('User not found', 404);
+    }
+
+    return plainToClass(UserResponseDto, user);
+  }
+
+  // getAll projects of user
+  async getUserProjects(userId: number) {
+    const user = await this.userRepository.findOne({
+      relations: ['projectsCollection'],
+      where: {
+        id: userId,
+      },
+    });
+    if (!user) {
+      throw new HttpException('User not found', 404);
+    }
+    return user.projectsCollection;
+  }
+
   // TODO : add typing
-  async DeleteUserByName(userToDelete: string): Promise<DeleteUserDto> {
-    console.log('it works, inside the function ');
+  async DeleteUserByName(userToDelete: string): Promise<any> {
     const existingUser = await this.userRepository.findOne({
       select: {
         username: true,
@@ -48,66 +92,50 @@ export class UsersService {
 
   async createUser(createUserDto: CreateUserDto): Promise<Users> {
     const { username, password } = createUserDto;
-
-    // Hash du mot de passe
-    const hashedPassword = await bcrypt.hash(password, 10); // 10 est le nombre de tours de hachage
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     const user = new Users();
     user.username = username;
-    user.password = hashedPassword; // Utilisez le mot de passe hashé
-
-    // Enregistrez l'utilisateur dans la base de données
+    user.password = hashedPassword;
     return this.userRepository.save(user);
   }
 
-  async checkUserExist(username: string): Promise<Users | undefined> {
+  // Warning : for auth, do not edit atm
+  async checkUserExist(username: string): Promise<UserResponseDto | null> {
     return this.userRepository.findOne({
       select: {
         id: true,
         username: true,
         password: true,
         family_name: true,
-        job: true,
       },
       where: { username },
     });
   }
 
-  async getLoggedUser(username: any): Promise<any> {
+  async getLoggedUser(username: string): Promise<UserResponseDto> {
     const loggedUser = await this.userRepository.findOne({
-      select: {
-        username: true,
-        password: true,
-        family_name: true,
-        job: true,
-      },
       where: {
         username: username,
       },
+      relations: ['job'],
     });
 
     if (!loggedUser) {
       throw new HttpException('User not found', 404);
     }
-    return loggedUser;
+    return plainToClass(UserResponseDto, loggedUser);
   }
 
-  async getUserById(userId: number): Promise<UserResponseDto | HttpException> {
-    const user = await this.userRepository.findOne({
-      select: {
-        id: true,
-        username: true,
-        password: true,
-      },
-      where: {
-        id: userId,
-      },
-    });
-
-    if (!user) {
-      throw new HttpException('User not found', 404);
+  // Patch
+  async patch(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateReq: UserResponseDto,
+  ): Promise<any> {
+    const { job_id, ...fields } = updateReq;
+    if (job_id !== undefined) {
+      return this.userRepository.update(id, { ...fields, job: { id: job_id } });
     }
-
-    return user;
+    return this.userRepository.update(id, fields);
   }
 }

@@ -6,15 +6,17 @@ import {
   Param,
   Delete,
   Body,
-  UseGuards,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
+
 import { ProjectsService } from './projects.service';
-// import ProjectsResponseDto from './DTO/projectsResponse.dto'; // DTO
-import createProjectDto from './DTO/createProject.dto';
-import ProjectsResponseDto from './DTO/projectsResponse.dto';
-import updateProjectDto from './DTO/updateProjectDto.dto';
-import { JwtAuthGuard } from './../auth/jwt.auth.guard';
+
+import { Projects } from './projects.entity';
+
+import createProjectDto from '../DTO/Projects/createProject.dto';
+import ProjectsResponseDto from '../DTO/Projects/projectsResponse.dto';
+import { updateProjectDto } from '../DTO/Projects/updateProjectDto.dto';
 
 @ApiTags('Projects')
 @Controller('/projects')
@@ -22,13 +24,12 @@ export class ProjectsController {
   constructor(private readonly projectsService: ProjectsService) {}
 
   @Get()
-  // @UseGuards(JwtAuthGuard)
-  async getAll() {
+  async getAll(): Promise<Projects[]> {
     return this.projectsService.getProjects();
   }
 
   @Get(':id')
-  async getProjectById(@Param('id') id: number) {
+  async getProjectById(@Param('id', ParseIntPipe) id: number) {
     return await this.projectsService.getProjectById(id);
   }
 
@@ -38,7 +39,9 @@ export class ProjectsController {
   }
 
   @Delete(':id')
-  async deleteById(@Param('id') id: number): Promise<any> {
+  async deleteById(
+    @Param('id', ParseIntPipe) id: number,
+  ): Promise<ProjectsResponseDto> {
     return this.projectsService.deleteById(id);
   }
 

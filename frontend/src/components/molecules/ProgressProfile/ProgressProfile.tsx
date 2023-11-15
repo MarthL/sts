@@ -13,7 +13,7 @@ export const ProgressProfile = (props: ProgressProfileProps) => {
   return (
     <>
       <Box component={'div'} padding={3} >
-        <Typography variant="body1" color="initial">{name}</Typography>
+        <Typography variant="body1">{name}</Typography>
         <LinearProgress variant="determinate" value={value} sx={{ height: '10px', borderRadius: '15px' }}></LinearProgress>
       </Box>
     </>

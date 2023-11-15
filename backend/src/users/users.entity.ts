@@ -1,19 +1,59 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToMany,
+  ManyToOne,
+  JoinTable,
+  JoinColumn,
+} from 'typeorm';
+
+import { Job } from 'src/job/job.entity';
+import { Projects } from 'src/projects/projects.entity';
 
 @Entity()
 export class Users {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ unique: true })
+  @Column('varchar')
   username: string;
 
-  @Column()
+  @Column('varchar')
   password: string;
 
-  @Column()
+  @Column('varchar')
   family_name: string;
 
+  @Column('int')
+  yop: number;
+
+  @Column('varchar')
+  phone_number: string;
+
+  @Column('varchar')
+  email: string;
+
   @Column()
-  job: string;
+  address: string;
+
+  @Column()
+  city: string;
+
+  @Column()
+  state?: number;
+
+  @Column()
+  zip_code?: number;
+
+  @Column()
+  country?: string;
+
+  @ManyToOne(() => Job, (job) => job.users)
+  @JoinColumn({ name: 'job_id' })
+  job?: Job;
+
+  @ManyToMany(() => Projects)
+  @JoinTable()
+  projectsCollection: Projects[];
 }

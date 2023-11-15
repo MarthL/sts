@@ -1,5 +1,7 @@
 // users/users.controller.ts
 
+import { ApiTags, ApiQuery, ApiResponse } from '@nestjs/swagger';
+import { HttpException } from '@nestjs/common';
 import {
   Controller,
   Get,
@@ -7,12 +9,11 @@ import {
   Body,
   Param,
   Delete,
-  UseGuards,
-  Query,
+  Patch,
 } from '@nestjs/common';
-import { AuthLogin } from './../auth/authlogin.service';
-import { JwtAuthGuard } from './../auth/jwt.auth.guard';
+
 import { UsersService } from './users.service';
+<<<<<<< HEAD
 import { CreateUserDto } from './DTO/create-userDto.dto';
 import { DeleteUserDto } from './DTO/delete-userDto.dto';
 import { ApiTags } from '@nestjs/swagger';
@@ -20,6 +21,16 @@ import { UnauthorizedException } from '@nestjs/common';
 import { UserResponseDto } from './DTO/userResponseDto.dto';
 import { HttpException } from '@nestjs/common';
 import { ApiQuery, ApiResponse } from '@nestjs/swagger';
+=======
+import { AuthLogin } from './../auth/authlogin.service';
+
+import { CreateUserDto } from '../DTO/User/create-userDto.dto';
+import { DeleteUserDto } from '../DTO/User/delete-userDto.dto';
+import { UserLoginDto } from 'src/DTO/User/user-loginDto.dto';
+import { UserResponseDto } from 'src/DTO/User/userResponseDto.dto';
+
+import { UnauthorizedException, ParseIntPipe } from '@nestjs/common';
+>>>>>>> 10a04de39fb856511c1255b48d92f22f50994791
 
 @ApiTags('Users')
 @Controller('users')
@@ -35,11 +46,19 @@ export class UsersController {
     return this.usersService.getAllusers();
   }
 
+  // GetById
   @Get(':id')
   async getUserById(
-    @Param('id') id: number,
+    @Param('id', ParseIntPipe) id: number,
   ): Promise<UserResponseDto | HttpException> {
     return this.usersService.getUserById(id);
+  }
+
+  // getAll projects of user
+  @Get(':id/projects')
+  async getUserProjects(@Param('id', ParseIntPipe) userId: number) {
+    const projects = await this.usersService.getUserProjects(userId);
+    return { projects };
   }
 
   // Delete by username
@@ -50,7 +69,7 @@ export class UsersController {
 
   // getCurrentUser for Auth only
   @Get('currentuser')
-  async getCurrentUser(username: string): Promise<any> {
+  async getCurrentUser(username: string): Promise<UserResponseDto> {
     return this.usersService.checkUserExist(username);
   }
 
@@ -58,7 +77,6 @@ export class UsersController {
   async getLoggedUser(
     @Param('user') username: string,
   ): Promise<UserResponseDto> {
-    console.log('username : ', username);
     return this.usersService.getLoggedUser(username);
   }
 
@@ -71,8 +89,7 @@ export class UsersController {
 
   // Login as user
   @Post('login')
-  // @UseGuards(JwtAuthGuard)
-  async logIn(@Body() loginUserDto: CreateUserDto) {
+  async logIn(@Body() loginUserDto: UserLoginDto) {
     const accessToken = await this.authLogin.loginUser(
       loginUserDto.username,
       loginUserDto.password,
@@ -83,5 +100,14 @@ export class UsersController {
     }
 
     return { accessToken };
+  }
+
+  // Patch
+  @Patch(':id')
+  async updateProject(
+    @Param('id') id: number,
+    @Body() updateReq: UserResponseDto,
+  ): Promise<UserResponseDto> {
+    return await this.usersService.patch(id, updateReq);
   }
 }
