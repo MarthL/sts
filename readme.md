@@ -48,6 +48,7 @@ ProfilePage    | In progress | Must handle error from FE with redlabel error
 ProjectsPage   | In progress | Display the informations and need design
 Loader    | To do | Implement for Homepage, editProfile...
 ConfirmModalProfile    | To do | Implement modal to inform user and changes are saved (or not).
+Jest    | To do | Implement tests for FE.
 
 <br><br><br>
 
