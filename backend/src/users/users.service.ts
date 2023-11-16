@@ -9,16 +9,10 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Users } from './users.entity';
-<<<<<<< HEAD
-import { CreateUserDto } from './DTO/create-userDto.dto';
-import { UserResponseDto } from './DTO/userResponseDto.dto';
-import { DeleteUserDto } from './DTO/delete-userDto.dto';
-=======
 import { CreateUserDto } from '../DTO/User/create-userDto.dto';
 import { UserResponseDto } from 'src/DTO/User/userResponseDto.dto';
 import { DeleteUserDto } from '../DTO/User/delete-userDto.dto';
->>>>>>> 10a04de39fb856511c1255b48d92f22f50994791
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 import { plainToClass } from 'class-transformer';
 
 @Injectable()

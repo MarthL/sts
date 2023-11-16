@@ -13,15 +13,6 @@ import {
 } from '@nestjs/common';
 
 import { UsersService } from './users.service';
-<<<<<<< HEAD
-import { CreateUserDto } from './DTO/create-userDto.dto';
-import { DeleteUserDto } from './DTO/delete-userDto.dto';
-import { ApiTags } from '@nestjs/swagger';
-import { UnauthorizedException } from '@nestjs/common';
-import { UserResponseDto } from './DTO/userResponseDto.dto';
-import { HttpException } from '@nestjs/common';
-import { ApiQuery, ApiResponse } from '@nestjs/swagger';
-=======
 import { AuthLogin } from './../auth/authlogin.service';
 
 import { CreateUserDto } from '../DTO/User/create-userDto.dto';
@@ -30,7 +21,6 @@ import { UserLoginDto } from 'src/DTO/User/user-loginDto.dto';
 import { UserResponseDto } from 'src/DTO/User/userResponseDto.dto';
 
 import { UnauthorizedException, ParseIntPipe } from '@nestjs/common';
->>>>>>> 10a04de39fb856511c1255b48d92f22f50994791
 
 @ApiTags('Users')
 @Controller('users')

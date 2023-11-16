@@ -30,7 +30,8 @@ import { JobFieldModule } from './job-field/job-field.module';
     }),
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
+      // host: 'localhost',
+      host: 'mysql',
       port: 3306,
       username: 'root',
       database: 'sts',
