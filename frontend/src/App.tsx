@@ -76,6 +76,7 @@ function App() {
   });
 
   const toggleTheme = () => {
+    console.log('some changes');
     setIsDarkTheme((currentTheme) => !currentTheme);
   };
 

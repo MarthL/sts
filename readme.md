@@ -12,6 +12,8 @@ Requirements Linux/MacOS:
 
 ## Installation/Usage
 
+sudo docker network inspect $container_name
+
 First, Make sure that mySQL is up and running, then create a database with the name "sts"
 
 ```SQL
