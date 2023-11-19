@@ -1,8 +1,14 @@
-import { Typography, TextField, Input, Button, Box, Grid, Avatar } from '@mui/material';
+import { Typography, TextField, Autocomplete, Input, Button, Box, Grid, Avatar } from '@mui/material';
 import { CustomInput } from '../../../atoms/InputForm/CustomInput';
 import { useForm } from 'react-hook-form';
 import { useState, useEffect } from 'react';
 import { editUser } from '../../../../api/users';
+import { getJobCollection } from '../../../../api/jobs';
+
+interface Job {
+  id: number;
+  job_title: string;
+}
 
 interface User {
   id: number,
@@ -31,6 +37,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
   const [yop, setYop] = useState(user?.yop);
   const [email, setEmail] = useState(user?.email);
   const [phone, setPhone] = useState(user?.phone_number);
+  const [jobCollection, setJobCollection] = useState([]);
 
   useEffect(() => {
     if (user) {
@@ -43,6 +50,16 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
       setPhone(user?.phone_number ? user.phone_number : '');
     }
   }, [user]);
+
+  useEffect(() => {
+    getJobCollection().then(async (res) => {
+      setJobCollection(res);
+    })
+  }, [])
+
+  const optionsJob = jobCollection.map((value) => {
+    return value
+  })
 
   const handleUserNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(event.target.value);
@@ -120,7 +137,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
         <Grid item xs={1}></Grid>
         <Grid item xs={1}></Grid>
 
-        <Grid item xs={9} marginBottom={5}>
+        {/* <Grid item xs={9} marginBottom={5}>
           <TextField type="text"
             {...register("job")}
             label={"Position"}
@@ -129,6 +146,20 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
             value={job}
             onChange={handleJobChange}
             InputLabelProps={{ shrink: true }}
+          />
+        </Grid>
+        <Grid item xs={3}></Grid> */}
+
+        <Grid item xs={9} marginBottom={5}>
+          <Autocomplete
+            {...register("job")}
+            fullWidth
+            disablePortal
+            sx={{ margin: 'auto' }}
+            options={jobCollection}
+            getOptionLabel={(contact: Job) => contact?.job_title}
+            renderInput={(params) => <TextField {...params} label="Position" />}
+            limitTags={5}
           />
         </Grid>
         <Grid item xs={3}></Grid>
