@@ -11,9 +11,6 @@ import { lime, blue, } from '@mui/material/colors';
 import { Switch } from '@mui/material';
 
 function App() {
-  const [isConnected, setIsConnected] = useState(false);
-  const [isDarkTheme, setIsDarkTheme] = useState(false);
-
 
   const lightTheme = createTheme({
     palette: {
@@ -75,8 +72,12 @@ function App() {
     },
   });
 
+  const [isConnected, setIsConnected] = useState<boolean>(false);
+  const [isDarkTheme, setIsDarkTheme] = useState<boolean>(false);
+
   const toggleTheme = () => {
     setIsDarkTheme((currentTheme) => !currentTheme);
+    localStorage.getItem('theme') === 'dark' ? localStorage.setItem('theme', 'light') : localStorage.setItem('theme', 'dark');
   };
 
   const backgroundColor = isDarkTheme ? '#000000' : '#FFFFFF';
@@ -84,6 +85,12 @@ function App() {
   useEffect(() => {
     if (localStorage.getItem('token')) {
       setIsConnected(true);
+    }
+    if (!localStorage.getItem('theme') || localStorage.getItem('theme') === 'light') {
+      setIsDarkTheme(false);
+      localStorage.setItem('theme', 'light');
+    } else {
+      setIsDarkTheme(true);
     }
   }, [])
 
