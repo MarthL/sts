@@ -57,10 +57,6 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
     })
   }, [])
 
-  const optionsJob = jobCollection.map((value) => {
-    return value
-  })
-
   const handleUserNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(event.target.value);
   }
@@ -88,6 +84,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
   const { register, handleSubmit } = useForm();
 
   const sendForm = (id: number, data: any) => {
+    console.log(data);
     const filteredData = Object.keys(data).reduce((acc: any, key) => {
       if (data[key] !== '') {
         acc[key] = data[key];
@@ -136,19 +133,6 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
         </Grid>
         <Grid item xs={1}></Grid>
         <Grid item xs={1}></Grid>
-
-        {/* <Grid item xs={9} marginBottom={5}>
-          <TextField type="text"
-            {...register("job")}
-            label={"Position"}
-            fullWidth
-            sx={{ margin: 'auto' }}
-            value={job}
-            onChange={handleJobChange}
-            InputLabelProps={{ shrink: true }}
-          />
-        </Grid>
-        <Grid item xs={3}></Grid> */}
 
         <Grid item xs={9} marginBottom={5}>
           <Autocomplete
