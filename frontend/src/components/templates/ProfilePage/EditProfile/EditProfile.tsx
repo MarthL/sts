@@ -74,7 +74,8 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
   // }
 
   const handleYopChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setYop(parseInt(event.target.value));
+    console.log('event :', event.target.value)
+    !parseInt(event.target.value) ? setYop(0) : setYop(parseInt(event.target.value));
   }
 
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
