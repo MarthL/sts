@@ -21,7 +21,8 @@ interface User {
   job?: {
     id?: number,
     job_title?: string,
-  }
+  },
+  country: string
 }
 
 interface EditProfileProps {
@@ -38,6 +39,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
   const [email, setEmail] = useState(user?.email);
   const [phone, setPhone] = useState(user?.phone_number);
   const [jobCollection, setJobCollection] = useState([]);
+  const [country, setCountry] = useState('');
 
   useEffect(() => {
     if (user) {
@@ -48,6 +50,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
       setYop(user?.yop ? user.yop : 0);
       setEmail(user?.email ? user.email : '');
       setPhone(user?.phone_number ? user.phone_number : '');
+      setCountry(user?.country ? user.country : '');
     }
   }, [user]);
 
@@ -79,6 +82,10 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
 
   const handlePhoneChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPhone(event.target.value);
+  }
+
+  const handleCountryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setCountry(event.target.value);
   }
 
   const { register, handleSubmit } = useForm();
@@ -228,6 +235,8 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
           <TextField type="text"
             {...register("country")}
             label={'Country'}
+            value={country}
+            onChange={handleCountryChange}
             fullWidth
             InputLabelProps={{ shrink: true }}
           />
