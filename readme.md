@@ -43,13 +43,15 @@ Frontend       | Progression | Comment
 <img width=200/>|<img width=500/>
 HomePage       | ✅          | -
 Light / Dark mode   | ✅       | -
+ThemeSaver | ✅   | Should save the state of the load when Refresh
 CollaboratorPage | In progress | Display just the collection atm 
 ProfilePage    | In progress | Must handle error from FE with redlabel error
 ProjectsPage   | In progress | Display the informations and need design
 Loader    | To do | Implement for Homepage, editProfile...
+Pagination | To do | Implement pagination for homepage.
 ConfirmModalProfile    | To do | Implement modal to inform user and changes are saved (or not).
 Jest    | To do | Implement tests for FE.
-ThemeSaver | In progress | Should save the state of the load when Refresh
+
 
 <br><br><br>
 
