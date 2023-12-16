@@ -1,4 +1,4 @@
-import { Typography, TextField, Autocomplete, Input, Button, Box, Grid, Avatar } from '@mui/material';
+import { Typography, TextField, Autocomplete, Input, Button, MenuItem, Box, InputLabel, Grid, Select, Avatar } from '@mui/material';
 import { CustomInput } from '../../../atoms/InputForm/CustomInput';
 import { useForm } from 'react-hook-form';
 import { useState, useEffect } from 'react';
@@ -34,11 +34,11 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
   const [id, setId] = useState(user?.id);
   const [username, setUsername] = useState(user?.username);
   const [familyName, setFamilyName] = useState(user?.family_name);
-  const [job, setJob] = useState(user?.job?.job_title);
+  const [job, setJob] = useState({});
   const [yop, setYop] = useState(user?.yop);
   const [email, setEmail] = useState(user?.email);
   const [phone, setPhone] = useState(user?.phone_number);
-  const [jobCollection, setJobCollection] = useState([]);
+  const [jobCollection, setJobCollection] = useState<Job[]>([]);
   const [country, setCountry] = useState('');
 
   useEffect(() => {
@@ -142,16 +142,17 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
         <Grid item xs={1}></Grid>
 
         <Grid item xs={9} marginBottom={5}>
-          <Autocomplete
-            {...register("job")}
+          <Select
+            {...register('job')}
+            label={'Position'}
             fullWidth
-            disablePortal
-            sx={{ margin: 'auto' }}
-            options={jobCollection}
-            getOptionLabel={(contact: Job) => contact?.job_title}
-            renderInput={(params) => <TextField {...params} label="Position" />}
-            limitTags={5}
-          />
+          // onChange={handleJobChange}
+          >
+            {jobCollection.map((job, id) => (
+              <MenuItem value={id}>{job?.job_title}</MenuItem>
+            ))}
+          </Select>
+
         </Grid>
         <Grid item xs={3}></Grid>
 
