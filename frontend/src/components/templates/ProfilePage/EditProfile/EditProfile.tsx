@@ -34,7 +34,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
   const [id, setId] = useState(user?.id);
   const [username, setUsername] = useState(user?.username);
   const [familyName, setFamilyName] = useState(user?.family_name);
-  const [job, setJob] = useState({});
+  const [job, setJob] = useState<Job | undefined>(undefined);
   const [yop, setYop] = useState(user?.yop);
   const [email, setEmail] = useState(user?.email);
   const [phone, setPhone] = useState(user?.phone_number);
@@ -46,7 +46,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
       setId(user.id);
       user?.username ? setUsername(user.username) : setUsername('');
       setFamilyName(user.family_name ? user.family_name : '')
-      setJob(user.job?.job_title ? user.job.job_title : '');
+      setJob(user.job ? user.job as Job : undefined);
       setYop(user?.yop ? user.yop : 0);
       setEmail(user?.email ? user.email : '');
       setPhone(user?.phone_number ? user.phone_number : '');
@@ -68,9 +68,10 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
     setFamilyName(event.target.value);
   }
 
-  const handleJobChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setJob(event.target.value);
-  }
+  // const handleJobChange = (event: React.ChangeEvent<HTMLInputElement>, selectedInput: React.MutableRefObject<HTMLCollection>) => {
+  //   // setJob(event.target.value);
+  //   console.log(event, selectedInput);
+  // }
 
   const handleYopChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setYop(parseInt(event.target.value));
@@ -144,15 +145,21 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
         <Grid item xs={9} marginBottom={5}>
           <Select
             {...register('job')}
-            label={'Position'}
+            label="Position"
             fullWidth
-          // onChange={handleJobChange}
+            value={job?.id ? job.id.toString() : ''}
+            onChange={(event) => {
+              const selectedJobId = event.target.value;
+              const selectedJob = jobCollection.find((j) => j.id === parseInt(selectedJobId, 10));
+              setJob(selectedJob);
+            }}
           >
-            {jobCollection.map((job, id) => (
-              <MenuItem value={id}>{job?.job_title}</MenuItem>
+            {jobCollection.map((job) => (
+              <MenuItem key={job.id} value={job.id.toString()}>
+                {job.job_title}
+              </MenuItem>
             ))}
           </Select>
-
         </Grid>
         <Grid item xs={3}></Grid>
 
