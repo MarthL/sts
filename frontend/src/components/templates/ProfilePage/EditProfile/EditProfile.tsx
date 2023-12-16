@@ -120,6 +120,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
         <Grid item xs={4} marginTop={5}>
           <TextField
             fullWidth
+            disabled
             type='text'
             {...register("username")}
             label={'Username'}
