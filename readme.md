@@ -77,7 +77,6 @@ Backlog       | ID | Description
 -------------  | ----------- | ------------------------------------------------------------
 <img width=200/>|<img width=500/>
 EnvConfig       | 02          | Need to make configuration with .env for DB connexion
-NaN EditProfile Yop       | 03         | When delete yop to rewrite it, we should not display "NaN". We should dynamically put 0.  
 
 PlotlyJS
 
