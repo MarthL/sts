@@ -21,7 +21,11 @@ interface User {
     id: number,
     job_title: string,
   },
-  country: string
+  country: string,
+  city: string,
+  state: number,
+  address: string,
+  zip_code: number
 }
 
 export const ProfilePage: React.FC<any> = () => {

@@ -1,9 +1,9 @@
-import { Typography, TextField, Autocomplete, Input, Button, MenuItem, Box, InputLabel, Grid, Select, Avatar } from '@mui/material';
-import { CustomInput } from '../../../atoms/InputForm/CustomInput';
+import { Typography, TextField, Button, MenuItem, Grid, Select, Avatar } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { useState, useEffect } from 'react';
 import { editUser } from '../../../../api/users';
 import { getJobCollection } from '../../../../api/jobs';
+import Swal from 'sweetalert2';
 
 interface Job {
   id: number;
@@ -22,7 +22,11 @@ interface User {
     id?: number,
     job_title?: string,
   },
-  country: string
+  country: string,
+  city: string,
+  state: number,
+  address: string,
+  zip_code: number
 }
 
 interface EditProfileProps {
@@ -39,7 +43,11 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
   const [email, setEmail] = useState(user?.email);
   const [phone, setPhone] = useState(user?.phone_number);
   const [jobCollection, setJobCollection] = useState<Job[]>([]);
+  const [city, setCity] = useState('');
   const [country, setCountry] = useState('');
+  const [state, setState] = useState(0);
+  const [address, setAddress] = useState('')
+  const [zip, setZip] = useState(0);
 
   useEffect(() => {
     if (user) {
@@ -51,6 +59,10 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
       setEmail(user?.email ? user.email : '');
       setPhone(user?.phone_number ? user.phone_number : '');
       setCountry(user?.country ? user.country : '');
+      setCity(user?.city ? user.city : '');
+      setState(user?.state ? user.state : 0);
+      setAddress(user?.address ? user.address : '');
+      setZip(user?.zip_code ? user?.zip_code : 0);
     }
   }, [user]);
 
@@ -67,11 +79,6 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
   const handleFamilyNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFamilyName(event.target.value);
   }
-
-  // const handleJobChange = (event: React.ChangeEvent<HTMLInputElement>, selectedInput: React.MutableRefObject<HTMLCollection>) => {
-  //   // setJob(event.target.value);
-  //   console.log(event, selectedInput);
-  // }
 
   const handleYopChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     console.log('event :', event.target.value)
@@ -90,6 +97,23 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
     setCountry(event.target.value);
   }
 
+  const handleCityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setCity(event.target.value);
+  }
+
+  const handleStateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    !parseInt(event.target.value) ? setState(0) : setState(parseInt(event.target.value));
+  }
+
+
+  const handleAddressChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setAddress(event.target.value);
+  }
+
+  const handleZipChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    !parseInt(event.target.value) ? setZip(0) : setZip(parseInt(event.target.value));
+  }
+
   const { register, handleSubmit } = useForm();
 
   const sendForm = (id: number, data: any) => {
@@ -100,14 +124,37 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
       }
       return acc;
     }, {});
-
     editUser(id, filteredData)
+  }
+
+  const confirmModal = async (): Promise<Boolean> => {
+    return Swal.fire({
+      title: "Do you want to save the changes?",
+      showDenyButton: true,
+      confirmButtonText: "Save",
+      denyButtonText: `Don't save`
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("Saved!", "", "success");
+        return true;
+      } else {
+        Swal.fire("Changes are not saved", "", "info");
+        return false;
+      }
+    });
   }
 
   return (
     <>
       <Typography variant="h5" marginLeft={3}>Edit Profile</Typography>
-      <Grid container marginLeft={3} component={'form'} onSubmit={handleSubmit((data) => user?.id ? sendForm(user.id, data) : console.error(`Datas :  ${data} cannot be send, missing id user`))}>
+      <Grid container marginLeft={3} component={'form'}
+        onSubmit={handleSubmit(async (data: any) => {
+          const userHasConfirmed = await confirmModal();
+          if (userHasConfirmed) {
+            user?.id ? sendForm(user.id, data) : console.error(`Datas :  ${data} cannot be send, missing id user`)
+          }
+        })}
+      >
         <Grid item xs={2}></Grid>
         <Grid item xs={1}></Grid>
         <Grid item xs={1}></Grid>
@@ -208,7 +255,16 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
 
 
         <Grid item xs={9} marginBottom={5}>
-          <TextField type="text" {...register("address")} label={"Address"} fullWidth sx={{ margin: 'auto' }} InputLabelProps={{ shrink: true }} />
+          <TextField
+            type="text"
+            {...register("address")}
+            label={"Address"}
+            value={address}
+            fullWidth
+            sx={{ margin: 'auto' }}
+            InputLabelProps={{ shrink: true }}
+            onChange={handleAddressChange}
+          />
         </Grid>
         <Grid item xs={3}></Grid>
 
@@ -216,6 +272,8 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
           <TextField type="text"
             {...register("city")}
             label={'City'}
+            value={city}
+            onChange={handleCityChange}
             fullWidth
             InputLabelProps={{ shrink: true }}
           />
@@ -225,6 +283,8 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
           <TextField type="text"
             {...register("state")}
             label={'State'}
+            value={state}
+            onChange={handleStateChange}
             fullWidth
             InputLabelProps={{ shrink: true }}
           />
@@ -237,6 +297,8 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
             {...register("zip_code")}
             label={'Zip Code'}
             fullWidth
+            value={zip}
+            onChange={handleZipChange}
             InputLabelProps={{ shrink: true }}
           />
         </Grid>
@@ -263,7 +325,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
             variant="contained"
             sx={{ marginBottom: '25px' }}
           >
-            Edit
+            Save
           </Button>
         </Grid>
         <Grid item xs={3}></Grid>
