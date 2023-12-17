@@ -63,11 +63,11 @@ Users          | ✅ | -
 Projects       | ✅ | -
 Job            | ✅       | - 
 loggedUser           | In progress          | Provide informations through profilepage
-Docker         | In progress | Need to solve the errors 
+Docker         | In progress | Need to solve the errors with Ios Env 
 Roles          | To do       | Need to make the backend 
 JobField       | To do       | Need to make the backend
-Address + CP + zipcode            | To do       | Be careful, editprofile features needs to still working. Implement on backend Tables for address, which will be relation with user. Please check for Job tables  
-Method add job to user       | To do       | Need to make the backend
+Address + CP + zipcode            | ✅       | -  
+Method add job to user       | ✅       | -
 allUsersfromSameJob       | To do       | Need to make the backend
 EditProfile       | To do       | Adapt User entity with edit profile fields + create patch method
 
@@ -77,6 +77,7 @@ Backlog       | ID | Description
 -------------  | ----------- | ------------------------------------------------------------
 <img width=200/>|<img width=500/>
 EnvConfig       | 02          | Need to make configuration with .env for DB connexion
+Set up Husky       | 03          | Set up Husky and permit people to contribute easily with test before using git on this project 
 
 PlotlyJS
 
