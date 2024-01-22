@@ -22,31 +22,31 @@ export class Users {
   @Column('varchar')
   password: string;
 
-  @Column('varchar')
+  @Column('varchar', { nullable: true, default: null })
   family_name: string;
 
-  @Column('int')
+  @Column('int', { nullable: true, default: null })
   yop: number;
 
-  @Column('varchar')
+  @Column('varchar', { nullable: true, default: null })
   phone_number: string;
 
-  @Column('varchar')
+  @Column('varchar', { nullable: true, default: null })
   email: string;
 
-  @Column()
+  @Column({ nullable: true, default: null })
   address: string;
 
-  @Column()
+  @Column({ nullable: true, default: null })
   city: string;
 
-  @Column()
+  @Column({ nullable: true, default: null })
   state?: number;
 
-  @Column()
+  @Column({ nullable: true, default: null })
   zip_code?: number;
 
-  @Column()
+  @Column({ nullable: true, default: null })
   country?: string;
 
   @ManyToOne(() => Job, (job) => job.users)

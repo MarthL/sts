@@ -1,5 +1,4 @@
 import React from 'react';
-import './NavBar.scss';
 import { Navigate } from 'react-router-dom';
 import { AppBar, Toolbar, Box, IconButton, Tooltip } from '@mui/material';
 import { Home, People, Person } from '@mui/icons-material';
