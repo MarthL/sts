@@ -63,6 +63,7 @@ export const NavBar: React.FC<any> = ({ isDarkTheme, toggleTheme }) => {
             <Box mx={1}>
               <Link to='/' onClick={() => {
                 localStorage.removeItem('token')
+                localStorage.removeItem('name')
                 window.location.reload();
               }}>
                 <Tooltip title="Logout">
@@ -82,14 +83,14 @@ export const NavBar: React.FC<any> = ({ isDarkTheme, toggleTheme }) => {
               onChange={toggleTheme}
               sx={{
                 '& .MuiSwitch-thumb': {
-                  color: 'white', // Couleur du bouton
+                  color: 'white',
                 },
                 '& .MuiSwitch-track': {
-                  color: 'white', // Couleur du track
+                  color: 'white',
                 },
                 '&:not(.Mui-checked)': {
                   '& .MuiSwitch-track': {
-                    color: 'white', // Couleur du track lorsque le switch est "off"
+                    color: 'white',
                   },
                 },
               }}
