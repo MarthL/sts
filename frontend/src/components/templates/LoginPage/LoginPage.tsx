@@ -19,6 +19,7 @@ export const LoginPage = () => {
         .then((res: any) => {
           if (res.status === 201) {
             localStorage.setItem('token', res.data.accessToken.accessToken);
+            localStorage.setItem('name', email);
             window.location.reload();
           }
         })

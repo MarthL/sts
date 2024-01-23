@@ -49,6 +49,8 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
   const [address, setAddress] = useState('')
   const [zip, setZip] = useState(0);
 
+  console.log(user)
+
   useEffect(() => {
     if (user) {
       setId(user.id);
