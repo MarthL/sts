@@ -5,9 +5,10 @@ import { Home, People, Person } from '@mui/icons-material';
 import { ExitToApp } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import { Switch } from '@mui/material';
-import logo from './../../../assets/img/black_logo.png';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
+import { Logo } from '../../atoms/Logo/Logo';
+import { ButtonNavbar } from '../../atoms/ButtonNavbar/ButtonNavbar';
 
 interface NavBarProps {
 
@@ -21,7 +22,7 @@ export const NavBar: React.FC<any> = ({ isDarkTheme, toggleTheme }) => {
           <Toolbar variant="dense" sx={{ marginTop: '5px' }}>
             <Box sx={{ flexGrow: 1 }}>
               <Link to='/'>
-                <img src={logo} alt="manege logo" width={80} height={80} />
+                <Logo size={80} />
               </Link>
             </Box>
 
@@ -30,21 +31,13 @@ export const NavBar: React.FC<any> = ({ isDarkTheme, toggleTheme }) => {
 
             <Box mx={1}>
               <Link to='/'>
-                <Tooltip title="Home">
-                  <IconButton aria-label='Home'>
-                    <Home color='primary' sx={{ "&:hover": { color: "black" }, fontSize: 30 }} />
-                  </IconButton>
-                </Tooltip>
+              <ButtonNavbar title="home" />
               </Link>
             </Box>
 
             <Box mx={1}>
               <Link to='/collaborators'>
-                <Tooltip title="Collaborators">
-                  <IconButton >
-                    <People color='primary' sx={{ "&:hover": { color: "black" }, fontSize: 30 }} />
-                  </IconButton>
-                </Tooltip>
+                <ButtonNavbar title="people" />
               </Link>
             </Box>
 
@@ -52,11 +45,7 @@ export const NavBar: React.FC<any> = ({ isDarkTheme, toggleTheme }) => {
 
             <Box mx={1}>
               <Link to='/profile'>
-                <Tooltip title="Profile">
-                  <IconButton>
-                    <Person color="primary" sx={{ "&:hover": { color: "black" }, fontSize: 30 }} />
-                  </IconButton>
-                </Tooltip>
+              <ButtonNavbar title="person" />
               </Link>
             </Box>
 
@@ -66,11 +55,7 @@ export const NavBar: React.FC<any> = ({ isDarkTheme, toggleTheme }) => {
                 localStorage.removeItem('name')
                 window.location.reload();
               }}>
-                <Tooltip title="Logout">
-                  <IconButton>
-                    <ExitToApp color="primary" sx={{ "&:hover": { color: "black" }, fontSize: 30 }} />
-                  </IconButton>
-                </Tooltip>
+                <ButtonNavbar title="logout" />
               </Link>
             </Box>
 
