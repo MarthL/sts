@@ -18,7 +18,7 @@ export const HomePage = () => {
     if (storedName !== null) {
       setCurrentUser(storedName[0].toUpperCase() + storedName.slice(1));
     }
-  }, [])
+  }, []) 
 
 
   return (
