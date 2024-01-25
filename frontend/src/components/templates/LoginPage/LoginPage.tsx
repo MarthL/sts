@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
-import { Navigate } from 'react-router-dom';
 import { Container, Typography, Button, TextField, Box, Link, Grid, Paper, Avatar } from '@mui/material';
 import { Waves } from '../../molecules/Waves/Waves';
-import logo from './../../../assets/img/black_logo.png';
 import { Logo } from '../../atoms/Logo/Logo';
 import { logIn } from '../../../api/login';
 
