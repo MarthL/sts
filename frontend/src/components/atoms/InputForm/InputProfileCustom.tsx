@@ -1,4 +1,5 @@
 import React from 'react';
+import { TextField } from '@mui/material';
 
 // interface InputProfileCustomProps {
 //     type: string,
@@ -21,20 +22,38 @@ import React from 'react';
 //     )
 // };
 
-// interface InputProfileCustomProps extends React.InputHTMLAttributes<HTMLInputElement> {
-//     label: string,
-//     type: string,
-//     value: string | number | undefined,
-//     fullWidth: boolean,
-//     disabled: boolean
-// }
+{/* <TextField */}
+            {/* fullWidth
+            disabled
+            type='text'
+            {...register("username")}
+            label={'Username'}
+            value={username}
+            onChange={handleUserNameChange}
+            InputLabelProps={{ shrink: true }}
 
-// export const InputProfileCustom: React.FC<InputProfileCustomProps> = (props: InputProfileCustomProps) => {
-//     const { label, ...inputProps } = props;
-//     return (
-//         <label>
-//             {label}
-//             <input {...inputProps}></input>
-//         </label>
-//     )
-// }
+          /> */}
+
+interface InputProfileCustomProps extends React.InputHTMLAttributes<HTMLInputElement> {
+    label: string,
+    type: string,
+    value: string | number | undefined,
+    disabled: boolean,
+    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+export const InputProfileCustom: React.FC<InputProfileCustomProps> = (props: InputProfileCustomProps) => {
+    const { label, type, value, disabled, onChange } = props;
+    return (
+        <TextField
+            label={label}
+            fullWidth
+            type={type}                
+            value={value}
+            disabled={disabled}
+            onChange={onChange}
+            sx={{ margin: 'auto' }}
+            InputLabelProps={{ shrink: true }}
+        />
+    )
+}

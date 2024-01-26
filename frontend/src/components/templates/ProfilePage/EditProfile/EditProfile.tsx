@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { editUser } from '../../../../api/users';
 import { getJobCollection } from '../../../../api/jobs';
 import Swal from 'sweetalert2';
+import { InputProfileCustom } from '../../../atoms/InputForm/InputProfileCustom';
 
 interface Job {
   id: number;
@@ -167,8 +168,8 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
         <Grid item xs={2}></Grid>
 
         <Grid item xs={4} marginTop={5}>
-          <TextField
-            fullWidth
+          {/* <TextField */}
+            {/* fullWidth
             disabled
             type='text'
             {...register("username")}
@@ -177,7 +178,8 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
             onChange={handleUserNameChange}
             InputLabelProps={{ shrink: true }}
 
-          />
+          /> */}
+          <InputProfileCustom type="text" label={'Username'} value={username} fullWidth={true} disabled={true} onChange={handleUserNameChange} />
         </Grid>
         <Grid item xs={1}></Grid>
         <Grid item xs={4} marginBottom={5} marginTop={5}>
@@ -213,7 +215,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
           </Select>
         </Grid>
         <Grid item xs={3}></Grid>
-
+        
         <Grid item xs={9} marginBottom={5}>
           <TextField
             fullWidth
