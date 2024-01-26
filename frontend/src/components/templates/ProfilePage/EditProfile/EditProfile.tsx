@@ -195,13 +195,22 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
         </Grid>
         <Grid item xs={1}></Grid>
         <Grid item xs={4} marginBottom={5} marginTop={5}>
-          <TextField type='text'
-            //{...register("family_name")}
+          {/* <TextField type='text'
+            {...register("family_name")}
             label={'Last Name'}
             fullWidth
             value={familyName}
             onChange={handleFamilyNameChange}
             InputLabelProps={{ shrink: true }}
+          /> */}
+          <InputProfileCustom
+            type="text"
+            label={'Last Name'}
+            value={familyName}
+            fullWidth={true}
+            disabled={false}
+            onChange={handleFamilyNameChange}
+            register={register}
           />
         </Grid>
         <Grid item xs={1}></Grid>
@@ -229,104 +238,176 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
         <Grid item xs={3}></Grid>
 
         <Grid item xs={9} marginBottom={5}>
-          <TextField
+          {/* <TextField
             fullWidth
             type="text"
-            //{...register("yop")}
+            {...register("yop")}
             value={yop}
             onChange={handleYopChange}
             label={"Years of XP"}
             sx={{ margin: 'auto' }}
             InputLabelProps={{ shrink: true }}
+          /> */}
+          <InputProfileCustom
+            type="text"
+            label={'Years of XP'}
+            value={yop}
+            fullWidth={true}
+            disabled={false}
+            onChange={handleYopChange}
+            register={register}
           />
         </Grid>
         <Grid item xs={3}></Grid>
 
 
         <Grid item xs={9} marginBottom={5}>
-          <TextField
+          {/* <TextField
             type="text"
-            //{...register("email")}
+            {...register("email")}
             value={email}
             onChange={handleEmailChange}
             label={"Email"}
             fullWidth
             sx={{ margin: 'auto' }}
             InputLabelProps={{ shrink: true }}
+          /> */}
+          <InputProfileCustom
+            type="text"
+            label={'Email'}
+            value={email}
+            fullWidth={true}
+            disabled={false}
+            onChange={handleEmailChange}
+            register={register}
           />
         </Grid>
         <Grid item xs={3}></Grid>
 
         <Grid item xs={9} marginBottom={5}>
-          <TextField type="text"
-            //{...register("phone_number")}
+          {/* <TextField type="text"
+            {...register("phone_number")}
             value={phone}
             onChange={handlePhoneChange}
             label={"Contact Number"}
             fullWidth sx={{ margin: 'auto' }}
             InputLabelProps={{ shrink: true }}
+          /> */}
+          <InputProfileCustom
+            type="text"
+            label={'Contact Number'}
+            value={phone}
+            fullWidth={true}
+            disabled={false}
+            onChange={handlePhoneChange}
+            register={register}
           />
         </Grid>
         <Grid item xs={3}></Grid>
 
 
         <Grid item xs={9} marginBottom={5}>
-          <TextField
+          {/* <TextField
             type="text"
-            //{...register("address")}
+            {...register("address")}
             label={"Address"}
             value={address}
             fullWidth
             sx={{ margin: 'auto' }}
             InputLabelProps={{ shrink: true }}
             onChange={handleAddressChange}
+          /> */}
+          <InputProfileCustom
+            type="text"
+            label={'Address'}
+            value={address}
+            fullWidth={true}
+            disabled={false}
+            onChange={handleAddressChange}
+            register={register}
           />
         </Grid>
         <Grid item xs={3}></Grid>
 
         <Grid item xs={4}>
-          <TextField type="text"
-            //{...register("city")}
+          {/* <TextField type="text"
+            {...register("city")}
             label={'City'}
             value={city}
             onChange={handleCityChange}
             fullWidth
             InputLabelProps={{ shrink: true }}
+          /> */}
+          <InputProfileCustom
+            type="text"
+            label={'City'}
+            value={city}
+            fullWidth={true}
+            disabled={false}
+            onChange={handleCityChange}
+            register={register}
           />
         </Grid>
         <Grid item xs={1}></Grid>
         <Grid item xs={4} marginBottom={5}>
-          <TextField type="text"
-            //{...register("state")}
+          {/* <TextField type="text"
+            {...register("state")}
             label={'State'}
             value={state}
             onChange={handleStateChange}
             fullWidth
             InputLabelProps={{ shrink: true }}
+          /> */}
+          <InputProfileCustom
+            type="text"
+            label={'State'}
+            value={state}
+            fullWidth={true}
+            disabled={false}
+            onChange={handleStateChange}
+            register={register}
           />
         </Grid>
         <Grid item xs={1}></Grid>
         <Grid item xs={1}></Grid>
 
         <Grid item xs={4}>
-          <TextField type="text"
-            //{...register("zip_code")}
+          {/* <TextField type="text"
+            {...register("zip_code")}
             label={'Zip Code'}
             fullWidth
             value={zip}
             onChange={handleZipChange}
             InputLabelProps={{ shrink: true }}
+          /> */}
+          <InputProfileCustom
+            type="text"
+            label={'Zip Code'}
+            value={zip}
+            fullWidth={true}
+            disabled={false}
+            onChange={handleZipChange}
+            register={register}
           />
         </Grid>
         <Grid item xs={1}></Grid>
         <Grid item xs={4} marginBottom={5}>
-          <TextField type="text"
-            //{...register("country")}
+          {/* <TextField type="text"
+            {...register("country")}
             label={'Country'}
             value={country}
             onChange={handleCountryChange}
             fullWidth
             InputLabelProps={{ shrink: true }}
+          /> */}
+          <InputProfileCustom
+            type="text"
+            label={'Country'}
+            value={country}
+            fullWidth={true}
+            disabled={false}
+            onChange={handleCountryChange}
+            register={register}
           />
         </Grid>
         <Grid item xs={1}></Grid>
