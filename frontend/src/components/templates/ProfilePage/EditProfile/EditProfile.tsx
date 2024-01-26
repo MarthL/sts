@@ -36,11 +36,6 @@ interface EditProfileProps {
 
 export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
 
-  // const { register,  } = useForm({
-  //   defaultValues: {},
-  // });
-
-
   const [id, setId] = useState(user?.id);
   const [username, setUsername] = useState(user?.username);
   const [familyName, setFamilyName] = useState(user?.family_name);
@@ -196,21 +191,12 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
               InputLabelProps={{ shrink: true }}
 
             /> */}
-            {/* <InputProfileCustom
-              type="text"
-              label={'Username'}
-              value={username}
-              fullWidth={true}
-              disabled={true}
-              onChange={handleUserNameChange}
-              
-            /> */}
             <InputProfileCustom
               label={'Username'}
               type="text"
               value={username}
               onChange={handleUserNameChange}
-              disabled={false}
+              disabled={true}
               registerProps={"username"}
             />
           </Grid>
@@ -355,11 +341,12 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
               InputLabelProps={{ shrink: true }}
             /> */}
             <InputProfileCustom
-              label={'Last Name'}
+              label={'City'}
               type="text"
-              value={familyName}
+              value={city}
+              onChange={handleCityChange}
               disabled={false}
-              registerProps={"family_name"}
+              registerProps={"city"}
             />
           </Grid>
           <Grid item xs={1}></Grid>
