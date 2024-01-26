@@ -1,6 +1,6 @@
 import React from 'react';
 import { TextField } from '@mui/material';
-import { UseFormRegister } from 'react-hook-form';
+import { UseFormRegister, useForm, useFormContext } from 'react-hook-form';
 
 // interface InputProfileCustomProps {
 //     type: string,
@@ -68,24 +68,21 @@ interface InputProfileCustomProps extends React.InputHTMLAttributes<HTMLInputEle
   label: string;
   type: string;
   value: string | number | undefined;
-  fullWidth: boolean;
   disabled: boolean;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  register: UseFormRegister<any>; // Ajout du register
+  registerProps: string;
 }
 
 export const InputProfileCustom: React.FC<InputProfileCustomProps> = (props: InputProfileCustomProps) => {
-  const { label, type, value, fullWidth, disabled, onChange, register } = props;
-
+    const { label, type, value, disabled, registerProps } = props;
+    const register = useFormContext().register;
   return (
     <TextField
         label={label}
-        fullWidth={fullWidth}
+        fullWidth
         type={type}
         value={value}
         disabled={disabled}
-        onChange={onChange}
-        inputProps={register(label)} // Utilisation du register ici
+        {...register(registerProps)} // Utilisation du register ici
         sx={{ margin: 'auto' }}
         InputLabelProps={{ shrink: true }}
     />
