@@ -195,7 +195,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
               label={'Username'}
               type="text"
               value={username}
-              onChange={handleUserNameChange}
+              onChangeEvent={handleUserNameChange}
               disabled={true}
               registerProps={"username"}
             />
@@ -214,7 +214,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
               label={'Last Name'}
               type="text"
               value={familyName}
-              onChange={handleFamilyNameChange}
+              onChangeEvent={handleFamilyNameChange}
               disabled={false}
               registerProps={"family_name"}
             />
@@ -258,7 +258,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
               label={'Years of XP'}
               type="text"
               value={yop}
-              onChange={handleYopChange}
+              onChangeEvent={handleYopChange}
               disabled={false}
               registerProps={"yop"}
             />
@@ -281,7 +281,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
               label={'Email'}
               type="text"
               value={email}
-              onChange={handleEmailChange}
+              onChangeEvent={handleEmailChange}
               disabled={false}
               registerProps={"email"}
             />
@@ -301,7 +301,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
               label={'Contact Number'}
               type="text"
               value={phone}
-              onChange={handlePhoneChange}
+              onChangeEvent={handlePhoneChange}
               disabled={false}
               registerProps={"phone_number"}
             />
@@ -324,7 +324,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
               label={'Address'}
               type="text"
               value={address}
-              onChange={handleAddressChange}
+              onChangeEvent={handleAddressChange}
               disabled={false}
               registerProps={"address"}
             />
@@ -344,7 +344,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
               label={'City'}
               type="text"
               value={city}
-              onChange={handleCityChange}
+              onChangeEvent={handleCityChange}
               disabled={false}
               registerProps={"city"}
             />
@@ -363,7 +363,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
               label={'State'}
               type="text"
               value={state}
-              onChange={handleStateChange}
+              onChangeEvent={handleStateChange}
               disabled={false}
               registerProps={"state"}
             />
@@ -384,7 +384,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
               label={'Zip Code'}
               type="text"
               value={zip}
-              onChange={handleZipChange}
+              onChangeEvent={handleZipChange}
               disabled={false}
               registerProps={"zip_code"}
             />
@@ -403,7 +403,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
               label={'Country'}
               type="text"
               value={country}
-              onChange={handleCountryChange}
+              onChangeEvent={handleCountryChange}
               disabled={false}
               registerProps={"country"}
             />
