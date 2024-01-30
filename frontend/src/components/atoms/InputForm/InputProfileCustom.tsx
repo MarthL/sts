@@ -14,21 +14,19 @@ interface InputProfileCustomProps extends React.InputHTMLAttributes<HTMLInputEle
 }
 
 export const InputProfileCustom: React.FC<InputProfileCustomProps> = (props: InputProfileCustomProps) => {
-    const { label, type, value, disabled, registerProps, onChangeEvent } = props;
-    const register = useFormContext().register;
+  const { label, type, value, disabled, registerProps, onChangeEvent } = props;
+  const register = useFormContext().register;
   return (
     <TextField
-        label={label}
-        fullWidth
-        type={type}
-        value={value}
-        disabled={disabled}
-        {...register(registerProps)} // Utilisation du register ici
-        onChange={onChangeEvent}
-        sx={{ margin: 'auto' }}
-        InputLabelProps={{ shrink: true }}
+      label={label}
+      fullWidth
+      type={type}
+      value={value}
+      disabled={disabled}
+      {...register(registerProps)} // Utilisation du register ici
+      onChange={onChangeEvent}
+      sx={{ margin: 'auto' }}
+      InputLabelProps={{ shrink: true }}
     />
   );
 };
-
-import { Input } from "@mui/material";
