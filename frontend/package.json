@@ -15,7 +15,12 @@
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
     "axios": "^1.4.0",
+    "chart.js": "^4.4.1",
+    "classnames": "^2.5.1",
+    "faker": "^6.6.6",
+    "node-sass": "^9.0.0",
     "react": "^18.2.0",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.47.0",
     "react-router-dom": "^6.15.0",
@@ -26,9 +31,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "sass": "sass --watch ./src/assets/styles/main.scss:./src/index.css",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "compile-sass": "sass src/assets/styles/main.scss public/css",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -50,7 +55,11 @@
     ]
   },
   "devDependencies": {
+    "@faker-js/faker": "^8.4.0",
     "@types/node-sass": "^4.11.3",
-    "node-sass": "^7.0.3"
+    "css-loader": "^6.9.1",
+    "sass": "^1.70.0",
+    "sass-loader": "^14.0.0",
+    "style-loader": "^3.3.4"
   }
 }
