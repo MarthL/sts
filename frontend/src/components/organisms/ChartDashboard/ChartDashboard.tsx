@@ -11,6 +11,9 @@ import { Bar } from "react-chartjs-2";
 import { faker } from '@faker-js/faker';
 import "chart.js/auto";
 
+import { Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
+import { ExpandMore } from "@mui/icons-material";
+
 import classnames from 'classnames'
 import './ChartDashboard.scss';
 
@@ -60,7 +63,18 @@ export const ChartDashboard: React.FC = () => {
 
   return (
     <>
-      <Bar data={data} options={options} height={30} width={100} />
+      <Accordion sx={{ margin: "50px" }}>
+        <AccordionSummary
+          expandIcon={<ExpandMore />}
+          aria-controls="panel1-content"
+          sx={{ fontSize: '2rem' }}
+        >
+          Your stats
+        </AccordionSummary>
+        <AccordionDetails>
+          <Bar data={data} options={options} height={30} width={100} />
+        </AccordionDetails>
+      </Accordion>
     </>
   )
 
