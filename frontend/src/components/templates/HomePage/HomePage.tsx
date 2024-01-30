@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { CardProject } from '../../molecules/CardProject/CardProject';
 import { Box, Typography } from '@mui/material';
+import { ChartDashboard } from '../../organisms/ChartDashboard/ChartDashboard';
 import { getProjects } from '../../../api/projects';
 
 export const HomePage = () => {
@@ -18,12 +19,13 @@ export const HomePage = () => {
     if (storedName !== null) {
       setCurrentUser(storedName[0].toUpperCase() + storedName.slice(1));
     }
-  }, []) 
+  }, [])
 
 
   return (
     <>
       <Typography variant="h3"> Welcome, {currentUser} </Typography>
+      <ChartDashboard />
       <Box display={'flex'} flexDirection={'row'} justifyContent={'center'} flexWrap={'wrap'} gap={20}>
         {
           projectsCollection.map((project: any) => {
