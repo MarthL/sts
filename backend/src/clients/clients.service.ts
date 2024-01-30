@@ -3,10 +3,9 @@ import {
     Body,
   } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { DeleteResult, Repository } from 'typeorm';
 import { Clients } from './clients.entity';
-import createClientsDto from 'src/DTO/Clients/createClients.dto';
-import { DeleteClientDto } from 'src/DTO/Clients/deleteClientDto.dto';
+import CreateClientsDto from 'src/DTO/Clients/createClients.dto';
 import { plainToClass } from 'class-transformer';
 
 
@@ -22,21 +21,14 @@ export class ClientsService {
     return await this.clientsRepository.find();
   }
 
-  /////////////////////////
-  // GetById
-  /////////////////////////
-
   // Post
-  async post(@Body() createReq: createClientsDto): Promise<createClientsDto> {
-    const newClient = plainToClass(createClientsDto, createReq);
+  async post(@Body() createReq: CreateClientsDto): Promise<CreateClientsDto> {
+    const newClient = plainToClass(CreateClientsDto, createReq);
     return await this.clientsRepository.save(newClient);
   }
 
-  //////////////////////////
-  // Patch
- ///////////////////////////
-
-  async deleteById(id: number): Promise<DeleteClientDto> {
+  // deleteById
+  async deleteById(id: number): Promise<DeleteResult> {
     return this.clientsRepository.delete(id);
   }
 }

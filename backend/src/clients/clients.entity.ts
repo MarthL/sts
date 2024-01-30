@@ -1,15 +1,3 @@
-// colonnes :
-
-//     id
-//     name
-//     SIRET
-//     Industry
-//     Mail
-//     Phone
-//     Address
-//     ZIP Code
-//     State, number
-//     City: string
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()

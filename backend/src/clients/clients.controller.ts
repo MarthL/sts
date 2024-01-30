@@ -11,7 +11,8 @@ import { ApiTags } from '@nestjs/swagger';
 import { Clients } from './clients.entity';
 import { ClientsService } from './clients.service';
 import createClientsDto from 'src/DTO/Clients/createClients.dto';
-import { DeleteClientDto } from 'src/DTO/Clients/deleteClientDto.dto';
+import { DeleteClientsDto } from 'src/DTO/Clients/deleteClientsDto.dto';
+import { DeleteResult } from 'typeorm';
 @ApiTags('Clients')
 @Controller('/clients')
 
@@ -33,7 +34,7 @@ export class ClientsController{
   @Delete(':id')
   async deleteById(
     @Param('id', ParseIntPipe) id: number,
-  ): Promise<DeleteClientDto> {
+  ): Promise<DeleteResult> {
     return this.clientsService.deleteById(id);
   }
 }

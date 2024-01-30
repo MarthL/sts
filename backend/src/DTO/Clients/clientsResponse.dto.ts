@@ -1,8 +1,8 @@
-import { Exclude } from 'class-transformer';
-import { IsNotEmpty, IsInt } from 'class-validator';
+import { IsNotEmpty, IsInt, IsOptional } from 'class-validator';
+// import { OneToMany } from 'typeorm';
 
 export default class ClientsResponseDto {
-  @IsNotEmpty()
+  
   @IsInt()
   id: number;
 
@@ -10,5 +10,26 @@ export default class ClientsResponseDto {
   name: string;
 
   @IsNotEmpty()
-  description: string;
+  siret: string;
+
+  @IsOptional()
+  industry: string;
+
+  @IsNotEmpty()
+  mail: string;
+
+  @IsNotEmpty()
+  phone: string;
+
+  @IsOptional()
+  adress: string;
+
+  @IsOptional()
+  zip_code: string;
+
+  @IsOptional()
+  state: string;
+
+  @IsOptional()
+  city: string;
 }
