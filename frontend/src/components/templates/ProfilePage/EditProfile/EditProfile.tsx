@@ -121,11 +121,11 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
 
   const methods = useForm();
   const onsubmit = async (data: any) => {
-      const userHasConfirmed = await confirmModal();
-      if (userHasConfirmed) {
-        user?.id ? sendForm(user.id, data) : console.error(`Datas :  ${data} cannot be send, missing id user`)
-      }
+    const userHasConfirmed = await confirmModal();
+    if (userHasConfirmed) {
+      user?.id ? sendForm(user.id, data) : console.error(`Datas :  ${data} cannot be send, missing id user`)
     }
+  }
 
   //const { register, handleSubmit } = useForm();
 
@@ -162,12 +162,6 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
       <Typography variant="h5" marginLeft={3}>Edit Profile</Typography>
       <FormProvider {...methods}>
         <Grid container marginLeft={3} component={'form'}
-          // onSubmit={handleSubmit(async (data: any) => {
-          //   const userHasConfirmed = await confirmModal();
-          //   if (userHasConfirmed) {
-          //     user?.id ? sendForm(user.id, data) : console.error(`Datas :  ${data} cannot be send, missing id user`)
-          //   }
-          // })}
           onSubmit={methods.handleSubmit(onsubmit)}
         >
           <Grid item xs={2}></Grid>
@@ -180,17 +174,6 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
           <Grid item xs={2}></Grid>
 
           <Grid item xs={4} marginTop={5}>
-            {/* <TextField */}
-              {/* fullWidth
-              disabled
-              type='text'
-              {...register("username")}
-              label={'Username'}
-              value={username}
-              onChange={handleUserNameChange}
-              InputLabelProps={{ shrink: true }}
-
-            /> */}
             <InputProfileCustom
               label={'Username'}
               type="text"
@@ -202,14 +185,6 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
           </Grid>
           <Grid item xs={1}></Grid>
           <Grid item xs={4} marginBottom={5} marginTop={5}>
-            {/* <TextField type='text'
-              {...register("family_name")}
-              label={'Last Name'}
-              fullWidth
-              value={familyName}
-              onChange={handleFamilyNameChange}
-              InputLabelProps={{ shrink: true }}
-            /> */}
             <InputProfileCustom
               label={'Last Name'}
               type="text"
@@ -244,16 +219,6 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
           <Grid item xs={3}></Grid>
 
           <Grid item xs={9} marginBottom={5}>
-            {/* <TextField
-              fullWidth
-              type="text"
-              {...register("yop")}
-              value={yop}
-              onChange={handleYopChange}
-              label={"Years of XP"}
-              sx={{ margin: 'auto' }}
-              InputLabelProps={{ shrink: true }}
-            /> */}
             <InputProfileCustom
               label={'Years of XP'}
               type="text"
@@ -267,16 +232,6 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
 
 
           <Grid item xs={9} marginBottom={5}>
-            {/* <TextField
-              type="text"
-              {...register("email")}
-              value={email}
-              onChange={handleEmailChange}
-              label={"Email"}
-              fullWidth
-              sx={{ margin: 'auto' }}
-              InputLabelProps={{ shrink: true }}
-            /> */}
             <InputProfileCustom
               label={'Email'}
               type="text"
@@ -289,14 +244,6 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
           <Grid item xs={3}></Grid>
 
           <Grid item xs={9} marginBottom={5}>
-            {/* <TextField type="text"
-              {...register("phone_number")}
-              value={phone}
-              onChange={handlePhoneChange}
-              label={"Contact Number"}
-              fullWidth sx={{ margin: 'auto' }}
-              InputLabelProps={{ shrink: true }}
-            /> */}
             <InputProfileCustom
               label={'Contact Number'}
               type="text"
@@ -310,16 +257,6 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
 
 
           <Grid item xs={9} marginBottom={5}>
-            {/* <TextField
-              type="text"
-              {...register("address")}
-              label={"Address"}
-              value={address}
-              fullWidth
-              sx={{ margin: 'auto' }}
-              InputLabelProps={{ shrink: true }}
-              onChange={handleAddressChange}
-            /> */}
             <InputProfileCustom
               label={'Address'}
               type="text"
@@ -332,14 +269,6 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
           <Grid item xs={3}></Grid>
 
           <Grid item xs={4}>
-            {/* <TextField type="text"
-              {...register("city")}
-              label={'City'}
-              value={city}
-              onChange={handleCityChange}
-              fullWidth
-              InputLabelProps={{ shrink: true }}
-            /> */}
             <InputProfileCustom
               label={'City'}
               type="text"
@@ -351,14 +280,6 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
           </Grid>
           <Grid item xs={1}></Grid>
           <Grid item xs={4} marginBottom={5}>
-            {/* <TextField type="text"
-              {...register("state")}
-              label={'State'}
-              value={state}
-              onChange={handleStateChange}
-              fullWidth
-              InputLabelProps={{ shrink: true }}
-            /> */}
             <InputProfileCustom
               label={'State'}
               type="text"
@@ -372,14 +293,6 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
           <Grid item xs={1}></Grid>
 
           <Grid item xs={4}>
-            {/* <TextField type="text"
-              {...register("zip_code")}
-              label={'Zip Code'}
-              fullWidth
-              value={zip}
-              onChange={handleZipChange}
-              InputLabelProps={{ shrink: true }}
-            /> */}
             <InputProfileCustom
               label={'Zip Code'}
               type="text"
@@ -391,14 +304,6 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
           </Grid>
           <Grid item xs={1}></Grid>
           <Grid item xs={4} marginBottom={5}>
-            {/* <TextField type="text"
-              {...register("country")}
-              label={'Country'}
-              value={country}
-              onChange={handleCountryChange}
-              fullWidth
-              InputLabelProps={{ shrink: true }}
-            /> */}
             <InputProfileCustom
               label={'Country'}
               type="text"
