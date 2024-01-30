@@ -5,9 +5,9 @@ interface ButtonNavbarProps {
   title: 'home' | 'people' | 'person' | 'logout';
 }
 
-interface IconComponentProps {
-  title: string;
-}
+// interface IconComponentProps {
+//   title: string;
+// }
 
 export const ButtonNavbar: React.FC<ButtonNavbarProps> = (props: ButtonNavbarProps) => {
   const { title } = props;

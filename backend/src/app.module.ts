@@ -21,6 +21,8 @@ import { AuthLogin } from './auth/authlogin.service';
 import { JwtStrategy } from './auth/jwt.strategy';
 import { JobFieldModule } from './job-field/job-field.module';
 import { ConfigModule } from '@nestjs/config';
+import { Clients } from './clients/clients.entity';
+import { ClientsModule } from './clients/clients.module';
 
 @Module({
   imports: [
@@ -37,7 +39,7 @@ import { ConfigModule } from '@nestjs/config';
       password: process.env.PASSWORD || null,
       username: process.env.USER,
       database: process.env.DBNAME,
-      entities: [Projects, Users, Job, JobField],
+      entities: [Projects, Users, Job, JobField, Clients],
       synchronize: true,
     }),
     TypeOrmModule.forFeature([Projects, Users]),
@@ -46,6 +48,7 @@ import { ConfigModule } from '@nestjs/config';
     AuthModule,
     JobModule,
     JobFieldModule,
+    ClientsModule,
   ],
   controllers: [AuthController],
   providers: [JwtStrategy, AuthService, AuthLogin],
