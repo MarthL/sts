@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
-import { Navigate } from 'react-router-dom';
 import { Container, Typography, Button, TextField, Box, Link, Grid, Paper, Avatar } from '@mui/material';
 import { Waves } from '../../molecules/Waves/Waves';
-import logo from './../../../assets/img/black_logo.png';
+import { Logo } from '../../atoms/Logo/Logo';
 import { logIn } from '../../../api/login';
 
 export const LoginPage = () => {
@@ -49,7 +48,7 @@ export const LoginPage = () => {
               alignItems: "center",
             }}
           >
-            <Avatar src={logo} sx={{ height: '80px', width: '80px', marginBottom: '15px' }}></Avatar>
+            <Logo size={80} />
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>
