@@ -1,9 +1,6 @@
 import {
     Injectable,
     Body,
-    Param,
-    HttpException,
-    ParseIntPipe,
   } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';

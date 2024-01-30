@@ -2,7 +2,6 @@ import {
     Controller,
     Get,
     Post,
-    Patch,
     Param,
     Delete,
     Body,
@@ -24,9 +23,7 @@ export class ClientsController{
     return this.clientsService.getClients();
   }
 
-  ///////////////////////////////////
-
-  ///////////////////////////////////
+  
 
   @Post('')
   async create(@Body() client: createClientsDto): Promise<createClientsDto> {
