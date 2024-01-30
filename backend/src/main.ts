@@ -8,13 +8,9 @@ import { ConfigService } from '@nestjs/config';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 //require('dotenv').config();
 
-
 async function bootstrap() {
-
   const app = await NestFactory.create(AppModule);
-
-  const configService = app.get(ConfigService);
-  const port = configService.get<number>('PORT') || 4000;
+  const port = 4000;
 
   app.enableCors({
     origin: '*',
