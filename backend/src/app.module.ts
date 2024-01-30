@@ -20,9 +20,11 @@ import { AuthLogin } from './auth/authlogin.service';
 
 import { JwtStrategy } from './auth/jwt.strategy';
 import { JobFieldModule } from './job-field/job-field.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.register({
       secret: process.env.JWT_SECRET || 'defaultSecret',
@@ -30,10 +32,11 @@ import { JobFieldModule } from './job-field/job-field.module';
     }),
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      database: 'sts',
+      host: process.env.HOST,
+      port: parseInt(process.env.PORT),
+      password: process.env.PASSWORD || null,
+      username: process.env.USER,
+      database: process.env.DBNAME,
       entities: [Projects, Users, Job, JobField],
       synchronize: true,
     }),
