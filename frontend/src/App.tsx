@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import /*React,*/ { useState, useEffect } from 'react';
 import { NavBar } from './components/organisms/NavBar/NavBar';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route/*, Link*/ } from 'react-router-dom';
 import { Container } from '@mui/material';
 import { ProfilePage } from './components/templates/ProfilePage/ProfilePage';
 import { HomePage } from './components/templates/HomePage/HomePage';
@@ -8,7 +8,7 @@ import { LoginPage } from './components/templates/LoginPage/LoginPage';
 import { CollaboratorsPage } from './components/templates/CollaboratorsPage/CollaboratorsPage';
 import { ThemeProvider, createTheme } from '@mui/material';
 import { lime, blue, } from '@mui/material/colors';
-import { Switch } from '@mui/material';
+//import { Switch } from '@mui/material';
 
 function App() {
 
