@@ -1,8 +1,5 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom';
-import { AppBar, Toolbar, Box, IconButton, Tooltip } from '@mui/material';
-import { Home, People, Person } from '@mui/icons-material';
-import { ExitToApp } from '@mui/icons-material';
+import { AppBar, Toolbar, Box } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { Switch } from '@mui/material';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
@@ -10,9 +7,6 @@ import Brightness7Icon from '@mui/icons-material/Brightness7';
 import { Logo } from '../../atoms/Logo/Logo';
 import { ButtonNavbar } from '../../atoms/ButtonNavbar/ButtonNavbar';
 
-interface NavBarProps {
-
-};
 
 export const NavBar: React.FC<any> = ({ isDarkTheme, toggleTheme }) => {
   return (

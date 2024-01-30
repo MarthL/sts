@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Grid, Avatar, Paper, Typography, Box } from '@mui/material';
-import { ProgressProfile } from '../../molecules/ProgressProfile/ProgressProfile';
+import { Grid, Paper } from '@mui/material';
 import { getUserLogged } from '../../../api/users';
-import styles from './ProfilePage.module.scss';
-import { List, ListItem, ListItemText, ListItemButton, ListItemIcon } from '@mui/material';
 import { Edit, Tune, Security } from '@mui/icons-material';
 import { ListItemProfile } from '../../molecules/ListItemProfile.tsx/ListItemProfile';
 import { EditProfile } from './EditProfile/EditProfile';

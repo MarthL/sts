@@ -1,6 +1,6 @@
-import /*React,*/ { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { NavBar } from './components/organisms/NavBar/NavBar';
-import { BrowserRouter as Router, Routes, Route/*, Link*/ } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Container } from '@mui/material';
 import { ProfilePage } from './components/templates/ProfilePage/ProfilePage';
 import { HomePage } from './components/templates/HomePage/HomePage';
@@ -8,7 +8,6 @@ import { LoginPage } from './components/templates/LoginPage/LoginPage';
 import { CollaboratorsPage } from './components/templates/CollaboratorsPage/CollaboratorsPage';
 import { ThemeProvider, createTheme } from '@mui/material';
 import { lime, blue, } from '@mui/material/colors';
-//import { Switch } from '@mui/material';
 
 function App() {
 
@@ -19,18 +18,18 @@ function App() {
         main: blue[600],
       },
       secondary: {
-        main: '#000000', // Couleur de vos icônes en mode clair
+        main: '#000000',
       },
       background: {
-        default: '#FFFFFF', // Couleur de fond de la barre de navigation en mode clair
+        default: '#FFFFFF',
       },
       text: {
-        primary: '#000000', // Couleur du texte en mode clair
+        primary: '#000000',
       },
     },
     typography: {
       allVariants: {
-        color: 'black', // Couleur du texte en mode clair
+        color: 'black',
       },
     },
     components: {

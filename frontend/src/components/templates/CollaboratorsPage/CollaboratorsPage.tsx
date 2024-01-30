@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { List, ListItem, ListItemText, ListItemAvatar, Typography, Avatar } from '@mui/material';
+import { List, Typography } from '@mui/material';
 import { UserListCustom } from '../../molecules/UserListCustom/UserListCustom';
 import { getAllUsers } from '../../../api/users';
 

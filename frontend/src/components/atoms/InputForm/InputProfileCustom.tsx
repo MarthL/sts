@@ -22,7 +22,7 @@ export const InputProfileCustom: React.FC<InputProfileCustomProps> = (props: Inp
       type={type}
       value={value}
       disabled={disabled}
-      {...register(registerProps)} // Utilisation du register ici
+      {...register(registerProps)}
       onChange={onChangeEvent}
       sx={{ margin: 'auto' }}
       InputLabelProps={{ shrink: true }}

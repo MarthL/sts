@@ -1,4 +1,4 @@
-import { Typography, TextField, Button, MenuItem, Grid, Select, Avatar } from '@mui/material';
+import { Typography, Button, MenuItem, Grid, Select, Avatar } from '@mui/material';
 import { useForm, FormProvider } from 'react-hook-form';
 import { useState, useEffect } from 'react';
 import { editUser } from '../../../../api/users';
@@ -49,8 +49,6 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
   const [state, setState] = useState(0);
   const [address, setAddress] = useState('')
   const [zip, setZip] = useState(0);
-
-  console.log(user)
 
 
   useEffect(() => {
@@ -127,7 +125,6 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
     }
   }
 
-  //const { register, handleSubmit } = useForm();
 
   const sendForm = (id: number, data: any) => {
     console.log(data);
