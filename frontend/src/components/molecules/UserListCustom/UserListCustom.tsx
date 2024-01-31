@@ -1,4 +1,3 @@
-//import React from 'react';
 import { ListItem, ListItemAvatar, Typography, Avatar, ListItemText } from '@mui/material';
 
 interface UserListProps {
@@ -8,7 +7,7 @@ interface UserListProps {
 
 export const UserListCustom = (props: UserListProps) => {
 
-  const { avatar, username } = props;
+  const { username } = props;
 
   return (
     <>
