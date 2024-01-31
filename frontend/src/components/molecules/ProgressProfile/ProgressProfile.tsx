@@ -1,4 +1,3 @@
-//import React from 'react';
 import { LinearProgress, Typography, Box } from '@mui/material'
 
 interface ProgressProfileProps {
