@@ -1,6 +1,4 @@
-// users/users.controller.ts
-
-import { ApiTags, ApiQuery, ApiResponse } from '@nestjs/swagger';
+import { ApiTags } from '@nestjs/swagger';
 import { HttpException } from '@nestjs/common';
 import {
   Controller,
@@ -16,11 +14,11 @@ import { UsersService } from './users.service';
 import { AuthLogin } from './../auth/authlogin.service';
 
 import { CreateUserDto } from '../DTO/User/create-userDto.dto';
-import { DeleteUserDto } from '../DTO/User/delete-userDto.dto';
 import { UserLoginDto } from 'src/DTO/User/user-loginDto.dto';
 import { UserResponseDto } from 'src/DTO/User/userResponseDto.dto';
 
 import { UnauthorizedException, ParseIntPipe } from '@nestjs/common';
+import { DeleteResult } from 'typeorm';
 
 @ApiTags('Users')
 @Controller('users')
@@ -51,10 +49,12 @@ export class UsersController {
     return { projects };
   }
 
-  // Delete by username
-  @Delete(':username')
-  async deleteUser(@Param('username') username: string): Promise<any> {
-    return await this.usersService.DeleteUserByName(username);
+  // Delete by id
+  @Delete(':id')
+  async deleteById(
+    @Param('id', ParseIntPipe) id: number)
+    : Promise<DeleteResult> {
+    return this.usersService.deleteById(id);
   }
 
   // getCurrentUser for Auth only
