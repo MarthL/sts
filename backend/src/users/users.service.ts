@@ -1,17 +1,15 @@
 import {
   Injectable,
-  ConflictException,
   HttpException,
   Body,
   Param,
   ParseIntPipe,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { DeleteResult, Repository } from 'typeorm';
 import { Users } from './users.entity';
 import { CreateUserDto } from '../DTO/User/create-userDto.dto';
 import { UserResponseDto } from 'src/DTO/User/userResponseDto.dto';
-import { DeleteUserDto } from '../DTO/User/delete-userDto.dto';
 import * as bcrypt from 'bcrypt';
 import { plainToClass } from 'class-transformer';
 
@@ -65,23 +63,8 @@ export class UsersService {
     return user.projectsCollection;
   }
 
-  // TODO : add typing
-  async DeleteUserByName(userToDelete: string): Promise<any> {
-    const existingUser = await this.userRepository.findOne({
-      select: {
-        username: true,
-      },
-      where: {
-        username: userToDelete,
-      },
-    });
-
-    console.log('result of existingUser : ', existingUser);
-    if (existingUser) {
-      return await this.userRepository.delete({ username: userToDelete });
-    } else {
-      throw new HttpException('User cannot be found', 404);
-    }
+  async deleteById(id: number): Promise<DeleteResult> {
+    return this.userRepository.delete(id);
   }
 
   async createUser(createUserDto: CreateUserDto): Promise<Users> {
