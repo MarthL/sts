@@ -4,6 +4,7 @@ import {
   PrimaryGeneratedColumn,
   ManyToMany,
   ManyToOne,
+  OneToMany,
   JoinTable,
   JoinColumn,
 } from 'typeorm';
@@ -34,19 +35,19 @@ export class Users {
   @Column('varchar', { nullable: true, default: null })
   email: string;
 
-  @Column({ nullable: true, default: null })
+  @Column('varchar', { nullable: true, default: null })
   address: string;
 
-  @Column({ nullable: true, default: null })
+  @Column('varchar', { nullable: true, default: null })
   city: string;
 
-  @Column({ nullable: true, default: null })
+  @Column('int', { nullable: true, default: null })
   state?: number;
 
-  @Column({ nullable: true, default: null })
+  @Column('int', { nullable: true, default: null })
   zip_code?: number;
 
-  @Column({ nullable: true, default: null })
+  @Column('varchar', { nullable: true, default: null })
   country?: string;
 
   @ManyToOne(() => Job, (job) => job.users)
@@ -56,4 +57,5 @@ export class Users {
   @ManyToMany(() => Projects)
   @JoinTable()
   projectsCollection: Projects[];
+  
 }
