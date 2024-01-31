@@ -7,7 +7,7 @@ interface UserListProps {
 
 export const UserListCustom = (props: UserListProps) => {
 
-  const { avatar, username } = props;
+  const { username } = props;
 
   return (
     <>

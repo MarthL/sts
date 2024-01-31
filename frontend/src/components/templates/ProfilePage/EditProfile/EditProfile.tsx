@@ -127,7 +127,6 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
 
 
   const sendForm = (id: number, data: any) => {
-    console.log(data);
     const filteredData = Object.keys(data).reduce((acc: any, key) => {
       if (data[key] !== '') {
         acc[key] = data[key];

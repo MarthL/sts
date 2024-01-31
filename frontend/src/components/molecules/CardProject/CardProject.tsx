@@ -7,7 +7,7 @@ interface CardProjectProps {
 }
 
 export const CardProject = (props: CardProjectProps) => {
-  const { project_name, description, key } = props;
+  const { project_name, description } = props;
   return (
     <>
       <Card sx={{ maxWidth: 350, height: 350 }}>
