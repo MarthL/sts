@@ -23,8 +23,8 @@ import { AuthService } from './auth/auth.service';
 import { AuthLogin } from './auth/authlogin.service';
 
 import { JwtStrategy } from './auth/jwt.strategy';
-import { Company } from './companys/company.entity';
-import { CompanyModule } from './companys/company.module';
+import { Companys } from './companys/company.entity';
+import { CompanysModule } from './companys/company.module';
 
 @Module({
   imports: [
@@ -41,7 +41,7 @@ import { CompanyModule } from './companys/company.module';
       password: process.env.PASSWORD || null,
       username: process.env.USER,
       database: process.env.DBNAME,
-      entities: [Projects, Users, Job, JobField, Clients, Company],
+      entities: [Projects, Users, Job, JobField, Clients, Companys],
       synchronize: true,
     }),
     TypeOrmModule.forFeature([Projects, Users]),
@@ -51,7 +51,7 @@ import { CompanyModule } from './companys/company.module';
     JobModule,
     JobFieldModule,
     ClientsModule,
-    CompanyModule
+    CompanysModule
   ],
   controllers: [AuthController],
   providers: [JwtStrategy, AuthService, AuthLogin],
