@@ -4,13 +4,13 @@ import {
   PrimaryGeneratedColumn,
   ManyToMany,
   ManyToOne,
-  OneToMany,
   JoinTable,
   JoinColumn,
 } from 'typeorm';
 
 import { Job } from 'src/job/job.entity';
 import { Projects } from 'src/projects/projects.entity';
+import { Company } from 'src/company/company.entity';
 
 @Entity()
 export class Users {
