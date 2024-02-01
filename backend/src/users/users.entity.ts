@@ -10,7 +10,7 @@ import {
 
 import { Job } from 'src/job/job.entity';
 import { Projects } from 'src/projects/projects.entity';
-import { Company } from 'src/company/company.entity';
+import { Companys } from 'src/companys/company.entity';
 
 @Entity()
 export class Users {
@@ -58,4 +58,7 @@ export class Users {
   @JoinTable()
   projectsCollection: Projects[];
   
+  @ManyToOne(() => Companys, (company) => company.users)
+  @JoinColumn({ name: 'company_id' })
+  company?: Companys;
 }

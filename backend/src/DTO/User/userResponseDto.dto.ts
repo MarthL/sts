@@ -1,6 +1,5 @@
 import { IsNotEmpty, IsString, MinLength, IsNumber } from 'class-validator';
 import { Exclude } from 'class-transformer';
-import { OneToMany } from 'typeorm';
 
 export class UserResponseDto {
   @IsNotEmpty()
@@ -52,4 +51,7 @@ export class UserResponseDto {
   @IsString()
   @MinLength(2)
   email: string;
+
+  @IsNumber()
+  company_id?: number;
 }

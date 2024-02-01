@@ -23,8 +23,8 @@ import { AuthService } from './auth/auth.service';
 import { AuthLogin } from './auth/authlogin.service';
 
 import { JwtStrategy } from './auth/jwt.strategy';
-import { Company } from './company/company.entity';
-import { CompanyModule } from './company/company.module';
+import { Company } from './companys/company.entity';
+import { CompanyModule } from './companys/company.module';
 
 @Module({
   imports: [

@@ -1,5 +1,5 @@
 import { ApiTags } from '@nestjs/swagger';
-import { HttpException, UnauthorizedException, ParseIntPipe  } from '@nestjs/common';
+import { HttpException, ParseIntPipe  } from '@nestjs/common';
 import {
   Controller,
   Get,
@@ -7,10 +7,9 @@ import {
   Body,
   Param,
   Delete,
-  Patch,
 } from '@nestjs/common';
 
-import { CompanyService } from './company.service';
+import { CompanysService } from './company.service';
 
 import { CompanyResponseDto } from 'src/DTO/Company/companyResponse.dto';
 import { CreateCompanyDto } from 'src/DTO/Company/createCompany.dto';
@@ -22,13 +21,13 @@ import { DeleteResult } from 'typeorm';
 @Controller('company')
 export class CompanyController {
   constructor(
-    private readonly companyService: CompanyService,
+    private readonly companysService: CompanysService,
   ) {}
 
   // GetAll
   @Get('')
-  async getCompany() {
-    return this.companyService.getAllcompany();
+  async getCompanys() {
+    return this.companysService.getAllcompanys();
   }
 
   // GetById
@@ -36,7 +35,7 @@ export class CompanyController {
   async getCompanyById(
     @Param('id', ParseIntPipe) id: number,
   ): Promise<CompanyResponseDto | HttpException> {
-    return this.companyService.getCompanyById(id);
+    return this.companysService.getCompanyById(id);
   }
 
   // Delete by id
@@ -44,13 +43,13 @@ export class CompanyController {
   async deleteById(
     @Param('id', ParseIntPipe) id: number)
     : Promise<DeleteResult> {
-    return this.companyService.deleteById(id);
+    return this.companysService.deleteById(id);
   }
 
   // create a Company
   @Post('')
   async create(@Body() company: CreateCompanyDto): Promise<CreateCompanyDto> {
-    return this.companyService.post(company);
+    return this.companysService.post(company);
   }
 
 }
