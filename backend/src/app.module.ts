@@ -8,6 +8,8 @@ import { Projects } from './projects/projects.entity';
 import { Users } from './users/users.entity';
 import { Job } from './job/job.entity';
 import { JobField } from './job-field/job-field.entity';
+import { Clients } from './clients/clients.entity';
+import { Citys } from './citys/citys.entity';
 
 import { ProjectsModule } from './projects/projects.module';
 import { UsersModule } from './users/users.module';
@@ -15,14 +17,14 @@ import { AuthModule } from './auth/auth.module';
 import { JobModule } from './job/job.module';
 import { PassportModule } from '@nestjs/passport';
 
-import { AuthService } from './auth/auth.service';
-import { AuthLogin } from './auth/authlogin.service';
-
 import { JwtStrategy } from './auth/jwt.strategy';
 import { JobFieldModule } from './job-field/job-field.module';
 import { ConfigModule } from '@nestjs/config';
-import { Clients } from './clients/clients.entity';
 import { ClientsModule } from './clients/clients.module';
+import { CitysModule } from './citys/citys.module';
+
+import { AuthService } from './auth/auth.service';
+import { AuthLogin } from './auth/authlogin.service';
 
 @Module({
   imports: [
@@ -39,7 +41,7 @@ import { ClientsModule } from './clients/clients.module';
       password: process.env.PASSWORD || null,
       username: process.env.USER,
       database: process.env.DBNAME,
-      entities: [Projects, Users, Job, JobField, Clients],
+      entities: [Projects, Users, Job, JobField, Clients, Citys],
       synchronize: true,
     }),
     TypeOrmModule.forFeature([Projects, Users]),
@@ -49,6 +51,7 @@ import { ClientsModule } from './clients/clients.module';
     JobModule,
     JobFieldModule,
     ClientsModule,
+    CitysModule
   ],
   controllers: [AuthController],
   providers: [JwtStrategy, AuthService, AuthLogin],
