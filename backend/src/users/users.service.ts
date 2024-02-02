@@ -36,7 +36,7 @@ export class UsersService {
   // getById
   async getUserById(userId: number): Promise<UserResponseDto | HttpException> {
     const user = await this.userRepository.findOne({
-      relations: ['job'],
+      relations: ['job', 'city'],
       where: {
         id: userId,
       },

@@ -1,6 +1,5 @@
 import { IsNotEmpty, IsString, MinLength, IsNumber } from 'class-validator';
 import { Exclude } from 'class-transformer';
-import { OneToMany } from 'typeorm';
 
 export class UserResponseDto {
   @IsNotEmpty()
@@ -35,19 +34,19 @@ export class UserResponseDto {
 
   @IsString()
   @MinLength(3)
-  city: string;
+  city_id: number;
 
-  @IsNumber()
-  @MinLength(3)
-  state?: number;
+  // @IsNumber()
+  // @MinLength(3)
+  // state?: number;
 
-  @IsNumber()
-  @MinLength(2)
-  zip_code?: number;
+  // @IsNumber()
+  // @MinLength(2)
+  // zip_code?: number;
 
-  @IsString()
-  @MinLength(3)
-  country?: string;
+  // @IsString()
+  // @MinLength(3)
+  // country?: string;
 
   @IsString()
   @MinLength(2)

@@ -10,6 +10,7 @@ import {
 
 import { Job } from 'src/job/job.entity';
 import { Projects } from 'src/projects/projects.entity';
+import { Citys } from 'src/citys/citys.entity';
 
 @Entity()
 export class Users {
@@ -37,17 +38,14 @@ export class Users {
   @Column({ nullable: true, default: null })
   address: string;
 
-  @Column({ nullable: true, default: null })
-  city: string;
+  // @Column({ nullable: true, default: null })
+  // state?: number;
 
-  @Column({ nullable: true, default: null })
-  state?: number;
+  // @Column({ nullable: true, default: null })
+  // zip_code?: number;
 
-  @Column({ nullable: true, default: null })
-  zip_code?: number;
-
-  @Column({ nullable: true, default: null })
-  country?: string;
+  // @Column({ nullable: true, default: null })
+  // country?: string;
 
   @ManyToOne(() => Job, (job) => job.users)
   @JoinColumn({ name: 'job_id' })
@@ -56,4 +54,8 @@ export class Users {
   @ManyToMany(() => Projects)
   @JoinTable()
   projectsCollection: Projects[];
+
+  @ManyToOne(() => Citys)
+  @JoinColumn({ name: 'city_id' })
+  city: Citys[];
 }

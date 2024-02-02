@@ -1,4 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { OneToMany } from 'typeorm';
+import { Users } from 'src/users/users.entity';
+
 
 @Entity()
 export class Citys {
@@ -13,4 +16,7 @@ export class Citys {
 
   @Column('varchar')
   state: string;
+
+  @OneToMany(() => Users, (user) => user.city)
+  users: Users[];
 }
