@@ -10,6 +10,7 @@ import {
 
 import { Job } from 'src/job/job.entity';
 import { Projects } from 'src/projects/projects.entity';
+import { Companys } from 'src/companys/company.entity';
 
 @Entity()
 export class Users {
@@ -34,19 +35,19 @@ export class Users {
   @Column('varchar', { nullable: true, default: null })
   email: string;
 
-  @Column({ nullable: true, default: null })
+  @Column('varchar', { nullable: true, default: null })
   address: string;
 
-  @Column({ nullable: true, default: null })
+  @Column('varchar', { nullable: true, default: null })
   city: string;
 
-  @Column({ nullable: true, default: null })
+  @Column('int', { nullable: true, default: null })
   state?: number;
 
-  @Column({ nullable: true, default: null })
+  @Column('int', { nullable: true, default: null })
   zip_code?: number;
 
-  @Column({ nullable: true, default: null })
+  @Column('varchar', { nullable: true, default: null })
   country?: string;
 
   @ManyToOne(() => Job, (job) => job.users)
@@ -56,4 +57,8 @@ export class Users {
   @ManyToMany(() => Projects)
   @JoinTable()
   projectsCollection: Projects[];
+  
+  @ManyToOne(() => Companys, (company) => company.users)
+  @JoinColumn({ name: 'company_id' })
+  company?: Companys;
 }
