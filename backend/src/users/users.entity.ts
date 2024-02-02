@@ -55,7 +55,7 @@ export class Users {
   @JoinTable()
   projectsCollection: Projects[];
 
-  @ManyToOne(() => Citys)
+  @ManyToOne(() => Citys, (city) => city.users)
   @JoinColumn({ name: 'city_id' })
   city: Citys[];
 }
