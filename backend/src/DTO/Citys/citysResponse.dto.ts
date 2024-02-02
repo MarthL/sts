@@ -1,13 +1,15 @@
 import { IsNotEmpty, IsInt } from 'class-validator';
 
-export default class ProjectsResponseDto {
-  @IsNotEmpty()
+export default class CitysResponseDto {
   @IsInt()
   id: number;
 
   @IsNotEmpty()
-  project_name: string;
+  city_name: string;
 
   @IsNotEmpty()
-  description: string;
+  zip_code: string;
+
+  @IsNotEmpty()
+  state: string;
 }

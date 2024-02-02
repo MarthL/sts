@@ -32,21 +32,8 @@ export class UserResponseDto {
   @MinLength(2)
   phone_number?: string;
 
-  @IsString()
-  @MinLength(3)
-  city: string;
-
   @IsNumber()
-  @MinLength(3)
-  state?: number;
-
-  @IsNumber()
-  @MinLength(2)
-  zip_code?: number;
-
-  @IsString()
-  @MinLength(3)
-  country?: string;
+  city_id?: number;
 
   @IsString()
   @MinLength(2)

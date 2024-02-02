@@ -9,22 +9,24 @@ import { Users } from './users/users.entity';
 import { Job } from './job/job.entity';
 import { JobField } from './job-field/job-field.entity';
 import { Clients } from './clients/clients.entity';
+import { Citys } from './citys/citys.entity';
 
 import { AuthModule } from './auth/auth.module';
 import { ProjectsModule } from './projects/projects.module';
 import { UsersModule } from './users/users.module';
 import { JobModule } from './job/job.module';
 import { PassportModule } from '@nestjs/passport';
-import { JobFieldModule } from './job-field/job-field.module';
-import { ConfigModule } from '@nestjs/config';
-import { ClientsModule } from './clients/clients.module';
-
-import { AuthService } from './auth/auth.service';
-import { AuthLogin } from './auth/authlogin.service';
 
 import { JwtStrategy } from './auth/jwt.strategy';
 import { Companys } from './companys/company.entity';
 import { CompanysModule } from './companys/company.module';
+import { JobFieldModule } from './job-field/job-field.module';
+import { ConfigModule } from '@nestjs/config';
+import { ClientsModule } from './clients/clients.module';
+import { CitysModule } from './citys/citys.module';
+
+import { AuthService } from './auth/auth.service';
+import { AuthLogin } from './auth/authlogin.service';
 
 @Module({
   imports: [
@@ -41,7 +43,7 @@ import { CompanysModule } from './companys/company.module';
       password: process.env.PASSWORD || null,
       username: process.env.USER,
       database: process.env.DBNAME,
-      entities: [Projects, Users, Job, JobField, Clients, Companys],
+      entities: [Projects, Users, Job, JobField, Clients, Companys, Citys],
       synchronize: true,
     }),
     TypeOrmModule.forFeature([Projects, Users]),
@@ -51,7 +53,8 @@ import { CompanysModule } from './companys/company.module';
     JobModule,
     JobFieldModule,
     ClientsModule,
-    CompanysModule
+    CompanysModule,
+    CitysModule
   ],
   controllers: [AuthController],
   providers: [JwtStrategy, AuthService, AuthLogin],
