@@ -35,19 +35,10 @@ export class UserResponseDto {
   @IsNumber()
   city_id?: number;
 
-  // @IsNumber()
-  // @MinLength(3)
-  // state?: number;
-
-  // @IsNumber()
-  // @MinLength(2)
-  // zip_code?: number;
-
-  // @IsString()
-  // @MinLength(3)
-  // country?: string;
-
   @IsString()
   @MinLength(2)
   email: string;
+
+  @IsNumber()
+  company_id?: number;
 }

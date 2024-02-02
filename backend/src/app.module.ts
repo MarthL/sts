@@ -11,13 +11,15 @@ import { JobField } from './job-field/job-field.entity';
 import { Clients } from './clients/clients.entity';
 import { Citys } from './citys/citys.entity';
 
+import { AuthModule } from './auth/auth.module';
 import { ProjectsModule } from './projects/projects.module';
 import { UsersModule } from './users/users.module';
-import { AuthModule } from './auth/auth.module';
 import { JobModule } from './job/job.module';
 import { PassportModule } from '@nestjs/passport';
 
 import { JwtStrategy } from './auth/jwt.strategy';
+import { Companys } from './companys/company.entity';
+import { CompanysModule } from './companys/company.module';
 import { JobFieldModule } from './job-field/job-field.module';
 import { ConfigModule } from '@nestjs/config';
 import { ClientsModule } from './clients/clients.module';
@@ -41,7 +43,7 @@ import { AuthLogin } from './auth/authlogin.service';
       password: process.env.PASSWORD || null,
       username: process.env.USER,
       database: process.env.DBNAME,
-      entities: [Projects, Users, Job, JobField, Clients, Citys],
+      entities: [Projects, Users, Job, JobField, Clients, Companys, Citys],
       synchronize: true,
     }),
     TypeOrmModule.forFeature([Projects, Users]),
@@ -51,6 +53,7 @@ import { AuthLogin } from './auth/authlogin.service';
     JobModule,
     JobFieldModule,
     ClientsModule,
+    CompanysModule,
     CitysModule
   ],
   controllers: [AuthController],
