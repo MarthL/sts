@@ -1,11 +1,11 @@
 import { Typography, Button, MenuItem, Grid, Avatar } from '@mui/material';
 import { useForm, FormProvider } from 'react-hook-form';
+import { SelectInputCustom } from '../../../atoms/InputForm/SelectInputCustom';
 import { useState, useEffect } from 'react';
 import { editUser } from '../../../../api/users';
 import { getJobCollection } from '../../../../api/jobs';
 import Swal from 'sweetalert2';
 import { InputProfileCustom } from '../../../atoms/InputForm/InputProfileCustom';
-import { CustomSelectInput } from '../../../atoms/InputForm/CustomSelectInput';
 
 interface Job {
   id: number;
@@ -195,6 +195,14 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
           <Grid item xs={1}></Grid>
 
           <Grid item xs={9} marginBottom={5}>
+            <SelectInputCustom
+              label={'job'}
+              registerProps={'job'}
+              value={job?.id ? job.id.toString() : ''}
+              setValue={setJob}
+              collection={jobCollection}
+            />
+
             {/* <Select
               //{...register('job')}
               label="Position"
@@ -212,22 +220,6 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
                 </MenuItem>
               ))}
             </Select> */}
-            <CustomSelectInput
-              label={"Position"}
-              value={job?.id ? job.id.toString() : ''}
-              registerProps={"job"}
-              onChange={(event) => {
-                const selectedJobId = event.target.value;
-                const selectedJob = jobCollection.find((j) => j.id === parseInt(selectedJobId, 10));
-                setJob(selectedJob);
-              }}
-            >
-              {jobCollection.map((job) => (
-                <MenuItem key={job.id} value={job.id.toString()}>
-                  {job.job_title}
-                </MenuItem>
-              ))}
-            </CustomSelectInput>
           </Grid>
           <Grid item xs={3}></Grid>
 
