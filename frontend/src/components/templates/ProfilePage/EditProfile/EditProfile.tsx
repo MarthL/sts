@@ -223,9 +223,9 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
               }}
             >
               {jobCollection.map((job) => (
-              <MenuItem key={job.id} value={job.id.toString()}>
-                {job.job_title}
-              </MenuItem>
+                <MenuItem key={job.id} value={job.id.toString()}>
+                  {job.job_title}
+                </MenuItem>
               ))}
             </CustomSelectInput>
           </Grid>
