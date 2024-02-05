@@ -1,5 +1,6 @@
 import { Typography, Button, MenuItem, Grid, Select, Avatar } from '@mui/material';
 import { useForm, FormProvider } from 'react-hook-form';
+import { SelectInputCustom } from '../../../atoms/InputForm/SelectInputCustom';
 import { useState, useEffect } from 'react';
 import { editUser } from '../../../../api/users';
 import { getJobCollection } from '../../../../api/jobs';
@@ -194,7 +195,14 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
           <Grid item xs={1}></Grid>
 
           <Grid item xs={9} marginBottom={5}>
-            <Select
+            <SelectInputCustom
+              label={'job'}
+              registerProps={'job'}
+              value={job?.id ? job.id.toString() : ''}
+              setValue={setJob}
+              collection={jobCollection}
+            />
+            {/* <Select
               //{...register('job')}
               label="Position"
               fullWidth
@@ -210,7 +218,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
                   {job.job_title}
                 </MenuItem>
               ))}
-            </Select>
+            </Select> */}
           </Grid>
           <Grid item xs={3}></Grid>
 

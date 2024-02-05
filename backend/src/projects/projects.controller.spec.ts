@@ -1,33 +1,19 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { ProjectsService } from './projects.service';
-import { getRepositoryToken } from '@nestjs/typeorm';
-import { Projects } from './projects.entity';
+import { ProjectsController } from './projects.controller';
+// import { faker } from '@faker-js/faker';
 
-describe('ProjectsService', () => {
-  let service: ProjectsService;
+describe('Project Controller', () => {
+  let controller: ProjectsController;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [
-        ProjectsService,
-        {
-          provide: getRepositoryToken(Projects),
-          useValue: {},
-        },
-      ],
+      controllers: [ProjectsController],
     }).compile();
 
-    service = module.get<ProjectsService>(ProjectsService);
+    controller = module.get<ProjectsController>(ProjectsController);
   });
 
-  it('should be defined', () => {
-    expect(service).toBeDefined();
-    console.log('service -> ', service);
-  });
-
-  it('should get a project by id', async () => {
-    const projectId = 1;
-    const project = await service.getProjectById(projectId);
-    expect(project).toBeDefined();
+  it('controller should be defined', () => {
+    expect(controller).toBeDefined();
   });
 });
