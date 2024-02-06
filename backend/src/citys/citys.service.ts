@@ -40,7 +40,7 @@ import {
     async patch(
       @Param('id', ParseIntPipe) id: number,
       @Body() updateReq: CitysResponseDto,
-    ): Promise<any> {      
+    ): Promise<any> {
       return this.citysRepository.update(id, updateReq);
     }
   }
