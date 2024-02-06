@@ -1,4 +1,4 @@
-import { Typography, Button, MenuItem, Grid, Avatar } from '@mui/material';
+import { Typography, Button, Grid, Avatar } from '@mui/material';
 import { useForm, FormProvider } from 'react-hook-form';
 import { SelectInputCustom } from '../../../atoms/InputForm/SelectInputCustom';
 import { useState, useEffect } from 'react';
@@ -12,6 +12,13 @@ interface Job {
   job_title: string;
 }
 
+// interface City {
+//   id: number,
+//   city_name: string,    
+//   zip_code: number,
+//   state: number,
+// }
+
 interface User {
   id: number,
   username: string,
@@ -24,11 +31,13 @@ interface User {
     id?: number,
     job_title?: string,
   },
-  country: string,
-  city: string,
-  state: number,
-  address: string,
-  zip_code: number
+  city?: {
+    id: number,
+    city_name: string,    
+    zip_code: number,
+    state: number,
+  },  
+  address: string,  
 }
 
 interface EditProfileProps {
@@ -45,11 +54,10 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
   const [email, setEmail] = useState(user?.email);
   const [phone, setPhone] = useState(user?.phone_number);
   const [jobCollection, setJobCollection] = useState<Job[]>([]);
-  const [city, setCity] = useState('');
-  const [country, setCountry] = useState('');
-  const [state, setState] = useState(0);
+  //const [city, setCity] = useState<City>();
+  //const [state, setState] = useState('');
   const [address, setAddress] = useState('')
-  const [zip, setZip] = useState(0);
+  //const [zip, setZip] = useState('');
 
 
   useEffect(() => {
@@ -61,11 +69,10 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
       setYop(user?.yop ? user.yop : 0);
       setEmail(user?.email ? user.email : '');
       setPhone(user?.phone_number ? user.phone_number : '');
-      setCountry(user?.country ? user.country : '');
-      setCity(user?.city ? user.city : '');
-      setState(user?.state ? user.state : 0);
+      //setCity(user?.city?.id ? user.city.id as City : undefined);
+      //setState(user?.city.state ? user.city.state as City : undefined);
       setAddress(user?.address ? user.address : '');
-      setZip(user?.zip_code ? user?.zip_code : 0);
+      //setZip(user?.city.zip_code ? user?.city.zip_code as City : undefined);
     }
   }, [user]);
 
@@ -97,26 +104,22 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
     setPhone(event.target.value);
   }
 
-  const handleCountryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCountry(event.target.value);
-  }
+  // const handleCityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   setCity((event.target.value));
+  // }
 
-  const handleCityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCity(event.target.value);
-  }
-
-  const handleStateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    !parseInt(event.target.value) ? setState(0) : setState(parseInt(event.target.value));
-  }
+  //const handleStateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //  !parseInt(event.target.value) ? setState('') : setState((event.target.value));
+  //}
 
 
   const handleAddressChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAddress(event.target.value);
   }
 
-  const handleZipChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    !parseInt(event.target.value) ? setZip(0) : setZip(parseInt(event.target.value));
-  }
+  //const handleZipChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //  !parseInt(event.target.value) ? setZip('') : setZip((event.target.value));
+  //}
 
   const methods = useForm();
   const onsubmit = async (data: any) => {
@@ -196,7 +199,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
 
           <Grid item xs={9} marginBottom={5}>
             <SelectInputCustom
-              label={'job'}
+              label={'Position'}
               registerProps={'job'}
               value={job?.id ? job.id.toString() : ''}
               setValue={setJob}
@@ -274,50 +277,41 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
           <Grid item xs={3}></Grid>
 
           <Grid item xs={4}>
-            <InputProfileCustom
+            {/* <InputProfileCustom
               label={'City'}
               type="text"
               value={city}
               onChangeEvent={handleCityChange}
               disabled={false}
               registerProps={"city"}
-            />
+            /> */}
           </Grid>
           <Grid item xs={1}></Grid>
           <Grid item xs={4} marginBottom={5}>
-            <InputProfileCustom
+            {/* <InputProfileCustom
               label={'State'}
               type="text"
               value={state}
               onChangeEvent={handleStateChange}
               disabled={false}
               registerProps={"state"}
-            />
+            /> */}
           </Grid>
           <Grid item xs={1}></Grid>
           <Grid item xs={1}></Grid>
 
           <Grid item xs={4}>
-            <InputProfileCustom
+            {/* <InputProfileCustom
               label={'Zip Code'}
               type="text"
               value={zip}
               onChangeEvent={handleZipChange}
               disabled={false}
               registerProps={"zip_code"}
-            />
+            /> */}
           </Grid>
           <Grid item xs={1}></Grid>
-          <Grid item xs={4} marginBottom={5}>
-            <InputProfileCustom
-              label={'Country'}
-              type="text"
-              value={country}
-              onChangeEvent={handleCountryChange}
-              disabled={false}
-              registerProps={"country"}
-            />
-          </Grid>
+          <Grid item xs={4} marginBottom={5}></Grid>
           <Grid item xs={1}></Grid>
           <Grid item xs={1}></Grid>
 
@@ -337,7 +331,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
           <Grid item xs={2}></Grid>
           <Grid item xs={2}></Grid>
 
-        </Grid >
+        </Grid>
       </FormProvider>
     </>
   )
