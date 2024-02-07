@@ -109,11 +109,17 @@ export class UsersService {
     @Param('id', ParseIntPipe) id: number,
     @Body() updateReq: UserResponseDto,
   ): Promise<any> {
-    const { job_id, ...fields } = updateReq;
-    const { company_id } = updateReq;
-    if (job_id !== undefined && company_id !== undefined) {
-      return this.userRepository.update(id, { ...fields, job: { id: job_id }, company: {id: company_id} });
+    console.log(updateReq);
+    const { job_id, city_id, ...fields } = updateReq;
+    if (job_id !== undefined && city_id !== undefined) {
+      console.log('in');
+      return this.userRepository.update(id, {
+        ...fields,
+        job: { id: job_id },
+        city: { id: city_id },
+      });
     }
-    return this.userRepository.update(id, fields);
+    console.log('out');
+    return this.userRepository.update(id, updateReq);
   }
 }

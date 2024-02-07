@@ -46,12 +46,12 @@ export class Users {
   @ManyToMany(() => Projects)
   @JoinTable()
   projectsCollection: Projects[];
-  
+
   @ManyToOne(() => Companys, (company) => company.users)
   @JoinColumn({ name: 'company_id' })
   company?: Companys;
 
   @ManyToOne(() => Citys, (city) => city.users)
   @JoinColumn({ name: 'city_id' })
-  city: Citys[];
+  city: Citys;
 }

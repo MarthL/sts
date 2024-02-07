@@ -1,9 +1,10 @@
-import { Typography, Button, Grid, Avatar } from '@mui/material';
+import { Typography, Button, Grid, Avatar, Select, MenuItem } from '@mui/material';
 import { useForm, FormProvider } from 'react-hook-form';
 import { SelectInputCustom } from '../../../atoms/InputForm/SelectInputCustom';
 import { useState, useEffect } from 'react';
 import { editUser } from '../../../../api/users';
 import { getJobCollection } from '../../../../api/jobs';
+import { getCitiesCollection } from '../../../../api/cities';
 import Swal from 'sweetalert2';
 import { InputProfileCustom } from '../../../atoms/InputForm/InputProfileCustom';
 
@@ -12,12 +13,11 @@ interface Job {
   job_title: string;
 }
 
-// interface City {
-//   id: number,
-//   city_name: string,    
-//   zip_code: number,
-//   state: number,
-// }
+interface City {
+  id: number,
+  city_name: string,
+  zip_code: number,
+}
 
 interface User {
   id: number,
@@ -33,11 +33,10 @@ interface User {
   },
   city?: {
     id: number,
-    city_name: string,    
+    city_name: string,
     zip_code: number,
-    state: number,
-  },  
-  address: string,  
+  },
+  address: string,
 }
 
 interface EditProfileProps {
@@ -50,13 +49,14 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
   const [username, setUsername] = useState(user?.username);
   const [familyName, setFamilyName] = useState(user?.family_name);
   const [job, setJob] = useState<Job | undefined>(undefined);
+  const [jobCollection, setJobCollection] = useState<Job[]>([]);
   const [yop, setYop] = useState(user?.yop);
   const [email, setEmail] = useState(user?.email);
   const [phone, setPhone] = useState(user?.phone_number);
-  const [jobCollection, setJobCollection] = useState<Job[]>([]);
-  //const [city, setCity] = useState<City>();
-  //const [state, setState] = useState('');
+  const [city, setCity] = useState<City | undefined>(undefined);
+  const [cityCollection, setCityCollection] = useState<City[]>([])
   const [address, setAddress] = useState('')
+  //const [state, setState] = useState('');
   //const [zip, setZip] = useState('');
 
 
@@ -65,11 +65,11 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
       setId(user.id);
       user?.username ? setUsername(user.username) : setUsername('');
       setFamilyName(user.family_name ? user.family_name : '')
-      setJob(user.job ? user.job as Job : undefined);
       setYop(user?.yop ? user.yop : 0);
       setEmail(user?.email ? user.email : '');
-      setPhone(user?.phone_number ? user.phone_number : '');
-      //setCity(user?.city?.id ? user.city.id as City : undefined);
+      setPhone(user?.phone_number ? user.phone_number : undefined);
+      setJob(user.job ? user.job as Job : undefined);
+      setCity(user?.city ? user.city as City : undefined);
       //setState(user?.city.state ? user.city.state as City : undefined);
       setAddress(user?.address ? user.address : '');
       //setZip(user?.city.zip_code ? user?.city.zip_code as City : undefined);
@@ -79,7 +79,14 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
   useEffect(() => {
     getJobCollection().then(async (res) => {
       setJobCollection(res);
-    })
+    });
+  }, []);
+
+  useEffect(() => {
+    getCitiesCollection().then(async (res: any) => {
+      setCityCollection(res)
+      console.log('city collection : ', cityCollection)
+    });
   }, [])
 
 
@@ -105,7 +112,8 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
   }
 
   // const handleCityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   setCity((event.target.value));
+  //   setCity(parseInt(event.target.value));
+  //   console.log(city)
   // }
 
   //const handleStateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -205,24 +213,16 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
               setValue={setJob}
               collection={jobCollection}
             />
+          </Grid>
 
-            {/* <Select
-              //{...register('job')}
-              label="Position"
-              fullWidth
-              value={job?.id ? job.id.toString() : ''}
-              onChange={(event) => {
-                const selectedJobId = event.target.value;
-                const selectedJob = jobCollection.find((j) => j.id === parseInt(selectedJobId, 10));
-                setJob(selectedJob);
-              }}
-            >
-              {jobCollection.map((job) => (
-                <MenuItem key={job.id} value={job.id.toString()}>
-                  {job.job_title}
-                </MenuItem>
-              ))}
-            </Select> */}
+          <Grid item xs={9} marginBottom={5}>
+            <SelectInputCustom
+              label={'City'}
+              registerProps={'city'}
+              value={city?.id ? city?.id.toString() : ''}
+              setValue={setCity}
+              collection={cityCollection}
+            />
           </Grid>
           <Grid item xs={3}></Grid>
 

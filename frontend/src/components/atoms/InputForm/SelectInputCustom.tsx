@@ -21,13 +21,16 @@ export const SelectInputCustom = (props: SelectInputCustomProps) => {
         value={value && value.length > 0 ? value.toString() : ''}
         onChange={(event) => {
           const selectedElementId = event.target.value;
+          console.log('selected element id : ', selectedElementId)
           const selectedElement = collection?.find((val: any) => val.id === parseInt(selectedElementId, 10)) || null;
+          console.log('selected element : ', selectedElement)
           setValue(selectedElement);
         }}
       >
         {collection.map((val: any) => (
           <MenuItem key={val.id} value={val.id.toString()}>
             {val.job_title && val.job_title}
+            {val.city_name && val.city_name}
           </MenuItem>
         ))}
       </Select>

@@ -54,7 +54,7 @@ import { AuthLogin } from './auth/authlogin.service';
     JobFieldModule,
     ClientsModule,
     CompanysModule,
-    CitysModule
+    CitysModule,
   ],
   controllers: [AuthController],
   providers: [JwtStrategy, AuthService, AuthLogin],
