@@ -39,6 +39,6 @@ export class UserResponseDto {
   @MinLength(2)
   email: string;
 
-  @IsNumber()
-  company_id?: number;
+  // @IsNumber()
+  // company_id?: number;
 }
