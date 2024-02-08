@@ -32,9 +32,9 @@ interface User {
     job_title?: string,
   },
   city?: {
-    id: number,
-    city_name: string,
-    zip_code: number,
+    id?: number,
+    city_name?: string,
+    zip_code?: number,
   },
   address: string,
 }
@@ -46,16 +46,16 @@ interface EditProfileProps {
 export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
 
   const [id, setId] = useState(user?.id);
-  const [username, setUsername] = useState(user?.username);
-  const [familyName, setFamilyName] = useState(user?.family_name);
+  const [username, setUsername] = useState(user?.username ?? '');
+  const [familyName, setFamilyName] = useState(user?.family_name ?? '');
   const [job, setJob] = useState<Job | undefined>(undefined);
   const [jobCollection, setJobCollection] = useState<Job[]>([]);
-  const [yop, setYop] = useState(user?.yop);
-  const [email, setEmail] = useState(user?.email);
-  const [phone, setPhone] = useState(user?.phone_number);
+  const [yop, setYop] = useState(user?.yop ?? 0);
+  const [email, setEmail] = useState(user?.email ?? '');
+  const [phone, setPhone] = useState(user?.phone_number ?? '');
   const [city, setCity] = useState<City | undefined>(undefined);
   const [cityCollection, setCityCollection] = useState<City[]>([])
-  const [address, setAddress] = useState('')
+  const [address, setAddress] = useState(user?.address ?? '')
   //const [state, setState] = useState('');
   //const [zip, setZip] = useState('');
 
@@ -67,7 +67,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
       setFamilyName(user.family_name ? user.family_name : '')
       setYop(user?.yop ? user.yop : 0);
       setEmail(user?.email ? user.email : '');
-      setPhone(user?.phone_number ? user.phone_number : undefined);
+      setPhone(user?.phone_number ? user.phone_number : '');
       setJob(user.job ? user.job as Job : undefined);
       setCity(user?.city ? user.city as City : undefined);
       //setState(user?.city.state ? user.city.state as City : undefined);
@@ -79,6 +79,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
   useEffect(() => {
     getJobCollection().then(async (res) => {
       setJobCollection(res);
+      console.log('job collection : ', jobCollection)
     });
   }, []);
 
@@ -112,7 +113,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
   }
 
   // const handleCityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   setCity(parseInt(event.target.value));
+  //   setCity(event.target.value);
   //   console.log(city)
   // }
 
@@ -219,7 +220,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
             <SelectInputCustom
               label={'City'}
               registerProps={'city'}
-              value={city?.id ? city?.id.toString() : ''}
+              value={city?.id ? city.id.toString() : ''}
               setValue={setCity}
               collection={cityCollection}
             />
