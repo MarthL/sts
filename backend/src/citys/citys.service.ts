@@ -1,4 +1,10 @@
-import { Injectable, HttpException } from '@nestjs/common';
+import {
+  Injectable,
+  HttpException,
+  Param,
+  Body,
+  ParseIntPipe
+ } from '@nestjs/common';
   import { InjectRepository } from '@nestjs/typeorm';
   import { Repository } from 'typeorm';
   import { Citys } from './citys.entity';
@@ -30,5 +36,12 @@ import { Injectable, HttpException } from '@nestjs/common';
       return plainToClass(CitysResponseDto, city);
     }
   
+    // Patch
+    async patch(
+      @Param('id', ParseIntPipe) id: number,
+      @Body() updateReq: CitysResponseDto,
+    ): Promise<any> {
+      return this.citysRepository.update(id, updateReq);
+    }
   }
   
