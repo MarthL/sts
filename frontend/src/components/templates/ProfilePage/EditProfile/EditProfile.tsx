@@ -1,4 +1,4 @@
-import { Typography, Button, MenuItem, Grid, Select, Avatar } from '@mui/material';
+import { Typography, Button, MenuItem, Grid, Avatar } from '@mui/material';
 import { useForm, FormProvider } from 'react-hook-form';
 import { SelectInputCustom } from '../../../atoms/InputForm/SelectInputCustom';
 import { useState, useEffect } from 'react';
@@ -202,6 +202,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
               setValue={setJob}
               collection={jobCollection}
             />
+
             {/* <Select
               //{...register('job')}
               label="Position"
