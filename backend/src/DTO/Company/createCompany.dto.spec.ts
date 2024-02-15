@@ -8,7 +8,7 @@ describe('CreateCompanyDto', () => {
         expect(errors.length).toBeGreaterThanOrEqual(1);
     });
 
-    it('should fail validation when type is not same', async () => {
+    it('should success validation when name is the same', async () => {
         const dto = new CreateCompanyDto();
         dto.name = 'This is a test for name';
         const errors = await validate(dto);
