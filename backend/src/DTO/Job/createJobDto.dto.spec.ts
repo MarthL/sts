@@ -13,7 +13,7 @@ describe('CreateJobDto', () => {
     });
     it('should fail validation when job_title is missing', async () => {
         const dto = new CreateJobDto();
-        dto.job_field = randomInt(10);
+        dto.job_field = randomInt(4);
         const errors = await validate(dto);
         expect(errors.length).toBeGreaterThanOrEqual(1);
     });
