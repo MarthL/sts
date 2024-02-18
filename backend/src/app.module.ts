@@ -28,6 +28,9 @@ import { CitysModule } from './citys/citys.module';
 import { AuthService } from './auth/auth.service';
 import { AuthLogin } from './auth/authlogin.service';
 
+import * as dotenv from 'dotenv';
+dotenv.config({ path: '../.env' });
+
 @Module({
   imports: [
     ConfigModule.forRoot(),
@@ -41,7 +44,7 @@ import { AuthLogin } from './auth/authlogin.service';
       host: process.env.HOST,
       port: parseInt(process.env.PORT),
       password: process.env.PASSWORD || null,
-      username: process.env.USER,
+      username: process.env.USERNAME,
       database: process.env.DBNAME,
       entities: [Projects, Users, Job, JobField, Clients, Companys, Citys],
       synchronize: true,
@@ -54,10 +57,11 @@ import { AuthLogin } from './auth/authlogin.service';
     JobFieldModule,
     ClientsModule,
     CompanysModule,
-    CitysModule
+    CitysModule,
   ],
   controllers: [AuthController],
   providers: [JwtStrategy, AuthService, AuthLogin],
   exports: [PassportModule, JwtModule],
 })
 export class AppModule {}
+console.log(process.env.USER);
