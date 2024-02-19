@@ -44,7 +44,7 @@ dotenv.config({ path: '../.env' });
       host: process.env.HOST,
       port: parseInt(process.env.PORT),
       password: process.env.PASSWORD || null,
-      username: process.env.USERNAME,
+      username: process.env.DBUSERNAME,
       database: process.env.DBNAME,
       entities: [Projects, Users, Job, JobField, Clients, Companys, Citys],
       synchronize: true,
