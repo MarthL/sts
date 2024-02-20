@@ -19,10 +19,12 @@ interface User {
     job_title: string,
   },
   country: string,
-  city: string,
-  state: number,
-  address: string,
-  zip_code: number
+  city?: {
+    city_name: string,
+    state: number,
+    address: string,
+    zip_code: number
+  },
 }
 
 export const ProfilePage: React.FC<any> = () => {
