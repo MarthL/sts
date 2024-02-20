@@ -1,23 +1,19 @@
-import {
-    Injectable,
-    Body,
-  } from '@nestjs/common';
+import { Injectable, Body } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DeleteResult, Repository } from 'typeorm';
 import { Clients } from './clients.entity';
-import CreateClientsDto from 'src/DTO/Clients/createClients.dto';
+import CreateClientsDto from '../DTO/Clients/createClients.dto';
 import { plainToClass } from 'class-transformer';
-
 
 @Injectable()
 export class ClientsService {
-    constructor(
-        @InjectRepository(Clients)
-        private clientsRepository: Repository<Clients>,
-    ){}
+  constructor(
+    @InjectRepository(Clients)
+    private clientsRepository: Repository<Clients>,
+  ) {}
 
-    // GetAll
-    async getClients(): Promise<Clients[]> {
+  // GetAll
+  async getClients(): Promise<Clients[]> {
     return await this.clientsRepository.find();
   }
 

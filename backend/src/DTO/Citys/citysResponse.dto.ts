@@ -1,6 +1,6 @@
 import { IsNotEmpty, IsInt } from 'class-validator';
 
-export default class CitysResponseDto {
+export class CitysResponseDto {
   @IsInt()
   id: number;
 
