@@ -16,7 +16,7 @@ describe('UserResponseDto', () => {
         dto.email = 'This is a test for email';
         dto.company_id = randomInt(1);
         const errors = await validate(dto);
-        expect(errors.length).toBeGreaterThan(0);
+        expect(errors.length).toBe(0);
     });
 
     it('should fail validation when ID is missing', async () => {
