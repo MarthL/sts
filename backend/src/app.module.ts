@@ -64,4 +64,3 @@ dotenv.config({ path: '../.env' });
   exports: [PassportModule, JwtModule],
 })
 export class AppModule {}
-console.log(process.env.USER);

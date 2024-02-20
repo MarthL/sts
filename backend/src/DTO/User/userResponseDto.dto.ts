@@ -1,4 +1,10 @@
-import { IsNotEmpty, IsString, MinLength, IsNumber } from 'class-validator';
+import {
+  IsNotEmpty,
+  IsString,
+  MinLength,
+  IsNumber,
+  IsOptional,
+} from 'class-validator';
 import { Exclude } from 'class-transformer';
 
 export class UserResponseDto {
@@ -12,33 +18,37 @@ export class UserResponseDto {
 
   @IsNotEmpty()
   @IsString()
-  @Exclude()
   @MinLength(2)
   password: string;
 
   @IsString()
   @MinLength(2)
+  @IsOptional()
   family_name: string;
 
   @IsString()
   @MinLength(2)
+  @IsOptional()
   job_id?: number;
 
   @IsString()
+  @IsOptional()
   @MinLength(5)
   address: string;
 
   @IsString()
-  @MinLength(2)
+  @IsOptional()
   phone_number?: string;
 
   @IsNumber()
+  @IsOptional()
   city_id?: number;
 
   @IsString()
-  @MinLength(2)
+  @IsOptional()
   email: string;
 
   @IsNumber()
+  @IsOptional()
   company_id?: number;
 }

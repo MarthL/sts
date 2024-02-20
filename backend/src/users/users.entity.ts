@@ -8,10 +8,10 @@ import {
   JoinColumn,
 } from 'typeorm';
 
-import { Job } from 'src/job/job.entity';
-import { Projects } from 'src/projects/projects.entity';
-import { Companys } from 'src/companys/company.entity';
-import { Citys } from 'src/citys/citys.entity';
+import { Job } from '../job/job.entity';
+import { Projects } from '../projects/projects.entity';
+import { Companys } from '../companys/company.entity';
+import { Citys } from '../citys/citys.entity';
 
 @Entity()
 export class Users {
@@ -30,7 +30,7 @@ export class Users {
   @Column('int', { nullable: true, default: null })
   yop: number;
 
-  @Column('varchar', { nullable: true, default: null })
+  @Column('varchar', { nullable: true, default: '' })
   phone_number: string;
 
   @Column('varchar', { nullable: true, default: null })
@@ -46,7 +46,7 @@ export class Users {
   @ManyToMany(() => Projects)
   @JoinTable()
   projectsCollection: Projects[];
-  
+
   @ManyToOne(() => Companys, (company) => company.users)
   @JoinColumn({ name: 'company_id' })
   company?: Companys;

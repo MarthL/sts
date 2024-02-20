@@ -1,7 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 import { OneToMany } from 'typeorm';
-import { Users } from 'src/users/users.entity';
-
+import { Users } from '../users/users.entity';
 
 @Entity()
 export class Citys {

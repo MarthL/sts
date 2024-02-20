@@ -5,8 +5,8 @@ import {
   OneToMany,
   ManyToOne,
 } from 'typeorm';
-import { Users } from 'src/users/users.entity';
-import { JobField } from 'src/job-field/job-field.entity';
+import { Users } from '../users/users.entity';
+import { JobField } from '../job-field/job-field.entity';
 
 @Entity()
 export class Job {
