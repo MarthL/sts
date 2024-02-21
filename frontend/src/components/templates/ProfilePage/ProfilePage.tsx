@@ -14,12 +14,13 @@ interface User {
   yop: number,
   email: string,
   phone_number: string,
-  job: {
-    id: number,
-    job_title: string,
+  job?: {
+    id?: number,
+    job_title?: string,
   },
   country: string,
   city?: {
+    city_id: number;
     city_name: string,
     state: number,
     address: string,
