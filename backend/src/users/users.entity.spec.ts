@@ -22,6 +22,9 @@ describe('userEntity', () => {
         {
           provide: getRepositoryToken(Job),
           useClass: Repository,
+          useValue: {
+            find: jest.fn(),
+          },
         },
       ],
     }).compile();
@@ -59,6 +62,19 @@ describe('userEntity', () => {
     const checkDto = plainToClass(UserResponseDto, user);
     const errors = validate(checkDto);
     console.log(await errors);
+    expect((await errors).length).toBe(0);
+  });
+
+  // to continue
+  it('Should validate and create a user with a job', async () => {
+    const user = new Users();
+    const newJob = new Job();
+    newJob.id = 1;
+    newJob.job_title = 'random job';
+    user.id = 1;
+    user.job = newJob;
+    const errors = validate(user);
+    expect(user).toContain(Job);
     expect((await errors).length).toBe(0);
   });
 });
