@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { CardProject } from '../../molecules/CardProject/CardProject';
+import { useForm, FormProvider } from 'react-hook-form';
 import { Box, Typography, Button, Modal, TextField, InputAdornment, Grid } from '@mui/material';
 import { ChartDashboard } from '../../organisms/ChartDashboard/ChartDashboard';
-import { getProjects } from '../../../api/projects';
+import { getProjects, postProject } from '../../../api/projects';
 import CloseIcon from '@mui/icons-material/Close';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 
-type Projects = {
+export interface ProjectsProps {
   id: number;
   project_name: string;
   description: string;
@@ -14,7 +15,9 @@ type Projects = {
 
 export const HomePage = () => {
 
-  const [projectsCollection, setProjectsCollection] = useState<Projects[]>([]);
+  const {register, handleSubmit } = useForm();
+
+  const [projectsCollection, setProjectsCollection] = useState<ProjectsProps[]>([]);
   const [currentUser, setCurrentUser] = useState('');
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -41,23 +44,17 @@ export const HomePage = () => {
   };
   const handleCloseModal = () => {
     setOpenModal(false);
-  };    
-  const handleSubmit = () => {
-    const newProject = {
-      id: projectsCollection.length + 1,
-      project_name: projectName,
-      description: description
-    };
+  }; 
 
-    setProjectsCollection(prevProjects => [...prevProjects, newProject]);
+  const onsubmit = (data: any) => {
+    console.log('data : ', data)
+    if(data.project_name && data.description) {
+      postProject(data);
+      handleCloseModal();
+    }
+  }
 
-    setProjectName('');
-    setDescription('');
-
-    console.log('new project : ', newProject)
-    console.log('projectsCollection : ', projectsCollection)
-    handleCloseModal();
-  };
+  const methods = useForm();
 
 
   return (
@@ -81,11 +78,13 @@ export const HomePage = () => {
           p: 4 }}>
           <Typography variant="h5" sx={{textAlign:"center", marginBottom:5}}>Project creation form</Typography>
           
-          <Grid container>
+          <FormProvider {...methods}>
+          <Grid container onSubmit={handleSubmit(onsubmit)}>
             <Grid item xs={12} marginBottom={2}>
               <TextField
                   id="input-project-name"
                   placeholder="Your project name"
+                  {...register('project_name')}
                   onChange={(e) => setProjectName(e.target.value)}
                   InputProps={{
                       startAdornment:
@@ -110,8 +109,9 @@ export const HomePage = () => {
             </Grid>
           </Grid>
           <Grid item xs={12} marginBottom={2}>
-            <Button variant="contained" onClick={handleSubmit}>Submit</Button>
+            <Button variant="contained" onClick={onsubmit}>Submit</Button>
           </Grid>
+          </FormProvider>
           <Button onClick={handleCloseModal}>
             <CloseIcon />
             Close
