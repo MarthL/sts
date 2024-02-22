@@ -95,7 +95,7 @@ export class UsersService {
       where: {
         username: username,
       },
-      relations: ['job', 'company'],
+      relations: ['job', 'company', 'city'],
     });
 
     if (!loggedUser) {
@@ -109,11 +109,25 @@ export class UsersService {
     @Param('id', ParseIntPipe) id: number,
     @Body() updateReq: UserResponseDto,
   ): Promise<any> {
-    const { job_id, ...fields } = updateReq;
-    const { company_id } = updateReq;
+    const { job_id, company_id, city_id, ...fields } = updateReq;
+
+    let updateQuery = {};
+
     if (job_id !== undefined && company_id !== undefined) {
-      return this.userRepository.update(id, { ...fields, job: { id: job_id }, company: {id: company_id} });
+      updateQuery = {
+        ...updateQuery,
+        job: { id: job_id },
+        company: { id: company_id },
+      };
     }
-    return this.userRepository.update(id, fields);
+
+    if (city_id !== undefined) {
+      updateQuery = { ...updateQuery, city: { id: city_id } };
+    }
+    updateQuery = { ...updateQuery, ...fields };
+
+    const result = await this.userRepository.update(id, updateQuery);
+
+    return result;
   }
 }
