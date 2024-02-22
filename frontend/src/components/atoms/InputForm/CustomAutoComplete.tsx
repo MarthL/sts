@@ -15,14 +15,14 @@ interface CustomAutoCompleteProps {
   collection: City[];
   value: City | null | undefined;
   registerProps: string;
+  defaultValue?: string;
   setValue: Dispatch<SetStateAction<City | null>>;
 }
-
 export const CustomAutoComplete = (props: CustomAutoCompleteProps) => {
   const { label, value, registerProps, collection, setValue } = props;
   const { register } = useFormContext();
 
-
+  console.log(props);
   return (
     <Autocomplete
       disablePortal

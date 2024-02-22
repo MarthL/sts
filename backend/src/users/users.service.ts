@@ -95,7 +95,7 @@ export class UsersService {
       where: {
         username: username,
       },
-      relations: ['job', 'company'],
+      relations: ['job', 'company', 'city'],
     });
 
     if (!loggedUser) {

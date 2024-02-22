@@ -1,4 +1,4 @@
-import { Typography, Button, MenuItem, Grid, Avatar, TextField } from '@mui/material';
+import { Typography, Button, Grid, Avatar } from '@mui/material';
 import { useForm, FormProvider } from 'react-hook-form';
 import { SelectInputCustom } from '../../../atoms/InputForm/SelectInputCustom';
 import { useState, useEffect } from 'react';
@@ -7,7 +7,7 @@ import { getJobCollection } from '../../../../api/jobs';
 import { getCitiesCollection } from '../../../../api/cities';
 import Swal from 'sweetalert2';
 import { InputProfileCustom } from '../../../atoms/InputForm/InputProfileCustom';
-import { CustomAutoComplete } from '../../../atoms/InputForm/CustomAutoComplet';
+import { CustomAutoComplete } from '../../../atoms/InputForm/CustomAutoComplete';
 
 interface Job {
   id: number;
@@ -58,7 +58,6 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
   const [jobCollection, setJobCollection] = useState<Job[]>([]);
   const [city, setCity] = useState<City | null>(user?.city || null);
   const [cityCollection, setCityCollection] = useState<City[]>([]);
-  const [cityName, setCityName] = useState<string>('');
 
   const findCityByName = (cityName: string): City | undefined => {
     return cityCollection.find(city => city.city_name === cityName);
@@ -74,9 +73,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
       setYop(user?.yop ? user.yop : 0);
       setEmail(user?.email ? user.email : '');
       setPhone(user?.phone_number ? user.phone_number : '');
-      const selectedCity = findCityByName(user.city?.city_name || '');
-      setCity(selectedCity || null);
-      setCityName(city?.city_name || '');
+      setCity(user?.city || null);
     }
   }, [user, cityCollection]);
 
@@ -117,6 +114,8 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
       user?.id ? sendForm(user.id, data) : console.error(`Datas :  ${data} cannot be send, missing id user`)
     }
   }
+
+  console.log(user)
 
 
   const sendForm = (id: number, data: any) => {
