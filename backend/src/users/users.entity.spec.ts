@@ -36,8 +36,6 @@ describe('userEntity', () => {
   it('should define user', async () => {
     const user = new Users();
     expect(user).toBeDefined();
-
-    console.log('userRepoosit : ', module);
     const errors = validate(user);
     expect((await errors).length).toBe(0);
   });
@@ -58,10 +56,8 @@ describe('userEntity', () => {
     user.id = 1;
     user.username = 'test';
     user.phone_number = '';
-    console.log(user);
     const checkDto = plainToClass(UserResponseDto, user);
     const errors = validate(checkDto);
-    console.log(await errors);
     expect((await errors).length).toBe(0);
   });
 

@@ -51,7 +51,6 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
   const [address, setAddress] = useState('')
   const [zip, setZip] = useState(0);
 
-
   useEffect(() => {
     if (user) {
       setId(user.id);
@@ -85,7 +84,6 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
   }
 
   const handleYopChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log('event :', event.target.value)
     !parseInt(event.target.value) ? setYop(0) : setYop(parseInt(event.target.value));
   }
 
@@ -109,7 +107,6 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
     !parseInt(event.target.value) ? setState(0) : setState(parseInt(event.target.value));
   }
 
-
   const handleAddressChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAddress(event.target.value);
   }
@@ -125,7 +122,6 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
       user?.id ? sendForm(user.id, data) : console.error(`Datas :  ${data} cannot be send, missing id user`)
     }
   }
-
 
   const sendForm = (id: number, data: any) => {
     const filteredData = Object.keys(data).reduce((acc: any, key) => {
@@ -202,24 +198,6 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
               setValue={setJob}
               collection={jobCollection}
             />
-
-            {/* <Select
-              //{...register('job')}
-              label="Position"
-              fullWidth
-              value={job?.id ? job.id.toString() : ''}
-              onChange={(event) => {
-                const selectedJobId = event.target.value;
-                const selectedJob = jobCollection.find((j) => j.id === parseInt(selectedJobId, 10));
-                setJob(selectedJob);
-              }}
-            >
-              {jobCollection.map((job) => (
-                <MenuItem key={job.id} value={job.id.toString()}>
-                  {job.job_title}
-                </MenuItem>
-              ))}
-            </Select> */}
           </Grid>
           <Grid item xs={3}></Grid>
 
@@ -341,5 +319,4 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
       </FormProvider>
     </>
   )
-
 }

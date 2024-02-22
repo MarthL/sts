@@ -1,5 +1,5 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { AuthService } from './auth.service'; // Importez AuthService depuis le même dossier
+import { AuthService } from './auth.service'; 
 
 @Injectable()
 export class AuthLogin {
@@ -9,14 +9,11 @@ export class AuthLogin {
     username: string,
     password: string,
   ): Promise<{ accessToken: string }> {
-    // Vérifiez les informations d'identification de l'utilisateur
     const user = await this.authService.validateUser(username, password);
-    console.log(user);
     if (!user) {
       throw new UnauthorizedException('Invalid credentials');
     }
 
-    // Générez le token JWT en utilisant le service AuthService
     const accessToken = await this.authService.generateJwtToken(user);
 
     return { accessToken };

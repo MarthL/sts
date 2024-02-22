@@ -17,8 +17,6 @@ export const CollaboratorsPage: React.FC = () => {
     })
   }, [])
 
-  console.log(userCollection);
-
   return (
     <>
 

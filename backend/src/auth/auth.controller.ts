@@ -10,10 +10,7 @@ export class AuthController {
     @Body('username') username: string,
     @Body('password') password: string,
   ) {
-    console.log('username', username);
-    console.log('password', password);
     const result = await this.authLogin.loginUser(username, password);
-    console.log(result.accessToken);
     return { accessToken: result.accessToken };
   }
 }
