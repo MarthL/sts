@@ -105,44 +105,14 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
     setPhone(event.target.value);
   }
 
-<<<<<<< HEAD
-  const handleCountryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCountry(event.target.value);
-  }
-
-  const handleCityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCity(event.target.value);
-  }
-
-  const handleStateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    !parseInt(event.target.value) ? setState(0) : setState(parseInt(event.target.value));
-  }
-
-  const handleAddressChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setAddress(event.target.value);
-  }
-
-  const handleZipChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    !parseInt(event.target.value) ? setZip(0) : setZip(parseInt(event.target.value));
-  }
-
-=======
->>>>>>> 4dbbdcb9f057489a1b2d65f7adf7215d3c20a5fa
   const methods = useForm();
   const onsubmit = async (data: any) => {
-    console.log('data ', data);
     const userHasConfirmed = await confirmModal();
     if (userHasConfirmed) {
       user?.id ? sendForm(user.id, data) : console.error(`Datas :  ${data} cannot be send, missing id user`)
     }
   }
 
-<<<<<<< HEAD
-=======
-  console.log(user)
-
-
->>>>>>> 4dbbdcb9f057489a1b2d65f7adf7215d3c20a5fa
   const sendForm = (id: number, data: any) => {
     const filteredData = Object.keys(data).reduce((acc: any, key) => {
       if (data[key] !== '') {
@@ -223,10 +193,6 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
               setValue={setJob}
               collection={jobCollection}
             />
-<<<<<<< HEAD
-=======
-
->>>>>>> 4dbbdcb9f057489a1b2d65f7adf7215d3c20a5fa
           </Grid>
           <Grid item xs={3}></Grid>
 
