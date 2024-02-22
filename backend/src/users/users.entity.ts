@@ -53,5 +53,5 @@ export class Users {
 
   @ManyToOne(() => Citys, (city) => city.users)
   @JoinColumn({ name: 'city_id' })
-  city: Citys[];
+  city: Citys;
 }

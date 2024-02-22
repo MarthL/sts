@@ -5,7 +5,6 @@ import {
   IsNumber,
   IsOptional,
 } from 'class-validator';
-import { Exclude } from 'class-transformer';
 
 export class UserResponseDto {
   @IsNotEmpty()
