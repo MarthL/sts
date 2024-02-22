@@ -1,4 +1,4 @@
-import { Typography, Button, MenuItem, Grid, Avatar, Autocomplete, TextField} from '@mui/material';
+import { Typography, Button, MenuItem, Grid, Avatar, TextField } from '@mui/material';
 import { useForm, FormProvider } from 'react-hook-form';
 import { SelectInputCustom } from '../../../atoms/InputForm/SelectInputCustom';
 import { useState, useEffect } from 'react';
@@ -7,6 +7,7 @@ import { getJobCollection } from '../../../../api/jobs';
 import { getCitiesCollection } from '../../../../api/cities';
 import Swal from 'sweetalert2';
 import { InputProfileCustom } from '../../../atoms/InputForm/InputProfileCustom';
+import { CustomAutoComplete } from '../../../atoms/InputForm/CustomAutoComplet';
 
 interface Job {
   id: number;
@@ -14,10 +15,9 @@ interface Job {
 }
 
 interface City {
-  city_id: number;
+  id: number;
   city_name: string,
   state: number,
-  address: string,
   zip_code: number
 }
 
@@ -35,10 +35,9 @@ interface User {
   },
   country: string,
   city?: {
-    city_id: number;
+    id: number;
     city_name: string,
     state: number,
-    address: string,
     zip_code: number
   },
 }
@@ -57,7 +56,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
   const [email, setEmail] = useState(user?.email);
   const [phone, setPhone] = useState(user?.phone_number);
   const [jobCollection, setJobCollection] = useState<Job[]>([]);
-  const [city, setCity] = useState<City | undefined>(undefined);
+  const [city, setCity] = useState<City | null>(user?.city || null);
   const [cityCollection, setCityCollection] = useState<City[]>([]);
 
 
@@ -70,7 +69,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
       setYop(user?.yop ? user.yop : 0);
       setEmail(user?.email ? user.email : '');
       setPhone(user?.phone_number ? user.phone_number : '');
-      setCity(user?.city ? user.city as City : undefined);
+      setCity(user.city || null);
     }
   }, [user]);
 
@@ -81,9 +80,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
     getCitiesCollection().then(async (res) => {
       setCityCollection(res);
     })
-    console.log('city collection : ', cityCollection)
   }, [])
-
 
   const handleUserNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(event.target.value);
@@ -94,7 +91,6 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
   }
 
   const handleYopChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log('event :', event.target.value)
     !parseInt(event.target.value) ? setYop(0) : setYop(parseInt(event.target.value));
   }
 
@@ -106,29 +102,9 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
     setPhone(event.target.value);
   }
 
-  // const handleCountryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   setCountry(event.target.value);
-  // }
-
-  // const handleCityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //  setCity(event.target.value);
-  // }
-
-  // const handleStateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   !parseInt(event.target.value) ? setState(0) : setState(parseInt(event.target.value));
-  // }
-
-
-  // const handleAddressChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   setAddress(event.target.value);
-  // }
-
-  // const handleZipChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   !parseInt(event.target.value) ? setZip(0) : setZip(parseInt(event.target.value));
-  // }
-
   const methods = useForm();
   const onsubmit = async (data: any) => {
+    console.log('data ', data);
     const userHasConfirmed = await confirmModal();
     if (userHasConfirmed) {
       user?.id ? sendForm(user.id, data) : console.error(`Datas :  ${data} cannot be send, missing id user`)
@@ -212,23 +188,6 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
               collection={jobCollection}
             />
 
-            {/* <Select
-              //{...register('job')}
-              label="Position"
-              fullWidth
-              value={job?.id ? job.id.toString() : ''}
-              onChange={(event) => {
-                const selectedJobId = event.target.value;
-                const selectedJob = jobCollection.find((j) => j.id === parseInt(selectedJobId, 10));
-                setJob(selectedJob);
-              }}
-            >
-              {jobCollection.map((job) => (
-                <MenuItem key={job.id} value={job.id.toString()}>
-                  {job.job_title}
-                </MenuItem>
-              ))}
-            </Select> */}
           </Grid>
           <Grid item xs={3}></Grid>
 
@@ -269,77 +228,18 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
           </Grid>
           <Grid item xs={3}></Grid>
 
-
-          <Grid item xs={9} marginBottom={5}>
-            {/* <InputProfileCustom
-              label={'Address'}
-              type="text"
-              value={city?.address}
-              onChangeEvent={handleAddressChange}
-              disabled={false}
-              registerProps={"address"}
-            /> */}
-          </Grid>
-          <Grid item xs={3}></Grid>
-
           <Grid item xs={4}>
-            {/* <InputProfileCustom
-              label={'City'}
-              type="text"
-              value={city?.city_name}
-              onChangeEvent={handleCityChange}
-              disabled={false}
-              registerProps={"city"}
-            /> */}
-            <Autocomplete
-              disablePortal
-              options={cityCollection}
-              getOptionLabel={(city) => city.city_name}
+            <CustomAutoComplete
+              collection={cityCollection}
+              label='City'
+              registerProps={'city'}
+              setValue={setCity}
               value={city}
-              sx={{ width: 300 }}
-              renderInput={(params) => <TextField {...params} label="City" />}
             />
           </Grid>
-          <Grid item xs={1}></Grid>
-          <Grid item xs={4} marginBottom={5}>
-            {/* <InputProfileCustom
-              label={'State'}
-              type="text"
-              value={city?.state}
-              onChangeEvent={handleStateChange}
-              disabled={false}
-              registerProps={"state"}
-            /> */}
-          </Grid>
-          <Grid item xs={1}></Grid>
-          <Grid item xs={1}></Grid>
-
-          <Grid item xs={4}>
-            {/* <InputProfileCustom
-              label={'Zip Code'}
-              type="text"
-              value={city?.zip_code}
-              onChangeEvent={handleZipChange}
-              disabled={false}
-              registerProps={"zip_code"}
-            /> */}
-          </Grid>
-          <Grid item xs={1}></Grid>
-          {/* <Grid item xs={4} marginBottom={5}>
-            <InputProfileCustom
-              label={'Country'}
-              type="text"
-              value={country}
-              onChangeEvent={handleCountryChange}
-              disabled={false}
-              registerProps={"country"}
-            />
-          </Grid> */}
-          <Grid item xs={1}></Grid>
-          <Grid item xs={1}></Grid>
-
-          <Grid item xs={2}></Grid>
-          <Grid item xs={2}></Grid>
+          <Grid item xs={4}></Grid>
+          <Grid item xs={4}></Grid>
+          <Grid item xs={4}></Grid>
           <Grid item xs={1}>
             <Button
               type="submit"

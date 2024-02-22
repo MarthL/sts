@@ -20,13 +20,14 @@ interface User {
   },
   country: string,
   city?: {
-    city_id: number;
+    id: number;
     city_name: string,
     state: number,
     address: string,
     zip_code: number
   },
 }
+
 
 export const ProfilePage: React.FC<any> = () => {
 
