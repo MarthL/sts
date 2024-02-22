@@ -54,7 +54,8 @@ export const HomePage = () => {
     setProjectName('');
     setDescription('');
 
-    
+    console.log('new project : ', newProject)
+    console.log('projectsCollection : ', projectsCollection)
     handleCloseModal();
   };
 
