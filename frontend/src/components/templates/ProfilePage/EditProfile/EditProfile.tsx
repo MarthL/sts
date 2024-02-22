@@ -58,6 +58,11 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
   const [jobCollection, setJobCollection] = useState<Job[]>([]);
   const [city, setCity] = useState<City | null>(user?.city || null);
   const [cityCollection, setCityCollection] = useState<City[]>([]);
+  const [cityName, setCityName] = useState<string>('');
+
+  const findCityByName = (cityName: string): City | undefined => {
+    return cityCollection.find(city => city.city_name === cityName);
+  }
 
 
   useEffect(() => {
@@ -69,9 +74,11 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
       setYop(user?.yop ? user.yop : 0);
       setEmail(user?.email ? user.email : '');
       setPhone(user?.phone_number ? user.phone_number : '');
-      setCity(user.city || null);
+      const selectedCity = findCityByName(user.city?.city_name || '');
+      setCity(selectedCity || null);
+      setCityName(city?.city_name || '');
     }
-  }, [user]);
+  }, [user, cityCollection]);
 
   useEffect(() => {
     getJobCollection().then(async (res) => {
@@ -115,12 +122,17 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
   const sendForm = (id: number, data: any) => {
     const filteredData = Object.keys(data).reduce((acc: any, key) => {
       if (data[key] !== '') {
-        acc[key] = data[key];
+        if (key === 'city') {
+          const cityObject = findCityByName(data[key]);
+          acc['city_id'] = cityObject ? cityObject.id : null;
+        } else {
+          acc[key] = data[key];
+        }
       }
       return acc;
     }, {});
-    editUser(id, filteredData)
-  }
+    editUser(id, filteredData);
+  };
 
   const confirmModal = async (): Promise<Boolean> => {
     return Swal.fire({
