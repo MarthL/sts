@@ -57,24 +57,30 @@ export const HomePage = () => {
 
   const methods = useForm<ProjectsProps>();
 
-  const onsubmit = async (data: any) => {
-    try {
-      // Appeler postProject pour sauvegarder les données du projet dans la base de données
-      await postProject(data);
+  // const onsubmit = async (data: any) => {
+  //   try {
+  //     // Appeler postProject pour sauvegarder les données du projet dans la base de données
+  //     await postProject(data);
       
-      // Mettre à jour la liste des projets en récupérant les projets mis à jour depuis la base de données
-      const updatedProjects = await getProjects();
-      setProjectsCollection(updatedProjects);
+  //     // Mettre à jour la liste des projets en récupérant les projets mis à jour depuis la base de données
+  //     const updatedProjects = await getProjects();
+  //     setProjectsCollection(updatedProjects);
   
-      // Fermer le modal après la soumission réussie
-      handleCloseModal();
-    } catch (error: any) {
-      console.error('Erreur lors de la création du projet :', error.message);
-      // Gérer les erreurs
-    }
-  }
+  //     // Fermer le modal après la soumission réussie
+  //     handleCloseModal();
+  //   } catch (error: any) {
+  //     console.error('Erreur lors de la création du projet :', error.message);
+  //     // Gérer les erreurs
+  //   }
+  // }
 
-  const onSubmit = handleSubmit((data) => console.log(data))
+  const onSubmit = handleSubmit((data: any) => {
+      postProject(data);
+      console.log('data.project_name : ', data.project_name)
+      console.log('data.description : ', data.description)
+      handleCloseModal();
+      // window.location.reload();
+    })
 
 
   return (

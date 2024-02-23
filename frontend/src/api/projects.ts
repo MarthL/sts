@@ -12,8 +12,12 @@ export function getProjects() {
 }
 
 export function postProject(data: ProjectsProps) {
-  return axiosClient.post('/projects')
+  return axiosClient.post('/projects', {
+    project_name: data.project_name,
+    description: data.description
+  })
     .then((response) => {
+      console.log('response.data : ', response.data)
       return response.data;
     })
     .catch((error) => {
