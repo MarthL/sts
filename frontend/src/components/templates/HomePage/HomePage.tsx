@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { CardProject } from '../../molecules/CardProject/CardProject';
-import { useForm, FormProvider } from 'react-hook-form';
+import { useForm, FormProvider, SubmitHandler, UseFormHandleSubmit, Form } from 'react-hook-form';
 import { Box, Typography, Button, Modal, TextField, InputAdornment, Grid } from '@mui/material';
 import { ChartDashboard } from '../../organisms/ChartDashboard/ChartDashboard';
 import { getProjects, postProject } from '../../../api/projects';
 import CloseIcon from '@mui/icons-material/Close';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 
-export interface ProjectsProps {
+
+export type ProjectsProps = {
   id: number;
   project_name: string;
   description: string;
@@ -15,7 +16,7 @@ export interface ProjectsProps {
 
 export const HomePage = () => {
 
-  const {register, handleSubmit } = useForm();
+  const { register, handleSubmit, formState: {errors} } = useForm();
 
   const [projectsCollection, setProjectsCollection] = useState<ProjectsProps[]>([]);
   const [currentUser, setCurrentUser] = useState('');
@@ -46,15 +47,34 @@ export const HomePage = () => {
     setOpenModal(false);
   }; 
 
-  const onsubmit = (data: any) => {
-    console.log('data : ', data)
-    if(data.project_name && data.description) {
-      postProject(data);
+  // const onsubmit = (data: any) => {
+  //   console.log('data : ', data)
+  //   if(data.project_name && data.description) {
+  //     postProject(data);
+  //     handleCloseModal();
+  //   }
+  // }
+
+  const methods = useForm<ProjectsProps>();
+
+  const onsubmit = async (data: any) => {
+    try {
+      // Appeler postProject pour sauvegarder les données du projet dans la base de données
+      await postProject(data);
+      
+      // Mettre à jour la liste des projets en récupérant les projets mis à jour depuis la base de données
+      const updatedProjects = await getProjects();
+      setProjectsCollection(updatedProjects);
+  
+      // Fermer le modal après la soumission réussie
       handleCloseModal();
+    } catch (error: any) {
+      console.error('Erreur lors de la création du projet :', error.message);
+      // Gérer les erreurs
     }
   }
 
-  const methods = useForm();
+  const onSubmit = handleSubmit((data) => console.log(data))
 
 
   return (
@@ -79,38 +99,41 @@ export const HomePage = () => {
           <Typography variant="h5" sx={{textAlign:"center", marginBottom:5}}>Project creation form</Typography>
           
           <FormProvider {...methods}>
-          <Grid container onSubmit={handleSubmit(onsubmit)}>
-            <Grid item xs={12} marginBottom={2}>
-              <TextField
-                  id="input-project-name"
-                  placeholder="Your project name"
-                  {...register('project_name')}
-                  onChange={(e) => setProjectName(e.target.value)}
-                  InputProps={{
-                      startAdornment:
-                        <InputAdornment disableTypography position="start">
-                          Project name :
-                        </InputAdornment>
-                  }}
-              />
-            </Grid>
-            <Grid item xs={12} marginBottom={2}>
-              <TextField
-                  id="input-description"
-                  placeholder="Your description field"
-                  onChange={(e) => setDescription(e.target.value)}
-                  InputProps={{
-                      startAdornment:
-                        <InputAdornment disableTypography position="start">
-                          Description :
-                        </InputAdornment>
-                  }}
-              />
-            </Grid>
-          </Grid>
-          <Grid item xs={12} marginBottom={2}>
-            <Button variant="contained" onClick={onsubmit}>Submit</Button>
-          </Grid>
+            <form onSubmit={onSubmit}>
+              <Grid container>
+                <Grid item xs={12} marginBottom={2}>
+                  <TextField
+                      id="input-project-name"
+                      placeholder="Your project name"
+                      {...register('project_name')}
+                      onChange={(e) => setProjectName(e.target.value)}
+                      InputProps={{
+                          startAdornment:
+                            <InputAdornment disableTypography position="start">
+                              Project name :
+                            </InputAdornment>
+                      }}
+                  />
+                </Grid>
+                <Grid item xs={12} marginBottom={2}>
+                  <TextField
+                      id="input-description"
+                      placeholder="Your description field"
+                      {...register('description')}
+                      onChange={(e) => setDescription(e.target.value)}
+                      InputProps={{
+                          startAdornment:
+                            <InputAdornment disableTypography position="start">
+                              Description :
+                            </InputAdornment>
+                      }}
+                  />
+                </Grid>
+              </Grid>
+              <Grid item xs={12} marginBottom={2}>
+                <Button variant="contained" type='submit'>Submit</Button>
+              </Grid>
+            </form>
           </FormProvider>
           <Button onClick={handleCloseModal}>
             <CloseIcon />
