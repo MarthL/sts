@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useForm, FormProvider } from 'react-hook-form';
+import { useForm, FormProvider, Resolver } from 'react-hook-form';
 import { Box, Typography, Button, Modal, TextField, InputAdornment, Grid } from '@mui/material';
 import { postProject } from '../../../api/projects';
 import CloseIcon from '@mui/icons-material/Close';
@@ -16,11 +16,34 @@ interface ProjectModalProps {
   handleCloseModal: () => void;
 }
 
+const resolver: Resolver<ProjectsProps> = async (values) => {
+  return {
+    values: values.project_name ? values : {},
+    errors:
+      !values.project_name
+        ? {
+          project_name: {
+            type: "required",
+            message: "This is required.",
+          },
+        }
+        : !values.description
+          ? {
+            description: {
+              type: 'required',
+              message: 'This is required',
+            },
+          }
+          : {}
+  };
+};
+
 export const ProjectModal: React.FC<ProjectModalProps> = ({ openModal, handleCloseModal }) => {
-  const methods = useForm<ProjectsProps>();
-  const { register, handleSubmit } = methods;
+  const methods = useForm<ProjectsProps>({ resolver });
+  const { register, handleSubmit, formState: { errors } } = methods;
   const [projectName, setProjectName] = useState('');
   const [description, setDescription] = useState('');
+
   const onSubmit = handleSubmit((data: any) => {
     postProject(data);
     handleCloseModal();
@@ -62,6 +85,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ openModal, handleClo
                         </InputAdornment>
                     }}
                   />
+                  {errors?.project_name && <p>{errors.project_name.message}</p>}
                 </Grid>
                 <Grid item mb={2} mx={'auto'}>
                   <TextField
@@ -76,6 +100,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ openModal, handleClo
                         </InputAdornment>
                     }}
                   />
+                  {errors?.description && <p>{errors.description.message}</p>}
                 </Grid>
               </Grid>
               <Grid item xs={12}>
