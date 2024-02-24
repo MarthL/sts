@@ -50,7 +50,7 @@ describe('userEntity', () => {
     expect((await errors).length).toBeGreaterThan(0);
   });
 
-  it('Creating a user with Id', async () => {
+  it('Validating id property', async () => {
     const user = new Users();
     user.password = 'tp';
     user.id = 1;
@@ -63,14 +63,20 @@ describe('userEntity', () => {
 
   // to continue
   it('Should validate and create a user with a job', async () => {
-    const user = new Users();
     const newJob = new Job();
     newJob.id = 1;
     newJob.job_title = 'random job';
+
+    const user = new Users();
     user.id = 1;
+    user.username = 'johnDoe';
+    user.password = 'tryit';
     user.job = newJob;
-    const errors = validate(user);
-    expect(user).toContain(Job);
-    expect((await errors).length).toBe(0);
+
+    const checkDto = plainToClass(UserResponseDto, user);
+    const errors = await validate(checkDto);
+
+    expect(errors.length).toBe(0);
+    expect(checkDto.job_id).toBe(newJob.id);
   });
 });
