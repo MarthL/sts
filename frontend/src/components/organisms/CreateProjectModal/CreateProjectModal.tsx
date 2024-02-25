@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { ErrorLabel } from '../../atoms/ErrorLabel/ErrorLabel';
 import { useForm, FormProvider, Resolver } from 'react-hook-form';
 import { Box, Typography, Button, Modal, TextField, InputAdornment, Grid } from '@mui/material';
 import { postProject } from '../../../api/projects';
@@ -95,7 +96,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ openModal, handleClo
                         </InputAdornment>
                     }}
                   />
-                  {errors?.project_name && <Typography color={'red'}>{errors.project_name.message}</Typography>}
+                  {errors?.project_name && <ErrorLabel message={errors.project_name.message || ''} />}
                 </Grid>
                 <Grid item mb={2} mx={'auto'}>
                   <TextField
@@ -110,7 +111,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ openModal, handleClo
                         </InputAdornment>
                     }}
                   />
-                  {errors?.description && <Typography color={'red'}>{errors.description.message}</Typography>}
+                  {errors?.description && <ErrorLabel message={errors.description.message || ''} />}
                 </Grid>
               </Grid>
               <Grid item xs={12}>
