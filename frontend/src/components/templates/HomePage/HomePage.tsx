@@ -9,7 +9,7 @@ import { ProjectModal } from '../../organisms/CreateProjectModal/CreateProjectMo
 export type ProjectsProps = {
   id: number;
   project_name: string;
- description: string;
+  description: string;
 };
 
 export const HomePage = () => {
@@ -42,12 +42,12 @@ export const HomePage = () => {
       <Typography variant="h3"> Welcome, {currentUser} </Typography>
 
       <Button variant="contained" onClick={handleOpenModal}>
-        <AddCircleIcon />
+        <AddCircleIcon sx={{ marginRight: '10px' }} />
         New project
       </Button>
 
       <ProjectModal openModal={openModal} handleCloseModal={handleCloseModal} />
-      
+
       <ChartDashboard />
       <Box display={'flex'} flexDirection={'row'} justifyContent={'center'} flexWrap={'wrap'} gap={20}>
         {

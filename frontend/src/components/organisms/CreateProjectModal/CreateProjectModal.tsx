@@ -18,9 +18,19 @@ interface ProjectModalProps {
 
 const resolver: Resolver<ProjectsProps> = async (values) => {
   return {
-    values: values.project_name ? values : {},
-    errors:
-      !values.project_name
+    values: values.project_name && values.description ? values : {},
+    errors: !values.project_name && !values.description
+      ? {
+        project_name: {
+          type: "required",
+          message: "This is required.",
+        },
+        description: {
+          type: 'required',
+          message: 'This is required',
+        },
+      }
+      : !values.project_name
         ? {
           project_name: {
             type: "required",
@@ -85,7 +95,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ openModal, handleClo
                         </InputAdornment>
                     }}
                   />
-                  {errors?.project_name && <p>{errors.project_name.message}</p>}
+                  {errors?.project_name && <Typography color={'red'}>{errors.project_name.message}</Typography>}
                 </Grid>
                 <Grid item mb={2} mx={'auto'}>
                   <TextField
@@ -100,7 +110,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ openModal, handleClo
                         </InputAdornment>
                     }}
                   />
-                  {errors?.description && <p>{errors.description.message}</p>}
+                  {errors?.description && <Typography color={'red'}>{errors.description.message}</Typography>}
                 </Grid>
               </Grid>
               <Grid item xs={12}>
