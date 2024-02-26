@@ -1,9 +1,22 @@
 # Summary
 
-1. [Requirements](#Requirements)
-2. [Installation/Usage](#Installation/Usage)
-3. [Todo-List](#Todo-List)
+1. [Get Started](#GetStarted)
+2. [Requirements](#Requirements)
+3. [Installation/Usage](#Installation/Usage)
+4. [Todo-List](#Todo-List)
 
+## Get Started <a name="GetStarted"></a>
+
+To get started, clone this repository using the command: 
+````sh
+git@github.com:MarthL/sts.git
+````
+This project utilizes several libraries such as React, NestJS, TypeORM, Material-UI...
+
+If this is not the case, using the command
+````sh
+npm install -g @nestjs/cli
+````
 
 ## Requirements <a name="Requirements"></a>
 
