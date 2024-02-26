@@ -1,4 +1,4 @@
-<h1>Summary</h1>
+<h1 style:{textAlign="center"}>Summary</h1>
 
 ## Requirements
 
