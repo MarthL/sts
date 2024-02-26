@@ -1,9 +1,14 @@
 # Summary
 
-1. [Get Started](#GetStarted)
-2. [Requirements](#Requirements)
-3. [Installation/Usage](#Installation/Usage)
-4. [Todo-List](#Todo-List)
+<details>
+  <summary>Table of Contents</summary>
+    <ul>
+        <li><a href="#GetStarted">Get Started</a></li>
+        <li><a href="#Requirements">Requirements</a></li>
+        <li><a href="#Installation/Usage">Installation / Usage</a></li>
+        <li><a href="#Todo-List">Todo list</a></li>
+    </ul>
+</details>
 
 ## Get Started <a name="GetStarted"></a>
 
