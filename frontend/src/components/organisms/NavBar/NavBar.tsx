@@ -7,8 +7,12 @@ import Brightness7Icon from '@mui/icons-material/Brightness7';
 import { Logo } from '../../atoms/Logo/Logo';
 import { ButtonNavbar } from '../../atoms/ButtonNavbar/ButtonNavbar';
 
+interface Navbar {
+  isDarkTheme: boolean,
+  toggleTheme: () => void;
+}
 
-export const NavBar: React.FC<any> = ({ isDarkTheme, toggleTheme }) => {
+export const NavBar: React.FC<Navbar> = ({ isDarkTheme, toggleTheme }) => {
   return (
     <>
       <Box sx={{ flexGrow: 1 }} >
@@ -25,7 +29,7 @@ export const NavBar: React.FC<any> = ({ isDarkTheme, toggleTheme }) => {
 
             <Box mx={1}>
               <Link to='/'>
-              <ButtonNavbar title="home" />
+                <ButtonNavbar title="home" />
               </Link>
             </Box>
 
@@ -39,7 +43,7 @@ export const NavBar: React.FC<any> = ({ isDarkTheme, toggleTheme }) => {
 
             <Box mx={1}>
               <Link to='/profile'>
-              <ButtonNavbar title="person" />
+                <ButtonNavbar title="person" />
               </Link>
             </Box>
 
