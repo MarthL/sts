@@ -1,4 +1,4 @@
-<h1 style:{textAlign="center"}>Summary</h1>
+# Summary
 
 ## Requirements
 
@@ -71,7 +71,7 @@ JobField       | To do       | Need to make the backend
 Address + CP + zipcode            | ✅       | -  
 Method add job to user       | ✅       | -
 allUsersfromSameJob       | To do       | Need to make the backend
-EditProfile       | To do       | Adapt User entity with edit profile fields + create patch method
+EditProfile       | ✅ | Adapt User entity with edit profile fields + create patch method
 
 <br><br><br>
 
