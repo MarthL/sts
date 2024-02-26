@@ -3,7 +3,7 @@ import { getProjectById } from "../../../api/projects";
 import { useParams } from "react-router";
 import { Project } from "../../../api/projects"
 import { useQuery } from "react-query";
-import { Typography } from "@mui/material"
+import { Typography, Box, Paper, Container } from "@mui/material"
 
 export const ProjectPage = () => {
 
@@ -18,12 +18,24 @@ export const ProjectPage = () => {
       })
     }
   }, [])
-  console.log(project)
 
 
   return (
     <>
-      <Typography>it works! Project ID: {id}</Typography>
+      <Box
+        component={"div"}
+        sx={{
+          borderRadius: '8px',
+          objectFit: "cover"
+        }}
+      >
+        <img src={'https://picsum.photos/800/300'} width={'100%'} alt="hero" />
+      </Box>
+      <Box component={"div"}>
+        <Paper square={false} elevation={24} sx={{ width: '80vw' }}>
+          <Typography>it works! Project ID: {id}</Typography>
+        </Paper>
+      </Box>
     </>
   );
 };
