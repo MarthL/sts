@@ -5,6 +5,7 @@ import { Container } from '@mui/material';
 import { ProfilePage } from './components/templates/ProfilePage/ProfilePage';
 import { HomePage } from './components/templates/HomePage/HomePage';
 import { LoginPage } from './components/templates/LoginPage/LoginPage';
+import { ProjectPage } from './components/templates/ProjectPage/ProjectPage';
 import { CollaboratorsPage } from './components/templates/CollaboratorsPage/CollaboratorsPage';
 import { ThemeProvider, createTheme } from '@mui/material';
 import { lime, blue, } from '@mui/material/colors';
@@ -107,6 +108,7 @@ function App() {
                     <Route path="/" element={<HomePage />} />
                     <Route path="/profile" element={<ProfilePage />} />
                     <Route path="/collaborators" element={<CollaboratorsPage />} />
+                    <Route path={"/project/:id"} element={<ProjectPage />} />
                   </Routes>
                 </Container>
               </>
