@@ -1,5 +1,4 @@
 import { IsNotEmpty, IsInt, IsOptional } from 'class-validator';
-// import { OneToMany } from 'typeorm';
 
 export default class ClientsResponseDto {
   

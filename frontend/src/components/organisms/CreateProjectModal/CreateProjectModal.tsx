@@ -1,23 +1,17 @@
 import React, { useState } from 'react';
+import { Project } from '../../../api/projects';
 import { ErrorLabel } from '../../atoms/ErrorLabel/ErrorLabel';
 import { useForm, FormProvider, Resolver } from 'react-hook-form';
 import { Box, Typography, Button, Modal, TextField, InputAdornment, Grid } from '@mui/material';
 import { postProject } from '../../../api/projects';
 import CloseIcon from '@mui/icons-material/Close';
 
-export type ProjectsProps = {
-  id: number;
-  project_name: string;
-  description: string;
-  props: any;
-};
-
 interface ProjectModalProps {
   openModal: boolean;
   handleCloseModal: () => void;
 }
 
-const resolver: Resolver<ProjectsProps> = async (values) => {
+const resolver: Resolver<Project> = async (values) => {
   return {
     values: values.project_name && values.description ? values : {},
     errors: !values.project_name && !values.description
@@ -50,7 +44,7 @@ const resolver: Resolver<ProjectsProps> = async (values) => {
 };
 
 export const ProjectModal: React.FC<ProjectModalProps> = ({ openModal, handleCloseModal }) => {
-  const methods = useForm<ProjectsProps>({ resolver });
+  const methods = useForm<Project>({ resolver });
   const { register, handleSubmit, formState: { errors } } = methods;
   const [projectName, setProjectName] = useState('');
   const [description, setDescription] = useState('');
