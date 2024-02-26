@@ -1,6 +1,6 @@
 import { axiosClient } from "./axios";
 
-export type Project = {
+export interface Project {
   id: number;
   project_name: string;
   description: string;

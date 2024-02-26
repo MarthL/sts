@@ -1,7 +1,6 @@
-/* eslint-disable no-template-curly-in-string */
 import { axiosClient } from "./axios";
 
-export async function getUserLogged(username: any) {
+export async function getUserLogged(username: string) {
   return axiosClient.get(`/users/loggedUser/${username}`)
   .then((response) => {
     return response.data;
