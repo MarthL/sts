@@ -3,6 +3,7 @@
 <details>
   <summary>Table of Contents</summary>
     <ul>
+        <li><a href="#Built-With">Built With</a></li>
         <li><a href="#GetStarted">Get Started</a></li>
         <li><a href="#Requirements">Requirements</a></li>
         <li><a href="#Installation/Usage">Installation / Usage</a></li>
@@ -10,9 +11,17 @@
     </ul>
 </details>
 
+## Built With <a name="Built-With"></a>
+
+* [![React][React.js]][React-url]
+* [![npm][npm.js]][npm-url]
+* [![typescript][typescript.js]][typescript-url]
+* [![nest][nest.js]][nest-url]
+
+
 ## Get Started <a name="GetStarted"></a>
 
-To get started, clone this repository using the command: 
+To get started, clone this repository using the command:
 ````sh
 git@github.com:MarthL/sts.git
 ````
@@ -35,7 +44,7 @@ Requirements Linux/MacOS:
 - npm
 - nodeJS
 
-## Installation/Usage <a name="Installation/Usage"></a>
+## Installation / Usage <a name="Installation/Usage"></a>
 
 First, Make sure that mySQL is up and running, then create a database with the name "sts"
 
@@ -61,7 +70,7 @@ and execute the following commands
 npm run start
 ```
 
-## Todo-List <a name="Todo-List"></a>
+## Todo List <a name="Todo-List"></a>
 
 Frontend       | Progression | Comment
 -------------  | ----------- | ------------------------------------------------------------
@@ -69,7 +78,7 @@ Frontend       | Progression | Comment
 HomePage       | ✅          | -
 Light / Dark mode   | ✅       | -
 ThemeSaver | ✅   | Should save the state of the load when Refresh
-CollaboratorPage | In progress | Display just the collection atm 
+CollaboratorPage | In progress | Display just the collection atm
 ProfilePage    | In progress | Must handle error from FE with redlabel error
 ProjectsPage   | In progress | Display the informations and need design
 Loader    | To do | Implement for Homepage, editProfile...
@@ -84,14 +93,14 @@ Backend        | Progression | Comment
 -------------  | ----------- | ------------------------------------------------------------
 <img width=200/>|<img width=500/>
 Auth           | ✅          | -
-Users          | ✅ | - 
+Users          | ✅ | -
 Projects       | ✅ | -
-Job            | ✅       | - 
+Job            | ✅       | -
 loggedUser           | In progress          | Provide informations through profilepage
-Docker         | In progress | Need to solve the errors with Ios Env 
-Roles          | To do       | Need to make the backend 
+Docker         | In progress | Need to solve the errors with Ios Env
+Roles          | To do       | Need to make the backend
 JobField       | To do       | Need to make the backend
-Address + CP + zipcode            | ✅       | -  
+Address + CP + zipcode            | ✅       | -
 Method add job to user       | ✅       | -
 allUsersfromSameJob       | To do       | Need to make the backend
 EditProfile       | ✅ | Adapt User entity with edit profile fields + create patch method
@@ -102,8 +111,15 @@ Backlog       | ID | Description
 -------------  | ----------- | ------------------------------------------------------------
 <img width=200/>|<img width=500/>
 EnvConfig       | 02          | Need to make configuration with .env for DB connexion
-Set up Husky       | 03          | Set up Husky and permit people to contribute easily with test before using git on this project 
+Set up Husky       | 03          | Set up Husky and permit people to contribute easily with test before using git on this project
 
 PlotlyJS
 
-
+[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+[React-url]: https://reactjs.org/
+[npm.js]: https://img.shields.io/npm/v/npm.svg?logo=npm
+[npm-url]: https://www.npmjs.com/
+[typescript.js]: https://img.shields.io/badge/Typescript-0000FF
+[typescript-url]: https://www.typescriptlang.org/
+[nest.js]: https://img.shields.io/badge/NestJs-FF0000
+[nest-url]: https://nestjs.com/
