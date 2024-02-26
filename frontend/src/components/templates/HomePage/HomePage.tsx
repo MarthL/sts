@@ -69,7 +69,7 @@ export const HomePage = () => {
           currentProjects.map((project: Project) => {
             return (
               <Box>
-                <CardProject key={project.id} project_name={project.project_name} description={project.description}></CardProject>
+                <CardProject id={project.id} project_name={project.project_name} description={project.description}></CardProject>
               </Box>
             )
           })
