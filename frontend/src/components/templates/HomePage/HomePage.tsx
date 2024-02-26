@@ -3,18 +3,14 @@ import { CardProject } from '../../molecules/CardProject/CardProject';
 import { Box, Typography, Button } from '@mui/material';
 import { ChartDashboard } from '../../organisms/ChartDashboard/ChartDashboard';
 import { getProjects } from '../../../api/projects';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { ProjectModal } from '../../organisms/CreateProjectModal/CreateProjectModal';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
-export type ProjectsProps = {
-  id: number;
-  project_name: string;
-  description: string;
-};
+import { Project } from '../../../api/projects';
 
 export const HomePage = () => {
 
-  const [projectsCollection, setProjectsCollection] = useState<ProjectsProps[]>([]);
+  const [projectsCollection, setProjectsCollection] = useState<Project[]>([]);
   const [currentUser, setCurrentUser] = useState('');
   const [isLoaded, setIsLoaded] = useState(false);
   const [openModal, setOpenModal] = useState(false);
@@ -51,7 +47,7 @@ export const HomePage = () => {
       <ChartDashboard />
       <Box display={'flex'} flexDirection={'row'} justifyContent={'center'} flexWrap={'wrap'} gap={20}>
         {
-          projectsCollection.map((project: any) => {
+          projectsCollection.map((project: Project) => {
             return (
               <Box>
                 <CardProject key={project.id} project_name={project.project_name} description={project.description}></CardProject>
