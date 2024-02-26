@@ -4,7 +4,11 @@ import { Box, Typography, Button } from '@mui/material';
 import { ChartDashboard } from '../../organisms/ChartDashboard/ChartDashboard';
 import { getProjects } from '../../../api/projects';
 import { ProjectModal } from '../../organisms/CreateProjectModal/CreateProjectModal';
+import { Pagination } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import gsap from 'gsap';
+import ScrollToPlugin from 'gsap/ScrollToPlugin';
+
 
 import { Project } from '../../../api/projects';
 
@@ -15,7 +19,22 @@ export const HomePage = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [openModal, setOpenModal] = useState(false);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 18;
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentProjects = projectsCollection.slice(indexOfFirstItem, indexOfLastItem);
+
+  const handlePageChange = (event: React.ChangeEvent<unknown>, newPage: number) => {
+    setCurrentPage(newPage);
+    if (typeof window !== 'undefined') {
+      gsap.to(window, { duration: 0.5, scrollTo: { y: 0 } });
+    }
+  };
+
+
   useEffect(() => {
+    gsap.registerPlugin(ScrollToPlugin);
     getProjects().then(async (res) => {
       setProjectsCollection(res);
       setIsLoaded(true)
@@ -47,7 +66,7 @@ export const HomePage = () => {
       <ChartDashboard />
       <Box display={'flex'} flexDirection={'row'} justifyContent={'center'} flexWrap={'wrap'} gap={20}>
         {
-          projectsCollection.map((project: Project) => {
+          currentProjects.map((project: Project) => {
             return (
               <Box>
                 <CardProject key={project.id} project_name={project.project_name} description={project.description}></CardProject>
@@ -55,6 +74,15 @@ export const HomePage = () => {
             )
           })
         }
+        <Box width={'100vw'} display={'flex'} justifyContent={'center'}>
+          <Pagination
+            count={Math.ceil(projectsCollection.length / itemsPerPage)}
+            page={currentPage}
+            color="primary"
+            onChange={handlePageChange}
+            sx={{ marginBottom: '50px', '& .MuiPaginationItem-root': { fontSize: '1.2rem' }, '& .MuiPaginationItem-sizeSmall': { padding: '10px' }, }}
+          />
+        </Box>
       </Box>
     </>
   )
