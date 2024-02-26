@@ -19,7 +19,7 @@ describe('projectEntity', () => {
             ],
         }).compile();
 
-        projectRepository = module.get<Repository<Projects>>(getRepositoryToken(Projects)); // Récupération du référentiel de Projects
+        projectRepository = module.get<Repository<Projects>>(getRepositoryToken(Projects));
     });
 
     it('should define project', async () => {
