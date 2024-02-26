@@ -1,6 +1,10 @@
 # Summary
+1. [Requirements](#requirements)
+2. [Installation/Usage](#installationusage)
+3. [Todo-List](#todo-list)
 
-## Requirements
+
+## Requirements <a name="Requirements"></a>
 
 Requirements Windows:
 - wampp64
@@ -12,7 +16,7 @@ Requirements Linux/MacOS:
 - npm
 - nodeJS
 
-## Installation/Usage
+## Installation/Usage <a name="Installation/Usage"></a>
 
 First, Make sure that mySQL is up and running, then create a database with the name "sts"
 
@@ -38,7 +42,7 @@ and execute the following commands
 npm run start
 ```
 
-## Todo List
+## Todo-List <a name="Todo-List"></a>
 
 Frontend       | Progression | Comment
 -------------  | ----------- | ------------------------------------------------------------
