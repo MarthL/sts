@@ -1,7 +1,7 @@
 # Summary
 
 1. [Requirements](#Requirements)
-2. [Installation/Usage](#Installation/usage)
+2. [Installation/Usage](#Installation/Usage)
 3. [Todo-List](#Todo-List)
 
 
