@@ -17,6 +17,7 @@
 * [![npm][npm.js]][npm-url]
 * [![typescript][typescript.js]][typescript-url]
 * [![nest][nest.js]][nest-url]
+* [![mui][mui.js]][mui-url]
 
 
 ## Get Started <a name="GetStarted"></a>
@@ -119,7 +120,9 @@ PlotlyJS
 [React-url]: https://reactjs.org/
 [npm.js]: https://img.shields.io/npm/v/npm.svg?logo=npm
 [npm-url]: https://www.npmjs.com/
-[typescript.js]: https://img.shields.io/badge/Typescript-0000FF
+[typescript.js]: https://badgen.net/badge/-/TypeScript?icon=typescript&label&labelColor=blue&color=555555
 [typescript-url]: https://www.typescriptlang.org/
 [nest.js]: https://img.shields.io/badge/NestJs-FF0000
 [nest-url]: https://nestjs.com/
+[mui.js]: https://img.shields.io/badge/MUI_Material_UI-007FFF
+[mui-url]: https://mui.com/material-ui/getting-started/
