@@ -6,7 +6,6 @@
 - [Get Started](#GetStarted)
 - [Requirements](#Requirements)
 - [Installation / Usage](#Installation/Usage)
-- [Todo List](#Todo-List)
 
 
 ## Introduction <a name="Intro"></a>
