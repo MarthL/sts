@@ -1,12 +1,12 @@
 ## Table of Contents
 
-- <a href="#Intro">Introduction</a>
-- <a href="#Overview">Overview</a>
-- <a href="#Built-With">Built With</a>
-- <a href="#GetStarted">Get Started</a>
-- <a href="Requirements">Requirements</a>
-- <a href="#Installation/Usage">Installation / Usage</a>
-- <a href="#Todo-List">Todo List</a>
+- [Introduction](#introduction)
+- [Overview](#overview)
+- [Built With](#built-with)
+- [Get Started](#get-started)
+- [Requirements](#requirements)
+- [Installation / Usage](#installation-usage)
+- [Todo List](#todo-list)
 
 
 ## Introduction <a name="Intro"></a>
@@ -45,7 +45,7 @@ We recommand you to install globally NestJS in order to be able to use their own
 npm install -g @nestjs/cli
 ````
 
-## Requirements <a name="Requirements"></a>
+## Requirements <a name="requirements"></a>
 
 Requirements Windows:
 - wampp64
