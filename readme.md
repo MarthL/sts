@@ -1,23 +1,22 @@
 ## Table of Contents
 
-- [Introduction](#introduction)
+- [Introduction](#intro)
 - [Overview](#overview)
-- [Built With](#built-with)
-- [Get Started](#get-started)
+- [Built With](#builtwith)
+- [Get Started](#getstarted)
 - [Requirements](#requirements)
-- [Installation / Usage](#installation-usage)
-- [Todo List](#todo-list)
+- [Installation / Usage](#installationusage)
 
 
-## Introduction <a name="Intro"></a>
+## Introduction <a name="intro"></a>
 
 Welcome to our Project Management Software as a Service (SaaS) built on the powerful combination of React and Nest! This platform is designed to streamline and enhance your project management experience, providing a seamless and efficient workflow for teams of all sizes.
 
-### Overview <a name="Overview"></a>
+### Overview <a name="overview"></a>
 
 Our SaaS solution brings together the flexibility and interactivity of React on the front end, coupled with the robustness and scalability of Nest on the backend. Whether you're a small startup or a large enterprise, our goal is to empower your team with the tools needed to efficiently plan, collaborate, and execute projects.
 
-## Built With <a name="Built-With"></a>
+## Built With <a name="builtwith"></a>
 
 * [![React][React.js]][React-url]
 * [![npm][npm.js]][npm-url]
@@ -26,7 +25,7 @@ Our SaaS solution brings together the flexibility and interactivity of React on 
 * [![mui][mui.js]][mui-url]
 
 
-## Get Started <a name="GetStarted"></a>
+## Get Started <a name="getstarted"></a>
 
 To get started, clone this repository using the command:
 ````sh
@@ -57,7 +56,7 @@ Requirements Linux/MacOS:
 - npm
 - nodeJS
 
-## Installation / Usage <a name="Installation/Usage"></a>
+## Installation / Usage <a name="installationusage"></a>
 
 Secondly, you'll have to create a database and setup your .env files in the backend folder. Here is a template of the value you need to fill :
 
