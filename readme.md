@@ -1,15 +1,13 @@
-<details>
-  <summary>Table of Contents</summary>
-    <ul>
-      <li><a href="#Intro">Introduction</a></li>
-      <li><a href="#Overview">Overview</a></li>
-        <li><a href="#Built-With">Built With</a></li>
-        <li><a href="#GetStarted">Get Started</a></li>
-        <li><a href="#Requirements">Requirements</a></li>
-        <li><a href="#Installation/Usage">Installation / Usage</a></li>
-        <li><a href="#Todo-List">Todo list</a></li>
-    </ul>
-</details>
+## Table of Contents
+
+- [Introduction](#Intro)
+- [Overview](#Overview)
+- [Built With](#Built-With)
+- [Get Started](#GetStarted)
+- [Requirements](#Requirements)
+- [Installation / Usage](#Installation/Usage)
+- [Todo List](#Todo-List)
+
 
 ## Introduction <a name="Intro"></a>
 
