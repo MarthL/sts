@@ -16,6 +16,16 @@ export async function getProjects() {
   });
 }
 
+export async function getProjectById(id: number) {
+  return axiosClient.get(`projects/${id}`)
+    .then((response) => {
+      return response.data
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+}
+
 export async function postProject(data: Project) {
   return axiosClient.post('/projects', {
     project_name: data.project_name,

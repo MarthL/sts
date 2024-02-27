@@ -1,13 +1,14 @@
 import { Card, CardContent, CardMedia, CardActions, Button, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 interface CardProjectProps {
-  key: number;
+  id: number;
   project_name: string;
   description: string;
 }
 
-export const CardProject = (props: CardProjectProps) => {
-  const { project_name, description } = props;
+export const CardProject: React.FC<CardProjectProps> = (props: CardProjectProps) => {
+  const { id, project_name, description } = props;
   return (
     <>
       <Card sx={{ maxWidth: 350, height: 350 }}>
@@ -32,7 +33,10 @@ export const CardProject = (props: CardProjectProps) => {
           }}>{description}</Typography>
         </CardContent>
         <CardActions>
-          <Button size="small" variant="contained"> Learn More </Button>
+          <Link to={`/project/${id}`}>
+            <Button size="small" variant="contained"> Learn More </Button>
+          </Link>
+
         </CardActions>
       </Card>
     </>
