@@ -21,12 +21,22 @@ interface CustomAutoCompleteProps {
 export const CustomAutoComplete = (props: CustomAutoCompleteProps) => {
   const { label, value, registerProps, collection, setValue } = props;
   const { register } = useFormContext();
-
+ 
+  const [suggestions, setSuggestions] = useState(collection);
+  
   const OPTIONS_LIMIT = 10;
   const filterOptions = createFilterOptions({
     limit: OPTIONS_LIMIT
   });
+
+  const handleInputChange = (event: any) => {
+
+    //console.log('new value : ', event.target.value);
+  }
   
+  useEffect(() => {
+    //console.log(city)
+  }, [])
 
   //console.log(props);
   return (
@@ -43,6 +53,7 @@ export const CustomAutoComplete = (props: CustomAutoCompleteProps) => {
         const city = selectedElement as City;
         setValue(city);
       }}
+      onInputChange={handleInputChange}
       sx={{ width: 300 }}
       renderInput={(params) => (
         <TextField
