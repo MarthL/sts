@@ -1,6 +1,6 @@
 import { axiosClient } from "./axios";
 
-interface City {
+export interface City {
   id: number,
   city_name: string,
   zip_code: string,
