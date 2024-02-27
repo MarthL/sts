@@ -5,6 +5,7 @@ import { useForm, FormProvider, Resolver } from 'react-hook-form';
 import { Box, Typography, Button, Modal, TextField, InputAdornment, Grid } from '@mui/material';
 import { postProject } from '../../../api/projects';
 import CloseIcon from '@mui/icons-material/Close';
+import Swal from 'sweetalert2';
 
 interface ProjectModalProps {
   openModal: boolean;
@@ -51,6 +52,21 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ openModal, handleClo
 
   const onSubmit = handleSubmit((data: any) => {
     postProject(data);
+    setProjectName(data.project_name);
+    setDescription(data.description);
+    Swal.fire({
+      title: 'Project Created Successfully!',
+      icon: 'success',
+      showCancelButton: true,
+      confirmButtonText: 'Go to Project',
+      cancelButtonText: 'Return to Home'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.href = '/project/:id';
+      } else {
+        window.location.href = '/';
+      }
+    });
     handleCloseModal();
   });
   return (
