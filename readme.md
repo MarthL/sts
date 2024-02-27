@@ -1,10 +1,12 @@
+# Project Management SaaS with React and Nest
+
 ## Table of Contents
 
 - [Introduction](#intro)
 - [Overview](#overview)
 - [Built With](#builtwith)
-- [Get Started](#getstarted)
 - [Requirements](#requirements)
+- [Get Started](#getstarted)
 - [Installation / Usage](#installationusage)
 
 
@@ -25,6 +27,20 @@ Our SaaS solution brings together the flexibility and interactivity of React on 
 * [![mui][mui.js]][mui-url]
 
 
+## Requirements <a name="requirements"></a>
+
+Requirements Windows:
+- wampp64
+- npm
+- nodeJS
+
+Requirements Linux/MacOS:
+- mySQL
+- npm
+- nodeJS
+
+
+
 ## Get Started <a name="getstarted"></a>
 
 To get started, clone this repository using the command:
@@ -43,19 +59,6 @@ We recommand you to install globally NestJS in order to be able to use their own
 ````sh
 npm install -g @nestjs/cli
 ````
-
-## Requirements <a name="requirements"></a>
-
-Requirements Windows:
-- wampp64
-- npm
-- nodeJS
-
-Requirements Linux/MacOS:
-- mySQL
-- npm
-- nodeJS
-
 ## Installation / Usage <a name="installationusage"></a>
 
 Secondly, you'll have to create a database and setup your .env files in the backend folder. Here is a template of the value you need to fill :
