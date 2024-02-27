@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Autocomplete, TextField } from "@mui/material";
+import { Autocomplete, TextField, createFilterOptions } from "@mui/material";
 import { useFormContext } from 'react-hook-form';
 import { Dispatch, SetStateAction } from "react";
 
@@ -22,15 +22,26 @@ export const CustomAutoComplete = (props: CustomAutoCompleteProps) => {
   const { label, value, registerProps, collection, setValue } = props;
   const { register } = useFormContext();
 
-  console.log(props);
+  const OPTIONS_LIMIT = 10;
+  const filterOptions = createFilterOptions({
+    limit: OPTIONS_LIMIT
+  });
+  
+
+  //console.log(props);
   return (
     <Autocomplete
+      filterOptions={filterOptions}
       disablePortal
       options={collection}
       value={value}
-      getOptionLabel={(city: City) => city.city_name}
+      getOptionLabel={(option: unknown) => {
+        const city = option as City;
+        return city.city_name;
+      }}
       onChange={(event, selectedElement) => {
-        setValue(selectedElement);
+        const city = selectedElement as City;
+        setValue(city);
       }}
       sx={{ width: 300 }}
       renderInput={(params) => (
