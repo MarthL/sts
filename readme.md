@@ -2,6 +2,7 @@
   <summary>Table of Contents</summary>
     <ul>
       <li><a href="#Intro">Introduction</a></li>
+      <li><a href="#Overview">Overview</a></li>
         <li><a href="#Built-With">Built With</a></li>
         <li><a href="#GetStarted">Get Started</a></li>
         <li><a href="#Requirements">Requirements</a></li>
@@ -11,6 +12,12 @@
 </details>
 
 ## Introduction <a name="Intro"></a>
+
+Welcome to our Project Management Software as a Service (SaaS) built on the powerful combination of React and Nest! This platform is designed to streamline and enhance your project management experience, providing a seamless and efficient workflow for teams of all sizes.
+
+### Overview <a name="Overview"></a>
+
+Our SaaS solution brings together the flexibility and interactivity of React on the front end, coupled with the robustness and scalability of Nest on the backend. Whether you're a small startup or a large enterprise, our goal is to empower your team with the tools needed to efficiently plan, collaborate, and execute projects.
 
 ## Built With <a name="Built-With"></a>
 
