@@ -25,11 +25,17 @@
 
 To get started, clone this repository using the command:
 ````sh
-git@github.com:MarthL/sts.git
+git clone git@github.com:MarthL/sts.git
 ````
-This project utilizes several libraries such as React, NestJS, TypeORM, Material-UI...
 
-If this is not the case, using the command
+This project using several libraries such as React, NestJS, TypeORM, Material-UI... you'll have to install all of them using npm install
+
+````sh
+npm install
+````
+
+We recommand you to install globally NestJS in order to be able to use their own CLI.
+
 ````sh
 npm install -g @nestjs/cli
 ````
@@ -48,14 +54,25 @@ Requirements Linux/MacOS:
 
 ## Installation / Usage <a name="Installation/Usage"></a>
 
-First, Make sure that mySQL is up and running, then create a database with the name "sts"
+Secondly, you'll have to create a database and setup your .env files in the backend folder. Here is a template of the value you need to fill :
 
 ```SQL
-CREATE DATABASE sts;
-USE sts;
+CREATE DATABASE NAMEOFTHEDB;
+USE NAMEOFTHEDB;
 ```
 
-Next, Run the backend by going into ["./backend"](./backend) and executing the following
+.env configuration :
+
+TYPE=mysql
+HOST=localhost
+PORT=DBPORT
+DBUSERNAME=DBUSERNAME
+DBNAME=NAMEOFTHEDB
+JWT_SECRET=JWTSECRET
+
+You can find in the root foler of this project a sql file. This is a sample of some datas so you can just import it using mySQL. Hence, you'll have already some Projects, Users, etc...
+
+To start the backend, run the following command :  
 
 ```sh
 # First time install the missing node modules using:
@@ -71,51 +88,6 @@ and execute the following commands
 # npm i
 npm run start
 ```
-
-## Todo List <a name="Todo-List"></a>
-
-Frontend       | Progression | Comment
--------------  | ----------- | ------------------------------------------------------------
-<img width=200/>|<img width=500/>
-HomePage       | ✅          | -
-Light / Dark mode   | ✅       | -
-ThemeSaver | ✅   | Should save the state of the load when Refresh
-CollaboratorPage | In progress | Display just the collection atm
-ProfilePage    | In progress | Must handle error from FE with redlabel error
-ProjectsPage   | In progress | Display the informations and need design
-Loader    | To do | Implement for Homepage, editProfile...
-Pagination | To do | Implement pagination for homepage.
-ConfirmModalProfile    | To do | Implement modal to inform user and changes are saved (or not).
-Jest    | To do | Implement tests for FE.
-
-
-<br><br><br>
-
-Backend        | Progression | Comment
--------------  | ----------- | ------------------------------------------------------------
-<img width=200/>|<img width=500/>
-Auth           | ✅          | -
-Users          | ✅ | -
-Projects       | ✅ | -
-Job            | ✅       | -
-loggedUser           | In progress          | Provide informations through profilepage
-Docker         | In progress | Need to solve the errors with Ios Env
-Roles          | To do       | Need to make the backend
-JobField       | To do       | Need to make the backend
-Address + CP + zipcode            | ✅       | -
-Method add job to user       | ✅       | -
-allUsersfromSameJob       | To do       | Need to make the backend
-EditProfile       | ✅ | Adapt User entity with edit profile fields + create patch method
-
-<br><br><br>
-
-Backlog       | ID | Description
--------------  | ----------- | ------------------------------------------------------------
-<img width=200/>|<img width=500/>
-EnvConfig       | 02          | Need to make configuration with .env for DB connexion
-Set up Husky       | 03          | Set up Husky and permit people to contribute easily with test before using git on this project
-
-PlotlyJS
 
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
