@@ -4,7 +4,7 @@ import { useParams } from "react-router";
 import { Project } from "../../../api/projects"
 import { Typography, Box, Paper, Container } from "@mui/material"
 
-export const ProjectPage = () => {
+export const ProjectPage: React.FC<any> = () => {
 
   const { id } = useParams<{ id: string }>();
   const [project, setProject] = useState<Project>();
