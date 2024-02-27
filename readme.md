@@ -44,7 +44,7 @@ We recommand you to install globally NestJS in order to be able to use their own
 npm install -g @nestjs/cli
 ````
 
-## Requirements <a name="#Requirements"></a>
+## Requirements <a name="Requirements"></a>
 
 Requirements Windows:
 - wampp64
