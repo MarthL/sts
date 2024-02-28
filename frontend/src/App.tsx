@@ -108,9 +108,9 @@ function App() {
                   <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/profile" element={<ProfilePage />} />
-                    <Route path="/collaborators" element={<CollaboratorsPage />} />
+                    <Route path="/users" element={<CollaboratorsPage />} />
                     <Route path={"/project/:id"} element={<ProjectPage />} />
-                    <Route path={'/user/:id'} element={<UserPage />} />
+                    <Route path={'/users/:id'} element={<UserPage />} />
                   </Routes>
                 </Container>
               </>

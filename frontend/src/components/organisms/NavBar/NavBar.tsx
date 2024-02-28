@@ -34,7 +34,7 @@ export const NavBar: React.FC<Navbar> = ({ isDarkTheme, toggleTheme }) => {
             </Box>
 
             <Box mx={1}>
-              <Link to='/collaborators'>
+              <Link to='/users'>
                 <ButtonNavbar title="people" />
               </Link>
             </Box>
