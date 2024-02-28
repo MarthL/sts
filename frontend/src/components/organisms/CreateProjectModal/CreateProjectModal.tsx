@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import { Project } from '../../../api/projects';
+import { getProjectById } from '../../../api/projects';
 import { ErrorLabel } from '../../atoms/ErrorLabel/ErrorLabel';
 import { useForm, FormProvider, Resolver } from 'react-hook-form';
+import { useParams } from 'react-router-dom';
 import { Box, Typography, Button, Modal, TextField, InputAdornment, Grid } from '@mui/material';
 import { postProject } from '../../../api/projects';
 import CloseIcon from '@mui/icons-material/Close';
+import Swal from 'sweetalert2';
+
 
 interface ProjectModalProps {
   openModal: boolean;
@@ -48,9 +52,28 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ openModal, handleClo
   const { register, handleSubmit, formState: { errors } } = methods;
   const [projectName, setProjectName] = useState('');
   const [description, setDescription] = useState('');
+  const { id } = useParams<{ id: string }>();
+  const [project, setProject] = useState<Project>();
 
   const onSubmit = handleSubmit((data: any) => {
-    postProject(data);
+    postProject(data).then((response) => {
+      const projectId = response.id;
+      setProjectName(data.project_name);
+      setDescription(data.description);
+      Swal.fire({
+        title: 'Project Created Successfully!',
+        icon: 'success',
+        showCancelButton: true,
+        confirmButtonText: 'Go to see your new Project',
+        cancelButtonText: 'Return to Home'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = `/project/${projectId}`;
+        } else {
+          window.location.href = '/';
+        }
+      });
+    });
     handleCloseModal();
   });
   return (
