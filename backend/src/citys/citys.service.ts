@@ -22,6 +22,9 @@ export class CitysService {
   // GetAll
   async getCitys(search?: any): Promise<Citys[]> {
     console.log("search : ", await search);
+    if(!search){
+      return this.citysRepository.find({take: 10})
+    }
     return await this.citysRepository.find({ take: 10, where: {
       city_name: Like(`%${search}%`)
     }});
