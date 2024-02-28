@@ -99,47 +99,37 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ openModal, handleClo
               <CloseIcon />
             </Button>
           </Grid>
-          <Typography variant="h5" sx={{ textAlign: "center", marginBottom: 2 }}>Project Creation Form</Typography>
+          <Typography variant="h5" mb={3} sx={{ textAlign: "center" }}>Project Creation Form</Typography>
           <FormProvider {...methods}>
             <form onSubmit={onSubmit}>
-              <Grid container style={{display: 'flex', flexDirection: 'column'}}>
-                <Grid item mb={2}>
+              <Grid container sx={{display: 'flex', flexDirection: 'column'}}>
+                <Grid item mb={2} sx={{display: 'flex', justifyContent: 'center', width: '100%'}}>
                   <TextField
+                    sx={{width: '75%'}}
                     label='Project name'
                     size='small'
                     id="input-project-name"
                     placeholder="Your project name"
                     {...register('project_name')}
-                    sx={{width: '100%'}}
                     onChange={(e) => setProjectName(e.target.value)}
-                    InputProps={{
-                      startAdornment:
-                        <InputAdornment disableTypography position="start">
-                          <Typography variant="body1">Project name :</Typography>
-                        </InputAdornment>
-                    }}
                   />
                   {errors?.project_name && <ErrorLabel message={errors.project_name.message || ''} />}
                 </Grid>
-                <Grid item mb={2}>
+                <Grid item mb={2} sx={{display: 'flex', justifyContent: 'center', width: '100%'}}>
                   <TextField
+                    rows={4}
+                    multiline
+                    sx={{width: '75%'}}
                     label='Description'
                     id="input-description"
                     placeholder="Your description field"
                     {...register('description')}
-                    sx={{width: '100%'}}
                     onChange={(e) => setDescription(e.target.value)}
-                    InputProps={{
-                      startAdornment:
-                        <InputAdornment disableTypography position="start">
-                          <Typography variant="body1">Description :</Typography>
-                        </InputAdornment>
-                    }}
                   />
                   {errors?.description && <ErrorLabel message={errors.description.message || ''} />}
                 </Grid>
               </Grid>
-              <Grid item xs={12}>
+              <Grid item sx={{display: 'flex', justifyContent: 'center'}}>
                 <Button variant="contained" type='submit'>Submit</Button>
               </Grid>
             </form>
