@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import { Project } from '../../../api/projects';
+import { getProjectById } from '../../../api/projects';
 import { ErrorLabel } from '../../atoms/ErrorLabel/ErrorLabel';
 import { useForm, FormProvider, Resolver } from 'react-hook-form';
+import { useParams } from 'react-router-dom';
 import { Box, Typography, Button, Modal, TextField, InputAdornment, Grid } from '@mui/material';
 import { postProject } from '../../../api/projects';
 import CloseIcon from '@mui/icons-material/Close';
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
+
 
 interface ProjectModalProps {
   openModal: boolean;
@@ -48,9 +53,30 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ openModal, handleClo
   const { register, handleSubmit, formState: { errors } } = methods;
   const [projectName, setProjectName] = useState('');
   const [description, setDescription] = useState('');
+  const { id } = useParams<{ id: string }>();
+  const [project, setProject] = useState<Project>();
+
+  const navigate = useNavigate();
 
   const onSubmit = handleSubmit((data: any) => {
-    postProject(data);
+    postProject(data).then((response) => {
+      const projectId = response.id;
+      setProjectName(data.project_name);
+      setDescription(data.description);
+      Swal.fire({
+        title: 'Project Created Successfully!',
+        icon: 'success',
+        showCancelButton: true,
+        confirmButtonText: 'See project',
+        cancelButtonText: 'Back to Home'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate(`/project/${projectId}`);
+        } else {
+          navigate('/');
+        }
+      });
+    });
     handleCloseModal();
   });
   return (
