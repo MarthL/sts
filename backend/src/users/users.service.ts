@@ -21,12 +21,15 @@ export class UsersService {
   ) {}
 
   // getAll()
-  async getAllusers(): Promise<Users[]> {
+  async getAllusers(search?: string): Promise<Users[]> {
     const userCollection = await this.userRepository.find({
       select: {
         id: true,
         username: true,
         password: true,
+      },
+      where: {
+        username: search,
       },
     });
 
@@ -86,7 +89,7 @@ export class UsersService {
         password: true,
         family_name: true,
       },
-      where: { username },
+      where: { username: username },
     });
   }
 
