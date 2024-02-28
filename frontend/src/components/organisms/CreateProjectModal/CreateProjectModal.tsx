@@ -101,33 +101,38 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ openModal, handleClo
           </Grid>
           <Typography variant="h5" sx={{ textAlign: "center", marginBottom: 2 }}>Project Creation Form</Typography>
           <FormProvider {...methods}>
-            <form onSubmit={onSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <Grid container>
-                <Grid item mb={2} mx={'auto'}>
+            <form onSubmit={onSubmit}>
+              <Grid container style={{display: 'flex', flexDirection: 'column'}}>
+                <Grid item mb={2}>
                   <TextField
+                    label='Project name'
+                    size='small'
                     id="input-project-name"
                     placeholder="Your project name"
                     {...register('project_name')}
+                    sx={{width: '100%'}}
                     onChange={(e) => setProjectName(e.target.value)}
                     InputProps={{
                       startAdornment:
                         <InputAdornment disableTypography position="start">
-                          Project name :
+                          <Typography variant="body1">Project name :</Typography>
                         </InputAdornment>
                     }}
                   />
                   {errors?.project_name && <ErrorLabel message={errors.project_name.message || ''} />}
                 </Grid>
-                <Grid item mb={2} mx={'auto'}>
+                <Grid item mb={2}>
                   <TextField
+                    label='Description'
                     id="input-description"
                     placeholder="Your description field"
                     {...register('description')}
+                    sx={{width: '100%'}}
                     onChange={(e) => setDescription(e.target.value)}
                     InputProps={{
                       startAdornment:
                         <InputAdornment disableTypography position="start">
-                          Description :
+                          <Typography variant="body1">Description :</Typography>
                         </InputAdornment>
                     }}
                   />
