@@ -22,20 +22,22 @@ interface CustomAutoCompleteProps {
 export const CustomAutoComplete = (props: CustomAutoCompleteProps) => {
   const { label, value, registerProps, collection, setValue } = props;
   const { register } = useFormContext();
- 
+
   const [suggestions, setSuggestions] = useState(collection);
-  
+
   const OPTIONS_LIMIT = 10;
   const filterOptions = createFilterOptions({
     limit: OPTIONS_LIMIT
   });
 
-  const handleInputChange = (event: any) => {}
-  
-  useEffect(() => {
-    setSuggestions(collection);
-    console.log('suggestions : ', suggestions)
-  }, [collection])
+  const handleInputChange = (event: any) => {
+    getCitiesCollection(event.target.value).then((res) => {
+      setSuggestions(res);
+    })
+      .catch((error) => {
+        console.error(error);
+      })
+  }
 
   return (
     <Autocomplete
