@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { Autocomplete, TextField } from "@mui/material";
+import { Autocomplete, TextField, createFilterOptions } from "@mui/material";
 import { useFormContext } from 'react-hook-form';
 import { Dispatch, SetStateAction } from "react";
+import { getCitiesCollection } from "../../../api/cities";
 
 interface City {
   id: number;
@@ -22,16 +23,37 @@ export const CustomAutoComplete = (props: CustomAutoCompleteProps) => {
   const { label, value, registerProps, collection, setValue } = props;
   const { register } = useFormContext();
 
-  console.log(props);
+  const [suggestions, setSuggestions] = useState(collection);
+
+  const OPTIONS_LIMIT = 10;
+  const filterOptions = createFilterOptions({
+    limit: OPTIONS_LIMIT
+  });
+
+  const handleInputChange = (event: any) => {
+    getCitiesCollection(event.target.value).then((res) => {
+      setSuggestions(res);
+    })
+      .catch((error) => {
+        console.error(error);
+      })
+  }
+
   return (
     <Autocomplete
+      filterOptions={filterOptions}
       disablePortal
-      options={collection}
+      options={suggestions}
       value={value}
-      getOptionLabel={(city: City) => city.city_name}
-      onChange={(event, selectedElement) => {
-        setValue(selectedElement);
+      getOptionLabel={(option: unknown) => {
+        const city = option as City;
+        return city.city_name;
       }}
+      onChange={(event, selectedElement) => {
+        const city = selectedElement as City;
+        setValue(city);
+      }}
+      onInputChange={handleInputChange}
       sx={{ width: 300 }}
       renderInput={(params) => (
         <TextField

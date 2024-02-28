@@ -10,6 +10,7 @@ import { Repository } from 'typeorm';
 import { Citys } from './citys.entity';
 import { CitysResponseDto } from '../DTO/Citys/citysResponse.dto';
 import { plainToClass } from 'class-transformer';
+import { Like } from 'typeorm';
 
 @Injectable()
 export class CitysService {
@@ -19,8 +20,17 @@ export class CitysService {
   ) {}
 
   // GetAll
-  async getCitys(): Promise<Citys[]> {
-    return await this.citysRepository.find();
+  async getCitys(search?: any): Promise<Citys[]> {
+    console.log('search : ', await search);
+    if (!search) {
+      return this.citysRepository.find({ take: 10 });
+    }
+    return await this.citysRepository.find({
+      take: 10,
+      where: {
+        city_name: Like(`${search}%`),
+      },
+    });
   }
 
   // GetById

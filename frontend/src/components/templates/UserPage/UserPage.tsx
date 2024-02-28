@@ -18,7 +18,6 @@ export const UserPage: React.FC<any> = () => {
         setUser(res);
       })
     } else {
-      console.log('same')
       navigate('/profile')
     }
   }, []);
