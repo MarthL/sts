@@ -28,8 +28,9 @@ export async function getUserLogged(username: string) {
 });
 }
 
-export async function getAllUsers() {
-  return axiosClient.get('users')
+export async function getAllUsers(search?: string) {
+  const param = search ? `?search=${search}` : '' 
+  return axiosClient.get('users' + param)
   .then((response) => {
     return response.data;
   })
@@ -44,7 +45,7 @@ export async function getUserById(id: number) {
       return response.data
     })
     .catch((error) => {
-      console.log(error);
+      console.error(error);
     })
 }
 
@@ -54,6 +55,16 @@ export async function editUser(id: number, data: any) {
       return response.data;
     })
     .catch((error) => {
-      console.log(error)
+      console.error(error)
     })
 }
+
+// export async function getLoggedUser(id: number) {
+//   return axiosClient.get('users/currentuser')
+//     .then((response) => {
+//       return response.data
+//     })
+//     .catch((error) => {
+//       console.error(error)
+//     })
+// }

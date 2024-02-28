@@ -3,6 +3,7 @@ import { Container, Typography, Button, TextField, Box, Link, Grid, Paper } from
 import { Waves } from '../../molecules/Waves/Waves';
 import { Logo } from '../../atoms/Logo/Logo';
 import { logIn } from '../../../api/login';
+import { getAllUsers } from '../../../api/users';
 
 export const LoginPage = () => {
 
@@ -19,6 +20,13 @@ export const LoginPage = () => {
           if (res.status === 201) {
             localStorage.setItem('token', res.data.accessToken.accessToken);
             localStorage.setItem('name', email);
+            getAllUsers(email).then((response: any) => {
+              console.log(response[0]?.id);
+              localStorage.setItem('id', response[0]?.id)
+            })
+              .catch((error) => {
+                console.error(error);
+              })
             window.location.reload();
           }
         })

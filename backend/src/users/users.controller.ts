@@ -1,4 +1,4 @@
-import { ApiTags } from '@nestjs/swagger';
+import { ApiTags, ApiQuery } from '@nestjs/swagger';
 import { HttpException } from '@nestjs/common';
 import {
   Controller,
@@ -8,6 +8,7 @@ import {
   Param,
   Delete,
   Patch,
+  Query,
 } from '@nestjs/common';
 
 import { UsersService } from './users.service';
@@ -30,8 +31,9 @@ export class UsersController {
 
   // GetAll
   @Get('')
-  async getUsers() {
-    return this.usersService.getAllusers();
+  @ApiQuery({ name: 'search', required: false, type: String })
+  async getUsers(@Query('search') search: string) {
+    return this.usersService.getAllusers(search);
   }
 
   // GetById
