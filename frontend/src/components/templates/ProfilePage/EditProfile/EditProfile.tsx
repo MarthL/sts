@@ -82,6 +82,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
     })
     getCitiesCollection().then(async (res) => {
       setCityCollection(res);
+      console.log('res : ', res);
     })
   }, [])
 

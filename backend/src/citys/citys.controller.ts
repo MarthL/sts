@@ -5,13 +5,13 @@ import {
   ParseIntPipe,
   Patch,
   Body,
+  Query
 } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
-
+import { ApiTags, ApiQuery } from '@nestjs/swagger';
 import { CitysService } from './citys.service';
-
 import { Citys } from './citys.entity';
 import { CitysResponseDto } from '../DTO/Citys/citysResponse.dto';
+
 
 @ApiTags('Citys')
 @Controller('/citys')
@@ -19,8 +19,9 @@ export class CitysController {
   constructor(private readonly citysService: CitysService) {}
 
   @Get()
-  async getAll(): Promise<Citys[]> {
-    return this.citysService.getCitys();
+  @ApiQuery({ name: 'search', required: false, type: String })
+  async getAll(@Query("search") search: string): Promise<Citys[]> {
+    return this.citysService.getCitys(search);
   }
 
   @Get(':id')
