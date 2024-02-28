@@ -23,8 +23,8 @@ export class CitysService {
   async getCitys(search?: any): Promise<Citys[]> {
     console.log("search : ", await search);
     return await this.citysRepository.find({ take: 10, where: {
-      city_name: Like(`%${search}%`),
-  } });
+      city_name: Like(`%${search}%`)
+    }});
   }
 
   // GetById

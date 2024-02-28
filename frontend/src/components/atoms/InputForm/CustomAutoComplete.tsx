@@ -30,12 +30,10 @@ export const CustomAutoComplete = (props: CustomAutoCompleteProps) => {
   });
 
   const handleInputChange = (event: any) => {
-
     //console.log('new value : ', event.target.value);
   }
   
   useEffect(() => {
-    //console.log(city)
   }, [])
 
   //console.log(props);
@@ -43,7 +41,7 @@ export const CustomAutoComplete = (props: CustomAutoCompleteProps) => {
     <Autocomplete
       filterOptions={filterOptions}
       disablePortal
-      options={collection}
+      options={suggestions}
       value={value}
       getOptionLabel={(option: unknown) => {
         const city = option as City;
