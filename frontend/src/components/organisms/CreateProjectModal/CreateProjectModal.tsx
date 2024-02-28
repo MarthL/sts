@@ -8,6 +8,7 @@ import { Box, Typography, Button, Modal, TextField, InputAdornment, Grid } from 
 import { postProject } from '../../../api/projects';
 import CloseIcon from '@mui/icons-material/Close';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 
 interface ProjectModalProps {
@@ -55,6 +56,8 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ openModal, handleClo
   const { id } = useParams<{ id: string }>();
   const [project, setProject] = useState<Project>();
 
+  const navigate = useNavigate();
+
   const onSubmit = handleSubmit((data: any) => {
     postProject(data).then((response) => {
       const projectId = response.id;
@@ -64,13 +67,13 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ openModal, handleClo
         title: 'Project Created Successfully!',
         icon: 'success',
         showCancelButton: true,
-        confirmButtonText: 'Go to see your new Project',
-        cancelButtonText: 'Return to Home'
+        confirmButtonText: 'See project',
+        cancelButtonText: 'Back to Home'
       }).then((result) => {
         if (result.isConfirmed) {
-          window.location.href = `/project/${projectId}`;
+          navigate(`/project/${projectId}`);
         } else {
-          window.location.href = '/';
+          navigate('/');
         }
       });
     });
