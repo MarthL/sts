@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Autocomplete, TextField, createFilterOptions } from "@mui/material";
 import { useFormContext } from 'react-hook-form';
 import { Dispatch, SetStateAction } from "react";
+import { getCitiesCollection } from "../../../api/cities";
 
 interface City {
   id: number;
@@ -29,14 +30,13 @@ export const CustomAutoComplete = (props: CustomAutoCompleteProps) => {
     limit: OPTIONS_LIMIT
   });
 
-  const handleInputChange = (event: any) => {
-    //console.log('new value : ', event.target.value);
-  }
+  const handleInputChange = (event: any) => {}
   
   useEffect(() => {
-  }, [])
+    setSuggestions(collection);
+    console.log('suggestions : ', suggestions)
+  }, [collection])
 
-  //console.log(props);
   return (
     <Autocomplete
       filterOptions={filterOptions}

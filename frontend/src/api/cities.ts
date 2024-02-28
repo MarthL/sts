@@ -11,8 +11,10 @@ interface CitiesCollection {
   cities: City[]
 }
 
-export async function getCitiesCollection() {
-  return axiosClient.get('citys').then((response) => {
+export async function getCitiesCollection(search?: string) {
+  const param = search ? `?search=${search}` : ''
+  return axiosClient.get('citys' + param)
+  .then((response) => {
     return response.data;
   }).catch((error) => {
     console.log(error);
