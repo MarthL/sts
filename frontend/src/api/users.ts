@@ -58,13 +58,3 @@ export async function editUser(id: number, data: any) {
       console.error(error)
     })
 }
-
-// export async function getLoggedUser(id: number) {
-//   return axiosClient.get('users/currentuser')
-//     .then((response) => {
-//       return response.data
-//     })
-//     .catch((error) => {
-//       console.error(error)
-//     })
-// }
