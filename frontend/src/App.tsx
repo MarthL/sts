@@ -100,25 +100,27 @@ function App() {
 
   return (
     <>
-      <div style={{ backgroundColor, minHeight: '100vh' }}>
+      <div style={{ backgroundColor, minHeight: '100vh', display: 'flex' }}>
         <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
           <Router>
             <NavBar isDarkTheme={isDarkTheme} toggleTheme={toggleTheme} />
-            {isConnected ? (
-              <>
-                <Container component={'div'} maxWidth="xl" sx={{ marginTop: "10px" }}>
-                  <Routes>
-                    <Route path="/" element={<HomePage />} />
-                    <Route path="/profile" element={<ProfilePage />} />
-                    <Route path="/users" element={<CollaboratorsPage />} />
-                    <Route path={"/project/:id"} element={<ProjectPage />} />
-                    <Route path={'/users/:id'} element={<UserPage />} />
-                  </Routes>
-                </Container>
-              </>
-            ) : (
-              <LoginPage />
-            )}
+            <div style={{ flexGrow: 1, padding: '20px' }}>
+              {isConnected ? (
+                <>
+                  <Container component={'div'} maxWidth="xl" sx={{ marginTop: "10px" }}>
+                    <Routes>
+                      <Route path="/" element={<HomePage />} />
+                      <Route path="/profile" element={<ProfilePage />} />
+                      <Route path="/users" element={<CollaboratorsPage />} />
+                      <Route path={"/project/:id"} element={<ProjectPage />} />
+                      <Route path={'/users/:id'} element={<UserPage />} />
+                    </Routes>
+                  </Container>
+                </>
+              ) : (
+                <LoginPage />
+              )}
+            </div>
           </Router>
         </ThemeProvider >
       </div>
