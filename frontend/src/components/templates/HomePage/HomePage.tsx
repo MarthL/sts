@@ -63,11 +63,11 @@ export const HomePage = () => {
         <ProjectModal openModal={openModal} handleCloseModal={handleCloseModal} />
 
         <ChartDashboard />
-        <Grid container spacing={10}>
+        <Grid container spacing={5}>
           {
             currentProjects.map((project: Project) => {
               return (
-                <Grid key={project.id} item xs={12} sm={9} md={6} lg={3}>
+                <Grid key={project.id} item xs={12} sm={9} md={4} lg={3}>
                   <CardProject id={project.id} project_name={project.project_name} description={project.description}></CardProject>
                 </Grid>
               )
