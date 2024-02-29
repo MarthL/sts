@@ -74,7 +74,7 @@ export const NavBar: React.FC<Navbar> = ({ isDarkTheme, toggleTheme }) => {
             <ListItem disablePadding onClick={() => {
               localStorage.removeItem('token')
               localStorage.removeItem('name')
-              navigate('/');
+              window.location.reload();
             }}>
               <ListItemButton>
                 <ListItemIcon>
