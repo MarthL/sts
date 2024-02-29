@@ -180,10 +180,9 @@
 //       </Box> */}
 // }
 import * as React from 'react';
-import { styled, useTheme, Theme, CSSObject } from '@mui/material/styles';
+import { styled, Theme, CSSObject } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
-import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import List from '@mui/material/List';
 import CssBaseline from '@mui/material/CssBaseline';
 import IconButton from '@mui/material/IconButton';
@@ -198,7 +197,12 @@ import { Home, People, Person, ExitToApp } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { Switch } from '@mui/material';
 
-const drawerWidth = 240;
+interface Navbar {
+  isDarkTheme: boolean,
+  toggleTheme: () => void;
+}
+
+const drawerWidth = 200;
 
 const openedMixin = (theme: Theme): CSSObject => ({
   width: drawerWidth,
@@ -230,33 +234,6 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   ...theme.mixins.toolbar,
 }));
 
-interface AppBarProps extends MuiAppBarProps {
-  open?: boolean;
-}
-
-interface Navbar {
-  isDarkTheme: boolean,
-  toggleTheme: () => void;
-}
-
-const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== 'open',
-})<AppBarProps>(({ theme, open }) => ({
-  zIndex: theme.zIndex.drawer + 1,
-  transition: theme.transitions.create(['width', 'margin'], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  ...(open && {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  }),
-}));
-
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
     width: drawerWidth,
@@ -275,29 +252,22 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 export const NavBar: React.FC<Navbar> = ({ isDarkTheme, toggleTheme }) => {
-  const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const navigate = useNavigate();
   const handleDrawerOpen = () => {
-    setOpen(true);
+    setOpen(!open);
   };
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
-  // Home, People, Person, ExitToApp
+
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <Drawer variant="permanent" open={open}>
-        <DrawerHeader sx={{ display: 'flex', justifyContent: 'end' }}>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-          </IconButton>
-          <Box sx={{ display: 'flex', justifyContent: 'center', mr: 3 }}>
-            <Logo size={100} />
+        <DrawerHeader>
+          <Box sx={{mt: 1}}>
+            {open ? <Logo size={100} /> : null}            
           </Box>
           <IconButton onClick={handleDrawerOpen}>
-            {theme.direction === 'ltr' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+            {open ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
         </DrawerHeader>
         <List>
@@ -359,10 +329,6 @@ export const NavBar: React.FC<Navbar> = ({ isDarkTheme, toggleTheme }) => {
               />           
           </ListItem>
         </List>
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
-          
-          
-        </Box>
       </Drawer>
     </Box>
   );
