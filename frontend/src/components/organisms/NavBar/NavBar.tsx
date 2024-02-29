@@ -17,7 +17,7 @@ interface Navbar {
   toggleTheme: () => void;
 }
 
-const drawerWidth = 240;
+const drawerWidth = 200;
 
 export const NavBar: React.FC<Navbar> = ({ isDarkTheme, toggleTheme }) => {
 
@@ -40,8 +40,11 @@ export const NavBar: React.FC<Navbar> = ({ isDarkTheme, toggleTheme }) => {
           anchor="left"
         >
           <Toolbar />
+          <Box display={'flex'} alignItems={'center'} justifyContent={'center'} pb={5} >
+            <Logo size={100} />
+          </Box>
           <Divider />
-          <List>
+          <List sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
             <ListItem disablePadding onClick={() => navigate('/')}>
               <ListItemButton>
                 <ListItemIcon>
@@ -50,20 +53,57 @@ export const NavBar: React.FC<Navbar> = ({ isDarkTheme, toggleTheme }) => {
                 <ListItemText primary={'Home'} />
               </ListItemButton>
             </ListItem>
+            <ListItem disablePadding onClick={() => navigate('/users')}>
+              <ListItemButton>
+                <ListItemIcon>
+                  <People />
+                </ListItemIcon>
+                <ListItemText primary={'Users'} />
+              </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding onClick={() => navigate('/profile')}>
+              <ListItemButton>
+                <ListItemIcon>
+                  <Person />
+                </ListItemIcon>
+                <ListItemText primary={'My Profile'} />
+              </ListItemButton>
+            </ListItem>
+            <div style={{ flexGrow: 1 }}></div>
+            <ListItem disablePadding onClick={() => {
+              localStorage.removeItem('token')
+              localStorage.removeItem('name')
+              navigate('/');
+            }}>
+              <ListItemButton>
+                <ListItemIcon>
+                  <ExitToApp />
+                </ListItemIcon>
+                <ListItemText primary={'Logout'} />
+              </ListItemButton>
+            </ListItem>
           </List>
-          <Divider />
-          <List>
-            {['All mail', 'Trash', 'Spam'].map((text, index) => (
-              <ListItem key={text} disablePadding>
-                <ListItemButton>
-                  <ListItemIcon>
-                    <MailOutlineRounded />
-                  </ListItemIcon>
-                  <ListItemText primary={text} />
-                </ListItemButton>
-              </ListItem>
-            ))}
-          </List>
+          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+            {isDarkTheme ? <Brightness7Icon sx={{ color: 'white' }} /> : <Brightness4Icon sx={{ color: 'black' }} />}
+            <Switch
+              checked={isDarkTheme}
+              color='success'
+              onChange={toggleTheme}
+              sx={{
+                '& .MuiSwitch-thumb': {
+                  color: 'white',
+                },
+                '& .MuiSwitch-track': {
+                  color: 'white',
+                },
+                '&:not(.Mui-checked)': {
+                  '& .MuiSwitch-track': {
+                    color: 'white',
+                  },
+                },
+              }}
+            />
+          </Box>
         </Drawer>
       </Box>
     </>

@@ -106,7 +106,7 @@ function App() {
             <NavBar isDarkTheme={isDarkTheme} toggleTheme={toggleTheme} />
             {isConnected ? (
               <>
-                <Container maxWidth="xl" sx={{ marginTop: "10px" }}>
+                <Container component={'div'} maxWidth="xl" sx={{ marginTop: "10px" }}>
                   <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/profile" element={<ProfilePage />} />
