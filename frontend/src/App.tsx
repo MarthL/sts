@@ -100,7 +100,7 @@ function App() {
 
   return (
     <>
-      <div style={{ backgroundColor, minHeight: '100vh', display: 'flex' }}>
+      <div style={{ backgroundColor, minHeight: '100vh', display: 'flex', overflowX: 'hidden' }}>
         <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
           <Router>
             <NavBar isDarkTheme={isDarkTheme} toggleTheme={toggleTheme} />

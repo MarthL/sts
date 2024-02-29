@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { CardProject } from '../../molecules/CardProject/CardProject';
-import { Box, Typography, Button } from '@mui/material';
+import { Box, Typography, Button, Grid } from '@mui/material';
 import { ChartDashboard } from '../../organisms/ChartDashboard/ChartDashboard';
 import { getProjects } from '../../../api/projects';
 import { ProjectModal } from '../../organisms/CreateProjectModal/CreateProjectModal';
@@ -12,7 +12,7 @@ import ScrollToPlugin from 'gsap/ScrollToPlugin';
 
 import { Project } from '../../../api/projects';
 
-export const HomePage: React.FC = () => {
+export const HomePage = () => {
 
   const [projectsCollection, setProjectsCollection] = useState<Project[]>([]);
   const [currentUser, setCurrentUser] = useState('');
@@ -64,25 +64,25 @@ export const HomePage: React.FC = () => {
       <ProjectModal openModal={openModal} handleCloseModal={handleCloseModal} />
 
       <ChartDashboard />
-      <Box display={'flex'} flexDirection={'row'} justifyContent={'center'} flexWrap={'wrap'} gap={20}>
+      <Grid container spacing={10}>
         {
           currentProjects.map((project: Project) => {
             return (
-              <Box>
+              <Grid key={project.id} item xs={12} sm={12} md={12} lg={4}>
                 <CardProject id={project.id} project_name={project.project_name} description={project.description}></CardProject>
-              </Box>
+              </Grid>
             )
           })
         }
-        <Box width={'100vw'} display={'flex'} justifyContent={'center'}>
-          <Pagination
-            count={Math.ceil(projectsCollection.length / itemsPerPage)}
-            page={currentPage}
-            color="primary"
-            onChange={handlePageChange}
-            sx={{ marginBottom: '50px', '& .MuiPaginationItem-root': { fontSize: '1.2rem' }, '& .MuiPaginationItem-sizeSmall': { padding: '10px' }, }}
-          />
-        </Box>
+      </Grid>
+      <Box width={'100vw'} display={'flex'} justifyContent={'center'}>
+        <Pagination
+          count={Math.ceil(projectsCollection.length / itemsPerPage)}
+          page={currentPage}
+          color="primary"
+          onChange={handlePageChange}
+          sx={{ marginBottom: '50px', '& .MuiPaginationItem-root': { fontSize: '1.2rem' }, '& .MuiPaginationItem-sizeSmall': { padding: '10px' }, }}
+        />
       </Box>
     </>
   )

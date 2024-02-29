@@ -1,3 +1,4 @@
+import React from 'react';
 import { Card, CardContent, CardMedia, CardActions, Button, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 
@@ -11,7 +12,7 @@ export const CardProject: React.FC<CardProjectProps> = (props: CardProjectProps)
   const { id, project_name, description } = props;
   return (
     <>
-      <Card sx={{ maxWidth: 350, height: 350 }}>
+      <Card>
         <CardMedia
           component="img"
           height="194"
