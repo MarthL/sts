@@ -184,21 +184,19 @@ import { styled, useTheme, Theme, CSSObject } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
 import CssBaseline from '@mui/material/CssBaseline';
-import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+import { Logo } from '../../atoms/Logo/Logo';
+import { Home, People, Person, ExitToApp } from '@mui/icons-material';
+import { useNavigate } from 'react-router-dom';
+import { Switch } from '@mui/material';
 
 const drawerWidth = 240;
 
@@ -279,64 +277,92 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 export const NavBar: React.FC<Navbar> = ({ isDarkTheme, toggleTheme }) => {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-
+  const navigate = useNavigate();
   const handleDrawerOpen = () => {
     setOpen(true);
   };
-
   const handleDrawerClose = () => {
     setOpen(false);
   };
-
+  // Home, People, Person, ExitToApp
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open}></AppBar>
-      {/* <IconButton
-        color="inherit"
-        aria-label="open drawer"
-        onClick={handleDrawerOpen}
-        edge="start"
-        sx={{
-          marginRight: 5,
-          ...(open && { display: 'none' }),
-        }}>
-        <MenuIcon />
-      </IconButton> */}
       <Drawer variant="permanent" open={open}>
-        <DrawerHeader>
+        <DrawerHeader sx={{ display: 'flex', justifyContent: 'end' }}>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
+          <Box sx={{ display: 'flex', justifyContent: 'center', mr: 3 }}>
+            <Logo size={100} />
+          </Box>
           <IconButton onClick={handleDrawerOpen}>
-            {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+            {theme.direction === 'ltr' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
         </DrawerHeader>
-        <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: 'block' }}>
-              <ListItemButton
+          <ListItem disablePadding onClick={() => navigate('/')}>
+            <ListItemButton>
+              <ListItemIcon>
+                <Home />
+              </ListItemIcon>
+              <ListItemText primary={'Home'} />
+            </ListItemButton>
+          </ListItem>
+          <ListItem disablePadding onClick={() => navigate('/users')}>
+            <ListItemButton>
+              <ListItemIcon>
+                <People />
+              </ListItemIcon>
+              <ListItemText primary={'Users'} />
+            </ListItemButton>
+          </ListItem>
+          <ListItem disablePadding onClick={() => navigate('/profile')}>
+            <ListItemButton>
+              <ListItemIcon>
+                <Person />
+              </ListItemIcon>
+              <ListItemText primary={'My Profile'} />
+            </ListItemButton>
+          </ListItem>
+          <div style={{ flexGrow: 1 }}></div>
+          <ListItem disablePadding onClick={() => {
+            localStorage.removeItem('token')
+            localStorage.removeItem('name')
+            window.location.reload();
+          }}>
+            <ListItemButton>
+              <ListItemIcon>
+                <ExitToApp />
+              </ListItemIcon>
+              <ListItemText primary={'Logout'} />
+            </ListItemButton>
+          </ListItem>
+          <ListItem disablePadding>
+              <Switch
+                checked={isDarkTheme}
+                color='success'
+                onChange={toggleTheme}
                 sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
+                  '& .MuiSwitch-thumb': {
+                    color: 'white',
+                  },
+                  '& .MuiSwitch-track': {
+                    color: 'white',
+                  },
+                  '&:not(.Mui-checked)': {
+                    '& .MuiSwitch-track': {
+                      color: 'white',
+                    },
+                  },
                 }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
-                  }}
-                >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
-          ))}
+              />           
+          </ListItem>
         </List>
+        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+          
+          
+        </Box>
       </Drawer>
     </Box>
   );
