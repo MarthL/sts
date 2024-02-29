@@ -12,7 +12,7 @@ import ScrollToPlugin from 'gsap/ScrollToPlugin';
 
 import { Project } from '../../../api/projects';
 
-export const HomePage = () => {
+export const HomePage: React.FC = () => {
 
   const [projectsCollection, setProjectsCollection] = useState<Project[]>([]);
   const [currentUser, setCurrentUser] = useState('');

@@ -1,3 +1,4 @@
+import React from 'react';
 import { Typography, Button, Grid, Avatar } from '@mui/material';
 import { useForm, FormProvider } from 'react-hook-form';
 import { SelectInputCustom } from '../../../atoms/InputForm/SelectInputCustom';
@@ -186,6 +187,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
           </Grid>
           <Grid item xs={1}></Grid>
           <Grid item xs={1}></Grid>
+
 
           <Grid item xs={9} marginBottom={5}>
             <SelectInputCustom
