@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState, useEffect } from 'react';
 import { NavBar } from './components/organisms/NavBar/NavBar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -10,6 +11,7 @@ import { CollaboratorsPage } from './components/templates/CollaboratorsPage/Coll
 import { UserPage } from './components/templates/UserPage/UserPage';
 import { ThemeProvider, createTheme } from '@mui/material';
 import { lime, blue, } from '@mui/material/colors';
+
 
 function App() {
 
@@ -104,7 +106,7 @@ function App() {
             <NavBar isDarkTheme={isDarkTheme} toggleTheme={toggleTheme} />
             {isConnected ? (
               <>
-                <Container maxWidth="xl" sx={{ marginTop: "10px" }}>
+                <Container component={'div'} maxWidth="xl" sx={{ marginTop: "10px" }}>
                   <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/profile" element={<ProfilePage />} />

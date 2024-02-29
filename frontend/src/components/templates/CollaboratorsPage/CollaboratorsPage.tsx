@@ -16,7 +16,6 @@ export const CollaboratorsPage: React.FC = () => {
 
   return (
     <>
-
       <Typography variant="h3">Collaborators List</Typography>
       <List sx={{ width: '100%', flexWrap: 'wrap' }}>
         {userCollection.map((user) =>
