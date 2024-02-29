@@ -1,13 +1,9 @@
-import React from 'react';
-import { Drawer } from '@mui/material';
-import { AppBar, Toolbar, Box, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography, Divider } from '@mui/material';
-import { Link } from 'react-router-dom';
-import { Switch } from '@mui/material';
+import React, { useState } from 'react';
+import { Drawer, Switch } from '@mui/material';
+import { Toolbar, Box, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography, Divider } from '@mui/material';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import { Logo } from '../../atoms/Logo/Logo';
-import { ButtonNavbar } from '../../atoms/ButtonNavbar/ButtonNavbar';
-import { MailOutlineRounded } from '@mui/icons-material';
 import CssBaseline from '@mui/material/CssBaseline';
 import { Home, People, Person, ExitToApp } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
@@ -22,6 +18,11 @@ const drawerWidth = 200;
 export const NavBar: React.FC<Navbar> = ({ isDarkTheme, toggleTheme }) => {
 
   const navigate = useNavigate();
+  const [open, setOpen] = useState(true);
+
+  const toggleDrawer = (newOpen: boolean) => () => {
+    setOpen(newOpen);
+  };
 
   return (
     <>
