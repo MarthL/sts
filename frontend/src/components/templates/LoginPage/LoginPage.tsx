@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Container, Typography, Button, TextField, Box, Link, Grid, Paper } from '@mui/material';
 import { Waves } from '../../molecules/Waves/Waves';
 import { Logo } from '../../atoms/Logo/Logo';
@@ -21,7 +21,7 @@ export const LoginPage = () => {
             localStorage.setItem('token', res.data.accessToken.accessToken);
             localStorage.setItem('name', email);
             getAllUsers(email).then((response: any) => {
-              console.log(response[0]?.id);
+              console.log('id', response[0]?.id);
               localStorage.setItem('id', response[0]?.id)
             })
               .catch((error) => {
@@ -110,6 +110,3 @@ export const LoginPage = () => {
     </>
   )
 }
-
-
-

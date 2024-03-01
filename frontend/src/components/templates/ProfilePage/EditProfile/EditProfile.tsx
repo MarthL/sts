@@ -35,12 +35,7 @@ interface User {
     job_title?: string,
   },
   country: string,
-  city?: {
-    id: number;
-    city_name: string,
-    state: number,
-    zip_code: number
-  },
+  city?: City
 }
 
 interface EditProfileProps {
@@ -83,7 +78,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
     })
     getCitiesCollection().then(async (res) => {
       setCityCollection(res);
-      console.log('res : ', res);
+      console.log('setCityCollection res : ', res);
     })
   }, [])
 
@@ -109,7 +104,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
 
   const methods = useForm();
   const onsubmit = async (data: any) => {
-    console.log('it works')
+    console.log('click submit')
     const userHasConfirmed = await confirmModal();
     if (userHasConfirmed) {
       user?.id ? sendForm(user.id, data) : console.error(`Datas :  ${data} cannot be send, missing id user`)

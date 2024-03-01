@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Autocomplete, TextField, createFilterOptions } from "@mui/material";
 import { useFormContext } from 'react-hook-form';
 import { Dispatch, SetStateAction } from "react";
@@ -32,6 +32,7 @@ export const CustomAutoComplete = (props: CustomAutoCompleteProps) => {
 
   const handleInputChange = (event: any) => {
     getCitiesCollection(event.target.value).then((res) => {
+      console.log('get cities collection event.target.value : ', event.target.value)
       setSuggestions(res);
     })
       .catch((error) => {
