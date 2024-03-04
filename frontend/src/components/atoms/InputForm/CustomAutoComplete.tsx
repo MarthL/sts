@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import React, { useState } from "react";
 import { Autocomplete, TextField, createFilterOptions } from "@mui/material";
 import { useFormContext } from 'react-hook-form';
@@ -24,6 +25,7 @@ export const CustomAutoComplete = (props: CustomAutoCompleteProps) => {
   const { register } = useFormContext();
 
   const [suggestions, setSuggestions] = useState(collection);
+
 
   const OPTIONS_LIMIT = 10;
   const filterOptions = createFilterOptions({
@@ -53,14 +55,17 @@ export const CustomAutoComplete = (props: CustomAutoCompleteProps) => {
         return city.city_name;
       }}
       onChange={(event, selectedElement) => {
-        const city = selectedElement as City;
-        setValue(city);
+        if (selectedElement) {
+          const city = selectedElement as City;
+          setValue(city);
+        }
       }}
       onInputChange={handleInputChange}
       sx={{ width: '100%' }}
       renderInput={(params) => (
         <TextField
           {...params}
+          defaultValue={value ? value?.city_name : ''}
           label={label}
           {...register(registerProps)}
         />
