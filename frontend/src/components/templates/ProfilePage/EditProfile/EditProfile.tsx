@@ -145,12 +145,11 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
 
   return (
     <>
-      <Typography variant="h5" sx={{ml:3, mt:2}}>Edit Profile</Typography>
       <FormProvider {...methods}>
-        <Grid container sx={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', ml:3}} component={'form'}
+        <Grid container sx={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}} component={'form'}
           onSubmit={methods.handleSubmit(onsubmit)}
         >
-          <Grid item xs={12}>
+          <Grid item xs={12} mt={5}>
             <Avatar sx={{ width: '90px', height: '90px' }} />
           </Grid>
           
