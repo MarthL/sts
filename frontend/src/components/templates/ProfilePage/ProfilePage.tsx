@@ -60,9 +60,13 @@ export const ProfilePage: React.FC<any> = () => {
   return (
     <>
       <Grid container xs={12} width={'100%'}>
-        <Grid item xs={12} display={'flex'} justifyContent={'space-between'}>
+        <Grid item xs={4}>
           <ListItemProfile icon={<Edit />} text={'Edit Profile'} index={1} selectedIndex={selectedIndex} handleListItemClick={handleListItemClick}></ListItemProfile>
+        </Grid>
+        <Grid item xs={4}>
           <ListItemProfile icon={<Security />} text={'Security and Password'} index={2} selectedIndex={selectedIndex} handleListItemClick={handleListItemClick}></ListItemProfile>
+        </Grid>
+        <Grid item xs={4}>
           <ListItemProfile icon={<Tune />} text={'Advanced Settings'} index={3} selectedIndex={selectedIndex} handleListItemClick={handleListItemClick}></ListItemProfile>
         </Grid>
         <Grid item xs={12}>

@@ -1,6 +1,5 @@
 import React from 'react';
 import { List, ListItem, ListItemText, ListItemButton, ListItemIcon } from '@mui/material';
-import { ArrowDownward, ArrowForwardIos } from '@mui/icons-material';
 
 interface ListItemProfileProps {
   icon: React.ReactNode;
@@ -24,8 +23,8 @@ export const ListItemProfile: React.FC<ListItemProfileProps> = (props: ListItemP
             <ListItemIcon>
               {icon}
             </ListItemIcon>
-            <ListItemText primary={text} />
-            {selectedIndex === index && <div style={{ marginLeft: 20 }}> <ArrowDownward /> </div>}
+            <ListItemText primary={text} sx={{textAlign:'center'}} />
+            {selectedIndex === index}
           </ListItemButton>
         </ListItem>
       </List>
