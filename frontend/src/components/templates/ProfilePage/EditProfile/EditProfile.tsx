@@ -145,46 +145,40 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
 
   return (
     <>
-      <Typography variant="h5" marginLeft={3}>Edit Profile</Typography>
+      <Typography variant="h5" sx={{ml:3, mt:2}}>Edit Profile</Typography>
       <FormProvider {...methods}>
-        <Grid container marginLeft={3} component={'form'}
+        <Grid container sx={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', ml:3}} component={'form'}
           onSubmit={methods.handleSubmit(onsubmit)}
         >
-          <Grid item xs={2}></Grid>
-          <Grid item xs={1}></Grid>
-          <Grid item xs={1}></Grid>
-          <Grid item xs={3}>
+          <Grid item xs={12}>
             <Avatar sx={{ width: '90px', height: '90px' }} />
           </Grid>
-          <Grid item xs={2}></Grid>
-          <Grid item xs={2}></Grid>
+          
+          <Grid item xs={12} display={'flex'} flexDirection={'row'} justifyContent={'space-between'} width={'80%'}>
+            <Grid item xs={5} mt={5}>
+              <InputProfileCustom
+                label={'Username'}
+                type="text"
+                value={username}
+                onChangeEvent={handleUserNameChange}
+                disabled={true}
+                registerProps={"username"}
+              />
+            </Grid>
 
-          <Grid item xs={4} marginTop={5}>
-            <InputProfileCustom
-              label={'Username'}
-              type="text"
-              value={username}
-              onChangeEvent={handleUserNameChange}
-              disabled={true}
-              registerProps={"username"}
-            />
+            <Grid item xs={5} mb={5} mt={5} width={'80%'}>
+              <InputProfileCustom
+                label={'Last Name'}
+                type="text"
+                value={familyName}
+                onChangeEvent={handleFamilyNameChange}
+                disabled={false}
+                registerProps={"family_name"}
+              />
+            </Grid>
           </Grid>
-          <Grid item xs={1}></Grid>
-          <Grid item xs={4} marginBottom={5} marginTop={5}>
-            <InputProfileCustom
-              label={'Last Name'}
-              type="text"
-              value={familyName}
-              onChangeEvent={handleFamilyNameChange}
-              disabled={false}
-              registerProps={"family_name"}
-            />
-          </Grid>
-          <Grid item xs={1}></Grid>
-          <Grid item xs={1}></Grid>
 
-
-          <Grid item xs={9} marginBottom={5}>
+          <Grid item xs={12} mb={5} width={'80%'}>
             <SelectInputCustom
               label={'job'}
               registerProps={'job'}
@@ -193,9 +187,8 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
               collection={jobCollection}
             />
           </Grid>
-          <Grid item xs={3}></Grid>
 
-          <Grid item xs={9} marginBottom={5}>
+          <Grid item xs={12} mb={5} width={'80%'}>
             <InputProfileCustom
               label={'Years of XP'}
               type="text"
@@ -205,10 +198,8 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
               registerProps={"yop"}
             />
           </Grid>
-          <Grid item xs={3}></Grid>
 
-
-          <Grid item xs={9} marginBottom={5}>
+          <Grid item xs={12} mb={5} width={'80%'}>
             <InputProfileCustom
               label={'Email'}
               type="text"
@@ -218,9 +209,8 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
               registerProps={"email"}
             />
           </Grid>
-          <Grid item xs={3}></Grid>
 
-          <Grid item xs={9} marginBottom={5}>
+          <Grid item xs={12} mb={5} width={'80%'}>
             <InputProfileCustom
               label={'Contact Number'}
               type="text"
@@ -230,9 +220,8 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
               registerProps={"phone_number"}
             />
           </Grid>
-          <Grid item xs={3}></Grid>
 
-          <Grid item xs={4}>
+          <Grid item xs={12} width={'80%'} mb={5}>
             <CustomAutoComplete
               collection={cityCollection}
               label='City'
@@ -241,10 +230,8 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
               value={city}
             />
           </Grid>
-          <Grid item xs={4}></Grid>
-          <Grid item xs={4}></Grid>
-          <Grid item xs={4}></Grid>
-          <Grid item xs={1}>
+
+          <Grid item xs={12}>
             <Button
               type="submit"
               fullWidth
@@ -254,10 +241,6 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
               Save
             </Button>
           </Grid>
-          <Grid item xs={3}></Grid>
-          <Grid item xs={2}></Grid>
-          <Grid item xs={2}></Grid>
-
         </Grid >
       </FormProvider>
     </>

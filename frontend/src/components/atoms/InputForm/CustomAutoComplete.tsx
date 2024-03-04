@@ -57,7 +57,7 @@ export const CustomAutoComplete = (props: CustomAutoCompleteProps) => {
         setValue(city);
       }}
       onInputChange={handleInputChange}
-      sx={{ width: 300 }}
+      sx={{ width: '100%' }}
       renderInput={(params) => (
         <TextField
           {...params}
