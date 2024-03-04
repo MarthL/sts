@@ -32,18 +32,15 @@ export const CustomAutoComplete = (props: CustomAutoCompleteProps) => {
   });
 
   const handleInputChange = (event: any) => {
-    if (event !== null) {
-    getCitiesCollection(event.target.value).then((res) => {
-      console.log('get cities collection event.target.value : ', event.target.value)
-      setSuggestions(res);
-    })
-      .catch((error) => {
-        console.error(error);
+    if ( event !== null){
+      getCitiesCollection(event.target.value).then((res) => {
+        console.log('get cities collection event.target.value : ', event.target.value)
+        setSuggestions(res);
       })
         .catch((error) => {
-          console.error('error handleInputChange : ', error);
+          console.error(error);
         })
-    }
+    }    
   }
 
   return (
@@ -63,7 +60,7 @@ export const CustomAutoComplete = (props: CustomAutoCompleteProps) => {
         }
       }}
       onInputChange={handleInputChange}
-      sx={{ width: 300 }}
+      sx={{ width: '100%' }}
       renderInput={(params) => (
         <TextField
           {...params}
