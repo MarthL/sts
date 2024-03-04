@@ -1,6 +1,5 @@
 import React from 'react';
 import { List, ListItem, ListItemText, ListItemButton, ListItemIcon } from '@mui/material';
-import { ThemeContext } from '@emotion/react';
 
 interface ListItemProfileProps {
   icon: React.ReactNode;
@@ -21,10 +20,10 @@ export const ListItemProfile: React.FC<ListItemProfileProps> = (props: ListItemP
             selected={selectedIndex === index}
             onClick={() => handleListItemClick(index)}
           >
-            <ListItemIcon>
+            <ListItemIcon sx={{ml:15}}>
               {icon}
             </ListItemIcon>
-            <ListItemText primary={text} sx={{textAlign:'center'}} />
+            <ListItemText primary={text} />
             {selectedIndex === index}
           </ListItemButton>
         </ListItem>
