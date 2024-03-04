@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Button, Grid, Avatar } from '@mui/material';
+import { Button, Grid, Avatar } from '@mui/material';
 import { useForm, FormProvider } from 'react-hook-form';
 import { SelectInputCustom } from '../../../atoms/InputForm/SelectInputCustom';
 import { useState, useEffect } from 'react';
@@ -148,7 +148,6 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
 
   return (
     <>
-      <Typography variant="h5" marginLeft={3}>Edit Profile</Typography>
       <FormProvider {...methods}>
         <Grid container marginLeft={3} component={'form'}
           onSubmit={methods.handleSubmit(onsubmit)}

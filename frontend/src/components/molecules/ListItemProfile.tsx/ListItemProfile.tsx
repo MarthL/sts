@@ -1,5 +1,6 @@
 import React from 'react';
 import { List, ListItem, ListItemText, ListItemButton, ListItemIcon } from '@mui/material';
+import { ThemeContext } from '@emotion/react';
 
 interface ListItemProfileProps {
   icon: React.ReactNode;
@@ -14,7 +15,7 @@ export const ListItemProfile: React.FC<ListItemProfileProps> = (props: ListItemP
 
   return (
     <>
-      <List sx={{ marginTop: 0, marginBottom: 0, paddingTop: 0, paddingBottom: 0 }}>
+      <List sx={{ border:1, borderStyle:'solid', borderColor:'grey', my: 0, py: 0 }}>
         <ListItem disablePadding>
           <ListItemButton
             selected={selectedIndex === index}
