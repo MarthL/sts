@@ -1,4 +1,4 @@
-import { Select, MenuItem } from "@mui/material";
+import React, { Select, MenuItem } from "@mui/material";
 import { Dispatch, SetStateAction } from "react";
 import { useFormContext } from 'react-hook-form';
 interface SelectInputCustomProps {

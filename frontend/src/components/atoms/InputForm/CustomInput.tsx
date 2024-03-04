@@ -1,4 +1,4 @@
-import { OutlinedInput } from "@mui/material";
+import React, { OutlinedInput } from "@mui/material";
 
 interface CustomInputProps {
   type: string;
