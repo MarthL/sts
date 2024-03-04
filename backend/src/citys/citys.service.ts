@@ -21,7 +21,6 @@ export class CitysService {
 
   // GetAll
   async getCitys(search?: any): Promise<Citys[]> {
-    console.log('search : ', await search);
     if (!search) {
       return this.citysRepository.find({ take: 10 });
     }

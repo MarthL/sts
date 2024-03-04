@@ -55,9 +55,12 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
   const [city, setCity] = useState<City | null>(user?.city || null);
   const [cityCollection, setCityCollection] = useState<City[]>([]);
 
-  const findCityByName = (cityName: string): City | undefined => {
-    return cityCollection.find(city => city.city_name === cityName);
-  }
+  // const findCityByName = (cityName: string): any => {
+  //   getCitiesCollection(cityName)
+  //     .then((response) => {
+  //       response.length == 1 ? response.id : undefined;
+  //     });
+  // };
 
   useEffect(() => {
     if (user) {
@@ -112,20 +115,20 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
   }
 
   const sendForm = (id: number, data: any) => {
-    const filteredData = Object.keys(data).reduce((acc: any, key) => {
-      if (data[key] !== '') {
-        if (key === 'city') {
-          const cityObject = findCityByName(data[key]);
-          acc['city_id'] = cityObject ? cityObject.id : null;
-        } else {
-          acc[key] = data[key];
-        }
+    if (data.city.length !== undefined) {
+      if (city) {
+        data.city_id = city.id;
       }
-      return acc;
-    }, {});
-    editUser(id, filteredData);
-  };
-
+      delete data.city;
+      const filteredData = Object.keys(data).reduce((acc: any, key) => {
+        if (data[key] !== '') {
+          acc[key] = data[key]
+        }
+        return acc;
+      }, {});
+      editUser(id, filteredData)
+    }
+  }
   const confirmModal = async (): Promise<Boolean> => {
     return Swal.fire({
       title: "Do you want to save the changes?",
@@ -238,7 +241,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
               label='City'
               registerProps={'city'}
               setValue={setCity}
-              value={city}
+              value={city || null}
             />
           </Grid>
           <Grid item xs={4}></Grid>
