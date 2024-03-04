@@ -31,13 +31,15 @@ export const CustomAutoComplete = (props: CustomAutoCompleteProps) => {
   });
 
   const handleInputChange = (event: any) => {
-    getCitiesCollection(event.target.value).then((res) => {
-      console.log('get cities collection event.target.value : ', event.target.value)
-      setSuggestions(res);
-    })
-      .catch((error) => {
-        console.error(error);
+    if ( event !== null){
+      getCitiesCollection(event.target.value).then((res) => {
+        console.log('get cities collection event.target.value : ', event.target.value)
+        setSuggestions(res);
       })
+        .catch((error) => {
+          console.error(error);
+        })
+    }    
   }
 
   return (
