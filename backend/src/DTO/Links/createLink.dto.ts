@@ -1,6 +1,6 @@
 import { IsNotEmpty } from 'class-validator';
 
-export default class createLinkDto {
+export class createLinkDto {
   @IsNotEmpty()
   url: string;
 }

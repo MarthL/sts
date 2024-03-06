@@ -6,7 +6,7 @@ export class Links {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
+    @Column('varchar')
     url: string;
 
     @ManyToOne(() => Users, (user) => user.link)

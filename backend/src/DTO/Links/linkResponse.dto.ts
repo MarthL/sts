@@ -1,7 +1,6 @@
 import { IsNotEmpty, IsInt, IsString } from 'class-validator';
 
-export default class LinksResponseDto {
-  @IsNotEmpty()
+export class LinksResponseDto {
   @IsInt()
   id: number;
 

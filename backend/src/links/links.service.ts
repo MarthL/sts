@@ -6,12 +6,12 @@ import {
     ParseIntPipe,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Like, Repository } from 'typeorm';
 import { plainToClass } from 'class-transformer';
 import { Links } from './links.entity';
-import createLinkDto from '../DTO/Links/createLink.dto';
+import { createLinkDto } from '../DTO/Links/createLink.dto';
 import { updateLinkDto } from '../DTO/Links/updateLink.dto';
-import LinksResponseDto from '../DTO/Links/linkResponse.dto';
+import { LinksResponseDto } from '../DTO/Links/linkResponse.dto';
 
 @Injectable()
 export class LinksService {
@@ -27,16 +27,22 @@ export class LinksService {
     }
 
     // GetAll Links
-    async getLinks(): Promise<Links[]> {
-      return await this.linksRepository.find();
+    async getLinks(search?: any): Promise<Links[]> {
+      if (!search) {
+        return this.linksRepository.find({ take: 5 });
+      }
+      return await this.linksRepository.find({
+        take: 5,
+        where: {
+          url: Like(`${search}%`),
+        },
+      });
     }
 
     // GetById Link
-    async getLinkById(
-      id: number,
-    ): Promise<LinksResponseDto | HttpException> {
+    async getLinkById(id: number): Promise<LinksResponseDto | HttpException> {
       const link = await this.linksRepository.findOne({
-        where: { id },
+        where: { id }
       });
       if (!link) {
         throw new HttpException('Link not found', 404);

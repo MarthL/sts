@@ -120,16 +120,15 @@ export class UsersService {
       updateQuery = {
         ...updateQuery,
         job: { id: job_id },
-        company: { id: company_id },
+        company: { id: company_id }
       };
     }
 
-    if (link_id !== undefined) {
-      updateQuery = { ...updateQuery, link: { id: link_id } };
-    }
-
-    if (city_id !== undefined) {
-      updateQuery = { ...updateQuery, city: { id: city_id } };
+    if (city_id !== undefined && link_id !== undefined) {
+      updateQuery = { ...updateQuery,
+        city: { id: city_id },
+        link: { id: link_id }
+      };
     }
     updateQuery = { ...updateQuery, ...fields };
 

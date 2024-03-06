@@ -1,4 +1,4 @@
-import { ApiTags } from '@nestjs/swagger';
+import { ApiTags, ApiQuery } from '@nestjs/swagger';
 import {
     Controller,
     Get,
@@ -11,19 +11,19 @@ import {
 } from '@nestjs/common';
 import { Links } from './links.entity';
 import { LinksService } from './links.service';
-import createLinkDto from '../DTO/Links/createLink.dto';
-import LinksResponseDto from '../DTO/Links/linkResponse.dto';
+import { createLinkDto } from '../DTO/Links/createLink.dto';
+import { LinksResponseDto } from '../DTO/Links/linkResponse.dto';
 import { updateLinkDto } from '../DTO/Links/updateLink.dto';
 
 @ApiTags('Links')
 @Controller('/links')
 export class LinksController {
-  LinksService: any;
   constructor(private readonly linksService: LinksService) {}
 
   @Get()
+  @ApiQuery({ name: 'search', required: false, type: String })
   async getAll(): Promise<Links[]> {
-    return this.LinksService.getLinks();
+    return this.linksService.getLinks();
   }
 
   @Get(':id')

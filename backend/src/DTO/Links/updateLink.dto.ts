@@ -4,7 +4,6 @@ import { IsNotEmpty } from 'class-validator';
 @Exclude()
 export class updateLinkDto {
   @Exclude()
-  @IsNotEmpty()
   id: number;
 
   @IsNotEmpty()
