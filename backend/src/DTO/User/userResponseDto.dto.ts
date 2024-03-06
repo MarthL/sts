@@ -50,4 +50,8 @@ export class UserResponseDto {
   @IsNumber()
   @IsOptional()
   company_id?: number;
+
+  @IsNumber()
+  @IsOptional()
+  link_id?: number;
 }

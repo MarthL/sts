@@ -1,5 +1,4 @@
 import { ApiTags, ApiQuery } from '@nestjs/swagger';
-import { HttpException } from '@nestjs/common';
 import {
   Controller,
   Get,
@@ -9,15 +8,13 @@ import {
   Delete,
   Patch,
   Query,
+  HttpException
 } from '@nestjs/common';
-
 import { UsersService } from './users.service';
 import { AuthLogin } from './../auth/authlogin.service';
-
 import { CreateUserDto } from '../DTO/User/create-userDto.dto';
 import { UserLoginDto } from 'src/DTO/User/user-loginDto.dto';
 import { UserResponseDto } from 'src/DTO/User/userResponseDto.dto';
-
 import { UnauthorizedException, ParseIntPipe } from '@nestjs/common';
 import { DeleteResult } from 'typeorm';
 

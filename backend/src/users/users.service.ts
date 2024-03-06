@@ -39,7 +39,7 @@ export class UsersService {
   // getById
   async getUserById(userId: number): Promise<UserResponseDto | HttpException> {
     const user = await this.userRepository.findOne({
-      relations: ['job', 'company', 'city'],
+      relations: ['job', 'company', 'city', 'link'],
       where: {
         id: userId,
       },
@@ -98,7 +98,7 @@ export class UsersService {
       where: {
         username: username,
       },
-      relations: ['job', 'company', 'city'],
+      relations: ['job', 'company', 'city', 'link'],
     });
 
     if (!loggedUser) {
@@ -112,7 +112,7 @@ export class UsersService {
     @Param('id', ParseIntPipe) id: number,
     @Body() updateReq: UserResponseDto,
   ): Promise<any> {
-    const { job_id, company_id, city_id, ...fields } = updateReq;
+    const { job_id, company_id, city_id, link_id, ...fields } = updateReq;
 
     let updateQuery = {};
 
@@ -122,6 +122,10 @@ export class UsersService {
         job: { id: job_id },
         company: { id: company_id },
       };
+    }
+
+    if (link_id !== undefined) {
+      updateQuery = { ...updateQuery, link: { id: link_id } };
     }
 
     if (city_id !== undefined) {
