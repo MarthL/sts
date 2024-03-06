@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Button, Grid, Avatar } from '@mui/material';
+import { Button, Grid, Avatar } from '@mui/material';
 import { useForm, FormProvider } from 'react-hook-form';
 import { SelectInputCustom } from '../../../atoms/InputForm/SelectInputCustom';
 import { useState, useEffect } from 'react';
@@ -116,19 +116,24 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
 
   const sendForm = (id: number, data: any) => {
     if (data.city.length !== undefined) {
+      console.log('if data.city.lenght !== undefined : ', data.city.length)
       if (city) {
         data.city_id = city.id;
+        console.log('if city = data.city_id : ', data.city_id)
       }
       delete data.city;
       const filteredData = Object.keys(data).reduce((acc: any, key) => {
         if (data[key] !== '') {
+          console.log('if data[key] : ', data[key])
           acc[key] = data[key]
+          console.log('acc[key] : ', acc[key])
         }
         return acc;
       }, {});
       editUser(id, filteredData)
     }
   }
+
   const confirmModal = async (): Promise<Boolean> => {
     return Swal.fire({
       title: "Do you want to save the changes?",
