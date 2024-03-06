@@ -1,4 +1,4 @@
-import { ListItem, ListItemAvatar, Typography, Avatar, ListItemText, Button } from '@mui/material';
+import React, { ListItem, ListItemAvatar, Typography, Avatar, ListItemText } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { User } from '../../../api/users';
 

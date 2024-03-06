@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import React, { Typography } from "@mui/material";
 
 interface ErrorLalbel {
   message: string;
