@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from "typeorm";
 import { Users } from '../users/users.entity';
 
 @Entity()
@@ -9,6 +9,6 @@ export class Links {
     @Column('varchar')
     url: string;
 
-    @ManyToOne(() => Users, (user) => user.link)
+    @OneToMany(() => Users, (user) => user.link)
     users: Users[];
 }

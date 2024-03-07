@@ -5,14 +5,13 @@ import {
   ManyToMany,
   ManyToOne,
   JoinTable,
-  JoinColumn,
-  OneToMany,
+  JoinColumn
 } from 'typeorm';
 import { Job } from '../job/job.entity';
 import { Projects } from '../projects/projects.entity';
 import { Companys } from '../companys/company.entity';
 import { Citys } from '../citys/citys.entity';
-import { Links } from 'src/links/links.entity';
+import { Links } from '../links/links.entity';
 
 @Entity()
 export class Users {
@@ -56,7 +55,7 @@ export class Users {
   @JoinColumn({ name: 'city_id' })
   city: Citys;
 
-  @OneToMany(() => Links, (link) => link.users)
+  @ManyToOne(() => Links, (link) => link.users)
   @JoinColumn({ name: 'link_id' })
-  link?: Links;
+  link: Links;
 }
