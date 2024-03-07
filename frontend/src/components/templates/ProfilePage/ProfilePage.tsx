@@ -57,24 +57,24 @@ export const ProfilePage: React.FC<any> = () => {
     <SecurityPassword user={user} />
   ];
 
-
   return (
     <>
-      <Grid container>
-        <Grid item xs={3}>
-          <Paper elevation={0}
-            variant="outlined">
-            <ListItemProfile icon={<Edit />} text={'Edit Profile'} index={1} selectedIndex={selectedIndex} handleListItemClick={handleListItemClick}></ListItemProfile>
-            <ListItemProfile icon={<Security />} text={'Security and Password'} index={2} selectedIndex={selectedIndex} handleListItemClick={handleListItemClick}></ListItemProfile>
-            <ListItemProfile icon={<Tune />} text={'Advanced Settings'} index={3} selectedIndex={selectedIndex} handleListItemClick={handleListItemClick}></ListItemProfile>
-          </Paper>
+      <Grid container xs={12} sx={{ width:'100%'}}>
+        <Grid item xs={4}>
+          <ListItemProfile  icon={<Edit />} text={'Edit Profile'} index={1} selectedIndex={selectedIndex} handleListItemClick={handleListItemClick}></ListItemProfile>
         </Grid>
-        <Grid item xs={9}>
+        <Grid item xs={4}>
+          <ListItemProfile icon={<Security />} text={'Security and Password'} index={2} selectedIndex={selectedIndex} handleListItemClick={handleListItemClick}></ListItemProfile>
+        </Grid>
+        <Grid item xs={4}>
+          <ListItemProfile icon={<Tune />} text={'Advanced Settings'} index={3} selectedIndex={selectedIndex} handleListItemClick={handleListItemClick}></ListItemProfile>
+        </Grid>
+        <Grid item xs={12}>
           <Paper elevation={0} variant="outlined">
             {componentToRender[selectedIndex - 1]}
           </Paper>
         </Grid>
-      </Grid >
+      </Grid>
     </>
   )
 }
