@@ -13,6 +13,7 @@ import {
   ParseIntPipe
 } from '@nestjs/common';
 import { UsersService } from './users.service';
+import { Users } from './users.entity';
 import { AuthLogin } from './../auth/authlogin.service';
 import { CreateUserDto } from '../DTO/User/create-userDto.dto';
 import { UserLoginDto } from '../DTO/User/user-loginDto.dto';
@@ -30,7 +31,7 @@ export class UsersController {
   // GetAll
   @Get('')
   @ApiQuery({ name: 'search', required: false, type: String })
-  async getUsers(@Query('search') search: string) {
+  async getUsers(@Query('search') search: string): Promise<Users[]> {
     return this.usersService.getAllusers(search);
   }
 
