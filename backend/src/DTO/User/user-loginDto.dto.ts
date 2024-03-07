@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, MinLength, IsNumber } from 'class-validator';
+import { IsNotEmpty, IsString, MinLength } from 'class-validator';
 import { Exclude } from 'class-transformer';
 
 export class UserLoginDto {

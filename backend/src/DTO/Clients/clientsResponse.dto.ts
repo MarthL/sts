@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsInt, IsOptional } from 'class-validator';
+import { IsNotEmpty, IsInt, IsOptional, IsString } from 'class-validator';
 
 export default class ClientsResponseDto {
   
@@ -6,29 +6,38 @@ export default class ClientsResponseDto {
   id: number;
 
   @IsNotEmpty()
+  @IsString()
   name: string;
 
   @IsNotEmpty()
+  @IsString()
   siret: string;
 
   @IsOptional()
+  @IsString()
   industry: string;
 
   @IsNotEmpty()
+  @IsString()
   mail: string;
 
   @IsNotEmpty()
+  @IsString()
   phone: string;
 
   @IsOptional()
+  @IsString()
   adress: string;
 
   @IsOptional()
+  @IsString()
   zip_code: string;
 
   @IsOptional()
+  @IsString()
   state: string;
 
   @IsOptional()
+  @IsString()
   city: string;
 }

@@ -1,9 +1,8 @@
-import { IsNotEmpty, IsString, MinLength, IsNumber } from 'class-validator';
-import { OneToMany } from 'typeorm';
+import { IsNotEmpty, IsString, MinLength, IsInt } from 'class-validator';
 
 export class UserLoginDto {
   @IsNotEmpty()
-  @IsNumber()
+  @IsInt()
   id!: number;
 
   @IsNotEmpty()

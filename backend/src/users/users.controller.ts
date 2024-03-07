@@ -8,14 +8,15 @@ import {
   Delete,
   Patch,
   Query,
-  HttpException
+  HttpException,
+  UnauthorizedException,
+  ParseIntPipe
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { AuthLogin } from './../auth/authlogin.service';
 import { CreateUserDto } from '../DTO/User/create-userDto.dto';
-import { UserLoginDto } from 'src/DTO/User/user-loginDto.dto';
-import { UserResponseDto } from 'src/DTO/User/userResponseDto.dto';
-import { UnauthorizedException, ParseIntPipe } from '@nestjs/common';
+import { UserLoginDto } from '../DTO/User/user-loginDto.dto';
+import { UserResponseDto } from '../DTO/User/userResponseDto.dto';
 import { DeleteResult } from 'typeorm';
 
 @ApiTags('Users')

@@ -12,7 +12,6 @@ import { CitysService } from './citys.service';
 import { Citys } from './citys.entity';
 import { CitysResponseDto } from '../DTO/Citys/citysResponse.dto';
 
-
 @ApiTags('Citys')
 @Controller('/citys')
 export class CitysController {

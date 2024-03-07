@@ -1,7 +1,9 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { JwtModule } from '@nestjs/jwt';
-
+import { PassportModule } from '@nestjs/passport';
+import { JwtStrategy } from './auth/jwt.strategy';
+import { ConfigModule } from '@nestjs/config';
 import { AuthController } from './auth/auth.controller';
 
 import { Projects } from './projects/projects.entity';
@@ -12,10 +14,6 @@ import { Clients } from './clients/clients.entity';
 import { Companys } from './companys/company.entity';
 import { Citys } from './citys/citys.entity';
 import { Links } from './links/links.entity';
-
-import { PassportModule } from '@nestjs/passport';
-import { JwtStrategy } from './auth/jwt.strategy';
-import { ConfigModule } from '@nestjs/config';
 
 import { AuthModule } from './auth/auth.module';
 import { ProjectsModule } from './projects/projects.module';

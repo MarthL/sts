@@ -10,7 +10,7 @@ import { Repository } from 'typeorm';
 import { Projects } from './projects.entity';
 import ProjectsResponseDto from '../DTO/Projects/projectsResponse.dto';
 import CreateProjectDto from '../DTO/Projects/createProject.dto';
-import { updateProjectDto } from 'src/DTO/Projects/updateProjectDto.dto';
+import { updateProjectDto } from '../DTO/Projects/updateProjectDto.dto';
 import { plainToClass } from 'class-transformer';
 
 @Injectable()

@@ -1,11 +1,11 @@
-import { Injectable, Body, Param, Delete, HttpException } from '@nestjs/common';
+import { Injectable, HttpException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Job } from './job.entity';
-import { JobResponseDto } from 'src/DTO/Job/jobResponseDto.dto';
-import { CreateJobDto } from 'src/DTO/Job/createJobDto.dto';
+import { JobResponseDto } from '../DTO/Job/jobResponseDto.dto';
+import { CreateJobDto } from '../DTO/Job/createJobDto.dto';
+import { JobField } from '../job-field/job-field.entity';
 import { plainToClass } from 'class-transformer';
-import { JobField } from 'src/job-field/job-field.entity';
 
 @Injectable()
 export class JobService {

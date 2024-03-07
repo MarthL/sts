@@ -2,13 +2,13 @@ import {
   IsNotEmpty,
   IsString,
   MinLength,
-  IsNumber,
   IsOptional,
+  IsInt,
 } from 'class-validator';
 
 export class UserResponseDto {
   @IsNotEmpty()
-  @IsNumber()
+  @IsInt()
   id: number;
 
   @IsNotEmpty()
@@ -39,7 +39,7 @@ export class UserResponseDto {
   @IsOptional()
   phone_number?: string;
 
-  @IsNumber()
+  @IsInt()
   @IsOptional()
   city_id?: number;
 
@@ -47,11 +47,11 @@ export class UserResponseDto {
   @IsOptional()
   email: string;
 
-  @IsNumber()
+  @IsInt()
   @IsOptional()
   company_id?: number;
 
-  @IsNumber()
+  @IsInt()
   @IsOptional()
   link_id?: number;
 }

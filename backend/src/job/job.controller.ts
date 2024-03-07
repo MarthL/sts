@@ -2,19 +2,15 @@ import {
   Controller,
   Get,
   Post,
-  Patch,
   Param,
   Delete,
   Body,
   ParseIntPipe,
   Injectable,
 } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
 import { ApiTags } from '@nestjs/swagger';
-
 import { JobService } from './job.service';
-
-import { CreateJobDto } from 'src/DTO/Job/createJobDto.dto';
+import { CreateJobDto } from '../DTO/Job/createJobDto.dto';
 
 @ApiTags('Job')
 @Controller('/jobs')

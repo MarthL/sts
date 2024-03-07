@@ -9,11 +9,8 @@ import {
   ParseIntPipe,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-
 import { ProjectsService } from './projects.service';
-
 import { Projects } from './projects.entity';
-
 import createProjectDto from '../DTO/Projects/createProject.dto';
 import ProjectsResponseDto from '../DTO/Projects/projectsResponse.dto';
 import { updateProjectDto } from '../DTO/Projects/updateProjectDto.dto';

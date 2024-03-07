@@ -3,16 +3,12 @@ import {
     HttpException,
     Body,
   } from '@nestjs/common';
-
   import { plainToClass } from 'class-transformer';
-
   import { InjectRepository } from '@nestjs/typeorm';
   import { DeleteResult, Repository } from 'typeorm';
-
   import { Companys } from './company.entity';
-
-  import { CompanyResponseDto } from 'src/DTO/Company/companyResponse.dto';
-  import { CreateCompanyDto } from 'src/DTO/Company/createCompany.dto';
+  import { CompanyResponseDto } from '../DTO/Company/companyResponse.dto';
+  import { CreateCompanyDto } from '../DTO/Company/createCompany.dto';
   
   @Injectable()
   export class CompanysService {
@@ -54,4 +50,3 @@ import {
     }
     
   }
-  

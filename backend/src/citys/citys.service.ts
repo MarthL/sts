@@ -3,14 +3,13 @@ import {
   HttpException,
   Param,
   Body,
-  ParseIntPipe,
+  ParseIntPipe
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, Like } from 'typeorm';
 import { Citys } from './citys.entity';
 import { CitysResponseDto } from '../DTO/Citys/citysResponse.dto';
 import { plainToClass } from 'class-transformer';
-import { Like } from 'typeorm';
 
 @Injectable()
 export class CitysService {
