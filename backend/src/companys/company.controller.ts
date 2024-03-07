@@ -10,8 +10,8 @@ import {
   ParseIntPipe
 } from '@nestjs/common';
 import { CompanysService } from './company.service';
-import { CompanyResponseDto } from 'src/DTO/Company/companyResponse.dto';
-import { CreateCompanyDto } from 'src/DTO/Company/createCompany.dto';
+import { CompanyResponseDto } from '../DTO/Company/companyResponse.dto';
+import { CreateCompanyDto } from '../DTO/Company/createCompany.dto';
 import { DeleteResult } from 'typeorm';
 
 @ApiTags('Company')
