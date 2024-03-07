@@ -1,9 +1,7 @@
-import { Exclude } from 'class-transformer';
-import { IsNotEmpty } from 'class-validator';
+import { IsNotEmpty, IsNumber } from 'class-validator';
 
-@Exclude()
 export class updateLinkDto {
-  @Exclude()
+  @IsNumber()
   id: number;
 
   @IsNotEmpty()

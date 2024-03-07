@@ -7,13 +7,13 @@ import {
     Param,
     Delete,
     Patch,
-    ParseIntPipe
+    ParseIntPipe,
+    Query
 } from '@nestjs/common';
 import { Links } from './links.entity';
 import { LinksService } from './links.service';
 import { createLinkDto } from '../DTO/Links/createLink.dto';
 import { LinksResponseDto } from '../DTO/Links/linkResponse.dto';
-import { updateLinkDto } from '../DTO/Links/updateLink.dto';
 
 @ApiTags('Links')
 @Controller('/links')
@@ -22,8 +22,8 @@ export class LinksController {
 
   @Get()
   @ApiQuery({ name: 'search', required: false, type: String })
-  async getAll(): Promise<Links[]> {
-    return this.linksService.getLinks();
+  async getAll(@Query("search") search: string): Promise<Links[]> {
+    return this.linksService.getLinks(search);
   }
 
   @Get(':id')
@@ -46,8 +46,8 @@ export class LinksController {
   @Patch(':id')
   async updateLink(
     @Param('id') id: number,
-    @Body() updateReq: updateLinkDto,
-  ): Promise<updateLinkDto> {
+    @Body() updateReq: LinksResponseDto,
+  ): Promise<LinksResponseDto> {
     return await this.linksService.patch(id, updateReq);
   }
 }
