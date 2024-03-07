@@ -6,9 +6,11 @@ import { useState, useEffect } from 'react';
 import { editUser } from '../../../../api/users';
 import { getJobCollection } from '../../../../api/jobs';
 import { getCitiesCollection } from '../../../../api/cities';
+import { getLinksCollection } from '../../../../api/links';
 import Swal from 'sweetalert2';
 import { InputProfileCustom } from '../../../atoms/InputForm/InputProfileCustom';
 import { CustomAutoComplete } from '../../../atoms/InputForm/CustomAutoComplete';
+import { LinkAutocomplete } from '../../../atoms/InputForm/LinkAutocomplete';
 
 interface Job {
   id: number;
@@ -20,6 +22,11 @@ interface City {
   city_name: string,
   state: number,
   zip_code: number
+}
+
+interface Link {
+  id: number,
+  url: string
 }
 
 interface User {
@@ -34,8 +41,8 @@ interface User {
     id?: number,
     job_title?: string,
   },
-  country: string,
-  city?: City
+  city?: City,
+  link?: Link
 }
 
 interface EditProfileProps {
@@ -54,6 +61,8 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
   const [jobCollection, setJobCollection] = useState<Job[]>([]);
   const [city, setCity] = useState<City | null>(user?.city || null);
   const [cityCollection, setCityCollection] = useState<City[]>([]);
+  const [link, setLink] = useState<Link | null>(user?.link || null);
+  const [linkCollection, setLinkCollection] = useState<Link[]>([]);
 
   // const findCityByName = (cityName: string): any => {
   //   getCitiesCollection(cityName)
@@ -72,16 +81,22 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
       setEmail(user?.email ? user.email : '');
       setPhone(user?.phone_number ? user.phone_number : '');
       setCity(user?.city || null);
+      setLink(user?.link || null);
     }
   }, [user, cityCollection]);
 
   useEffect(() => {
     getJobCollection().then(async (res) => {
       setJobCollection(res);
+      console.log('setJobCollection res : ', res)
     })
     getCitiesCollection().then(async (res) => {
       setCityCollection(res);
       console.log('setCityCollection res : ', res);
+    })
+    getLinksCollection().then(async (res) => {
+      setLinkCollection(res);
+      console.log('setLinkCollection res : ', res);
     })
   }, [])
 
@@ -115,11 +130,13 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
   }
 
   const sendForm = (id: number, data: any) => {
-    if (data.city.length !== undefined) {
-      if (city) {
+    if (data.city.length !== undefined && data.link.length !== undefined) {
+      if (city && link) {
         data.city_id = city.id;
+        data.link_id = link.id;
       }
-      delete data.city;
+      delete data.city && data.link;
+
       const filteredData = Object.keys(data).reduce((acc: any, key) => {
         if (data[key] !== '') {
           acc[key] = data[key]
@@ -230,6 +247,16 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
               registerProps={'city'}
               setValue={setCity}
               value={city || null}
+            />
+          </Grid>
+
+          <Grid item xs={12} sx={{mb:5, width:'50%'}}>
+            <LinkAutocomplete
+              collection={linkCollection}
+              label='Link'
+              registerProps={'link'}
+              setValue={setLink}
+              value={link || null}
             />
           </Grid>
 

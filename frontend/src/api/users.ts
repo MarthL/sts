@@ -1,5 +1,6 @@
 import { axiosClient } from "./axios";
 import { City } from '../api/cities';
+import { Link } from '../api/links';
 
 export interface User {
     id: number;
@@ -15,7 +16,8 @@ export interface User {
       job_title: string;
     },
     company?: string;
-    city?: City
+    city?: City;
+    link?: Link;
   }
 
 export async function getUserLogged(username: string) {

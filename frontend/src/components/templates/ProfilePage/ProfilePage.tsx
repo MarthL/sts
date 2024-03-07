@@ -26,8 +26,11 @@ interface User {
     address: string,
     zip_code: number
   },
+  link?: {
+    id: number,
+    url: string
+  }
 }
-
 
 export const ProfilePage: React.FC<any> = () => {
 

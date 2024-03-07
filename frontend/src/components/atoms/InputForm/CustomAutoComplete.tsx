@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import { Autocomplete, TextField, createFilterOptions } from "@mui/material";
 import { useFormContext } from 'react-hook-form';
-import { Dispatch, SetStateAction } from "react";
 import { getCitiesCollection } from "../../../api/cities";
 
 interface City {
