@@ -5,7 +5,7 @@ import {
   ParseIntPipe,
   Patch,
   Body,
-  Query
+  Query,
 } from '@nestjs/common';
 import { ApiTags, ApiQuery } from '@nestjs/swagger';
 import { CitysService } from './citys.service';
@@ -19,7 +19,7 @@ export class CitysController {
 
   @Get()
   @ApiQuery({ name: 'search', required: false, type: String })
-  async getAll(@Query("search") search: string): Promise<Citys[]> {
+  async getAll(@Query('search') search: string): Promise<Citys[]> {
     return this.citysService.getCitys(search);
   }
 

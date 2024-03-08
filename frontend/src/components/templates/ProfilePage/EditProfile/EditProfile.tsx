@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import { editUser } from '../../../../api/users';
 import { getJobCollection } from '../../../../api/jobs';
 import { getCitiesCollection } from '../../../../api/cities';
-import { getLinksCollection } from '../../../../api/links';
+import { getLinksCollection, getLinkById, postLink } from '../../../../api/links';
 import Swal from 'sweetalert2';
 import { InputProfileCustom } from '../../../atoms/InputForm/InputProfileCustom';
 import { CustomAutoComplete } from '../../../atoms/InputForm/CustomAutoComplete';
@@ -42,7 +42,10 @@ interface User {
     job_title?: string,
   },
   city?: City,
-  link?: Link
+  link?: {
+    id: number,
+    url: string,
+  }
 }
 
 interface EditProfileProps {
@@ -60,16 +63,14 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
   const [phone, setPhone] = useState(user?.phone_number);
   const [jobCollection, setJobCollection] = useState<Job[]>([]);
   const [city, setCity] = useState<City | null>(user?.city || null);
-  const [cityCollection, setCityCollection] = useState<City[]>([]);
-  const [link, setLink] = useState<Link | null>(user?.link || null);
-  const [linkCollection, setLinkCollection] = useState<Link[]>([]);
 
-  // const findCityByName = (cityName: string): any => {
-  //   getCitiesCollection(cityName)
-  //     .then((response) => {
-  //       response.length == 1 ? response.id : undefined;
-  //     });
-  // };
+  // valeur du link
+  const [link, setLink] = useState<Link | null>(user?.link || null);
+  // valeur du label
+  const [linkInput, setLinkInput] = useState<string | null>(user?.link?.url || null);
+
+  const [cityCollection, setCityCollection] = useState<City[]>([]);
+  const [linkCollection, setLinkCollection] = useState<Link[]>([]);
 
   useEffect(() => {
     if (user) {
@@ -88,15 +89,12 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
   useEffect(() => {
     getJobCollection().then(async (res) => {
       setJobCollection(res);
-      console.log('setJobCollection res : ', res)
     })
     getCitiesCollection().then(async (res) => {
       setCityCollection(res);
-      console.log('setCityCollection res : ', res);
     })
     getLinksCollection().then(async (res) => {
       setLinkCollection(res);
-      console.log('setLinkCollection res : ', res);
     })
   }, [])
 
@@ -120,6 +118,10 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
     setPhone(event.target.value);
   }
 
+  const handleLinkChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setLinkInput(event.target.value);
+  }
+
   const methods = useForm();
   const onsubmit = async (data: any) => {
     console.log('click submit')
@@ -130,22 +132,37 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
   }
 
   const sendForm = (id: number, data: any) => {
-    if (data.city.length !== undefined && data.link.length !== undefined) {
-      if (city && link) {
-        data.city_id = city.id;
-        data.link_id = link.id;
-      }
-      delete data.city && data.link;
-
-      const filteredData = Object.keys(data).reduce((acc: any, key) => {
-        if (data[key] !== '') {
-          acc[key] = data[key]
-        }
-        return acc;
-      }, {});
-      editUser(id, filteredData)
+    if (data.city.length !== undefined) {
+      data.city_id = city?.id;
+      delete data.city;
     }
+    if (linkInput) {
+      getLinksCollection(linkInput).then((resAll: any) => {
+        console.log(resAll.length);
+        if (resAll.length !== 1) {
+          console.log('pas trouvé ! je créer un link :D')
+          postLink(linkInput).then((response: Link) => {
+            setLink(response);
+          })
+        } else {
+          console.log('trouvé ! je récupère le link : ', resAll.data)
+          setLink(resAll);
+        }
+      });
+      data.link_id = link?.id;
+      delete data.link;
+      console.log(data);
+    }
+
+    const filteredData = Object.keys(data).reduce((acc: any, key) => {
+      if (data[key] !== '') {
+        acc[key] = data[key]
+      }
+      return acc;
+    }, {});
+    editUser(id, filteredData)
   }
+
   const confirmModal = async (): Promise<Boolean> => {
     return Swal.fire({
       title: "Do you want to save the changes?",
@@ -166,14 +183,14 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
   return (
     <>
       <FormProvider {...methods}>
-        <Grid container sx={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}} component={'form'}
+        <Grid container sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }} component={'form'}
           onSubmit={methods.handleSubmit(onsubmit)}
         >
           <Grid item xs={12} mt={5}>
             <Avatar sx={{ width: '90px', height: '90px' }} />
           </Grid>
-          
-          <Grid item xs={12} sx={{ display:'flex', flexDirection:'row', justifyContent:'space-between', width:'50%' }}>
+
+          <Grid item xs={12} sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '50%' }}>
             <Grid item xs={5} mt={5}>
               <InputProfileCustom
                 label={'Username'}
@@ -185,7 +202,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
               />
             </Grid>
 
-            <Grid item xs={5} sx={{mb:5, mt:5, width:'50%'}}>
+            <Grid item xs={5} sx={{ mb: 5, mt: 5, width: '50%' }}>
               <InputProfileCustom
                 label={'Last Name'}
                 type="text"
@@ -197,7 +214,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
             </Grid>
           </Grid>
 
-          <Grid item xs={12} sx={{mb:5, width:'50%'}}>
+          <Grid item xs={12} sx={{ mb: 5, width: '50%' }}>
             <SelectInputCustom
               label={'job'}
               registerProps={'job'}
@@ -207,7 +224,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
             />
           </Grid>
 
-          <Grid item xs={12} sx={{mb:5, width:'50%'}} >
+          <Grid item xs={12} sx={{ mb: 5, width: '50%' }} >
             <InputProfileCustom
               label={'Years of XP'}
               type="text"
@@ -218,7 +235,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
             />
           </Grid>
 
-          <Grid item xs={12} sx={{mb:5, width:'50%'}} >
+          <Grid item xs={12} sx={{ mb: 5, width: '50%' }} >
             <InputProfileCustom
               label={'Email'}
               type="text"
@@ -229,7 +246,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
             />
           </Grid>
 
-          <Grid item xs={12} sx={{mb:5, width:'50%'}} >
+          <Grid item xs={12} sx={{ mb: 5, width: '50%' }} >
             <InputProfileCustom
               label={'Contact Number'}
               type="text"
@@ -240,23 +257,24 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
             />
           </Grid>
 
-          <Grid item xs={12} sx={{mb:5, width:'50%'}}>
+          <Grid item xs={12} sx={{ mb: 5, width: '50%' }}>
             <CustomAutoComplete
               collection={cityCollection}
               label='City'
               registerProps={'city'}
               setValue={setCity}
-              value={city || null}
+              value={city || undefined}
             />
           </Grid>
 
-          <Grid item xs={12} sx={{mb:5, width:'50%'}}>
-            <LinkAutocomplete
-              collection={linkCollection}
-              label='Link'
-              registerProps={'link'}
-              setValue={setLink}
-              value={link || null}
+          <Grid item xs={12} sx={{ mb: 5, width: '50%' }} >
+            <InputProfileCustom
+              label={'Link'}
+              type="text"
+              value={linkInput || undefined}
+              onChangeEvent={handleLinkChange}
+              disabled={false}
+              registerProps={"link"}
             />
           </Grid>
 
@@ -265,7 +283,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mb:3 }}
+              sx={{ mb: 3 }}
             >
               Save
             </Button>

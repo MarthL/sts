@@ -19,7 +19,17 @@ export async function getLinksCollection(search?: string) {
   })
 }
 
-export async function postLink(data: Link) {
+export async function getLinkById(id: number) {
+  return axiosClient.get(`links/${id}`)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => {
+      console.error(error);
+    })
+}
+
+export async function postLink(data: any) {
   return axiosClient.post('/links', {
     url: data.url
   })

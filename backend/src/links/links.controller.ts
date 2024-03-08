@@ -1,14 +1,14 @@
 import { ApiTags, ApiQuery } from '@nestjs/swagger';
 import {
-    Controller,
-    Get,
-    Post,
-    Body,
-    Param,
-    Delete,
-    Patch,
-    ParseIntPipe,
-    Query
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Delete,
+  Patch,
+  ParseIntPipe,
+  Query,
 } from '@nestjs/common';
 import { Links } from './links.entity';
 import { LinksService } from './links.service';
@@ -22,7 +22,7 @@ export class LinksController {
 
   @Get()
   @ApiQuery({ name: 'search', required: false, type: String })
-  async getAll(@Query("search") search: string): Promise<Links[]> {
+  async getAll(@Query('search') search: string): Promise<Links[]> {
     return this.linksService.getLinks(search);
   }
 
