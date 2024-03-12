@@ -42,10 +42,7 @@ interface User {
     job_title?: string,
   },
   city?: City,
-  link?: {
-    id: number,
-    url: string,
-  }
+  link?: Link
 }
 
 interface EditProfileProps {
@@ -138,7 +135,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
     }
     if (linkInput) {
       getLinksCollection(linkInput).then((resAll: any) => {
-        console.log(resAll.length);
+        console.log('resAll.lenght', resAll.length);
         if (resAll.length !== 1) {
           console.log('pas trouvé ! je créer un link :D')
           postLink(linkInput).then((response: Link) => {

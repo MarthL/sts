@@ -20,7 +20,7 @@ export const ListItemProfile: React.FC<ListItemProfileProps> = (props: ListItemP
             selected={selectedIndex === index}
             onClick={() => handleListItemClick(index)}
           >
-            <ListItemIcon sx={{ml:15}}>
+            <ListItemIcon>
               {icon}
             </ListItemIcon>
             <ListItemText primary={text} />

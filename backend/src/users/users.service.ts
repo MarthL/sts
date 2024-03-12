@@ -116,17 +116,28 @@ export class UsersService {
 
     let updateQuery = {};
 
-    if (job_id !== undefined && company_id !== undefined) {
+    if (job_id !== undefined) {
       updateQuery = {
         ...updateQuery,
         job: { id: job_id },
+      };
+    }
+
+    if (company_id !== undefined) {
+      updateQuery = {
+        ...updateQuery,
         company: { id: company_id }
       };
     }
 
-    if (city_id !== undefined && link_id !== undefined) {
+    if (city_id !== undefined) {
       updateQuery = { ...updateQuery,
         city: { id: city_id },
+      };
+    }
+
+    if (link_id !== undefined) {
+      updateQuery = { ...updateQuery,
         link: { id: link_id }
       };
     }
