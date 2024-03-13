@@ -265,13 +265,20 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
           </Grid>
 
           <Grid item xs={12} sx={{ mb: 5, width: '50%' }} >
-            <InputProfileCustom
+            {/* <InputProfileCustom
               label={'Link'}
               type="text"
               value={linkInput || undefined}
               onChangeEvent={handleLinkChange}
               disabled={false}
               registerProps={"link"}
+            /> */}
+            <LinkAutocomplete
+              collection={linkCollection}
+              label='Link'
+              registerProps={'link'}
+              setValue={setLink}
+              value={link || null}
             />
           </Grid>
 
