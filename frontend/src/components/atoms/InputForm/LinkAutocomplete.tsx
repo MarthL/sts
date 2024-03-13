@@ -32,11 +32,12 @@ export const LinkAutocomplete = (props: LinkAutocompleteProps) => {
       getLinksCollection(event.target.value).then((res) => {
         console.log('get Links collection event.target.value : ', event.target.value)
         setSuggestions(res);
+        console.log('link setSuggestions res', res)
       })
         .catch((error) => {
           console.error(error);
         })
-    }    
+    }
   }
 
   return (

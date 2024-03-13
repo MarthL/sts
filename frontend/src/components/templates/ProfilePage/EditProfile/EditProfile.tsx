@@ -139,7 +139,9 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
         if (resAll.length !== 1) {
           console.log('pas trouvé ! je créer un link :D')
           postLink(linkInput).then((response: Link) => {
+            console.log('link input post :', linkInput)
             setLink(response);
+            console.log('setLink response', response)
           })
         } else {
           console.log('trouvé ! je récupère le link : ', resAll.data)
