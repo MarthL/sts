@@ -260,7 +260,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
               label='City'
               registerProps={'city'}
               setValue={setCity}
-              value={city || undefined}
+              value={city || null}
             />
           </Grid>
 
