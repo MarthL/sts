@@ -121,39 +121,29 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
 
   const methods = useForm();
   const onsubmit = async (data: any) => {
-    console.log('click submit')
+
+    const newData = () => {
+      let i = 0;
+      for (var value in data) {
+        if (data[value] == '' || data[value] == undefined) {
+          delete data[value];
+        }
+        i += 1;
+      }
+      return data;
+    }
+
     const userHasConfirmed = await confirmModal();
     if (userHasConfirmed) {
-      user?.id ? sendForm(user.id, data) : console.error(`Datas :  ${data} cannot be send, missing id user`)
+      user?.id ? sendForm(user.id, newData()) : console.error(`Datas :  ${data} cannot be send, missing id user`)
     }
   }
 
   const sendForm = async (id: number, data: any) => {
-    if (data.city.length !== undefined) {
-      data.city_id = city?.id;
-      delete data.city;
-    }
-    // if (linkInput) {
-    //   getLinksCollection(linkInput).then((resAll: any) => {
-    //     console.log('resAll.lenght', resAll.length);
-    //     if (resAll.length !== 1) {
-    //       console.log('pas trouvé ! je créer un link :D')
-    //       postLink(linkInput).then((response: Link) => {
-    //         console.log('link input post :', linkInput)
-    //         setLink(response);
-    //         console.log('setLink response', setLink(response))
-    //       })
-    //     } else {
-    //       console.log('trouvé ! je récupère le link : ', resAll.data)
-    //       setLink(resAll);
-    //     }
-    //   });
-    //   data.link_id = link?.id;
-    //   delete data.link;
-    //   console.log(data);
-    // }
 
+    // console.log(linkInput et link, tu verras que ce sont deux choses différentes)
     if (linkInput) {
+      console.log(linkInput, 'link : ', link);
       if (link?.id) { // Si le lien existe déjà, recuperer le lien avec getLinkById
         getLinksCollection(link.url)
           .then(() => {
@@ -162,13 +152,13 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
           .catch((error) => {
             console.error('Error getting link:', error);
           });
-          patchLink(link.id, data)
-            .then((response) => {
-              console.log('Link patching successfully', response.data)
-            })
-            .catch((error) => {
-              console.error('Error patching link:', error);
-            });
+        patchLink(link.id, data)
+          .then((response) => {
+            console.log('Link patching successfully', response.data)
+          })
+          .catch((error) => {
+            console.error('Error patching link:', error);
+          });
       } else {
         // Si le lien n'existe pas, ajoutez-le à la base de données avec postLink
         postLink({ url: linkInput })
@@ -204,7 +194,8 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
       if (result.isConfirmed) {
         Swal.fire("Saved!", "", "success");
         return true;
-      } else {
+      }
+      else {
         Swal.fire("Changes are not saved", "", "info");
         return false;
       }
