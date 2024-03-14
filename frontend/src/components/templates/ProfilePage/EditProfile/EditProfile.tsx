@@ -121,7 +121,6 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
 
   const methods = useForm();
   const onsubmit = async (data: any) => {
-
     const newData = () => {
       let i = 0;
       for (var value in data) {
@@ -132,26 +131,19 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
       }
       return data;
     }
-
+    console.log('newData : ', newData())
     const userHasConfirmed = await confirmModal();
     if (userHasConfirmed) {
       user?.id ? sendForm(user.id, newData()) : console.error(`Datas :  ${data} cannot be send, missing id user`)
     }
-  }
+  }  
 
   const sendForm = async (id: number, data: any) => {
-
-    // console.log(linkInput et link, tu verras que ce sont deux choses différentes)
-    if (linkInput) {
-      console.log(linkInput, 'link : ', link);
-      if (link?.id) { // Si le lien existe déjà, recuperer le lien avec getLinkById
-        getLinksCollection(link.url)
-          .then(() => {
-            console.log('Link getting successfully.', link.url);
-          })
-          .catch((error) => {
-            console.error('Error getting link:', error);
-          });
+    console.log('linkInput: ', linkInput, ' / link: ', link);
+    if (linkInput === link?.url) {
+      // setLinkInput(data)
+      // console.log('linkInput', linkInput, 'link: ', link); // (linkInput et link, tu verras que ce sont deux choses différentes)
+      if (link?.id) {
         patchLink(link.id, data)
           .then((response) => {
             console.log('Link patching successfully', response.data)
@@ -159,29 +151,63 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
           .catch((error) => {
             console.error('Error patching link:', error);
           });
-      } else {
-        // Si le lien n'existe pas, ajoutez-le à la base de données avec postLink
-        postLink({ url: linkInput })
-          .then((response: Link) => {
-            setLink(response); // Mettre à jour l'état link avec le nouveau lien ajouté
-            console.log('New link added successfully:', response);
-          })
-          .catch((error) => {
-            console.error('Error adding new link:', error);
-          });
       }
       // Mettre à jour la valeur de link_id dans les données à envoyer au serveur
       data.link_id = link?.id || undefined;
       delete data.link;
+    } else {
+      getLinksCollection(link?.url)
+          .then(existingLink => {
+            if(existingLink.length > 0){
+              patchLink(existingLink[0].id, data)
+              .then((response) => {
+                console.log('Link patched successfully', response.data);
+              })
+              .catch((error) => {
+                console.error('Error patching link:', error);
+              });
+            } else {
+
+            }
+          })
+      // Si le lien n'existe pas, ajoutez-le à la base de données avec postLink
+      postLink({ url: linkInput })
+        .then((response: Link) => {
+          setLink(response); // Mettre à jour l'état link avec le nouveau lien ajouté
+          console.log('New link added successfully:', response);
+          
+        // Mettre à jour la valeur de link_id dans les données à envoyer au serveur
+          data.link_id = response.id;
+          delete data.link;
+
+        // Envoyer le formulaire avec les données mises à jour
+          editUser(id, data);
+        })
+        .catch((error) => {
+          console.error('Error adding new link:', error);
+        });
+      
+      // patchLink(id, data)
+      //   .then((response) => {
+      //     console.log('Link patching successfully', response.data)
+      //   })
+      //   .catch((error) => {
+      //     console.error('Error patching link:', error);
+      //   });
     }
 
-    const filteredData = Object.keys(data).reduce((acc: any, key) => {
-      if (data[key] !== '') {
-        acc[key] = data[key]
-      }
-      return acc;
-    }, {});
-    editUser(id, filteredData)
+    // Envoyer le formulaire si le lien n'a pas été ajouté
+    if (!linkInput) {
+      editUser(id, data);
+    }
+
+    // const filteredData = Object.keys(data).reduce((acc: any, key) => {
+    //   if (data[key] !== '') {
+    //     acc[key] = data[key]
+    //   }
+    //   return acc;
+    // }, {});
+    //editUser(id, data)/*, filteredData*/
   }
 
   const confirmModal = async (): Promise<Boolean> => {
