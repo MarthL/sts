@@ -126,22 +126,21 @@ export class UsersService {
     if (company_id !== undefined) {
       updateQuery = {
         ...updateQuery,
-        company: { id: company_id }
+        company: { id: company_id },
       };
     }
 
     if (city_id !== undefined) {
-      updateQuery = { ...updateQuery,
-        city: { id: city_id },
-      };
+      updateQuery = { ...updateQuery, city: { id: city_id } };
     }
 
     if (link_id !== undefined) {
-      updateQuery = { ...updateQuery,
-        link: { id: link_id }
-      };
+      console.log('quest ce que est que ca : ', link_id);
+      updateQuery = { ...updateQuery, link: { id: link_id } };
     }
     updateQuery = { ...updateQuery, ...fields };
+
+    console.log('cest ce que jenvoi : ', updateQuery);
 
     const result = await this.userRepository.update(id, updateQuery);
 
