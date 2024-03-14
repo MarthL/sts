@@ -6,11 +6,10 @@ import { useState, useEffect } from 'react';
 import { editUser } from '../../../../api/users';
 import { getJobCollection } from '../../../../api/jobs';
 import { getCitiesCollection } from '../../../../api/cities';
-import { getLinksCollection, getLinkById, postLink } from '../../../../api/links';
+import { getLinksCollection, getLinkById, postLink, patchLink } from '../../../../api/links';
 import Swal from 'sweetalert2';
 import { InputProfileCustom } from '../../../atoms/InputForm/InputProfileCustom';
 import { CustomAutoComplete } from '../../../atoms/InputForm/CustomAutoComplete';
-import { LinkAutocomplete } from '../../../atoms/InputForm/LinkAutocomplete';
 
 interface Job {
   id: number;
@@ -80,6 +79,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
       setPhone(user?.phone_number ? user.phone_number : '');
       setCity(user?.city || null);
       setLink(user?.link || null);
+      setLinkInput(user?.link?.url || null); // Me permet d'afficher la value de l'input
     }
   }, [user, cityCollection]);
 
@@ -128,29 +128,61 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
     }
   }
 
-  const sendForm = (id: number, data: any) => {
+  const sendForm = async (id: number, data: any) => {
     if (data.city.length !== undefined) {
       data.city_id = city?.id;
       delete data.city;
     }
+    // if (linkInput) {
+    //   getLinksCollection(linkInput).then((resAll: any) => {
+    //     console.log('resAll.lenght', resAll.length);
+    //     if (resAll.length !== 1) {
+    //       console.log('pas trouvé ! je créer un link :D')
+    //       postLink(linkInput).then((response: Link) => {
+    //         console.log('link input post :', linkInput)
+    //         setLink(response);
+    //         console.log('setLink response', setLink(response))
+    //       })
+    //     } else {
+    //       console.log('trouvé ! je récupère le link : ', resAll.data)
+    //       setLink(resAll);
+    //     }
+    //   });
+    //   data.link_id = link?.id;
+    //   delete data.link;
+    //   console.log(data);
+    // }
+
     if (linkInput) {
-      getLinksCollection(linkInput).then((resAll: any) => {
-        console.log('resAll.lenght', resAll.length);
-        if (resAll.length !== 1) {
-          console.log('pas trouvé ! je créer un link :D')
-          postLink(linkInput).then((response: Link) => {
-            console.log('link input post :', linkInput)
-            setLink(response);
-            console.log('setLink response', response)
+      if (link?.id) { // Si le lien existe déjà, recuperer le lien avec getLinkById
+        getLinksCollection(link.url)
+          .then(() => {
+            console.log('Link getting successfully.', link.url);
           })
-        } else {
-          console.log('trouvé ! je récupère le link : ', resAll.data)
-          setLink(resAll);
-        }
-      });
-      data.link_id = link?.id;
+          .catch((error) => {
+            console.error('Error getting link:', error);
+          });
+          patchLink(link.id, data)
+            .then((response) => {
+              console.log('Link patching successfully', response.data)
+            })
+            .catch((error) => {
+              console.error('Error patching link:', error);
+            });
+      } else {
+        // Si le lien n'existe pas, ajoutez-le à la base de données avec postLink
+        postLink({ url: linkInput })
+          .then((response: Link) => {
+            setLink(response); // Mettre à jour l'état link avec le nouveau lien ajouté
+            console.log('New link added successfully:', response);
+          })
+          .catch((error) => {
+            console.error('Error adding new link:', error);
+          });
+      }
+      // Mettre à jour la valeur de link_id dans les données à envoyer au serveur
+      data.link_id = link?.id || undefined;
       delete data.link;
-      console.log(data);
     }
 
     const filteredData = Object.keys(data).reduce((acc: any, key) => {
@@ -267,20 +299,13 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
           </Grid>
 
           <Grid item xs={12} sx={{ mb: 5, width: '50%' }} >
-            {/* <InputProfileCustom
+            <InputProfileCustom
               label={'Link'}
               type="text"
               value={linkInput || undefined}
               onChangeEvent={handleLinkChange}
               disabled={false}
               registerProps={"link"}
-            /> */}
-            <LinkAutocomplete
-              collection={linkCollection}
-              label='Link'
-              registerProps={'link'}
-              setValue={setLink}
-              value={link || null}
             />
           </Grid>
 

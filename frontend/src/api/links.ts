@@ -29,6 +29,16 @@ export async function getLinkById(id: number) {
     })
 }
 
+// export async function getLinkByUrl(url: string) {
+//   return axiosClient.get(`links/${url}`)
+//     .then((response) => {
+//       return response.data;
+//     })
+//     .catch((error) => {
+//       console.log("Il n'y a pas cet url");
+//     })
+// }
+
 export async function postLink(data: any) {
   return axiosClient.post('/links', {
     url: data.url
