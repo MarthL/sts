@@ -217,7 +217,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
     console.log('linkInput: ', linkInput, ' / link: ', link);
   
     // Vérifier si l'URL entrée est présente dans la base de données
-    const existingLink = linkCollection.find(linkItem => linkItem.url === linkInput);
+    const existingLink = linkCollection.find(link => link.url === linkInput);
   
     if (existingLink) {
       await handleExistingLink(id, data, existingLink);
