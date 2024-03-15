@@ -131,85 +131,139 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
       }
       return data;
     }
-    console.log('newData : ', newData())
     const userHasConfirmed = await confirmModal();
     if (userHasConfirmed) {
       user?.id ? sendForm(user.id, newData()) : console.error(`Datas :  ${data} cannot be send, missing id user`)
     }
-  }  
+  }
+
+  
+  // const sendForm = async (id: number, data: any) => {
+  //   console.log('linkInput: ', linkInput, ' / link: ', link);
+  //   if (linkInput === link?.url) {
+  //     if (link?.id) {
+  //       patchLink(link.id, data)
+  //         .then((response) => {
+  //           console.log('Link patching successfully', response.data)
+  //         })
+  //         .catch((error) => {
+  //           console.error('Error patching link:', error);
+  //         });
+  //       editUser(id, data);
+  //     }
+  //     data.link_id = link?.id || undefined;
+  //     delete data.link;
+  //   } else {
+  //     getLinksCollection(link?.url)
+  //         .then(existingLink => {
+  //           if(existingLink.length > 0){
+  //             patchLink(existingLink[0].id, data)
+  //             .then((response) => {
+  //               console.log('Link patched successfully', response.data);
+  //             })
+  //             .catch((error) => {
+  //               console.error('Error patching link:', error);
+  //             });
+  //           } else {
+
+  //           }
+  //         })
+  //     postLink({ url: linkInput })
+  //       .then((response: Link) => {
+  //         setLink(response);
+  //         console.log('New link added successfully:', response);
+  //         data.link_id = response.id;
+  //         console.log('data link: ', data.link);
+  //         delete data.link;
+  //         console.log(' after delete data link: ', data.link);
+  //         editUser(id, data);
+  //       })
+  //       .catch((error) => {
+  //         console.error('Error adding new link:', error);
+  //       });
+  //   }
+  //   if (!linkInput) {
+  //     editUser(id, data);
+  //   }
+  //   // const filteredData = Object.keys(data).reduce((acc: any, key) => {
+  //   //   if (data[key] !== '') {
+  //   //     acc[key] = data[key]
+  //   //   }
+  //   //   return acc;
+  //   // }, {});
+  //   //editUser(id, data)/*, filteredData*/
+  // }
+
+  // const sendForm = async (id: number, data: any) => {
+  //   console.log('linkInput: ', linkInput, ' / link: ', link);
+  //   if(linkInput === link?.url){
+  //     try {
+  //       getLinkById(link.id)
+  //       .then((response: any) => {
+  //         setLink(response)
+  //         console.log('lien trouvé', response)
+  //         editUser(id, data)
+  //         console.log('editUser', editUser(id, data))
+  //       })
+  //     } catch (error) {
+  //       console.error(`le lien n'a pas été attribué: `, error)
+  //     }      
+  //   } else (error: any) => {
+  //     console.error(`Aucun lien ne correspond et c'est tres bizarre`, error)
+  //   }
+  // }
 
   const sendForm = async (id: number, data: any) => {
     console.log('linkInput: ', linkInput, ' / link: ', link);
-    if (linkInput === link?.url) {
-      // setLinkInput(data)
-      // console.log('linkInput', linkInput, 'link: ', link); // (linkInput et link, tu verras que ce sont deux choses différentes)
-      if (link?.id) {
-        patchLink(link.id, data)
-          .then((response) => {
-            console.log('Link patching successfully', response.data)
-          })
-          .catch((error) => {
-            console.error('Error patching link:', error);
-          });
-      }
-      // Mettre à jour la valeur de link_id dans les données à envoyer au serveur
-      data.link_id = link?.id || undefined;
-      delete data.link;
+  
+    // Vérifier si l'URL entrée est présente dans la base de données
+    const existingLink = linkCollection.find(linkItem => linkItem.url === linkInput);
+  
+    if (existingLink) {
+      await handleExistingLink(id, data, existingLink);
     } else {
-      getLinksCollection(link?.url)
-          .then(existingLink => {
-            if(existingLink.length > 0){
-              patchLink(existingLink[0].id, data)
-              .then((response) => {
-                console.log('Link patched successfully', response.data);
-              })
-              .catch((error) => {
-                console.error('Error patching link:', error);
-              });
-            } else {
-
-            }
-          })
-      // Si le lien n'existe pas, ajoutez-le à la base de données avec postLink
-      postLink({ url: linkInput })
-        .then((response: Link) => {
-          setLink(response); // Mettre à jour l'état link avec le nouveau lien ajouté
-          console.log('New link added successfully:', response);
-          
-        // Mettre à jour la valeur de link_id dans les données à envoyer au serveur
-          data.link_id = response.id;
-          delete data.link;
-
-        // Envoyer le formulaire avec les données mises à jour
-          editUser(id, data);
-        })
-        .catch((error) => {
-          console.error('Error adding new link:', error);
-        });
-      
-      // patchLink(id, data)
-      //   .then((response) => {
-      //     console.log('Link patching successfully', response.data)
-      //   })
-      //   .catch((error) => {
-      //     console.error('Error patching link:', error);
-      //   });
+      await handleNewLink(id, data);
     }
-
-    // Envoyer le formulaire si le lien n'a pas été ajouté
-    if (!linkInput) {
-      editUser(id, data);
-    }
-
-    // const filteredData = Object.keys(data).reduce((acc: any, key) => {
-    //   if (data[key] !== '') {
-    //     acc[key] = data[key]
-    //   }
-    //   return acc;
-    // }, {});
-    //editUser(id, data)/*, filteredData*/
   }
-
+  
+  const handleExistingLink = async (id: number, data: any, existingLink: Link) => {
+    // Vérifier si l'URL existante est la même que celle associée à l'utilisateur
+    if (existingLink.url === link?.url) {
+      // Si oui, effectuer uniquement le patch
+      try {
+        await patchLink(existingLink.id, data);
+        console.log('Link patched successfully');
+        // Supprimer la propriété link des données à envoyer
+        delete data.link;
+        await editUser(id, data);
+        console.log('User data updated successfully');
+      } catch (error) {
+        console.error('Error patching link or updating user data:', error);
+      }
+    } else {
+      // Sinon, traiter comme un nouveau lien
+      await handleNewLink(id, data);
+    }
+  }
+  
+  const handleNewLink = async (id: number, data: any) => {
+    // Si l'URL n'existe pas, la créer et obtenir son ID
+    try {
+      const newLink = await postLink({ url: linkInput });
+      console.log('New link added successfully:', newLink);
+      // Enregistrer le nouvel URL retourné par l'API
+      setLink(newLink);
+      // Assigner l'id du nouvel URL créé à link_id
+      data.link_id = newLink.id;
+      // Supprimer la propriété link des données à envoyer
+      delete data.link;
+      await editUser(id, data);
+      console.log('User data updated successfully');
+    } catch (error) {
+      console.error('Error adding new link or updating user data:', error);
+    }
+  }
+  
   const confirmModal = async (): Promise<Boolean> => {
     return Swal.fire({
       title: "Do you want to save the changes?",
