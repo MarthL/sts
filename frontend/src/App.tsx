@@ -42,6 +42,11 @@ function App() {
           shrink: true,
         },
       },
+      MuiOutlinedInput: {
+        defaultProps: {
+          notched: true
+        }
+      },
     },
   });
 
@@ -72,6 +77,11 @@ function App() {
           shrink: true,
         },
       },
+      MuiOutlinedInput: {
+        defaultProps: {
+          notched: true
+        }
+      }
     },
   });
 
