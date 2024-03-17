@@ -9,6 +9,7 @@ import { LoginPage } from './components/templates/LoginPage/LoginPage';
 import { ProjectPage } from './components/templates/ProjectPage/ProjectPage';
 import { CollaboratorsPage } from './components/templates/CollaboratorsPage/CollaboratorsPage';
 import { UserPage } from './components/templates/UserPage/UserPage';
+import { StatsPage } from './components/templates/Stats/StatsPage';
 import { ThemeProvider, createTheme } from '@mui/material';
 import { lime, blue, } from '@mui/material/colors';
 
@@ -42,6 +43,11 @@ function App() {
           shrink: true,
         },
       },
+      MuiOutlinedInput: {
+        defaultProps: {
+          notched: true
+        }
+      },
     },
   });
 
@@ -72,6 +78,11 @@ function App() {
           shrink: true,
         },
       },
+      MuiOutlinedInput: {
+        defaultProps: {
+          notched: true
+        }
+      }
     },
   });
 
@@ -114,6 +125,7 @@ function App() {
                       <Route path="/users" element={<CollaboratorsPage />} />
                       <Route path={"/project/:id"} element={<ProjectPage />} />
                       <Route path={'/users/:id'} element={<UserPage />} />
+                      <Route path={'/stats'} element={<StatsPage />} />
                     </Routes>
                   </Container>
                 </>

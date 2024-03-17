@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { CardProject } from '../../molecules/CardProject/CardProject';
 import { Box, Typography, Button, Grid, Container } from '@mui/material';
-import { ChartDashboard } from '../../organisms/ChartDashboard/ChartDashboard';
 import { getProjects } from '../../../api/projects';
 import { ProjectModal } from '../../organisms/CreateProjectModal/CreateProjectModal';
 import { Pagination } from '@mui/material';
@@ -52,17 +51,16 @@ export const HomePage = () => {
 
   return (
     <>
-      <Container sx={{display:'flex', flexDirection:'column'}}>
+      <Container sx={{ display: 'flex', flexDirection: 'column' }}>
         <Typography variant="h3"> Welcome, {currentUser} </Typography>
 
-        <Button variant="contained" size='large' onClick={handleOpenModal} sx={{width:'20%', mt:3}}>
-          <AddCircleIcon sx={{mr:1}}/>
-          <span>New project</span>          
+        <Button variant="contained" size='large' onClick={handleOpenModal} sx={{ width: '20%', mt: 3, mb: 5 }}>
+          <AddCircleIcon sx={{ mr: 1 }} />
+          <span>New project</span>
         </Button>
 
         <ProjectModal openModal={openModal} handleCloseModal={handleCloseModal} />
 
-        <ChartDashboard />
         <Grid container spacing={5}>
           {
             currentProjects.map((project: Project) => {
@@ -74,7 +72,7 @@ export const HomePage = () => {
             })
           }
         </Grid>
-        <Box sx={{display:'flex', justifyContent:'center', width:'75vw', mt: 5}}>
+        <Box sx={{ display: 'flex', justifyContent: 'center', width: '75vw', mt: 5 }}>
           <Pagination
             count={Math.ceil(projectsCollection.length / itemsPerPage)}
             page={currentPage}

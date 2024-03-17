@@ -12,7 +12,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import { Logo } from '../../atoms/Logo/Logo';
-import { Home, People, Person, ExitToApp } from '@mui/icons-material';
+import { Home, People, Person, ExitToApp, QueryStats } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { Divider, Switch } from '@mui/material';
 
@@ -82,8 +82,8 @@ export const NavBar: React.FC<Navbar> = ({ isDarkTheme, toggleTheme }) => {
       <CssBaseline />
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
-          <Box sx={{mt: 1}}>
-            {open ? <Logo size={100} /> : null}            
+          <Box sx={{ mt: 1 }}>
+            {open ? <Logo size={100} /> : null}
           </Box>
           <IconButton onClick={handleDrawerOpen}>
             {open ? <ChevronLeftIcon /> : <ChevronRightIcon />}
@@ -115,6 +115,15 @@ export const NavBar: React.FC<Navbar> = ({ isDarkTheme, toggleTheme }) => {
               <ListItemText primary={'My Profile'} />
             </ListItemButton>
           </ListItem>
+          <ListItem disablePadding onClick={() => navigate('/stats')}>
+            <ListItemButton>
+              <ListItemIcon>
+                <QueryStats />
+              </ListItemIcon>
+              <ListItemText primary={'Stats'} />
+            </ListItemButton>
+          </ListItem>
+          <Divider />
           <div style={{ flexGrow: 1 }}></div>
           <ListItem disablePadding onClick={() => {
             localStorage.removeItem('token')
@@ -129,24 +138,24 @@ export const NavBar: React.FC<Navbar> = ({ isDarkTheme, toggleTheme }) => {
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
-              <Switch
-                checked={isDarkTheme}
-                color='success'
-                onChange={toggleTheme}
-                sx={{
-                  '& .MuiSwitch-thumb': {
-                    color: 'white',
-                  },
+            <Switch
+              checked={isDarkTheme}
+              color='success'
+              onChange={toggleTheme}
+              sx={{
+                '& .MuiSwitch-thumb': {
+                  color: 'white',
+                },
+                '& .MuiSwitch-track': {
+                  color: 'white',
+                },
+                '&:not(.Mui-checked)': {
                   '& .MuiSwitch-track': {
                     color: 'white',
                   },
-                  '&:not(.Mui-checked)': {
-                    '& .MuiSwitch-track': {
-                      color: 'white',
-                    },
-                  },
-                }}
-              />           
+                },
+              }}
+            />
           </ListItem>
         </List>
       </Drawer>

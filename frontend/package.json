@@ -17,7 +17,6 @@
     "@types/react-dom": "^18.2.7",
     "@vitejs/plugin-react": "^4.2.1",
     "axios": "^1.4.0",
-    "chart.js": "^4.4.1",
     "classnames": "^2.5.1",
     "faker": "^6.6.6",
     "gsap": "^3.12.5",
@@ -34,10 +33,10 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-      "start": "vite",
-      "build": "tsc && vite build",
-      "preview": "vite preview",
-      "compile-sass": "sass src/assets/styles/main.scss public/css"
+    "start": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "compile-sass": "sass src/assets/styles/main.scss public/css"
   },
   "eslintConfig": {
     "extends": [
