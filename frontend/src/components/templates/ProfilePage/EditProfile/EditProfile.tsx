@@ -149,14 +149,14 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
   return (
     <>
       <FormProvider {...methods}>
-        <Grid container sx={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}} component={'form'}
+        <Grid container sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }} component={'form'}
           onSubmit={methods.handleSubmit(onsubmit)}
         >
           <Grid item xs={12} mt={5}>
             <Avatar sx={{ width: '90px', height: '90px' }} />
           </Grid>
-          
-          <Grid item xs={12} sx={{ display:'flex', flexDirection:'row', justifyContent:'space-between', width:'50%' }}>
+
+          <Grid item xs={12} sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '50%' }}>
             <Grid item xs={5} mt={5}>
               <InputProfileCustom
                 label={'Username'}
@@ -168,7 +168,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
               />
             </Grid>
 
-            <Grid item xs={5} sx={{mb:5, mt:5, width:'50%'}}>
+            <Grid item xs={5} sx={{ mb: 5, mt: 5, width: '50%' }}>
               <InputProfileCustom
                 label={'Last Name'}
                 type="text"
@@ -180,9 +180,9 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
             </Grid>
           </Grid>
 
-          <Grid item xs={12} sx={{mb:5, width:'50%'}}>
+          <Grid item xs={12} sx={{ mb: 5, width: '50%' }}>
             <SelectInputCustom
-              label={'job'}
+              label={'Position'}
               registerProps={'job'}
               value={job?.id ? job.id.toString() : ''}
               setValue={setJob}
@@ -190,7 +190,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
             />
           </Grid>
 
-          <Grid item xs={12} sx={{mb:5, width:'50%'}} >
+          <Grid item xs={12} sx={{ mb: 5, width: '50%' }} >
             <InputProfileCustom
               label={'Years of XP'}
               type="text"
@@ -201,7 +201,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
             />
           </Grid>
 
-          <Grid item xs={12} sx={{mb:5, width:'50%'}} >
+          <Grid item xs={12} sx={{ mb: 5, width: '50%' }} >
             <InputProfileCustom
               label={'Email'}
               type="text"
@@ -212,7 +212,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
             />
           </Grid>
 
-          <Grid item xs={12} sx={{mb:5, width:'50%'}} >
+          <Grid item xs={12} sx={{ mb: 5, width: '50%' }} >
             <InputProfileCustom
               label={'Contact Number'}
               type="text"
@@ -223,7 +223,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
             />
           </Grid>
 
-          <Grid item xs={12} sx={{mb:5, width:'50%'}}>
+          <Grid item xs={12} sx={{ mb: 5, width: '50%' }}>
             <CustomAutoComplete
               collection={cityCollection}
               label='City'
@@ -238,7 +238,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mb:3 }}
+              sx={{ mb: 3 }}
             >
               Save
             </Button>

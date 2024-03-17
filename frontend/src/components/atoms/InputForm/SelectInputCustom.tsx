@@ -1,5 +1,5 @@
-import { Select, MenuItem } from "@mui/material";
-import { Dispatch, SetStateAction } from "react";
+import { Select, MenuItem, TextField } from "@mui/material";
+import React, { Dispatch, SetStateAction } from "react";
 import { useFormContext } from 'react-hook-form';
 interface SelectInputCustomProps {
   label: string,
@@ -14,7 +14,7 @@ export const SelectInputCustom = (props: SelectInputCustomProps) => {
   const register = useFormContext().register;
   return (
     <>
-      <Select
+      <TextField select
         {...register(registerProps)}
         label={label}
         fullWidth
@@ -24,13 +24,14 @@ export const SelectInputCustom = (props: SelectInputCustomProps) => {
           const selectedElement = collection?.find((val: any) => val.id === parseInt(selectedElementId, 10)) || null;
           setValue(selectedElement);
         }}
-      >
+        variant={"outlined"} style={{ width: "100%" }}>
+
         {collection.map((val: any) => (
           <MenuItem key={val.id} value={val.id.toString()}>
             {val.job_title && val.job_title}
           </MenuItem>
         ))}
-      </Select>
+      </TextField>
     </>
   )
 }
