@@ -1,30 +1,43 @@
-import { IsNotEmpty, IsOptional } from 'class-validator';
+import { IsNotEmpty, IsOptional, IsString, IsInt } from 'class-validator';
 
 export default class CreateClientsDto {
+  @IsInt()
   @IsNotEmpty()
-  name: string;
+  name!: string;
 
+  @IsString()
   @IsNotEmpty()
-  siret: string;
+  siret!: string;
 
+  @IsString()
   @IsOptional()
-  industry: string;
+  industry?: string;
 
+  @IsString()
   @IsNotEmpty()
-  mail: string;
+  mail!: string;
 
+  @IsString()
   @IsNotEmpty()
-  phone: string;
+  phone!: string;
 
+  @IsString()
   @IsOptional()
-  adress: string;
+  adress?: string;
 
+  @IsString()
   @IsOptional()
-  zip_code: string;
+  zip_code?: string;
 
+  @IsString()
   @IsOptional()
-  state: string;
+  state?: string;
 
+  @IsString()
   @IsOptional()
-  city: string;
+  city?: string;
+
+  @IsString()
+  @IsOptional()
+  projects?: string;
 }

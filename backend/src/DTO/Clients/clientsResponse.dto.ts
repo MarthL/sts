@@ -12,7 +12,7 @@ export default class ClientsResponseDto {
   siret: string;
 
   @IsOptional()
-  industry: string;
+  industry?: string;
 
   @IsNotEmpty()
   mail: string;
@@ -21,14 +21,17 @@ export default class ClientsResponseDto {
   phone: string;
 
   @IsOptional()
-  adress: string;
+  adress?: string;
 
   @IsOptional()
-  zip_code: string;
+  zip_code?: string;
 
   @IsOptional()
-  state: string;
+  state?: string;
 
   @IsOptional()
-  city: string;
+  city?: string;
+
+  @IsOptional()
+  projects?: string;
 }

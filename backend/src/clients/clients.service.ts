@@ -3,7 +3,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { DeleteResult, Repository } from 'typeorm';
 import { Clients } from './clients.entity';
 import CreateClientsDto from '../DTO/Clients/createClients.dto';
-import { plainToClass } from 'class-transformer';
 
 @Injectable()
 export class ClientsService {
@@ -18,9 +17,8 @@ export class ClientsService {
   }
 
   // Post
-  async post(@Body() createReq: CreateClientsDto): Promise<CreateClientsDto> {
-    const newClient = plainToClass(CreateClientsDto, createReq);
-    return await this.clientsRepository.save(newClient);
+  async post(@Body() createReq: any): Promise<CreateClientsDto> {
+    return await this.clientsRepository.save(createReq);
   }
 
   // deleteById

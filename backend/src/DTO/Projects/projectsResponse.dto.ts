@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsInt } from 'class-validator';
+import { IsNotEmpty, IsInt, IsOptional } from 'class-validator';
 
 export default class ProjectsResponseDto {
   @IsNotEmpty()
@@ -10,4 +10,7 @@ export default class ProjectsResponseDto {
 
   @IsNotEmpty()
   description: string;
+
+  @IsOptional()
+  clients?: string;
 }

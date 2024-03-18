@@ -35,5 +35,5 @@ export class Clients {
   city: Citys;
 
   @OneToMany(() => Projects, (projects) => projects.client)
-  projects: Projects[];
+  projects?: Projects[];
 }
