@@ -152,7 +152,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
               <InputProfileCustom
                 label={'Username'}
                 type="text"
-                value={username}
+                value={username || ''}
                 onChangeEvent={handleUserNameChange}
                 disabled={true}
                 registerProps={"username"}
@@ -163,7 +163,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
               <InputProfileCustom
                 label={'Last Name'}
                 type="text"
-                value={familyName}
+                value={familyName || ''}
                 onChangeEvent={handleFamilyNameChange}
                 disabled={false}
                 registerProps={"family_name"}
@@ -185,7 +185,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
             <InputProfileCustom
               label={'Years of XP'}
               type="text"
-              value={yop}
+              value={yop || ''}
               onChangeEvent={handleYopChange}
               disabled={false}
               registerProps={"yop"}
@@ -196,7 +196,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
             <InputProfileCustom
               label={'Email'}
               type="text"
-              value={email}
+              value={email || ''}
               onChangeEvent={handleEmailChange}
               disabled={false}
               registerProps={"email"}
@@ -207,7 +207,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
             <InputProfileCustom
               label={'Contact Number'}
               type="text"
-              value={phone}
+              value={phone || ''}
               onChangeEvent={handlePhoneChange}
               disabled={false}
               registerProps={"phone_number"}
