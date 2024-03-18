@@ -1,5 +1,4 @@
 import { Projects } from '../projects/projects.entity';
-import { Citys } from 'src/citys/citys.entity';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
 @Entity()
@@ -8,31 +7,31 @@ export class Clients {
   id: number;
 
   @Column('varchar')
-  name: string;
+  name!: string;
 
   @Column('varchar')
-  siret: string;
+  siret!: string;
 
   @Column('varchar')
-  industry: string;
+  industry?: string;
 
   @Column('varchar')
-  mail: string;
+  mail!: string;
 
   @Column('varchar')
-  phone: string;
+  phone!: string;
 
   @Column('varchar')
-  adress: string;
+  adress?: string;
 
   @Column('varchar')
-  zip_code: string;
+  zip_code?: string;
 
   @Column('varchar')
-  state: string;
+  state?: string;
 
   @Column('varchar')
-  city: Citys;
+  city?: string;
 
   @OneToMany(() => Projects, (projects) => projects.client)
   projects?: Projects[];

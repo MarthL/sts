@@ -1,8 +1,12 @@
 import { IsNotEmpty, IsOptional, IsString, IsInt } from 'class-validator';
+import { Projects } from 'src/projects/projects.entity';
 
 export default class CreateClientsDto {
   @IsInt()
+  id: number;
+
   @IsNotEmpty()
+  @IsString()
   name!: string;
 
   @IsString()
@@ -39,5 +43,5 @@ export default class CreateClientsDto {
 
   @IsString()
   @IsOptional()
-  projects?: string;
+  projects?: Projects;
 }

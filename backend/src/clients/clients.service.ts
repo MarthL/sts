@@ -1,6 +1,6 @@
-import { Injectable, Body } from '@nestjs/common';
+import { Injectable, Body, ValidationPipe } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { DeleteResult, Repository } from 'typeorm';
+import { DeepPartial, DeleteResult, Repository } from 'typeorm';
 import { Clients } from './clients.entity';
 import CreateClientsDto from '../DTO/Clients/createClients.dto';
 
