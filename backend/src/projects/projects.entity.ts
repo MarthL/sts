@@ -6,12 +6,13 @@ export class Projects {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column('varchar')
   project_name: string;
 
   @Column('text')
   description: string;
 
-  @OneToMany(() => Clients, (client) => client.projects)
-  client?: Clients;
+  @ManyToOne(() => Clients, (client) => client.projects)
+  @JoinColumn({ name: 'client_id' })
+  client: Clients;
 }
