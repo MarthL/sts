@@ -1,5 +1,5 @@
 import { Projects } from '../projects/projects.entity';
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
 
 @Entity()
 export class Clients {
@@ -34,5 +34,6 @@ export class Clients {
   city: string;
 
   @ManyToOne(() => Projects, (projects) => projects.client)
+  @JoinColumn({ name: 'project_id' })
   projects?: Projects[];
 }

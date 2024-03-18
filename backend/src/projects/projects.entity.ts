@@ -13,6 +13,5 @@ export class Projects {
   description: string;
 
   @OneToMany(() => Clients, (client) => client.projects)
-  @JoinColumn({ name: 'client_id' })
   client?: Clients;
 }
