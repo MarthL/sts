@@ -238,7 +238,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
 
           <Grid item xs={12} sx={{ mb: 5, width: '50%' }}>
             <SelectInputCustom
-              label={'job'}
+              label={'Position'}
               registerProps={'job'}
               value={job?.id ? job.id.toString() : ''}
               setValue={setJob}
