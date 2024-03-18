@@ -138,7 +138,8 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
   }
 
   const sendForm = (id: number, data: any) => {
-    if (data.city.length !== undefined) {
+    console.log('data city', data.city)
+    if (!data.city) {
       data.city_id = city?.id;
       delete data.city;
     }
