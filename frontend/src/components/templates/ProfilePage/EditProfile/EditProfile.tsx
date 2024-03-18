@@ -121,7 +121,6 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
 
   const methods = useForm();
   const onsubmit = async (data: any) => {
-
     const newData = () => {
       let i = 0;
       for (var value in data) {
@@ -132,47 +131,34 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
       }
       return data;
     }
-
     const userHasConfirmed = await confirmModal();
     if (userHasConfirmed) {
       user?.id ? sendForm(user.id, newData()) : console.error(`Datas :  ${data} cannot be send, missing id user`)
     }
   }
 
-  const sendForm = async (id: number, data: any) => {
-
-    // console.log(linkInput et link, tu verras que ce sont deux choses différentes)
+  const sendForm = (id: number, data: any) => {
+    console.log('data city', data.city)
+    if (!data.city) {
+      data.city_id = city?.id;
+      delete data.city;
+    }
     if (linkInput) {
-      console.log(linkInput, 'link : ', link);
-      if (link?.id) { // Si le lien existe déjà, recuperer le lien avec getLinkById
-        getLinksCollection(link.url)
-          .then(() => {
-            console.log('Link getting successfully.', link.url);
+      getLinksCollection(linkInput).then((resAll: any) => {
+        console.log(resAll.length);
+        if (resAll.length !== 1) {
+          console.log('pas trouvé ! je créer un link :D')
+          postLink(linkInput).then((response: Link) => {
+            setLink(response);
           })
-          .catch((error) => {
-            console.error('Error getting link:', error);
-          });
-        patchLink(link.id, data)
-          .then((response) => {
-            console.log('Link patching successfully', response.data)
-          })
-          .catch((error) => {
-            console.error('Error patching link:', error);
-          });
-      } else {
-        // Si le lien n'existe pas, ajoutez-le à la base de données avec postLink
-        postLink({ url: linkInput })
-          .then((response: Link) => {
-            setLink(response); // Mettre à jour l'état link avec le nouveau lien ajouté
-            console.log('New link added successfully:', response);
-          })
-          .catch((error) => {
-            console.error('Error adding new link:', error);
-          });
-      }
-      // Mettre à jour la valeur de link_id dans les données à envoyer au serveur
-      data.link_id = link?.id || undefined;
+        } else {
+          console.log('trouvé ! je récupère le link : ', resAll.data)
+          setLink(resAll);
+        }
+      });
+      data.link_id = link?.id;
       delete data.link;
+      console.log(data);
     }
 
     const filteredData = Object.keys(data).reduce((acc: any, key) => {
@@ -183,7 +169,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
     }, {});
     editUser(id, filteredData)
   }
-
+  
   const confirmModal = async (): Promise<Boolean> => {
     return Swal.fire({
       title: "Do you want to save the changes?",
