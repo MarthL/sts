@@ -1,4 +1,4 @@
-import { Clients } from 'src/clients/clients.entity';
+import { Clients } from '../clients/clients.entity';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany, JoinColumn, ManyToOne } from 'typeorm';
 
 @Entity()
@@ -12,7 +12,7 @@ export class Projects {
   @Column('text')
   description: string;
 
-  @ManyToOne(() => Clients, (client) => client.projects)
+  @OneToMany(() => Clients, (client) => client.projects)
   @JoinColumn({ name: 'client_id' })
   client?: Clients;
 }

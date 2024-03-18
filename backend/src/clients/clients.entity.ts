@@ -1,4 +1,4 @@
-import { Projects } from 'src/projects/projects.entity';
+import { Projects } from '../projects/projects.entity';
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany } from 'typeorm';
 
 @Entity()
@@ -33,6 +33,6 @@ export class Clients {
   @Column('varchar')
   city: string;
 
-  @OneToMany(() => Projects, (projects) => projects.client)
+  @ManyToOne(() => Projects, (projects) => projects.client)
   projects?: Projects[];
 }
