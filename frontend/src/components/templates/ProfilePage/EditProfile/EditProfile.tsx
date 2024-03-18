@@ -6,7 +6,6 @@ import { useState, useEffect } from 'react';
 import { editUser } from '../../../../api/users';
 import { getJobCollection } from '../../../../api/jobs';
 import { getCitiesCollection } from '../../../../api/cities';
-import { getLinksCollection, getLinkById, postLink, patchLink } from '../../../../api/links';
 import Swal from 'sweetalert2';
 import { InputProfileCustom } from '../../../atoms/InputForm/InputProfileCustom';
 import { CustomAutoComplete } from '../../../atoms/InputForm/CustomAutoComplete';
@@ -23,11 +22,6 @@ interface City {
   zip_code: number
 }
 
-interface Link {
-  id: number,
-  url: string
-}
-
 interface User {
   id: number,
   username: string,
@@ -40,8 +34,8 @@ interface User {
     id?: number,
     job_title?: string,
   },
-  city?: City,
-  link?: Link
+  country: string,
+  city?: City
 }
 
 interface EditProfileProps {
@@ -59,14 +53,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
   const [phone, setPhone] = useState(user?.phone_number);
   const [jobCollection, setJobCollection] = useState<Job[]>([]);
   const [city, setCity] = useState<City | null>(user?.city || null);
-
-  // valeur du link
-  const [link, setLink] = useState<Link | null>(user?.link || null);
-  // valeur du label
-  const [linkInput, setLinkInput] = useState<string | null>(user?.link?.url || null);
-
   const [cityCollection, setCityCollection] = useState<City[]>([]);
-  const [linkCollection, setLinkCollection] = useState<Link[]>([]);
 
   useEffect(() => {
     if (user) {
@@ -78,8 +65,6 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
       setEmail(user?.email ? user.email : '');
       setPhone(user?.phone_number ? user.phone_number : '');
       setCity(user?.city || null);
-      setLink(user?.link || null);
-      setLinkInput(user?.link?.url || null); // Me permet d'afficher la value de l'input
     }
   }, [user, cityCollection]);
 
@@ -89,9 +74,6 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
     })
     getCitiesCollection().then(async (res) => {
       setCityCollection(res);
-    })
-    getLinksCollection().then(async (res) => {
-      setLinkCollection(res);
     })
   }, [])
 
@@ -115,61 +97,29 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
     setPhone(event.target.value);
   }
 
-  const handleLinkChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setLinkInput(event.target.value);
-  }
-
   const methods = useForm();
   const onsubmit = async (data: any) => {
-    const newData = () => {
-      let i = 0;
-      for (var value in data) {
-        if (data[value] == '' || data[value] == undefined) {
-          delete data[value];
-        }
-        i += 1;
-      }
-      return data;
-    }
     const userHasConfirmed = await confirmModal();
     if (userHasConfirmed) {
-      user?.id ? sendForm(user.id, newData()) : console.error(`Datas :  ${data} cannot be send, missing id user`)
+      user?.id ? sendForm(user.id, data) : console.error(`Datas :  ${data} cannot be send, missing id user`)
     }
   }
 
   const sendForm = (id: number, data: any) => {
-    console.log('data city', data.city)
-    if (!data.city) {
-      data.city_id = city?.id;
-      delete data.city;
-    }
-    if (linkInput) {
-      getLinksCollection(linkInput).then((resAll: any) => {
-        console.log(resAll.length);
-        if (resAll.length !== 1) {
-          console.log('pas trouvé ! je créer un link :D')
-          postLink(linkInput).then((response: Link) => {
-            setLink(response);
-          })
-        } else {
-          console.log('trouvé ! je récupère le link : ', resAll.data)
-          setLink(resAll);
-        }
-      });
-      data.link_id = link?.id;
-      delete data.link;
-      console.log(data);
-    }
-
-    const filteredData = Object.keys(data).reduce((acc: any, key) => {
-      if (data[key] !== '') {
-        acc[key] = data[key]
+    if (data.city.length !== undefined) {
+      if (city) {
+        data.city_id = city.id;
       }
-      return acc;
-    }, {});
-    editUser(id, filteredData)
+      delete data.city;
+      const filteredData = Object.keys(data).reduce((acc: any, key) => {
+        if (data[key] !== '') {
+          acc[key] = data[key]
+        }
+        return acc;
+      }, {});
+      editUser(id, filteredData)
+    }
   }
-  
   const confirmModal = async (): Promise<Boolean> => {
     return Swal.fire({
       title: "Do you want to save the changes?",
@@ -180,8 +130,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
       if (result.isConfirmed) {
         Swal.fire("Saved!", "", "success");
         return true;
-      }
-      else {
+      } else {
         Swal.fire("Changes are not saved", "", "info");
         return false;
       }
@@ -272,17 +221,6 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
               registerProps={'city'}
               setValue={setCity}
               value={city || null}
-            />
-          </Grid>
-
-          <Grid item xs={12} sx={{ mb: 5, width: '50%' }} >
-            <InputProfileCustom
-              label={'Link'}
-              type="text"
-              value={linkInput || undefined}
-              onChangeEvent={handleLinkChange}
-              disabled={false}
-              registerProps={"link"}
             />
           </Grid>
 
