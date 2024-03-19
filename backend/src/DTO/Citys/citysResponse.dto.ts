@@ -5,7 +5,7 @@ export class CitysResponseDto {
   id: number;
 
   @IsNotEmpty()
-  @MaxLength(50)
+  @MaxLength(25)
   city_name: string;
 
   @IsNotEmpty()
@@ -13,6 +13,6 @@ export class CitysResponseDto {
   zip_code: string;
 
   @IsNotEmpty()
-  @MaxLength(170)
+  @MaxLength(25)
   state: string;
 }
