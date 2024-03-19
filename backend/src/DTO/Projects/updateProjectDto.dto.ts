@@ -1,5 +1,5 @@
-import { Exclude, Expose } from 'class-transformer';
-import { IsNotEmpty } from 'class-validator';
+import { Exclude } from 'class-transformer';
+import { IsNotEmpty, MaxLength } from 'class-validator';
 
 @Exclude()
 export class updateProjectDto {
@@ -8,6 +8,7 @@ export class updateProjectDto {
   id: number;
 
   @IsNotEmpty()
+  @MaxLength(50)
   project_name: string;
 
   @IsNotEmpty()
