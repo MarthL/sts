@@ -18,25 +18,25 @@ export class Users {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column('varchar')
+  @Column('varchar', { length: 50 })
   username: string;
 
-  @Column('varchar')
+  @Column('varchar', { length: 72 })
   password: string;
 
-  @Column('varchar', { nullable: true, default: null })
+  @Column('varchar', { nullable: true, default: null, length: 100 })
   family_name: string;
 
-  @Column('int', { nullable: true, default: null })
+  @Column('int', { nullable: true, default: null, width: 2 })
   yop: number;
 
-  @Column('varchar', { nullable: true, default: '' })
+  @Column('varchar', { nullable: true, default: '', length: 12 })
   phone_number: string;
 
-  @Column('varchar', { nullable: true, default: null })
+  @Column('varchar', { nullable: true, default: null, length: 170 })
   email: string;
 
-  @Column('varchar', { nullable: true, default: null })
+  @Column('varchar', { nullable: true, default: null, length: 255 })
   address: string;
 
   @ManyToOne(() => Job, (job) => job.users)
