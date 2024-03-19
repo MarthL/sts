@@ -2,7 +2,7 @@ import { IsNotEmpty, IsOptional, MaxLength } from 'class-validator';
 
 export default class CreateClientsDto {
   @IsNotEmpty()
-  @MaxLength(100)
+  @MaxLength(50)
   name: string;
 
   @IsNotEmpty()
@@ -14,7 +14,7 @@ export default class CreateClientsDto {
   industry: string;
 
   @IsNotEmpty()
-  @MaxLength(200)
+  @MaxLength(70)
   mail: string;
 
   @IsNotEmpty()
@@ -22,7 +22,7 @@ export default class CreateClientsDto {
   phone: string;
 
   @IsOptional()
-  @MaxLength(255)
+  @MaxLength(100)
   adress: string;
 
   @IsOptional()
@@ -30,7 +30,7 @@ export default class CreateClientsDto {
   zip_code: string;
 
   @IsOptional()
-  @MaxLength(170)
+  @MaxLength(100)
   state: string;
 
   @IsOptional()
