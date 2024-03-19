@@ -6,7 +6,7 @@ export default class ClientsResponseDto {
   id: number;
 
   @IsNotEmpty()
-  @MaxLength(100)
+  @MaxLength(50)
   name: string;
 
   @IsNotEmpty()
@@ -14,19 +14,19 @@ export default class ClientsResponseDto {
   siret: string;
 
   @IsOptional()
-  @MaxLength(50)
+  @MaxLength(30)
   industry: string;
 
   @IsNotEmpty()
-  @MaxLength(200)
+  @MaxLength(70)
   mail: string;
 
   @IsNotEmpty()
-  @MaxLength(12)
+  @MaxLength(15)
   phone: string;
 
   @IsOptional()
-  @MaxLength(255)
+  @MaxLength(200)
   adress: string;
 
   @IsOptional()
@@ -34,7 +34,7 @@ export default class ClientsResponseDto {
   zip_code: string;
 
   @IsOptional()
-  @MaxLength(170)
+  @MaxLength(50)
   state: string;
 
   @IsOptional()
