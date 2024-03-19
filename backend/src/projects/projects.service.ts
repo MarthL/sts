@@ -8,9 +8,9 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Projects } from './projects.entity';
-import ProjectsResponseDto from '../DTO/Projects/projectsResponse.dto';
-import CreateProjectDto from '../DTO/Projects/createProject.dto';
-import { updateProjectDto } from 'src/DTO/Projects/updateProjectDto.dto';
+import ProjectsResponseDto from './dto/projectsResponse.dto';
+import CreateProjectDto from './dto/createProject.dto';
+import { updateProjectDto } from 'src/projects/dto/updateProjectDto.dto';
 import { plainToClass } from 'class-transformer';
 
 @Injectable()

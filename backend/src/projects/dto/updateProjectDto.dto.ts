@@ -1,4 +1,4 @@
-import { Exclude, Expose } from 'class-transformer';
+import { Exclude } from 'class-transformer';
 import { IsNotEmpty } from 'class-validator';
 
 @Exclude()

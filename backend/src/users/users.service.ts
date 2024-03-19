@@ -8,8 +8,8 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import { DeleteResult, Repository } from 'typeorm';
 import { Users } from './users.entity';
-import { CreateUserDto } from '../DTO/User/create-userDto.dto';
-import { UserResponseDto } from 'src/DTO/User/userResponseDto.dto';
+import { CreateUserDto } from './dto/create-userDto.dto';
+import { UserResponseDto } from 'src/users/dto/userResponseDto.dto';
 import * as bcrypt from 'bcrypt';
 import { plainToClass } from 'class-transformer';
 
