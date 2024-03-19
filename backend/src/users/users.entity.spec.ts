@@ -6,7 +6,7 @@ import { Repository } from 'typeorm';
 import { Users } from './users.entity';
 import { Job } from '../job/job.entity';
 import { plainToClass } from 'class-transformer';
-import { UserResponseDto } from '../DTO/User/userResponseDto.dto';
+import { UserResponseDto } from './dto/userResponseDto.dto';
 
 describe('userEntity', () => {
   let userRepository: Repository<Users>;

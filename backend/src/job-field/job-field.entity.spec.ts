@@ -2,7 +2,7 @@ import { validate } from 'class-validator';
 import { JobField } from './job-field.entity';
 import { randomInt } from 'crypto';
 import { Job } from 'src/job/job.entity';
-import { JobResponseDto } from '../DTO/Job/jobResponseDto.dto';
+import { JobResponseDto } from '../job/dto/jobResponseDto.dto';
 import { plainToClass } from 'class-transformer';
 import { Repository, DataSource } from 'typeorm';
 import { UsersController } from 'src/users/users.controller';

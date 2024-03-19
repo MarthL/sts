@@ -1,9 +1,9 @@
-import { Injectable, Body, Param, Delete, HttpException } from '@nestjs/common';
+import { Injectable, HttpException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Job } from './job.entity';
-import { JobResponseDto } from 'src/DTO/Job/jobResponseDto.dto';
-import { CreateJobDto } from 'src/DTO/Job/createJobDto.dto';
+import { JobResponseDto } from 'src/job/dto/jobResponseDto.dto';
+import { CreateJobDto } from 'src/job/dto/createJobDto.dto';
 import { plainToClass } from 'class-transformer';
 import { JobField } from 'src/job-field/job-field.entity';
 

@@ -2,7 +2,7 @@ import { Injectable, Body } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DeleteResult, Repository } from 'typeorm';
 import { Clients } from './clients.entity';
-import CreateClientsDto from '../DTO/Clients/createClients.dto';
+import CreateClientsDto from './dto/createClients.dto';
 import { plainToClass } from 'class-transformer';
 
 @Injectable()

@@ -1,5 +1,4 @@
 import { ApiTags } from '@nestjs/swagger';
-import { HttpException, ParseIntPipe  } from '@nestjs/common';
 import {
   Controller,
   Get,
@@ -7,15 +6,13 @@ import {
   Body,
   Param,
   Delete,
+  HttpException,
+  ParseIntPipe
 } from '@nestjs/common';
-
 import { CompanysService } from './company.service';
-
-import { CompanyResponseDto } from 'src/DTO/Company/companyResponse.dto';
-import { CreateCompanyDto } from 'src/DTO/Company/createCompany.dto';
-
+import { CompanyResponseDto } from 'src/companys/dto/companyResponse.dto';
+import { CreateCompanyDto } from 'src/companys/dto/createCompany.dto';
 import { DeleteResult } from 'typeorm';
-
 
 @ApiTags('Company')
 @Controller('company')

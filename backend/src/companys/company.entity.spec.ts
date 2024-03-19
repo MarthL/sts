@@ -1,6 +1,6 @@
 import { Repository } from "typeorm";
 import { Companys } from "./company.entity";
-import { CompanyResponseDto } from "../DTO/Company/companyResponse.dto";
+import { CompanyResponseDto } from "./dto/companyResponse.dto";
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { plainToClass } from "class-transformer";

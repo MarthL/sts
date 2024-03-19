@@ -1,6 +1,6 @@
 import { Repository } from "typeorm";
 import { Clients } from "./clients.entity";
-import ClientsResponseDto from "../DTO/Clients/clientsResponse.dto";
+import ClientsResponseDto from "./dto/clientsResponse.dto";
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { plainToClass } from "class-transformer";
