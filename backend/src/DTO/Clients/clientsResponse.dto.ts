@@ -43,5 +43,5 @@ export default class ClientsResponseDto {
 
   @IsOptional()
   @IsString()
-  projects?: string;
+  projects?: any;
 }
