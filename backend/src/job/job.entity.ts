@@ -7,6 +7,7 @@ import {
 } from 'typeorm';
 import { Users } from '../users/users.entity';
 import { JobField } from '../job-field/job-field.entity';
+import { MaxLength } from 'class-validator';
 
 @Entity()
 export class Job {
@@ -14,6 +15,7 @@ export class Job {
   id: number;
 
   @Column('varchar', { length: 100 })
+  @MaxLength(100)
   job_title: string;
 
   @OneToMany(() => Users, (user) => user.job)
