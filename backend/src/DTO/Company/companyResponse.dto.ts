@@ -6,6 +6,6 @@ export class CompanyResponseDto {
 
   @IsNotEmpty()
   @IsString()
-  @MaxLength(100)
+  @MaxLength(50)
   name: string;
 }
