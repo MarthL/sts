@@ -1,30 +1,39 @@
-import { IsNotEmpty, IsOptional } from 'class-validator';
+import { IsNotEmpty, IsOptional, MaxLength } from 'class-validator';
 
 export default class CreateClientsDto {
   @IsNotEmpty()
+  @MaxLength(100)
   name: string;
 
   @IsNotEmpty()
+  @MaxLength(14)
   siret: string;
 
   @IsOptional()
+  @MaxLength(50)
   industry: string;
 
   @IsNotEmpty()
+  @MaxLength(200)
   mail: string;
 
   @IsNotEmpty()
+  @MaxLength(12)
   phone: string;
 
   @IsOptional()
+  @MaxLength(255)
   adress: string;
 
   @IsOptional()
+  @MaxLength(5)
   zip_code: string;
 
   @IsOptional()
+  @MaxLength(170)
   state: string;
 
   @IsOptional()
+  @MaxLength(50)
   city: string;
 }
