@@ -10,8 +10,9 @@ import {
 import { ApiTags } from '@nestjs/swagger';
 import { Clients } from './clients.entity';
 import { ClientsService } from './clients.service';
-import createClientsDto from '../DTO/Clients/createClients.dto';
+import createClientsDto from './dto/createClients.dto';
 import { DeleteResult } from 'typeorm';
+
 @ApiTags('Clients')
 @Controller('/clients')
 export class ClientsController {
