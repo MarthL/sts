@@ -7,13 +7,13 @@ export class Citys {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column('varchar')
+  @Column('varchar', { length: 50 })
   city_name: string;
 
-  @Column('varchar')
+  @Column('varchar', { length: 5 })
   zip_code: string;
 
-  @Column('varchar')
+  @Column('varchar', { length: 170 })
   state: string;
 
   @OneToMany(() => Users, (user) => user.city)

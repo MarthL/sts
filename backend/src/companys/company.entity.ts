@@ -6,7 +6,7 @@ export class Companys {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column('varchar')
+  @Column('varchar', { length: 100 })
   name: string;
 
   @OneToMany(() => Users, (user) => user.company)

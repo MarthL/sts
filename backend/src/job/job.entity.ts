@@ -13,7 +13,7 @@ export class Job {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column('varchar', { length: 100 })
   job_title: string;
 
   @OneToMany(() => Users, (user) => user.job)

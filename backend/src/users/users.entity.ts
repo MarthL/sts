@@ -7,7 +7,6 @@ import {
   JoinTable,
   JoinColumn,
 } from 'typeorm';
-
 import { Job } from '../job/job.entity';
 import { Projects } from '../projects/projects.entity';
 import { Companys } from '../companys/company.entity';
@@ -33,7 +32,7 @@ export class Users {
   @Column('varchar', { nullable: true, default: '', length: 12 })
   phone_number: string;
 
-  @Column('varchar', { nullable: true, default: null, length: 170 })
+  @Column('varchar', { nullable: true, default: null, length: 200 })
   email: string;
 
   @Column('varchar', { nullable: true, default: null, length: 255 })

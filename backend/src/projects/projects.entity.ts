@@ -5,7 +5,7 @@ export class Projects {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column('varchar', { length: 100})
   project_name: string;
 
   @Column('text')
