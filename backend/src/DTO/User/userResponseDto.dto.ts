@@ -4,6 +4,7 @@ import {
   MinLength,
   IsNumber,
   IsOptional,
+  MaxLength,
 } from 'class-validator';
 
 export class UserResponseDto {
@@ -13,41 +14,45 @@ export class UserResponseDto {
 
   @IsNotEmpty()
   @IsString()
+  @MinLength(3)
+  @MaxLength(50)
   username: string;
 
   @IsNotEmpty()
   @IsString()
   @MinLength(2)
+  @MaxLength(72)
   password: string;
 
-  @IsString()
-  @MinLength(2)
   @IsOptional()
+  @IsString()
+  @MaxLength(100)
   family_name: string;
-
-  @IsString()
-  @MinLength(2)
+  
   @IsOptional()
+  @IsString()
   job_id?: number;
 
-  @IsString()
   @IsOptional()
-  @MinLength(5)
+  @IsString()
+  @MaxLength(255)
   address: string;
 
-  @IsString()
   @IsOptional()
+  @IsString()
+  @MaxLength(12)
   phone_number?: string;
 
-  @IsNumber()
   @IsOptional()
+  @IsNumber()
   city_id?: number;
 
-  @IsString()
   @IsOptional()
+  @IsString()
+  @MaxLength(100)
   email: string;
 
-  @IsNumber()
   @IsOptional()
+  @IsNumber()
   company_id?: number;
 }
