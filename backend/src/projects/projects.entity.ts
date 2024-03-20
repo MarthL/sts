@@ -12,6 +12,6 @@ export class Projects {
   @Column('text')
   description: string;
 
-  @OneToMany(() => Clients, (client) => client.projects)
+  @OneToMany(() => Clients, (client) => client.projects_id)
   client?: Clients[];
 }

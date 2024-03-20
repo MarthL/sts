@@ -25,8 +25,8 @@ export default class ClientsResponseDto {
   address?: string;
 
   @IsOptional()
-  city?: Citys[];
+  city_id?: Citys[];
 
   @IsOptional()
-  projects?: Projects[];
+  projects_id?: Projects[];
 }
