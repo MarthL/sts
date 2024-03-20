@@ -1,6 +1,6 @@
 import { Citys } from 'src/citys/citys.entity';
 import { Projects } from '../projects/projects.entity';
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne, JoinColumn } from 'typeorm';
 
 @Entity()
 export class Clients {
@@ -26,6 +26,7 @@ export class Clients {
   adress?: string;
 
   @ManyToOne(() => Citys, (citys) => citys.id)
+  @JoinColumn({ name: 'city_id' })
   city_id?: Citys[];
 
   @OneToMany(() => Projects, (projects) => projects.client)
