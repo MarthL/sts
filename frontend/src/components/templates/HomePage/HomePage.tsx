@@ -9,7 +9,7 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import gsap from 'gsap';
 import ScrollToPlugin from 'gsap/ScrollToPlugin';
 import { Project } from '../../../api/projects';
-import { TextField } from '@mui/material';
+import { TextField, Paper } from '@mui/material';
 
 export const HomePage = () => {
 
@@ -73,30 +73,37 @@ export const HomePage = () => {
 
         <ProjectModal openModal={openModal} handleCloseModal={handleCloseModal} />
 
-        <Grid container mb={5}>
-          <Grid item />
-          <Grid>
-            <TextField
-              variant="outlined"
-              label="Filter"
-              value={search || ''}
-              onChange={(event) => {
-                setSearch(event?.target?.value);
-              }}
-            />
-          </Grid>
-          <Grid item />
+        <Typography variant="h5">Search Filters</Typography>
+        <Grid container mb={5} mt={5}>
+          <Paper>
+            <Grid item />
+            <Grid>
+              <TextField
+                variant="outlined"
+                label="Project Name"
+                value={search || ''}
+                onChange={(event) => {
+                  setSearch(event?.target?.value);
+                }}
+              />
+            </Grid>
+            <Grid item />
+          </Paper>
         </Grid>
 
         <Grid container spacing={5}>
           {
-            currentProjects.map((project: Project) => {
-              return (
+            currentProjects.length > 0 ? (
+              currentProjects.map((project: Project) => (
                 <Grid key={project.id} item xs={12} sm={12} md={4} lg={4}>
                   <CardProject id={project.id} project_name={project.project_name} description={project.description}></CardProject>
                 </Grid>
-              )
-            })
+              ))
+            ) : (
+              <Grid container mt={5} display={'flex'} justifyContent={'center'}>
+                <Typography variant="h6" color={'primary'} >Aucun projet à afficher</Typography>
+              </Grid>
+            )
           }
         </Grid>
         <Box sx={{ display: 'flex', justifyContent: 'center', width: '75vw', mt: 5 }}>
