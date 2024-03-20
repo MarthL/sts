@@ -2,13 +2,14 @@ import {
   Controller,
   Get,
   Post,
+  Query,
   Patch,
   Param,
   Delete,
   Body,
   ParseIntPipe,
 } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiTags, ApiQuery } from '@nestjs/swagger';
 import { ProjectsService } from './projects.service';
 import { Projects } from './projects.entity';
 import createProjectDto from './dto/createProject.dto';
@@ -21,8 +22,9 @@ export class ProjectsController {
   constructor(private readonly projectsService: ProjectsService) {}
 
   @Get()
-  async getAll(): Promise<Projects[]> {
-    return this.projectsService.getProjects();
+  @ApiQuery({ name: 'search', required: false, type: String })
+  async getAll(@Query('search') search: string): Promise<Projects[]> {
+    return this.projectsService.getProjects(search);
   }
 
   @Get(':id')

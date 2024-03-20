@@ -10,7 +10,7 @@ import {
   Query,
   UnauthorizedException,
   ParseIntPipe,
-  HttpException
+  HttpException,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { AuthLogin } from './../auth/authlogin.service';
