@@ -22,7 +22,10 @@ export class ProjectsService {
 
   // GetAll
   async getProjects(search?: string): Promise<Projects[]> {
-    const projectCollection = await this.projectsRepository.find({
+    if (!search) {
+      return this.projectsRepository.find();
+    }
+    return await this.projectsRepository.find({
       select: {
         id: true,
         project_name: true,
@@ -32,7 +35,6 @@ export class ProjectsService {
         project_name: Like(`${search}%`),
       },
     });
-    return projectCollection;
   }
 
   // GetById
