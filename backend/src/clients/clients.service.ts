@@ -25,7 +25,7 @@ export class ClientsService {
   // Patch
   async patch(
     @Param('id', ParseIntPipe) id: number,
-    @Body() updateReq: any,
+    @Body() updateReq: ClientsResponseDto,
   ): Promise<any> {
     return this.clientsRepository.update(id, updateReq);
   }

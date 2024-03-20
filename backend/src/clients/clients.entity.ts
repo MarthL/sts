@@ -1,6 +1,6 @@
 import { Citys } from 'src/citys/citys.entity';
 import { Projects } from '../projects/projects.entity';
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne } from 'typeorm';
 
 @Entity()
 export class Clients {
@@ -25,13 +25,7 @@ export class Clients {
   @Column('varchar')
   adress?: string;
 
-  @Column('varchar')
-  zip_code?: string;
-
-  @Column('varchar')
-  state?: string;
-
-  @Column('varchar')
+  @ManyToOne(() => Citys, (citys) => citys.id)
   city_id?: Citys[];
 
   @OneToMany(() => Projects, (projects) => projects.client)

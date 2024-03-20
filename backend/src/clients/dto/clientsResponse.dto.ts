@@ -7,29 +7,23 @@ export default class ClientsResponseDto {
   id: number;
 
   @IsNotEmpty()
-  name: string;
+  name!: string;
 
   @IsNotEmpty()
-  siret: string;
+  siret!: string;
 
   @IsOptional()
-  industry: string;
+  industry?: string;
 
   @IsNotEmpty()
-  mail: string;
+  mail!: string;
 
   @IsNotEmpty()
-  phone: string;
+  phone!: string;
 
   @IsOptional()
   adress?: string;
 
   @IsOptional()
-  zip_code?: string;
-
-  @IsOptional()
-  state?: string;
-
-  @IsOptional()
-  city_id?: Citys;
+  city_id?: Citys[];
 }

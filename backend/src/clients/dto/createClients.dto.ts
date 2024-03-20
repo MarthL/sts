@@ -1,30 +1,25 @@
 import { IsNotEmpty, IsOptional } from 'class-validator';
+import { Citys } from 'src/citys/citys.entity';
 
 export default class CreateClientsDto {
   @IsNotEmpty()
-  name: string;
+  name!: string;
 
   @IsNotEmpty()
-  siret: string;
+  siret!: string;
 
   @IsOptional()
-  industry: string;
+  industry?: string;
 
   @IsNotEmpty()
-  mail: string;
+  mail!: string;
 
   @IsNotEmpty()
-  phone: string;
+  phone!: string;
 
   @IsOptional()
-  adress: string;
+  adress?: string;
 
   @IsOptional()
-  zip_code: string;
-
-  @IsOptional()
-  state: string;
-
-  @IsOptional()
-  city: string;
+  city_id?: Citys[];
 }

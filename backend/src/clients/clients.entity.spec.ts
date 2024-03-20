@@ -36,8 +36,6 @@ describe('clientEntity', () => {
         client.mail = 'This is a test for client mail = jesaispas@quelleadressmail.com';
         client.phone = 'This is a test for client phone = 0565684154';
         client.adress = 'This is a test for client address = 94 rue du jambon';
-        client.zip_code = 'This is a test for client zip code = 96525';
-        client.state = 'This is a test for client state = Madagascar';
         //client.city= 'This is a test for client city = Arcachon';
         const checkDto = plainToClass(ClientsResponseDto, client);
         const errors = validate(checkDto);
@@ -52,8 +50,6 @@ describe('clientEntity', () => {
         client.mail = 'This is a test for client mail = jesaispas@quelleadressmail.com';
         client.phone = 'This is a test for client phone = 0565684154';
         client.adress = 'This is a test for client address = 94 rue du jambon';
-        client.zip_code = 'This is a test for client zip code = 96525';
-        client.state = 'This is a test for client state = Madagascar';
         //client.city= 'This is a test for client city = Arcachon';
         const checkDto = plainToClass(ClientsResponseDto, client);
         const errors = validate(checkDto);
@@ -68,8 +64,6 @@ describe('clientEntity', () => {
         client.mail = 'This is a test for client mail = jesaispas@quelleadressmail.com';
         client.phone = 'This is a test for client phone = 0565684154';
         client.adress = 'This is a test for client address = 94 rue du jambon';
-        client.zip_code = 'This is a test for client zip code = 96525';
-        client.state = 'This is a test for client state = Madagascar';
         //client.city= 'This is a test for client city = Arcachon';
         const checkDto = plainToClass(ClientsResponseDto, client);
         const errors = validate(checkDto);
@@ -84,8 +78,6 @@ describe('clientEntity', () => {
         client.mail = 'This is a test for client mail = jesaispas@quelleadressmail.com';
         client.phone = 'This is a test for client phone = 0565684154';
         client.adress = 'This is a test for client address = 94 rue du jambon';
-        client.zip_code = 'This is a test for client zip code = 96525';
-        client.state = 'This is a test for client state = Madagascar';
         //client.city= 'This is a test for client city = Arcachon';
         const checkDto = plainToClass(ClientsResponseDto, client);
         const errors = validate(checkDto);
@@ -100,8 +92,6 @@ describe('clientEntity', () => {
         client.mail = 'This is a test for client mail = jesaispas@quelleadressmail.com';
         client.phone = 'This is a test for client phone = 0565684154';
         client.adress = 'This is a test for client address = 94 rue du jambon';
-        client.zip_code = 'This is a test for client zip code = 96525';
-        client.state = 'This is a test for client state = Madagascar';
         //client.city= 'This is a test for client city = Arcachon';
         const checkDto = plainToClass(ClientsResponseDto, client);
         const errors = validate(checkDto);
@@ -116,8 +106,6 @@ describe('clientEntity', () => {
         client.industry = 'This is a test for client industry = Cross guild';
         client.phone = 'This is a test for client phone = 0565684154';
         client.adress = 'This is a test for client address = 94 rue du jambon';
-        client.zip_code = 'This is a test for client zip code = 96525';
-        client.state = 'This is a test for client state = Madagascar';
         //client.city= 'This is a test for client city = Arcachon';
         const checkDto = plainToClass(ClientsResponseDto, client);
         const errors = validate(checkDto);
@@ -132,8 +120,6 @@ describe('clientEntity', () => {
         client.industry = 'This is a test for client industry = Cross guild';
         client.mail = 'This is a test for client mail = jesaispas@quelleadressmail.com';
         client.adress = 'This is a test for client address = 94 rue du jambon';
-        client.zip_code = 'This is a test for client zip code = 96525';
-        client.state = 'This is a test for client state = Madagascar';
         //client.city= 'This is a test for client city = Arcachon';
         const checkDto = plainToClass(ClientsResponseDto, client);
         const errors = validate(checkDto);
@@ -148,8 +134,6 @@ describe('clientEntity', () => {
         client.industry = 'This is a test for client industry = Cross guild';
         client.mail = 'This is a test for client mail = jesaispas@quelleadressmail.com';
         client.phone = 'This is a test for client phone = 0565684154';
-        client.zip_code = 'This is a test for client zip code = 96525';
-        client.state = 'This is a test for client state = Madagascar';
         //client.city= 'This is a test for client city = Arcachon';
         const checkDto = plainToClass(ClientsResponseDto, client);
         const errors = validate(checkDto);
@@ -165,7 +149,6 @@ describe('clientEntity', () => {
         client.mail = 'This is a test for client mail = jesaispas@quelleadressmail.com';
         client.phone = 'This is a test for client phone = 0565684154';
         client.adress = 'This is a test for client address = 94 rue du jambon';
-        client.state = 'This is a test for client state = Madagascar';
         //client.city= 'This is a test for client city = Arcachon';
         const checkDto = plainToClass(ClientsResponseDto, client);
         const errors = validate(checkDto);
@@ -181,7 +164,6 @@ describe('clientEntity', () => {
         client.mail = 'This is a test for client mail = jesaispas@quelleadressmail.com';
         client.phone = 'This is a test for client phone = 0565684154';
         client.adress = 'This is a test for client address = 94 rue du jambon';
-        client.zip_code = 'This is a test for client zip code = 96525';
         //client.city= 'This is a test for client city = Arcachon';
         const checkDto = plainToClass(ClientsResponseDto, client);
         const errors = validate(checkDto);
@@ -197,8 +179,6 @@ describe('clientEntity', () => {
         client.mail = 'This is a test for client mail = jesaispas@quelleadressmail.com';
         client.phone = 'This is a test for client phone = 0565684154';
         client.adress = 'This is a test for client address = 94 rue du jambon';
-        client.zip_code = 'This is a test for client zip code = 96525';
-        client.state = 'This is a test for client state = Madagascar';
         const checkDto = plainToClass(ClientsResponseDto, client);
         const errors = validate(checkDto);
         expect((await errors).length).toBe(0);
