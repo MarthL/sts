@@ -1,10 +1,11 @@
 import { Injectable, Body, Param, ParseIntPipe, HttpException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DeleteResult, Repository } from 'typeorm';
+import { plainToClass } from 'class-transformer';
 import { Clients } from './clients.entity';
 import CreateClientsDto from './dto/createClients.dto';
 import ClientsResponseDto from './dto/clientsResponse.dto';
-import { plainToClass } from 'class-transformer';
+import UpdateClientDto from './dto/updateClient.dto';
 
 @Injectable()
 export class ClientsService {
@@ -37,34 +38,11 @@ export class ClientsService {
   }
 
   // Patch
-  // async patch(
-  //   @Param('id', ParseIntPipe) id: number,
-  //   @Body() updateReq: ClientsResponseDto,
-  // ): Promise<any> {
-  //   return this.clientsRepository.update(id, updateReq);
-  // }
   async patch(
     @Param('id', ParseIntPipe) id: number,
-    @Body() updateReq: ClientsResponseDto,
-  ): Promise<ClientsResponseDto> {
-      // Construction de la requête de mise à jour
-      await this.clientsRepository.createQueryBuilder()
-          .update(Clients)
-          .set(updateReq)
-          .where("id = :id", { id: id })
-          .execute();
-
-      // Récupération de l'entité mise à jour
-      const updatedClient = await this.clientsRepository.createQueryBuilder("clients")
-          .where("clients.id = :id", { id: id })
-          .getOne();
-
-      if (!updatedClient) {
-          // Gérer le cas où l'entité mise à jour n'est pas trouvée
-          throw new Error(`Impossible de trouver le client avec l'ID ${id}`);
-      }
-
-      return updatedClient; // Retourner l'entité mise à jour
+    @Body() updateReq: UpdateClientDto,
+  ): Promise<any> {
+    return this.clientsRepository.update(id, updateReq);
   }
 
   // deleteById

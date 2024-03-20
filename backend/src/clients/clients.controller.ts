@@ -12,8 +12,8 @@ import { ApiTags } from '@nestjs/swagger';
 import { Clients } from './clients.entity';
 import { ClientsService } from './clients.service';
 import createClientsDto from './dto/createClients.dto';
-import ClientsResponseDto from './dto/clientsResponse.dto';
 import { DeleteResult } from 'typeorm';
+import  updateClientDto  from './dto/updateClient.dto';
 
 @ApiTags('Clients')
 @Controller('/clients')
@@ -42,8 +42,8 @@ export class ClientsController {
   @Patch(':id')
   async updateClient(
     @Param('id') id: number,
-    @Body() updateReq: ClientsResponseDto,
-  ): Promise<ClientsResponseDto> {
+    @Body() updateReq: updateClientDto,
+  ): Promise<updateClientDto> {
     return await this.clientsService.patch(id, updateReq);
   }
 
