@@ -38,7 +38,7 @@ describe('clientEntity', () => {
         client.adress = 'This is a test for client address = 94 rue du jambon';
         client.zip_code = 'This is a test for client zip code = 96525';
         client.state = 'This is a test for client state = Madagascar';
-        client.city= 'This is a test for client city = Arcachon';
+        //client.city= 'This is a test for client city = Arcachon';
         const checkDto = plainToClass(ClientsResponseDto, client);
         const errors = validate(checkDto);
         expect((await errors).length).toBe(0);
@@ -54,7 +54,7 @@ describe('clientEntity', () => {
         client.adress = 'This is a test for client address = 94 rue du jambon';
         client.zip_code = 'This is a test for client zip code = 96525';
         client.state = 'This is a test for client state = Madagascar';
-        client.city= 'This is a test for client city = Arcachon';
+        //client.city= 'This is a test for client city = Arcachon';
         const checkDto = plainToClass(ClientsResponseDto, client);
         const errors = validate(checkDto);
         expect((await errors).length).toBeGreaterThan(0);
@@ -70,7 +70,7 @@ describe('clientEntity', () => {
         client.adress = 'This is a test for client address = 94 rue du jambon';
         client.zip_code = 'This is a test for client zip code = 96525';
         client.state = 'This is a test for client state = Madagascar';
-        client.city= 'This is a test for client city = Arcachon';
+        //client.city= 'This is a test for client city = Arcachon';
         const checkDto = plainToClass(ClientsResponseDto, client);
         const errors = validate(checkDto);
         expect((await errors).length).toBeGreaterThan(0);
@@ -86,7 +86,7 @@ describe('clientEntity', () => {
         client.adress = 'This is a test for client address = 94 rue du jambon';
         client.zip_code = 'This is a test for client zip code = 96525';
         client.state = 'This is a test for client state = Madagascar';
-        client.city= 'This is a test for client city = Arcachon';
+        //client.city= 'This is a test for client city = Arcachon';
         const checkDto = plainToClass(ClientsResponseDto, client);
         const errors = validate(checkDto);
         expect((await errors).length).toBeGreaterThan(0);
@@ -102,7 +102,7 @@ describe('clientEntity', () => {
         client.adress = 'This is a test for client address = 94 rue du jambon';
         client.zip_code = 'This is a test for client zip code = 96525';
         client.state = 'This is a test for client state = Madagascar';
-        client.city= 'This is a test for client city = Arcachon';
+        //client.city= 'This is a test for client city = Arcachon';
         const checkDto = plainToClass(ClientsResponseDto, client);
         const errors = validate(checkDto);
         expect((await errors).length).toBe(0);
@@ -118,7 +118,7 @@ describe('clientEntity', () => {
         client.adress = 'This is a test for client address = 94 rue du jambon';
         client.zip_code = 'This is a test for client zip code = 96525';
         client.state = 'This is a test for client state = Madagascar';
-        client.city= 'This is a test for client city = Arcachon';
+        //client.city= 'This is a test for client city = Arcachon';
         const checkDto = plainToClass(ClientsResponseDto, client);
         const errors = validate(checkDto);
         expect((await errors).length).toBeGreaterThan(0);
@@ -134,7 +134,7 @@ describe('clientEntity', () => {
         client.adress = 'This is a test for client address = 94 rue du jambon';
         client.zip_code = 'This is a test for client zip code = 96525';
         client.state = 'This is a test for client state = Madagascar';
-        client.city= 'This is a test for client city = Arcachon';
+        //client.city= 'This is a test for client city = Arcachon';
         const checkDto = plainToClass(ClientsResponseDto, client);
         const errors = validate(checkDto);
         expect((await errors).length).toBeGreaterThan(0);
@@ -150,7 +150,7 @@ describe('clientEntity', () => {
         client.phone = 'This is a test for client phone = 0565684154';
         client.zip_code = 'This is a test for client zip code = 96525';
         client.state = 'This is a test for client state = Madagascar';
-        client.city= 'This is a test for client city = Arcachon';
+        //client.city= 'This is a test for client city = Arcachon';
         const checkDto = plainToClass(ClientsResponseDto, client);
         const errors = validate(checkDto);
         expect((await errors).length).toBe(0);
@@ -166,7 +166,7 @@ describe('clientEntity', () => {
         client.phone = 'This is a test for client phone = 0565684154';
         client.adress = 'This is a test for client address = 94 rue du jambon';
         client.state = 'This is a test for client state = Madagascar';
-        client.city= 'This is a test for client city = Arcachon';
+        //client.city= 'This is a test for client city = Arcachon';
         const checkDto = plainToClass(ClientsResponseDto, client);
         const errors = validate(checkDto);
         expect((await errors).length).toBe(0);
@@ -182,7 +182,7 @@ describe('clientEntity', () => {
         client.phone = 'This is a test for client phone = 0565684154';
         client.adress = 'This is a test for client address = 94 rue du jambon';
         client.zip_code = 'This is a test for client zip code = 96525';
-        client.city= 'This is a test for client city = Arcachon';
+        //client.city= 'This is a test for client city = Arcachon';
         const checkDto = plainToClass(ClientsResponseDto, client);
         const errors = validate(checkDto);
         expect((await errors).length).toBe(0);

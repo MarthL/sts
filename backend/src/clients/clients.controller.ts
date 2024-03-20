@@ -2,20 +2,17 @@ import {
   Controller,
   Get,
   Post,
+  Patch,
   Param,
   Delete,
   Body,
-<<<<<<< HEAD
   ParseIntPipe
-=======
-  ParseIntPipe,
-  Patch,
->>>>>>> e532615818865792d86e1f360653afa343423383
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { Clients } from './clients.entity';
 import { ClientsService } from './clients.service';
 import createClientsDto from './dto/createClients.dto';
+import ClientsResponseDto from './dto/clientsResponse.dto';
 import { DeleteResult } from 'typeorm';
 
 @ApiTags('Clients')

@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import { IsNotEmpty, IsInt, IsString } from 'class-validator';
-=======
-import { IsNotEmpty, IsInt, IsOptional } from 'class-validator';
->>>>>>> e532615818865792d86e1f360653afa343423383
+import { IsNotEmpty, IsInt, IsString, IsOptional } from 'class-validator';
 
 export default class ProjectsResponseDto {
   @IsNotEmpty()

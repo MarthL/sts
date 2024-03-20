@@ -8,8 +8,6 @@ import {
   Delete,
   HttpException,
   ParseIntPipe
-  HttpException,
-  ParseIntPipe
 } from '@nestjs/common';
 import { CompanysService } from './company.service';
 import { CompanyResponseDto } from 'src/companys/dto/companyResponse.dto';

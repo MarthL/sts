@@ -11,11 +11,8 @@ export class Projects {
 
   @Column('text')
   description: string;
-<<<<<<< HEAD
-=======
 
   @ManyToOne(() => Clients, (client) => client.projects)
   @JoinColumn({ name: 'client_id' })
   client?: Clients;
->>>>>>> e532615818865792d86e1f360653afa343423383
 }

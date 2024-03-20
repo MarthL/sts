@@ -1,9 +1,9 @@
-import { Injectable, Body, ValidationPipe, Param, ParseIntPipe } from '@nestjs/common';
+import { Injectable, Body, Param, ParseIntPipe } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { DeepPartial, DeleteResult, Repository } from 'typeorm';
+import { DeleteResult, Repository } from 'typeorm';
 import { Clients } from './clients.entity';
 import CreateClientsDto from './dto/createClients.dto';
-import { plainToClass } from 'class-transformer';
+import ClientsResponseDto from './dto/clientsResponse.dto';
 
 @Injectable()
 export class ClientsService {
@@ -25,7 +25,7 @@ export class ClientsService {
   // Patch
   async patch(
     @Param('id', ParseIntPipe) id: number,
-    @Body() updateReq: ClientsResponseDto,
+    @Body() updateReq: any,
   ): Promise<any> {
     return this.clientsRepository.update(id, updateReq);
   }

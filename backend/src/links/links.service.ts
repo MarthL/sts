@@ -9,9 +9,9 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Like, Repository } from 'typeorm';
 import { plainToClass } from 'class-transformer';
 import { Links } from './links.entity';
-import { createLinkDto } from '../DTO/Links/createLink.dto';
-import { updateLinkDto } from '../DTO/Links/updateLink.dto';
-import { LinksResponseDto } from '../DTO/Links/linkResponse.dto';
+import { createLinkDto } from './dto/createLink.dto';
+import { updateLinkDto } from './dto/updateLink.dto';
+import { LinksResponseDto } from './dto/linkResponse.dto';
 
 @Injectable()
 export class LinksService {

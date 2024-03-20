@@ -12,8 +12,8 @@ import {
 } from '@nestjs/common';
 import { Links } from './links.entity';
 import { LinksService } from './links.service';
-import { createLinkDto } from '../DTO/Links/createLink.dto';
-import { LinksResponseDto } from '../DTO/Links/linkResponse.dto';
+import { createLinkDto } from './dto/createLink.dto';
+import { LinksResponseDto } from './dto/linkResponse.dto';
 
 @ApiTags('Links')
 @Controller('/links')
