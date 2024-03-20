@@ -1,5 +1,5 @@
 import { Clients } from '../clients/clients.entity';
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany, JoinColumn, ManyToOne } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
 @Entity()
 export class Projects {
@@ -12,7 +12,6 @@ export class Projects {
   @Column('text')
   description: string;
 
-  @ManyToOne(() => Clients, (client) => client.projects)
-  @JoinColumn({ name: 'client_id' })
-  client?: Clients;
+  @OneToMany(() => Clients, (client) => client.projects)
+  client?: Clients[];
 }

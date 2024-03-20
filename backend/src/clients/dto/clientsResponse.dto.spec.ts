@@ -11,7 +11,7 @@ describe('ClientsResponseDto', () => {
         dto.industry = 'This is a test for industry';
         dto.mail = 'This a test for mail';
         dto.phone = 'This a test for phone';
-        dto.adress = 'This a test for adress';
+        dto.address = 'This a test for adress';
         const errors = await validate(dto);
         expect(errors.length).toBe(0);
     });

@@ -14,5 +14,5 @@ export default class ProjectsResponseDto {
   description: string;
 
   @IsOptional()
-  clients?: string;
+  client?: [];
 }

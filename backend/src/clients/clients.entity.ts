@@ -1,6 +1,6 @@
 import { Citys } from 'src/citys/citys.entity';
 import { Projects } from '../projects/projects.entity';
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
 
 @Entity()
 export class Clients {
@@ -23,12 +23,13 @@ export class Clients {
   phone!: string;
 
   @Column('varchar')
-  adress?: string;
+  address?: string;
 
-  @ManyToOne(() => Citys, (citys) => citys.id)
+  @ManyToOne(() => Citys, (citys) => citys)
   @JoinColumn({ name: 'city_id' })
-  city_id?: Citys[];
+  city?: Citys[];
 
-  @OneToMany(() => Projects, (projects) => projects.client)
+  @ManyToOne(() => Projects, (projects) => projects.client)
+  @JoinColumn({ name: 'project_id' })
   projects?: Projects[];
 }

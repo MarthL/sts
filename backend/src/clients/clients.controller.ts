@@ -26,6 +26,12 @@ export class ClientsController {
     return this.clientsService.getClients();
   }
 
+  // Get by Id
+  @Get(':id')
+  async getClientById(@Param('id', ParseIntPipe) id: number) {
+    return await this.clientsService.getClientById(id);
+  }
+
   // Post
   @Post('')
   async create(@Body() client: createClientsDto): Promise<createClientsDto> {
@@ -41,6 +47,7 @@ export class ClientsController {
     return await this.clientsService.patch(id, updateReq);
   }
 
+  // Delete
   @Delete(':id')
   async deleteById(
     @Param('id', ParseIntPipe) id: number,

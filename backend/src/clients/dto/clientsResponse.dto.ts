@@ -1,8 +1,8 @@
 import { IsNotEmpty, IsInt, IsOptional } from 'class-validator';
 import { Citys } from 'src/citys/citys.entity';
+import { Projects } from 'src/projects/projects.entity';
 
 export default class ClientsResponseDto {
-  
   @IsInt()
   id: number;
 
@@ -22,8 +22,11 @@ export default class ClientsResponseDto {
   phone!: string;
 
   @IsOptional()
-  adress?: string;
+  address?: string;
 
   @IsOptional()
-  city_id?: Citys[];
+  city?: Citys[];
+
+  @IsOptional()
+  projects?: Projects[];
 }
