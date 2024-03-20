@@ -26,8 +26,11 @@ interface User {
     address: string,
     zip_code: number
   },
+  link?: {
+    id: number,
+    url: string
+  }
 }
-
 
 export const ProfilePage: React.FC<any> = () => {
 
@@ -59,15 +62,16 @@ export const ProfilePage: React.FC<any> = () => {
 
   return (
     <>
-      <Grid container xs={12} sx={{ width:'100%'}}>
+      <Grid container sx={{ width: '100%' }}>
         <Grid item xs={4}>
-          <ListItemProfile  icon={<Edit />} text={'Edit Profile'} index={1} selectedIndex={selectedIndex} handleListItemClick={handleListItemClick}></ListItemProfile>
+          <ListItemProfile icon={<Edit />} text={'Edit Profile'} index={1} selectedIndex={selectedIndex} handleListItemClick={handleListItemClick} />
+
         </Grid>
         <Grid item xs={4}>
-          <ListItemProfile icon={<Security />} text={'Security and Password'} index={2} selectedIndex={selectedIndex} handleListItemClick={handleListItemClick}></ListItemProfile>
+          <ListItemProfile icon={<Security />} text={'Security and Password'} index={2} selectedIndex={selectedIndex} handleListItemClick={handleListItemClick} />
         </Grid>
         <Grid item xs={4}>
-          <ListItemProfile icon={<Tune />} text={'Advanced Settings'} index={3} selectedIndex={selectedIndex} handleListItemClick={handleListItemClick}></ListItemProfile>
+          <ListItemProfile icon={<Tune />} text={'Advanced Settings'} index={3} selectedIndex={selectedIndex} handleListItemClick={handleListItemClick} />
         </Grid>
         <Grid item xs={12}>
           <Paper elevation={0} variant="outlined">

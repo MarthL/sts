@@ -36,4 +36,5 @@ export class Clients {
 
   @OneToMany(() => Projects, (projects) => projects.client)
   projects?: Projects[];
+>>>>>>> e532615818865792d86e1f360653afa343423383
 }

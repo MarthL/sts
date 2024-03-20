@@ -5,8 +5,12 @@ import {
   Param,
   Delete,
   Body,
+<<<<<<< HEAD
+  ParseIntPipe
+=======
   ParseIntPipe,
   Patch,
+>>>>>>> e532615818865792d86e1f360653afa343423383
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { Clients } from './clients.entity';

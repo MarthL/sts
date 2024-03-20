@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import { Autocomplete, TextField, createFilterOptions } from "@mui/material";
 import { useFormContext } from 'react-hook-form';
-import { Dispatch, SetStateAction } from "react";
 import { getCitiesCollection } from "../../../api/cities";
 
 interface City {
@@ -32,7 +31,7 @@ export const CustomAutoComplete = (props: CustomAutoCompleteProps) => {
   });
 
   const handleInputChange = (event: any) => {
-    if ( event !== null){
+    if (event !== null) {
       getCitiesCollection(event.target.value).then((res) => {
         console.log('get cities collection event.target.value : ', event.target.value)
         setSuggestions(res);
@@ -40,7 +39,7 @@ export const CustomAutoComplete = (props: CustomAutoCompleteProps) => {
         .catch((error) => {
           console.error(error);
         })
-    }    
+    }
   }
 
   return (
@@ -64,7 +63,7 @@ export const CustomAutoComplete = (props: CustomAutoCompleteProps) => {
       renderInput={(params) => (
         <TextField
           {...params}
-          defaultValue={value ? value?.city_name : ''}
+          value={value ? value?.city_name : ''}
           label={label}
           {...register(registerProps)}
         />

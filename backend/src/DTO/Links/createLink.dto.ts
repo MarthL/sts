@@ -1,7 +1,7 @@
 import { IsNotEmpty, IsString } from 'class-validator';
 
-export class CreateCompanyDto {
-  @IsString()
+export class createLinkDto {
   @IsNotEmpty()
-  name: string;
+  @IsString()
+  url: string;
 }

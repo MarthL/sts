@@ -1,7 +1,7 @@
-import { IsNotEmpty, IsString, IsNumber } from 'class-validator';
+import { IsNotEmpty, IsString, IsInt } from 'class-validator';
 
 export class CompanyResponseDto {
-  @IsNumber()
+  @IsInt()
   id: number;
 
   @IsNotEmpty()
