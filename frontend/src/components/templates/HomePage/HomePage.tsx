@@ -46,8 +46,12 @@ export const HomePage = () => {
   }, [])
 
   useEffect(() => {
-    // TODO : Implement here logic for search method and filtering 
-    console.log(search);
+    if (search) {
+      getProjects(search).then((async (res) => setProjectsCollection(res)))
+    } else {
+      getProjects().then((async (res) => setProjectsCollection(res)));
+    }
+    console.log(search)
   }, [search])
 
   const handleOpenModal = () => {
