@@ -1,3 +1,4 @@
+import { Citys } from 'src/citys/citys.entity';
 import { Projects } from '../projects/projects.entity';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
@@ -31,7 +32,7 @@ export class Clients {
   state?: string;
 
   @Column('varchar')
-  city?: string;
+  city?: Citys;
 
   @OneToMany(() => Projects, (projects) => projects.client)
   projects?: Projects[];

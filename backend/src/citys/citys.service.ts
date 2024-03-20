@@ -8,7 +8,7 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Citys } from './citys.entity';
-import { CitysResponseDto } from '../DTO/Citys/citysResponse.dto';
+import { CitysResponseDto } from './dto/citysResponse.dto';
 import { plainToClass } from 'class-transformer';
 import { Like } from 'typeorm';
 

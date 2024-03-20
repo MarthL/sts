@@ -6,11 +6,11 @@ import {
   ParseIntPipe,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, Like } from 'typeorm';
 import { Projects } from './projects.entity';
-import ProjectsResponseDto from '../DTO/Projects/projectsResponse.dto';
-import CreateProjectDto from '../DTO/Projects/createProject.dto';
-import { updateProjectDto } from 'src/DTO/Projects/updateProjectDto.dto';
+import ProjectsResponseDto from './dto/projectsResponse.dto';
+import CreateProjectDto from './dto/createProject.dto';
+import { updateProjectDto } from 'src/projects/dto/updateProjectDto.dto';
 import { plainToClass } from 'class-transformer';
 
 @Injectable()
@@ -21,8 +21,20 @@ export class ProjectsService {
   ) {}
 
   // GetAll
-  async getProjects(): Promise<Projects[]> {
-    return await this.projectsRepository.find();
+  async getProjects(search?: string): Promise<Projects[]> {
+    if (!search) {
+      return this.projectsRepository.find();
+    }
+    return await this.projectsRepository.find({
+      select: {
+        id: true,
+        project_name: true,
+        description: true,
+      },
+      where: {
+        project_name: Like(`${search}%`),
+      },
+    });
   }
 
   // GetById

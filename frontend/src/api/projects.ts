@@ -6,8 +6,9 @@ export interface Project {
   description: string;
 };
 
-export async function getProjects() {
-  return axiosClient.get('/projects')
+export async function getProjects(search?: string) {
+  const param = search ? `?search=${search}` : ''
+  return axiosClient.get('projects' + param)
     .then((response) => {
       return response.data;
     })

@@ -2,8 +2,8 @@ import { Injectable, Body, ValidationPipe, Param, ParseIntPipe } from '@nestjs/c
 import { InjectRepository } from '@nestjs/typeorm';
 import { DeepPartial, DeleteResult, Repository } from 'typeorm';
 import { Clients } from './clients.entity';
-import CreateClientsDto from '../DTO/Clients/createClients.dto';
-import ClientsResponseDto from '../DTO/Clients/clientsResponse.dto';
+import CreateClientsDto from './dto/createClients.dto';
+import { plainToClass } from 'class-transformer';
 
 @Injectable()
 export class ClientsService {

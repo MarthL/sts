@@ -11,10 +11,9 @@ import {
 import { ApiTags } from '@nestjs/swagger';
 import { Clients } from './clients.entity';
 import { ClientsService } from './clients.service';
-import createClientsDto from '../DTO/Clients/createClients.dto';
+import createClientsDto from './dto/createClients.dto';
 import { DeleteResult } from 'typeorm';
-import { UserResponseDto } from 'src/DTO/User/userResponseDto.dto';
-import ClientsResponseDto from 'src/DTO/Clients/clientsResponse.dto';
+
 @ApiTags('Clients')
 @Controller('/clients')
 export class ClientsController {

@@ -4,10 +4,12 @@ import { Box, Typography, Button, Grid, Container } from '@mui/material';
 import { getProjects } from '../../../api/projects';
 import { ProjectModal } from '../../organisms/CreateProjectModal/CreateProjectModal';
 import { Pagination } from '@mui/material';
+import { CustomInput } from '../../atoms/InputForm/CustomInput';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import gsap from 'gsap';
 import ScrollToPlugin from 'gsap/ScrollToPlugin';
 import { Project } from '../../../api/projects';
+import { TextField, Paper } from '@mui/material';
 
 export const HomePage = () => {
 
@@ -17,6 +19,7 @@ export const HomePage = () => {
   const [openModal, setOpenModal] = useState(false);
 
   const [currentPage, setCurrentPage] = useState(1);
+  const [search, setSearch] = useState('');
   const itemsPerPage = 20;
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -42,6 +45,15 @@ export const HomePage = () => {
     }
   }, [])
 
+  useEffect(() => {
+    if (search) {
+      getProjects(search).then((async (res) => setProjectsCollection(res)))
+    } else {
+      getProjects().then((async (res) => setProjectsCollection(res)));
+    }
+    console.log(search)
+  }, [search])
+
   const handleOpenModal = () => {
     setOpenModal(true);
   };
@@ -61,15 +73,37 @@ export const HomePage = () => {
 
         <ProjectModal openModal={openModal} handleCloseModal={handleCloseModal} />
 
+        <Typography variant="h5">Search Filters</Typography>
+        <Grid container mb={5} mt={5}>
+          <Paper>
+            <Grid item />
+            <Grid>
+              <TextField
+                variant="outlined"
+                label="Project Name"
+                value={search || ''}
+                onChange={(event) => {
+                  setSearch(event?.target?.value);
+                }}
+              />
+            </Grid>
+            <Grid item />
+          </Paper>
+        </Grid>
+
         <Grid container spacing={5}>
           {
-            currentProjects.map((project: Project) => {
-              return (
+            currentProjects.length > 0 ? (
+              currentProjects.map((project: Project) => (
                 <Grid key={project.id} item xs={12} sm={12} md={4} lg={4}>
                   <CardProject id={project.id} project_name={project.project_name} description={project.description}></CardProject>
                 </Grid>
-              )
-            })
+              ))
+            ) : (
+              <Grid container mt={5} display={'flex'} justifyContent={'center'}>
+                <Typography variant="h6" color={'primary'} >Aucun projet à afficher</Typography>
+              </Grid>
+            )
           }
         </Grid>
         <Box sx={{ display: 'flex', justifyContent: 'center', width: '75vw', mt: 5 }}>

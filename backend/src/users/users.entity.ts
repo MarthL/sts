@@ -7,7 +7,6 @@ import {
   JoinTable,
   JoinColumn,
 } from 'typeorm';
-
 import { Job } from '../job/job.entity';
 import { Projects } from '../projects/projects.entity';
 import { Companys } from '../companys/company.entity';

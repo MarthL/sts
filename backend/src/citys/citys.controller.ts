@@ -10,8 +10,7 @@ import {
 import { ApiTags, ApiQuery } from '@nestjs/swagger';
 import { CitysService } from './citys.service';
 import { Citys } from './citys.entity';
-import { CitysResponseDto } from '../DTO/Citys/citysResponse.dto';
-
+import { CitysResponseDto } from './dto/citysResponse.dto';
 
 @ApiTags('Citys')
 @Controller('/citys')
