@@ -4,10 +4,12 @@ import { Box, Typography, Button, Grid, Container } from '@mui/material';
 import { getProjects } from '../../../api/projects';
 import { ProjectModal } from '../../organisms/CreateProjectModal/CreateProjectModal';
 import { Pagination } from '@mui/material';
+import { CustomInput } from '../../atoms/InputForm/CustomInput';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import gsap from 'gsap';
 import ScrollToPlugin from 'gsap/ScrollToPlugin';
 import { Project } from '../../../api/projects';
+import { TextField } from '@mui/material';
 
 export const HomePage = () => {
 
@@ -17,6 +19,7 @@ export const HomePage = () => {
   const [openModal, setOpenModal] = useState(false);
 
   const [currentPage, setCurrentPage] = useState(1);
+  const [search, setSearch] = useState('');
   const itemsPerPage = 20;
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -42,6 +45,11 @@ export const HomePage = () => {
     }
   }, [])
 
+  useEffect(() => {
+    // TODO : Implement here logic for search method and filtering 
+    console.log(search);
+  }, [search])
+
   const handleOpenModal = () => {
     setOpenModal(true);
   };
@@ -60,6 +68,21 @@ export const HomePage = () => {
         </Button>
 
         <ProjectModal openModal={openModal} handleCloseModal={handleCloseModal} />
+
+        <Grid container mb={5}>
+          <Grid item />
+          <Grid>
+            <TextField
+              variant="outlined"
+              label="Filter"
+              value={search || ''}
+              onChange={(event) => {
+                setSearch(event?.target?.value);
+              }}
+            />
+          </Grid>
+          <Grid item />
+        </Grid>
 
         <Grid container spacing={5}>
           {
