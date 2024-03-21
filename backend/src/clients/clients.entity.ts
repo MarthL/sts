@@ -27,9 +27,9 @@ export class Clients {
 
   @ManyToOne(() => Citys, (citys) => citys)
   @JoinColumn({ name: 'city_id' })
-  city_id?: Citys[];
+  city_id?: number;
 
   @ManyToOne(() => Projects, (projects) => projects.client)
   @JoinColumn({ name: 'project_id' })
-  projects_id?: Projects[];
+  projects_id?: number;
 }

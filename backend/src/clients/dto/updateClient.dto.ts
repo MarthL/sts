@@ -1,12 +1,12 @@
-import { IsInt, IsOptional, IsString } from 'class-validator';
-import { Citys } from 'src/citys/citys.entity';
-import { Projects } from 'src/projects/projects.entity';
+import { IsInt, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export default class UpdateClientDto {
   @IsString()
+  @IsNotEmpty()
   name!: string;
 
   @IsString()
+  @IsNotEmpty()
   siret!: string;
 
   @IsString()
@@ -14,9 +14,11 @@ export default class UpdateClientDto {
   industry?: string;
 
   @IsString()
+  @IsNotEmpty()
   mail!: string;
 
   @IsString()
+  @IsNotEmpty()
   phone!: string;
 
   @IsString()
@@ -25,8 +27,9 @@ export default class UpdateClientDto {
 
   @IsInt()
   @IsOptional()
-  city_id?: Citys[];
+  city_id?: number;
 
+  @IsInt()
   @IsOptional()
-  projects_id?: Projects[];
+  projects_id?: number;
 }
