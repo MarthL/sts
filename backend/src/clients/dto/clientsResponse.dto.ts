@@ -1,32 +1,38 @@
-import { IsNotEmpty, IsInt, IsOptional } from 'class-validator';
-import { Citys } from 'src/citys/citys.entity';
-import { Projects } from 'src/projects/projects.entity';
+import { IsNotEmpty, IsInt, IsOptional, IsString } from 'class-validator';
 
 export default class ClientsResponseDto {
   @IsInt()
   id: number;
 
+  @IsString()
   @IsNotEmpty()
   name!: string;
 
+  @IsString()
   @IsNotEmpty()
   siret!: string;
 
+  @IsString()
   @IsOptional()
   industry?: string;
 
+  @IsString()
   @IsNotEmpty()
   mail!: string;
 
+  @IsString()
   @IsNotEmpty()
   phone!: string;
 
+  @IsString()
   @IsOptional()
   address?: string;
 
+  @IsInt()
   @IsOptional()
-  city_id?: Citys[];
+  city_id?: number;
 
+  @IsInt()
   @IsOptional()
-  projects_id?: Projects[];
+  projects_id?: number;
 }
