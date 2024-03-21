@@ -53,9 +53,9 @@ export class Users {
 
   @ManyToOne(() => Citys, (city) => city.users)
   @JoinColumn({ name: 'city_id' })
-  city: Citys;
+  city?: Citys;
 
   @ManyToOne(() => Links, (link) => link.users)
   @JoinColumn({ name: 'link_id' })
-  link: Links;
+  link?: Links;
 }
