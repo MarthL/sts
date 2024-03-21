@@ -4,7 +4,7 @@ import { AuthService } from './auth.service';
 import { AuthLogin } from './authlogin.service';
 import { AuthController } from './auth.controller';
 import { UsersModule } from '../users/users.module';
-import { UsersService } from '../users/users.service';
+
 @Module({
   imports: [
     JwtModule.register({

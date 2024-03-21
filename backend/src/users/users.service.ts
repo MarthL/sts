@@ -39,7 +39,7 @@ export class UsersService {
   // getById
   async getUserById(userId: number): Promise<UserResponseDto | HttpException> {
     const user = await this.userRepository.findOne({
-      relations: ['job', 'company', 'city'],
+      relations: ['job', 'company', 'city', 'link'],
       where: {
         id: userId,
       },
@@ -98,7 +98,7 @@ export class UsersService {
       where: {
         username: username,
       },
-      relations: ['job', 'company', 'city'],
+      relations: ['job', 'company', 'city', 'link'],
     });
 
     if (!loggedUser) {
@@ -112,14 +112,20 @@ export class UsersService {
     @Param('id', ParseIntPipe) id: number,
     @Body() updateReq: UserResponseDto,
   ): Promise<any> {
-    const { job_id, company_id, city_id, ...fields } = updateReq;
+    const { job_id, company_id, city_id, link_id, ...fields } = updateReq;
 
     let updateQuery = {};
 
-    if (job_id !== undefined && company_id !== undefined) {
+    if (job_id !== undefined) {
       updateQuery = {
         ...updateQuery,
         job: { id: job_id },
+      };
+    }
+
+    if (company_id !== undefined) {
+      updateQuery = {
+        ...updateQuery,
         company: { id: company_id },
       };
     }
@@ -127,7 +133,14 @@ export class UsersService {
     if (city_id !== undefined) {
       updateQuery = { ...updateQuery, city: { id: city_id } };
     }
+
+    if (link_id !== undefined) {
+      console.log('quest ce que est que ca : ', link_id);
+      updateQuery = { ...updateQuery, link: { id: link_id } };
+    }
     updateQuery = { ...updateQuery, ...fields };
+
+    console.log('cest ce que jenvoi : ', updateQuery);
 
     const result = await this.userRepository.update(id, updateQuery);
 

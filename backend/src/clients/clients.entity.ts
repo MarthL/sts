@@ -1,4 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Citys } from 'src/citys/citys.entity';
+import { Projects } from '../projects/projects.entity';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
 
 @Entity()
 export class Clients {
@@ -6,29 +8,28 @@ export class Clients {
   id: number;
 
   @Column('varchar')
-  name: string;
+  name!: string;
 
   @Column('varchar')
-  siret: string;
+  siret!: string;
 
   @Column('varchar')
-  industry: string;
+  industry?: string;
 
   @Column('varchar')
-  mail: string;
+  mail!: string;
 
   @Column('varchar')
-  phone: string;
+  phone!: string;
 
   @Column('varchar')
-  adress: string;
+  address?: string;
 
-  @Column('varchar')
-  zip_code: string;
+  @ManyToOne(() => Citys, (citys) => citys)
+  @JoinColumn({ name: 'city_id' })
+  city_id?: number;
 
-  @Column('varchar')
-  state: string;
-
-  @Column('varchar')
-  city: string;
+  @ManyToOne(() => Projects, (projects) => projects.client)
+  @JoinColumn({ name: 'project_id' })
+  projects_id?: number;
 }

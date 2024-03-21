@@ -1,11 +1,10 @@
 import { IsInt, IsNotEmpty, IsString } from 'class-validator';
 
-export class JobResponseDto {
-  @IsNotEmpty()
+export class updateLinkDto {
   @IsInt()
   id: number;
 
   @IsNotEmpty()
   @IsString()
-  job_title: string;
+  url: string;
 }

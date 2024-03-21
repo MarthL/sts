@@ -1,5 +1,6 @@
 import { Controller, Post, Body, HttpCode } from '@nestjs/common';
 import { AuthLogin } from './authlogin.service';
+
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authLogin: AuthLogin) {}

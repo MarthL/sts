@@ -1,5 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { Job } from '../job/job.entity';
+
 @Entity()
 export class JobField {
   @PrimaryGeneratedColumn()

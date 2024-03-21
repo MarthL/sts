@@ -1,9 +1,6 @@
-import { IsNotEmpty, IsInt, IsOptional, IsString } from 'class-validator';
+import { IsInt, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
-export default class ClientsResponseDto {
-  @IsInt()
-  id: number;
-
+export default class UpdateClientDto {
   @IsString()
   @IsNotEmpty()
   name!: string;
