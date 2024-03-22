@@ -1,17 +1,18 @@
-import { TextField } from '@mui/material';
+import { TextField, TextFieldVariants } from '@mui/material';
 import React from 'react';
 
 interface TextBlockProps extends React.InputHTMLAttributes<HTMLInputElement> {
-    type: string;
     value: string;
+    variant: TextFieldVariants;
 }
 
 export const TextBlock: React.FC<TextBlockProps> = (props: TextBlockProps) => {
-    const { type, value } = props;
+    const { value, variant } = props;
   return (
     <TextField
-        type={type}
+        type={'text'}
         value={value}
+        variant={variant}
     />
   );
 };
