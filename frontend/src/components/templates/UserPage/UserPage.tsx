@@ -1,10 +1,9 @@
-import { Typography } from "@mui/material";
-import { useState, useEffect } from "react";
+import { Grid, Typography } from "@mui/material";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { User, getUserById, getAllUsers } from './../../../api/users';
 import { useNavigate } from 'react-router-dom';
-
-
+import { TextBlock } from "../../atoms/TextBlock/TextBlock";
 
 export const UserPage: React.FC<any> = () => {
 
@@ -25,6 +24,18 @@ export const UserPage: React.FC<any> = () => {
   return (
     <>
       <Typography> it works !  </Typography>
+      
+      <Grid container sx={{display:'flex', justifyContent:'center', width:100}}>
+        <Grid item sx={{display:'flex', justifyContent:'center', width:100}}>
+          <TextBlock
+            type="text"
+            value="string"
+            variant="outlined"
+            rows={10}
+          />
+        </Grid>
+      </Grid>
+      
     </>
   )
 }
