@@ -4,18 +4,18 @@ import React from 'react';
 interface TextBlockProps extends React.InputHTMLAttributes<HTMLInputElement> {
     value: string;
     variant: TextFieldVariants;
-    minRows: number;
+    rows: number;
 }
 
 export const TextBlock: React.FC<TextBlockProps> = (props: TextBlockProps) => {
-    const { value, variant, minRows } = props;
+    const { value, variant, rows } = props;
   return (
     <TextField
         type={'text'}
         value={value}
         variant={variant}
         multiline
-        minRows={minRows}
+        rows={rows}
     />
   );
 };
