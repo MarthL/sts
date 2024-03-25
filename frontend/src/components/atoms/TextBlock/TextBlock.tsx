@@ -2,11 +2,8 @@ import { InputAdornment, TextField, TextFieldVariants } from '@mui/material';
 import React, { useState } from 'react';
 
 interface TextBlockProps extends React.InputHTMLAttributes<HTMLInputElement> {
-    //value: string;
     variant: TextFieldVariants;
     rows: number;
-    //maxChar: number;
-    //count: string;
     maxChars: number;
 }
 
