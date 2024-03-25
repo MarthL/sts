@@ -1,5 +1,6 @@
 import { InputAdornment, TextField, TextFieldVariants } from '@mui/material';
 import React, { useState } from 'react';
+import './TextBlock.css';
 
 interface TextBlockProps extends React.InputHTMLAttributes<HTMLInputElement> {
     variant: TextFieldVariants;
@@ -10,10 +11,14 @@ interface TextBlockProps extends React.InputHTMLAttributes<HTMLInputElement> {
 export const TextBlock: React.FC<TextBlockProps> = (props: TextBlockProps) => {
     const { variant, rows, maxChars } = props;
     const [ charCount, setCharCount ] = useState<number>(0);
+    const [ isError, setIsError ] = useState<boolean>(false);
+
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const charText = event.target.value;
         setCharCount(charText.length);
+        setIsError(charText.length >= maxChars)
     };
+
   return (
     <TextField
         type={'text'}
@@ -21,9 +26,13 @@ export const TextBlock: React.FC<TextBlockProps> = (props: TextBlockProps) => {
         multiline
         rows={rows}
         fullWidth
-        inputProps={{ maxlength: maxChars }}
+        inputProps={{ maxLength: maxChars }}
         onChange={handleChange}
-        InputProps={{ endAdornment: <InputAdornment position="end">{charCount}/{maxChars}</InputAdornment> }}
+        InputProps={{ endAdornment:
+          <InputAdornment position='end' className={isError ? 'red-text' : ''} sx={{mt: 20}}>
+            {charCount}/{maxChars}
+          </InputAdornment>
+        }}
     />
   );
 };
