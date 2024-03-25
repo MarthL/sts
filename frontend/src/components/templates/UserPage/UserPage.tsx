@@ -32,7 +32,7 @@ export const UserPage: React.FC<any> = () => {
             type="text"
             value="string"
             variant="outlined"
-            rows={20}
+            rows={10}
             maxChars={500}
           />
         </Grid>
