@@ -22,16 +22,18 @@ export const UserPage: React.FC<any> = () => {
   }, []);
 
   return (
-    <>
+    <> 
+
       <Typography> it works !  </Typography>
       
-      <Grid container sx={{display:'flex', justifyContent:'center', width:100}}>
-        <Grid item sx={{display:'flex', justifyContent:'center', width:100}}>
+      <Grid container>
+        <Grid item xs={12} sx={{mt:2}}>
           <TextBlock
             type="text"
             value="string"
             variant="outlined"
-            rows={10}
+            rows={20}
+            maxChars={500}
           />
         </Grid>
       </Grid>
