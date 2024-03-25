@@ -1,10 +1,8 @@
 import { Typography } from "@mui/material";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { User, getUserById, getAllUsers } from './../../../api/users';
+import { User, getUserById } from './../../../api/users';
 import { useNavigate } from 'react-router-dom';
-
-
 
 export const UserPage: React.FC<any> = () => {
 
@@ -23,8 +21,10 @@ export const UserPage: React.FC<any> = () => {
   }, []);
 
   return (
-    <>
+    <> 
+
       <Typography> it works !  </Typography>
+      
     </>
   )
 }
