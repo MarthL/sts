@@ -10,6 +10,7 @@ import { Job } from './job/job.entity';
 import { JobField } from './job-field/job-field.entity';
 import { Clients } from './clients/clients.entity';
 import { Citys } from './citys/citys.entity';
+import { Status } from './status/status.entity';
 
 import { AuthModule } from './auth/auth.module';
 import { ProjectsModule } from './projects/projects.module';
@@ -24,12 +25,12 @@ import { JobFieldModule } from './job-field/job-field.module';
 import { ConfigModule } from '@nestjs/config';
 import { ClientsModule } from './clients/clients.module';
 import { CitysModule } from './citys/citys.module';
+import { StatusModule } from './status/status.module';
 
 import { AuthService } from './auth/auth.service';
 import { AuthLogin } from './auth/authlogin.service';
-import { StatusModule } from './status/status.module';
-
 import * as dotenv from 'dotenv';
+
 dotenv.config({ path: '../.env' });
 
 @Module({
@@ -47,7 +48,7 @@ dotenv.config({ path: '../.env' });
       password: process.env.PASSWORD || null,
       username: process.env.DBUSERNAME,
       database: process.env.DBNAME,
-      entities: [Projects, Users, Job, JobField, Clients, Companys, Citys],
+      entities: [Projects, Users, Job, JobField, Clients, Companys, Citys, Status],
       synchronize: true,
     }),
     TypeOrmModule.forFeature([Projects, Users]),

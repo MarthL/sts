@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { UpdateStatusDto } from './dto/update-status.dto';
+import { UpdateStatusDto } from './dto/updateStatus.dto';
 
 @Injectable()
 export class StatusService {
