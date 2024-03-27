@@ -27,6 +27,7 @@ import { CitysModule } from './citys/citys.module';
 
 import { AuthService } from './auth/auth.service';
 import { AuthLogin } from './auth/authlogin.service';
+import { StatusModule } from './status/status.module';
 
 import * as dotenv from 'dotenv';
 dotenv.config({ path: '../.env' });
@@ -58,6 +59,7 @@ dotenv.config({ path: '../.env' });
     ClientsModule,
     CompanysModule,
     CitysModule,
+    StatusModule,
   ],
   controllers: [AuthController],
   providers: [JwtStrategy, AuthService, AuthLogin],
