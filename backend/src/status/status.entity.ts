@@ -14,5 +14,5 @@ export class Status {
 
     @OneToMany(() => Projects, (projects) => projects.status)
     @IsString()
-    projects: Projects[];
+    projects: string;
 }

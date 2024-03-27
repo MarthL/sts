@@ -1,6 +1,9 @@
 import { IsInt, IsString } from "class-validator";
 
-export class UpdateStatusDto {
+export class StatusResponseDto {
+    @IsInt()
+    id: number;
+
     @IsString()
     statusName: string;
 }

@@ -64,6 +64,7 @@ export class ProjectsService {
     return this.projectsRepository.update(id, updateReq);
   }
 
+  // Delete
   async deleteById(id: number): Promise<any> {
     return this.projectsRepository.delete(id);
   }

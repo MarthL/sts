@@ -1,24 +1,26 @@
 import { Controller, Get, Body, Patch, Param } from '@nestjs/common';
 import { StatusService } from './status.service';
 import { UpdateStatusDto } from './dto/updateStatus.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Status')
 @Controller('status')
 export class StatusController {
   constructor(private readonly statusService: StatusService) {}
 
   @Get()
-  findAll() {
-    return this.statusService.findAll();
+  getAllStatus() {
+    return this.statusService.getStatus();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: number) {
-    return this.statusService.findOne(+id);
+  getOneStatus(@Param('id') id: number) {
+    return this.statusService.getStatusById(+id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: number, @Body() updateStatusDto: UpdateStatusDto) {
-    return this.statusService.update(+id, updateStatusDto);
+  updateStatus(@Param('id') id: number, @Body() updateStatusDto: UpdateStatusDto) {
+    return this.statusService.patchStatus(+id, updateStatusDto);
   }
 
 }
