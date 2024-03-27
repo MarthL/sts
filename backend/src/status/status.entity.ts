@@ -1,7 +1,8 @@
 import { IsInt, IsString } from "class-validator";
 import { Projects } from "src/projects/projects.entity";
-import { Column, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
+@Entity()
 export class Status {
     @PrimaryGeneratedColumn()
     @IsInt()
@@ -11,7 +12,7 @@ export class Status {
     @IsString()
     statusName: string;
 
-    @OneToMany(() => Projects, (project) => project.status)
+    @OneToMany(() => Projects, (projects) => projects.status)
     @IsString()
-    projects: string;
+    projects: Projects[];
 }
