@@ -6,7 +6,7 @@ import { useFormContext } from 'react-hook-form';
 interface InputProfileCustomProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
   type: string;
-  value: string | number | undefined;
+  value: string | number;
   disabled: boolean;
   registerProps: string;
   onChangeEvent: (event: React.ChangeEvent<HTMLInputElement>) => void;
