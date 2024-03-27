@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 import { User } from '../../../api/users';
 
 interface UserListCustomProps {
-  user: Partial<User>;
-  username: string;
   id: number;
+  key: number;
+  username: string;
+  user: Partial<User>;
 }
 
 export const UserListCustom = (props: UserListCustomProps) => {
