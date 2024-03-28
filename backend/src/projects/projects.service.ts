@@ -29,7 +29,7 @@ export class ProjectsService {
       select: {
         id: true,
         project_name: true,
-        description: true,
+        description: true
       },
       where: {
         project_name: Like(`${search}%`),

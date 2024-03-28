@@ -12,7 +12,7 @@ export class Status {
     @IsString()
     statusName: string;
 
-    @OneToMany(() => Projects, (projects) => projects.status)
-    @IsString()
-    projects: string;
+    @OneToMany(() => Projects, (projects) => projects.status_id)
+    @IsInt()
+    projects_id: number;
 }

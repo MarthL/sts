@@ -16,8 +16,8 @@ export class Projects {
   @IsString()
   description: string;
 
-  @ManyToOne(() => Status, (status) => status.projects)
+  @ManyToOne(() => Status, (status) => status.projects_id)
   @JoinColumn({ name: 'status_id' })
   @IsInt()
-  status: string;
+  status_id: number;
 }
