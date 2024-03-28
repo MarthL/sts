@@ -8,7 +8,7 @@ export class Status {
     @IsInt()
     id: number;
 
-    @Column('varchar')
+    @Column('varchar', { length: 10 })
     @IsString()
     statusName: string;
 
