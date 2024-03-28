@@ -1,4 +1,6 @@
-import { IsInt, IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty, IsString } from 'class-validator';
+import { Status } from 'src/status/status.entity';
+import { Column } from 'typeorm';
 
 export default class createProjectDto {
   @IsNotEmpty()
@@ -9,6 +11,6 @@ export default class createProjectDto {
   @IsString()
   description: string;
 
-  @IsInt()
-  status_id: number;
+  @Column()
+  status: Status;
 }

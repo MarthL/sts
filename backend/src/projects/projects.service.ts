@@ -29,8 +29,7 @@ export class ProjectsService {
       select: {
         id: true,
         project_name: true,
-        description: true,
-        status_id: true
+        description: true
       },
       where: {
         project_name: Like(`${search}%`),
@@ -40,8 +39,7 @@ export class ProjectsService {
 
   // GetById
   async getProjectById(
-    id: number,
-  ): Promise<ProjectsResponseDto | HttpException> {
+    @Param('id', ParseIntPipe) id: number ): Promise<ProjectsResponseDto | HttpException> {
     const project = await this.projectsRepository.findOne({
       where: { id },
     });
@@ -52,7 +50,8 @@ export class ProjectsService {
   }
 
   // Post
-  async post(@Body() createReq: CreateProjectDto): Promise<CreateProjectDto> {
+  async post(
+    @Body() createReq: CreateProjectDto): Promise<CreateProjectDto> {
     const newProject = plainToClass(CreateProjectDto, createReq);
     return await this.projectsRepository.save(newProject);
   }

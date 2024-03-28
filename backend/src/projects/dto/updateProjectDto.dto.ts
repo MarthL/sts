@@ -1,5 +1,7 @@
 import { Exclude } from 'class-transformer';
 import { IsInt, IsNotEmpty, IsString } from 'class-validator';
+import { Status } from 'src/status/status.entity';
+import { Column } from 'typeorm';
 
 @Exclude()
 export class updateProjectDto {
@@ -16,6 +18,6 @@ export class updateProjectDto {
   @IsString()
   description: string;
 
-  @IsInt()
-  status_id: number;
+  @Column()
+  status: Status;
 }
