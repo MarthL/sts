@@ -18,6 +18,11 @@ export class StatusService {
       return this.statusRepository.find();
     }
     return await this.statusRepository.find({
+      select: {
+        id: true,
+        statusName: true,
+        projects_id: false
+      },
       where: {
         statusName: Like(`${search}%`)
       }

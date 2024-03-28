@@ -1,20 +1,22 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, ParseIntPipe, Query } from '@nestjs/common';
 import { StatusService } from './status.service';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiQuery, ApiTags } from '@nestjs/swagger';
+import { Status } from './status.entity';
 
 @ApiTags('Status')
-@Controller('status')
+@Controller('/status')
 export class StatusController {
   constructor(private readonly statusService: StatusService) {}
 
   @Get()
-  getAllStatus() {
-    return this.statusService.getStatus();
+  @ApiQuery({ name: 'search', required: false, type: String })
+  async getAllStatus(@Query('search') search: string): Promise<Status[]> {
+    return this.statusService.getStatus(search);
   }
 
   @Get(':id')
-  getOneStatus(@Param('id') id: number) {
-    return this.statusService.getStatusById(+id);
+  async getOneStatus(@Param('id', ParseIntPipe) id: number) {
+    return await this.statusService.getStatusById(id);
   }
 
 }
