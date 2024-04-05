@@ -109,13 +109,17 @@ export const HomePage = () => {
             )
           }
         </Grid>
-        <Box sx={{ display: 'flex', justifyContent: 'center', width: '75vw', mt: 5 }}>
+        <Box sx={{ display: 'flex', justifyContent: 'center', width: '100%', mt: 5 }}>
           <Pagination
             count={Math.ceil(projectsCollection.length / itemsPerPage)}
             page={currentPage}
             color="primary"
             onChange={handlePageChange}
-            sx={{ marginBottom: '50px', '& .MuiPaginationItem-root': { fontSize: '1.2rem' }, '& .MuiPaginationItem-sizeSmall': { padding: '10px' }, }}
+            sx={{
+              marginBottom: '50px',
+              '& .MuiPaginationItem-root': { fontSize: '1.2rem' },
+              '& .MuiPaginationItem-sizeSmall': { padding: '10px' },
+            }}
           />
         </Box>
       </Container>
