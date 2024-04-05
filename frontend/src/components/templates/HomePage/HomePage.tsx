@@ -71,9 +71,6 @@ export const HomePage = () => {
           <span>New project</span>
         </Button>
 
-
-        <TextBlock maxChars={50} variant='filled' rows={1} />
-
         <ProjectModal openModal={openModal} handleCloseModal={handleCloseModal} />
 
         <Typography variant="h5">Search Filters</Typography>
