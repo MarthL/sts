@@ -19,7 +19,12 @@ export const CollaboratorsPage: React.FC = () => {
       <Typography variant="h3">Collaborators List</Typography>
       <List sx={{ width: '100%', flexWrap: 'wrap' }}>
         {userCollection.map((user) =>
-          <UserListCustom username={user.username as string} id={user.id} />
+          <UserListCustom
+            id={user.id as number}
+            key={user.id}
+            username={user.username as string} 
+            user={user as Partial<User>}
+          />
         )}
       </List >
     </>

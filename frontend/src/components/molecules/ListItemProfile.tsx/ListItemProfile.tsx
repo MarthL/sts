@@ -2,7 +2,7 @@ import React from 'react';
 import { List, ListItem, ListItemText, ListItemButton, ListItemIcon } from '@mui/material';
 
 interface ListItemProfileProps {
-  icon: React.ReactNode;
+  icon: any;
   text: string;
   index: number;
   selectedIndex: number;
@@ -24,7 +24,6 @@ export const ListItemProfile: React.FC<ListItemProfileProps> = (props: ListItemP
               {icon}
             </ListItemIcon>
             <ListItemText primary={text} />
-            {selectedIndex === index}
           </ListItemButton>
         </ListItem>
       </List>
