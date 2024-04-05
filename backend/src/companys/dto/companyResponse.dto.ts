@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, IsNumber } from 'class-validator';
+import { IsNotEmpty, IsString, IsNumber, MaxLength } from 'class-validator';
 
 export class CompanyResponseDto {
   @IsNumber()
@@ -6,5 +6,6 @@ export class CompanyResponseDto {
 
   @IsNotEmpty()
   @IsString()
+  @MaxLength(50)
   name: string;
 }
