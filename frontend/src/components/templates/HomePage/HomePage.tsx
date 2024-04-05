@@ -51,7 +51,6 @@ export const HomePage = () => {
     } else {
       getProjects().then((async (res) => setProjectsCollection(res)));
     }
-    console.log(search)
   }, [search])
 
   const handleOpenModal = () => {

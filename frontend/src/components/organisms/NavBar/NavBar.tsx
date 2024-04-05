@@ -71,10 +71,15 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 export const NavBar: React.FC<Navbar> = ({ isDarkTheme, toggleTheme }) => {
-  const [open, setOpen] = React.useState(false);
   const navigate = useNavigate();
+  const [open, setOpen] = React.useState(() => {
+    const savedState = localStorage.getItem('navbarOpen');
+    return savedState ? JSON.parse(savedState) : false;
+  });
+
   const handleDrawerOpen = () => {
     setOpen(!open);
+    localStorage.setItem('navbarOpen', JSON.stringify(!open));
   };
 
   return (
