@@ -9,6 +9,7 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import gsap from 'gsap';
 import ScrollToPlugin from 'gsap/ScrollToPlugin';
 import { Project } from '../../../api/projects';
+import { TextBlock } from '../../atoms/TextBlock/TextBlock';
 import { TextField, Paper } from '@mui/material';
 
 export const HomePage = () => {
@@ -69,6 +70,9 @@ export const HomePage = () => {
           <AddCircleIcon sx={{ mr: 1 }} />
           <span>New project</span>
         </Button>
+
+
+        <TextBlock maxChars={50} variant='filled' rows={1} />
 
         <ProjectModal openModal={openModal} handleCloseModal={handleCloseModal} />
 
