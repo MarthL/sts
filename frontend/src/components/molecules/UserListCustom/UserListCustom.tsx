@@ -2,8 +2,14 @@ import React, { ListItem, ListItemAvatar, Typography, Avatar, ListItemText } fro
 import { Link } from 'react-router-dom';
 import { User } from '../../../api/users';
 
+interface UserListCustomProps {
+  id: number;
+  key: number;
+  username: string;
+  user: Partial<User>;
+}
 
-export const UserListCustom = (props: Partial<User>) => {
+export const UserListCustom = (props: UserListCustomProps) => {
 
   const { username, id } = props;
 

@@ -1,8 +1,9 @@
-import { IsInt, IsNotEmpty, IsString } from 'class-validator';
+import { IsInt, IsNotEmpty, IsString, MaxLength  } from 'class-validator';
 
 export class JobResponseDto {
   @IsNotEmpty()
   @IsInt()
+  @MaxLength(100)
   id: number;
 
   @IsNotEmpty()

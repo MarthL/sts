@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsInt, IsString, IsOptional } from 'class-validator';
+import { IsNotEmpty, IsInt, IsOptional, MaxLength, IsString } from 'class-validator';
 
 export default class ProjectsResponseDto {
   @IsNotEmpty()
@@ -7,6 +7,7 @@ export default class ProjectsResponseDto {
 
   @IsNotEmpty()
   @IsString()
+  @MaxLength(50)
   project_name: string;
 
   @IsNotEmpty()

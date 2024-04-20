@@ -65,7 +65,6 @@ export const ProfilePage: React.FC<any> = () => {
       <Grid container sx={{ width: '100%' }}>
         <Grid item xs={4}>
           <ListItemProfile icon={<Edit />} text={'Edit Profile'} index={1} selectedIndex={selectedIndex} handleListItemClick={handleListItemClick} />
-
         </Grid>
         <Grid item xs={4}>
           <ListItemProfile icon={<Security />} text={'Security and Password'} index={2} selectedIndex={selectedIndex} handleListItemClick={handleListItemClick} />
