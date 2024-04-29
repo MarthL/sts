@@ -44,7 +44,7 @@ import { AuthLogin } from './auth/authlogin.service';
       username: process.env.DBUSERNAME,
       database: process.env.DBNAME,
       entities: [Projects, Users, Job, JobField, Clients, Companys, Citys],
-      synchronize: true,
+      synchronize: false,
     }),
     TypeOrmModule.forFeature([Projects, Users]),
     ProjectsModule,
