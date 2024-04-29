@@ -11,13 +11,18 @@ import {
   UnauthorizedException,
   ParseIntPipe,
   HttpException,
+  UploadedFile,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { AuthLogin } from './../auth/authlogin.service';
 import { CreateUserDto } from './dto/create-userDto.dto';
 import { UserLoginDto } from 'src/users/dto/user-loginDto.dto';
 import { UserResponseDto } from 'src/users/dto/userResponseDto.dto';
-import { DeleteResult } from 'typeorm';
+import { DeleteResult, UpdateResult } from 'typeorm';
+import { UseInterceptors } from '@nestjs/common';
+import { Multer, diskStorage } from 'multer';
+import { extname } from 'path';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @ApiTags('Users')
 @Controller('users')
@@ -97,7 +102,18 @@ export class UsersController {
   async updateProject(
     @Param('id') id: number,
     @Body() updateReq: UserResponseDto,
-  ): Promise<UserResponseDto> {
+  ): Promise<UpdateResult> {
     return await this.usersService.patch(id, updateReq);
+  }
+
+  // Upload profile photo
+  @Post(':userId/profile-photo')
+  @UseInterceptors(FileInterceptor('photo'))
+  async uploadProfilePhoto(
+    @Param('userId') userId: number,
+    @UploadedFile() file: Multer.File,
+  ) {
+    const fileUrl = `/uploads/profile-photos/${file.filename}`;
+    return this.usersService.updateProfilePicture(userId, fileUrl);
   }
 }

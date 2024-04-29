@@ -12,33 +12,7 @@ START TRANSACTION;
 SET time_zone = "+00:00";
 
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
 
---
--- Base de données : `sts`
---
-
--- --------------------------------------------------------
-
---
--- Structure de la table `citys`
---
-
-DROP TABLE IF EXISTS `citys`;
-CREATE TABLE IF NOT EXISTS `citys` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `city_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `zip_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `state` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=35854 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Déchargement des données de la table `citys`
---
 
 INSERT INTO `citys` (`id`, `city_name`, `zip_code`, `state`) VALUES
 (1, 'L\'Abergement-Clémenciat', '1400', 'France'),
@@ -36450,18 +36424,6 @@ INSERT INTO `projects` (`id`, `project_name`, `description`, `status_id`) VALUES
 (382, 'Class Corp.', '156de86d98fa851dc44ad1076d85ca30', NULL);
 
 -- --------------------------------------------------------
-
---
--- Structure de la table `status`
---
-
-DROP TABLE IF EXISTS `status`;
-CREATE TABLE IF NOT EXISTS `status` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `statusName` varchar(11) COLLATE utf8mb4_general_ci NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 --
 -- Déchargement des données de la table `status`
 --
@@ -36473,29 +36435,6 @@ INSERT INTO `status` (`id`, `statusName`) VALUES
 (4, 'In Waiting');
 
 -- --------------------------------------------------------
-
---
--- Structure de la table `users`
---
-
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `family_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `yop` int DEFAULT NULL,
-  `job_id` int DEFAULT NULL,
-  `phone_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '',
-  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `company_id` int DEFAULT NULL,
-  `city_id` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK_2511b8949d3b45a82a0e7ed5e77` (`job_id`),
-  KEY `FK_7ae6334059289559722437bcc1c` (`company_id`),
-  KEY `FK_03934bca2709003c5f08fd436d2` (`city_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `users`
@@ -36510,18 +36449,6 @@ INSERT INTO `users` (`id`, `username`, `password`, `family_name`, `yop`, `job_id
 
 -- --------------------------------------------------------
 
---
--- Structure de la table `users_projects_collection_projects`
---
-
-DROP TABLE IF EXISTS `users_projects_collection_projects`;
-CREATE TABLE IF NOT EXISTS `users_projects_collection_projects` (
-  `usersId` int NOT NULL,
-  `projectsId` int NOT NULL,
-  PRIMARY KEY (`usersId`,`projectsId`),
-  KEY `IDX_9815af3a355d89f9477d7e46d8` (`usersId`),
-  KEY `IDX_fc9e19ba74112646919bae5952` (`projectsId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `users_projects_collection_projects`
@@ -36531,38 +36458,3 @@ INSERT INTO `users_projects_collection_projects` (`usersId`, `projectsId`) VALUE
 (1, 29),
 (1, 39);
 
---
--- Contraintes pour les tables déchargées
---
-
---
--- Contraintes pour la table `job`
---
-ALTER TABLE `job`
-  ADD CONSTRAINT `FK_2f3cfdc1bfe9c6e933e852c9487` FOREIGN KEY (`jobFieldId`) REFERENCES `job_field` (`id`);
-
---
--- Contraintes pour la table `projects`
---
-ALTER TABLE `projects`
-  ADD CONSTRAINT `FK_a8c4b6b8e9e5cd88ff341faab31` FOREIGN KEY (`status_id`) REFERENCES `status` (`id`);
-
---
--- Contraintes pour la table `users`
---
-ALTER TABLE `users`
-  ADD CONSTRAINT `FK_03934bca2709003c5f08fd436d2` FOREIGN KEY (`city_id`) REFERENCES `citys` (`id`),
-  ADD CONSTRAINT `FK_2511b8949d3b45a82a0e7ed5e77` FOREIGN KEY (`job_id`) REFERENCES `job` (`id`),
-  ADD CONSTRAINT `FK_7ae6334059289559722437bcc1c` FOREIGN KEY (`company_id`) REFERENCES `companys` (`id`);
-
---
--- Contraintes pour la table `users_projects_collection_projects`
---
-ALTER TABLE `users_projects_collection_projects`
-  ADD CONSTRAINT `FK_9815af3a355d89f9477d7e46d80` FOREIGN KEY (`usersId`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_fc9e19ba74112646919bae5952c` FOREIGN KEY (`projectsId`) REFERENCES `projects` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

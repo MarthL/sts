@@ -12,6 +12,7 @@ import { CreateUserDto } from './dto/create-userDto.dto';
 import { UserResponseDto } from 'src/users/dto/userResponseDto.dto';
 import * as bcrypt from 'bcryptjs';
 import { plainToClass } from 'class-transformer';
+import { UpdateResult } from 'typeorm';
 
 @Injectable()
 export class UsersService {
@@ -111,7 +112,7 @@ export class UsersService {
   async patch(
     @Param('id', ParseIntPipe) id: number,
     @Body() updateReq: UserResponseDto,
-  ): Promise<any> {
+  ): Promise<UpdateResult> {
     const { job_id, company_id, city_id, ...fields } = updateReq;
 
     let updateQuery = {};
@@ -129,8 +130,25 @@ export class UsersService {
     }
     updateQuery = { ...updateQuery, ...fields };
 
-    const result = await this.userRepository.update(id, updateQuery);
+    return this.userRepository.update(id, updateQuery);
+  }
 
-    return result;
+  async updateProfilePicture(
+    userId: number,
+    fileUrl: string,
+  ): Promise<UpdateResult> {
+    const user = await this.userRepository.findOne({
+      where: {
+        id: userId,
+      },
+    });
+    if (!user) {
+      throw new HttpException('User not found', 404);
+    }
+
+    let updateQuery = {};
+    updateQuery = { ...updateQuery, profile_picture: fileUrl };
+
+    return this.userRepository.update(user?.id, updateQuery);
   }
 }

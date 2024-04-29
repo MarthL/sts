@@ -28,7 +28,7 @@ export class UserResponseDto {
   @IsString()
   @MaxLength(100)
   family_name: string;
-  
+
   @IsOptional()
   @IsString()
   job_id?: number;
@@ -55,4 +55,8 @@ export class UserResponseDto {
   @IsOptional()
   @IsNumber()
   company_id?: number;
+
+  @IsOptional()
+  @IsString()
+  profile_picture: string;
 }

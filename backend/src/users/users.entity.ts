@@ -60,4 +60,7 @@ export class Users {
   @ManyToOne(() => Citys, (city) => city.users)
   @JoinColumn({ name: 'city_id' })
   city: Citys;
+
+  @Column({ nullable: true, default: null })
+  profile_picture: string;
 }
