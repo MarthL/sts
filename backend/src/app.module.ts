@@ -28,9 +28,6 @@ import { CitysModule } from './citys/citys.module';
 import { AuthService } from './auth/auth.service';
 import { AuthLogin } from './auth/authlogin.service';
 
-import * as dotenv from 'dotenv';
-dotenv.config({ path: '../.env' });
-
 @Module({
   imports: [
     ConfigModule.forRoot(),

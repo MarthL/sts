@@ -12,7 +12,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.5.2",
-    "@types/node": "^16.18.40",
+    "@types/node": "^20.0.0",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
     "@vitejs/plugin-react": "^4.2.1",
@@ -20,20 +20,19 @@
     "classnames": "^2.5.1",
     "faker": "^6.6.6",
     "gsap": "^3.12.5",
-    "node-sass": "^9.0.0",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.47.0",
     "react-router-dom": "^6.15.0",
     "sweetalert2": "^11.10.1",
-    "typescript": "^4.9.5",
+    "typescript": "^5.4.5",
     "vite": "^5.1.4",
     "vite-tsconfig-paths": "^4.3.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "vite",
+    "start": "vite --host",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "compile-sass": "sass src/assets/styles/main.scss public/css"
@@ -61,7 +60,7 @@
     "@types/node-sass": "^4.11.3",
     "css-loader": "^6.9.1",
     "jest": "^27.5.1",
-    "sass": "^1.70.0",
+    "sass": "^1.75.0",
     "sass-loader": "^14.0.0",
     "style-loader": "^3.3.4"
   }

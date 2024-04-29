@@ -10,7 +10,7 @@ import { DeleteResult, Repository } from 'typeorm';
 import { Users } from './users.entity';
 import { CreateUserDto } from './dto/create-userDto.dto';
 import { UserResponseDto } from 'src/users/dto/userResponseDto.dto';
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 import { plainToClass } from 'class-transformer';
 
 @Injectable()
