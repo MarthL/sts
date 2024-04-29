@@ -20,8 +20,7 @@ import { UserLoginDto } from 'src/users/dto/user-loginDto.dto';
 import { UserResponseDto } from 'src/users/dto/userResponseDto.dto';
 import { DeleteResult, UpdateResult } from 'typeorm';
 import { UseInterceptors } from '@nestjs/common';
-import { Multer, diskStorage } from 'multer';
-import { extname } from 'path';
+import { Multer } from 'multer';
 import { FileInterceptor } from '@nestjs/platform-express';
 
 @ApiTags('Users')

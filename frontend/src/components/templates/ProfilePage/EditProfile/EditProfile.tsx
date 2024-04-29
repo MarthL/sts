@@ -3,12 +3,15 @@ import { Button, Grid, Avatar } from '@mui/material';
 import { useForm, FormProvider } from 'react-hook-form';
 import { SelectInputCustom } from '../../../atoms/InputForm/SelectInputCustom';
 import { useState, useEffect } from 'react';
-import { editUser } from '../../../../api/users';
+import { editProfilePicture, editUser } from '../../../../api/users';
 import { getJobCollection } from '../../../../api/jobs';
 import { getCitiesCollection } from '../../../../api/cities';
 import Swal from 'sweetalert2';
 import { InputProfileCustom } from '../../../atoms/InputForm/InputProfileCustom';
 import { CustomAutoComplete } from '../../../atoms/InputForm/CustomAutoComplete';
+import { InputAdornment } from '@mui/material';
+import { IconButton } from '@mui/material';
+import EditIcon from '@mui/icons-material/Edit';
 
 interface Job {
   id: number;
@@ -35,7 +38,8 @@ interface User {
     job_title?: string,
   },
   country: string,
-  city?: City
+  city?: City,
+  profile_picture: string,
 }
 
 interface EditProfileProps {
@@ -54,6 +58,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
   const [jobCollection, setJobCollection] = useState<Job[]>([]);
   const [city, setCity] = useState<City | null>(user?.city || null);
   const [cityCollection, setCityCollection] = useState<City[]>([]);
+  const [profilePicture, setProfilePicture] = useState(user?.profile_picture);
 
   useEffect(() => {
     if (user) {
@@ -65,6 +70,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
       setEmail(user?.email ? user.email : '');
       setPhone(user?.phone_number ? user.phone_number : '');
       setCity(user?.city || null);
+      setProfilePicture(user?.profile_picture || '');
     }
   }, [user, cityCollection]);
 
@@ -74,7 +80,6 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
     })
     getCitiesCollection().then(async (res) => {
       setCityCollection(res);
-      console.log('setCityCollection res : ', res);
     })
   }, [])
 
@@ -97,6 +102,21 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
   const handlePhoneChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPhone(event.target.value);
   }
+
+  const handleImageChange = (event: any) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+
+      };
+      reader.readAsDataURL(file);
+      if (user?.id) {
+        setProfilePicture(reader.result as string);
+        return editProfilePicture(user?.id, file);
+      }
+    }
+  };
 
   const methods = useForm();
   const onsubmit = async (data: any) => {
@@ -146,8 +166,32 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
           onSubmit={methods.handleSubmit(onsubmit)}
         >
           <Grid item xs={12} mt={5}>
-            <Avatar sx={{ width: '90px', height: '90px' }} />
+            <Avatar
+              sx={{ width: '90px', height: '90px', cursor: 'pointer' }}
+              src={profilePicture || ''}
+              onClick={() => (document.querySelector('input[id="photo"]') as HTMLInputElement)?.click()}
+            // InputProps={{
+            //   endAdornment: (
+            //     <InputAdornment position="end">
+            //       <IconButton
+            //         component="span"
+            //         aria-label="Upload Photo"
+            //       >
+            //         <EditIcon />
+            //       </IconButton>
+            //     </InputAdornment>
+            //   )
+            // }}
+            />
           </Grid>
+
+          <input
+            style={{ opacity: 0 }}
+            type="file"
+            id="photo"
+            accept="image/*"
+            onChange={handleImageChange}
+          />
 
           <Grid item xs={12} sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '50%' }}>
             <Grid item xs={5} mt={5}>

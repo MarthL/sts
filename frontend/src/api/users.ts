@@ -59,6 +59,16 @@ export async function editUser(id: number, data: any) {
     })
 }
 
+export async function editProfilePicture(id: number, data: any) {
+  return axiosClient.patch('users/' + id + '/profile-photo', data)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => {
+      console.error(error)
+    })
+}
+
 // export async function getLoggedUser(id: number) {
 //   return axiosClient.get('users/currentuser')
 //     .then((response) => {
