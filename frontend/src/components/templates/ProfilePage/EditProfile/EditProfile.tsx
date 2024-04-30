@@ -3,7 +3,7 @@ import { Button, Grid, Avatar } from '@mui/material';
 import { useForm, FormProvider } from 'react-hook-form';
 import { SelectInputCustom } from '../../../atoms/InputForm/SelectInputCustom';
 import { useState, useEffect } from 'react';
-import { editProfilePicture, editUser } from '../../../../api/users';
+import { editProfilePicture, editUser, exportProfilePicture } from '../../../../api/users';
 import { getJobCollection } from '../../../../api/jobs';
 import { getCitiesCollection } from '../../../../api/cities';
 import Swal from 'sweetalert2';
@@ -59,6 +59,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
   const [city, setCity] = useState<City | null>(user?.city || null);
   const [cityCollection, setCityCollection] = useState<City[]>([]);
   const [profilePicture, setProfilePicture] = useState(user?.profile_picture);
+  const [avatarFile, setAvatarFile] = useState<any>('');
 
   useEffect(() => {
     if (user) {
@@ -103,20 +104,18 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
     setPhone(event.target.value);
   }
 
-  const handleImageChange = (event: any) => {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
+  useEffect(() => {
+    console.log('start useeffect', profilePicture)
+    if (profilePicture) {
+      exportProfilePicture(profilePicture)
+        .then((url) => {
+          setAvatarFile(url);
+        });
+    };
+    console.log('profile picture : ', profilePicture)
+    console.log('avatar file : ', avatarFile);
+  }, [profilePicture]);
 
-      };
-      reader.readAsDataURL(file);
-      if (user?.id) {
-        setProfilePicture(reader.result as string);
-        return editProfilePicture(user?.id, file);
-      }
-    }
-  };
 
   const methods = useForm();
   const onsubmit = async (data: any) => {
@@ -167,21 +166,9 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
         >
           <Grid item xs={12} mt={5}>
             <Avatar
-              sx={{ width: '90px', height: '90px', cursor: 'pointer' }}
-              src={profilePicture || ''}
+              sx={{ width: '150px', height: '150px', cursor: 'pointer' }}
+              src={avatarFile}
               onClick={() => (document.querySelector('input[id="photo"]') as HTMLInputElement)?.click()}
-            // InputProps={{
-            //   endAdornment: (
-            //     <InputAdornment position="end">
-            //       <IconButton
-            //         component="span"
-            //         aria-label="Upload Photo"
-            //       >
-            //         <EditIcon />
-            //       </IconButton>
-            //     </InputAdornment>
-            //   )
-            // }}
             />
           </Grid>
 
@@ -190,7 +177,18 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
             type="file"
             id="photo"
             accept="image/*"
-            onChange={handleImageChange}
+            onChange={(e) => {
+              if (e.target.files) {
+                const file: File = e.target.files[0];
+                if (id && file) {
+                  editProfilePicture(id, file).then((res) => {
+                    setProfilePicture(res.profile_picture);
+                  }).catch((err) => {
+                    console.error(err);
+                  });
+                }
+              }
+            }}
           />
 
           <Grid item xs={12} sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '50%' }}>

@@ -145,7 +145,6 @@ export class UsersService {
     if (!user) {
       throw new HttpException('User not found', 404);
     }
-
     let updateQuery = {};
     updateQuery = { ...updateQuery, profile_picture: fileUrl };
 

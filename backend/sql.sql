@@ -35955,17 +35955,6 @@ INSERT INTO `companys` (`id`, `name`) VALUES
 --
 -- Structure de la table `job`
 --
-
-DROP TABLE IF EXISTS `job`;
-CREATE TABLE IF NOT EXISTS `job` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `job_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `jobFieldId` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK_2f3cfdc1bfe9c6e933e852c9487` (`jobFieldId`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
 -- Déchargement des données de la table `job`
 --
 

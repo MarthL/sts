@@ -59,8 +59,19 @@ export async function editUser(id: number, data: any) {
     })
 }
 
-export async function editProfilePicture(id: number, data: any) {
-  return axiosClient.patch('users/' + id + '/profile-photo', data)
+export async function editProfilePicture(id: number, data: File) {
+  console.log('start function : ', data)
+  const formData = new FormData();
+  formData.append('file', data);
+  formData.append('fileName', data.name);
+  console.log('data :', data);
+  const fileName = data.name;
+  const type = data.type;
+  return axiosClient.post('users/' + id + '/profile-photo', formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    },
+  })
     .then((response) => {
       return response.data;
     })
@@ -69,12 +80,14 @@ export async function editProfilePicture(id: number, data: any) {
     })
 }
 
-// export async function getLoggedUser(id: number) {
-//   return axiosClient.get('users/currentuser')
-//     .then((response) => {
-//       return response.data
-//     })
-//     .catch((error) => {
-//       console.error(error)
-//     })
-// }
+export async function exportProfilePicture(profilePicture: string) {
+  return axiosClient.get(`/uploads/${profilePicture}`, { responseType: 'blob' })
+    .then((response) => {
+      const imageUrl = URL.createObjectURL(response.data);
+      return imageUrl;
+    })
+    .catch((error) => {
+      console.error(error);
+      return '';
+    })
+}

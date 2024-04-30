@@ -20,8 +20,9 @@ import { UserLoginDto } from 'src/users/dto/user-loginDto.dto';
 import { UserResponseDto } from 'src/users/dto/userResponseDto.dto';
 import { DeleteResult, UpdateResult } from 'typeorm';
 import { UseInterceptors } from '@nestjs/common';
-import { Multer } from 'multer';
 import { FileInterceptor } from '@nestjs/platform-express';
+import * as multer from 'multer';
+import * as path from 'path';
 
 @ApiTags('Users')
 @Controller('users')
@@ -107,12 +108,22 @@ export class UsersController {
 
   // Upload profile photo
   @Post(':userId/profile-photo')
-  @UseInterceptors(FileInterceptor('photo'))
+  @UseInterceptors(
+    FileInterceptor('file', {
+      storage: multer.diskStorage({
+        destination: './uploads/profile-photos',
+        filename: (req, file, cb) => {
+          console.log('fileName : ', file.originalname);
+          cb(null, file.originalname);
+        },
+      }),
+    }),
+  )
   async uploadProfilePhoto(
     @Param('userId') userId: number,
-    @UploadedFile() file: Multer.File,
+    @UploadedFile() file: Express.Multer.File,
+    @Body('fileName') fileName: string,
   ) {
-    const fileUrl = `/uploads/profile-photos/${file.filename}`;
-    return this.usersService.updateProfilePicture(userId, fileUrl);
+    return this.usersService.updateProfilePicture(userId, fileName);
   }
 }

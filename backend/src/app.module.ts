@@ -25,8 +25,12 @@ import { ConfigModule } from '@nestjs/config';
 import { ClientsModule } from './clients/clients.module';
 import { CitysModule } from './citys/citys.module';
 
+import { ServeStaticModule } from '@nestjs/serve-static';
+
 import { AuthService } from './auth/auth.service';
 import { AuthLogin } from './auth/authlogin.service';
+
+import { join } from 'path';
 
 @Module({
   imports: [
@@ -34,7 +38,11 @@ import { AuthLogin } from './auth/authlogin.service';
     PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.register({
       secret: process.env.JWT_SECRET || 'defaultSecret',
-      signOptions: { expiresIn: '3h' }, // doesn't work
+      signOptions: { expiresIn: '3h' },
+    }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'uploads', 'profile-photos'),
+      serveRoot: '/uploads',
     }),
     TypeOrmModule.forRoot({
       type: 'mysql',
