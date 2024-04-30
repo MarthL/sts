@@ -2,21 +2,21 @@ import { axiosClient } from "./axios";
 import { City } from '../api/cities';
 
 export interface User {
-    id: number;
-    username: string;
-    password: string;
-    family_name: string;
-    yop: number;
-    phone_number: string;
-    email: string;
-    address: string;
-    job?: {
-      id: number;
-      job_title: string;
-    },
-    company?: string;
-    city?: City
-  }
+  id: number,
+  username: string,
+  family_name: string,
+  password: string,
+  yop: number,
+  email: string,
+  phone_number: string,
+  job?: {
+    id?: number,
+    job_title?: string,
+  },
+  country: string,
+  city?: City,
+  profile_picture: string,
+}
 
 export async function getUserLogged(username: string) {
   return axiosClient.get(`/users/loggedUser/${username}`)

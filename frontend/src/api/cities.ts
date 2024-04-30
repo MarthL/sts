@@ -1,10 +1,10 @@
 import { axiosClient } from "./axios";
 
 export interface City {
-  id: number,
+  id: number;
   city_name: string,
-  zip_code: string,
-  state: string,
+  state: number,
+  zip_code: number
 }
 
 interface CitiesCollection {

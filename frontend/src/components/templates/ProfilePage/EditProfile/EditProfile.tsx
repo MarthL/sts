@@ -3,44 +3,15 @@ import { Button, Grid, Avatar } from '@mui/material';
 import { useForm, FormProvider } from 'react-hook-form';
 import { SelectInputCustom } from '../../../atoms/InputForm/SelectInputCustom';
 import { useState, useEffect } from 'react';
-import { editProfilePicture, editUser, exportProfilePicture } from '../../../../api/users';
-import { getJobCollection } from '../../../../api/jobs';
-import { getCitiesCollection } from '../../../../api/cities';
+import { editProfilePicture, editUser, exportProfilePicture, User } from '../../../../api/users';
+import { getJobCollection, Job } from '../../../../api/jobs';
+import { getCitiesCollection, City } from '../../../../api/cities';
 import Swal from 'sweetalert2';
 import { InputProfileCustom } from '../../../atoms/InputForm/InputProfileCustom';
 import { CustomAutoComplete } from '../../../atoms/InputForm/CustomAutoComplete';
 import { InputAdornment } from '@mui/material';
 import { IconButton } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
-
-interface Job {
-  id: number;
-  job_title: string;
-}
-
-interface City {
-  id: number;
-  city_name: string,
-  state: number,
-  zip_code: number
-}
-
-interface User {
-  id: number,
-  username: string,
-  family_name: string,
-  password: string,
-  yop: number,
-  email: string,
-  phone_number: string,
-  job?: {
-    id?: number,
-    job_title?: string,
-  },
-  country: string,
-  city?: City,
-  profile_picture: string,
-}
 
 interface EditProfileProps {
   user: User | undefined;
@@ -105,15 +76,12 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
   }
 
   useEffect(() => {
-    console.log('start useeffect', profilePicture)
     if (profilePicture) {
       exportProfilePicture(profilePicture)
         .then((url) => {
           setAvatarFile(url);
         });
     };
-    console.log('profile picture : ', profilePicture)
-    console.log('avatar file : ', avatarFile);
   }, [profilePicture]);
 
 
@@ -183,6 +151,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
                 if (id && file) {
                   editProfilePicture(id, file).then((res) => {
                     setProfilePicture(res.profile_picture);
+                    return window.location.reload();
                   }).catch((err) => {
                     console.error(err);
                   });
