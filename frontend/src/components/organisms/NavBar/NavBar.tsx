@@ -15,6 +15,8 @@ import { Logo } from '../../atoms/Logo/Logo';
 import { Home, People, Person, ExitToApp, QueryStats } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { Divider, Switch } from '@mui/material';
+import { WbSunny } from '@mui/icons-material';
+import { ModeNight } from '@mui/icons-material';
 
 interface Navbar {
   isDarkTheme: boolean,
@@ -49,7 +51,6 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'flex-end',
   padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
   ...theme.mixins.toolbar,
 }));
 
@@ -129,7 +130,38 @@ export const NavBar: React.FC<Navbar> = ({ isDarkTheme, toggleTheme }) => {
             </ListItemButton>
           </ListItem>
           <Divider />
-          <div style={{ flexGrow: 1 }}></div>
+          <Box flexGrow={1} height={'100%'}></Box>
+          <ListItem>
+            <ListItemButton disableGutters>
+              <ListItemIcon>
+                <WbSunny />
+              </ListItemIcon>
+              <ListItemIcon>
+                <Switch
+                  checked={isDarkTheme}
+                  color='success'
+                  onChange={toggleTheme}
+                  sx={{
+                    '& .MuiSwitch-thumb': {
+                      color: 'white',
+                    },
+                    '& .MuiSwitch-track': {
+                      color: 'white',
+                    },
+                    '&:not(.Mui-checked)': {
+                      '& .MuiSwitch-track': {
+                        color: 'white',
+                      },
+                    },
+                    margin: 'auto'
+                  }}
+                />
+              </ListItemIcon>
+              <ListItemIcon>
+                <ModeNight sx={{ marginLeft: 'auto' }} />
+              </ListItemIcon>
+            </ListItemButton>
+          </ListItem>
           <ListItem disablePadding onClick={() => {
             localStorage.removeItem('token')
             localStorage.removeItem('name')
@@ -142,28 +174,8 @@ export const NavBar: React.FC<Navbar> = ({ isDarkTheme, toggleTheme }) => {
               <ListItemText primary={'Logout'} />
             </ListItemButton>
           </ListItem>
-          <ListItem disablePadding>
-            <Switch
-              checked={isDarkTheme}
-              color='success'
-              onChange={toggleTheme}
-              sx={{
-                '& .MuiSwitch-thumb': {
-                  color: 'white',
-                },
-                '& .MuiSwitch-track': {
-                  color: 'white',
-                },
-                '&:not(.Mui-checked)': {
-                  '& .MuiSwitch-track': {
-                    color: 'white',
-                  },
-                },
-              }}
-            />
-          </ListItem>
         </List>
       </Drawer>
-    </Box>
+    </Box >
   );
 }
