@@ -22,8 +22,9 @@ export const CollaboratorsPage: React.FC = () => {
           <UserListCustom
             id={user.id as number}
             key={user.id}
-            username={user.username as string} 
+            username={user.username as string}
             user={user as Partial<User>}
+            profile_picture={user.profile_picture as string}
           />
         )}
       </List >

@@ -15,6 +15,7 @@ import { Projects } from './projects.entity';
 import createProjectDto from './dto/createProject.dto';
 import ProjectsResponseDto from './dto/projectsResponse.dto';
 import { updateProjectDto } from './dto/updateProjectDto.dto';
+import { HttpException } from '@nestjs/common';
 
 @ApiTags('Projects')
 @Controller('/projects')
@@ -28,7 +29,9 @@ export class ProjectsController {
   }
 
   @Get(':id')
-  async getProjectById(@Param('id', ParseIntPipe) id: number) {
+  async getProjectById(
+    @Param('id', ParseIntPipe) id: number,
+  ): Promise<ProjectsResponseDto | HttpException> {
     return await this.projectsService.getProjectById(id);
   }
 

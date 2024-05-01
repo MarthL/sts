@@ -28,6 +28,7 @@ export class UsersService {
         id: true,
         username: true,
         password: true,
+        profile_picture: true,
       },
       where: {
         username: search,

@@ -7,19 +7,20 @@ import {
   Param,
   Delete,
   HttpException,
-  ParseIntPipe
+  ParseIntPipe,
+  Patch,
 } from '@nestjs/common';
 import { CompanysService } from './company.service';
 import { CompanyResponseDto } from 'src/companys/dto/companyResponse.dto';
 import { CreateCompanyDto } from 'src/companys/dto/createCompany.dto';
-import { DeleteResult } from 'typeorm';
+import { DeleteResult, UpdateResult } from 'typeorm';
+import { Companys } from './company.entity';
+import { UpdateCompanyDto } from './dto/updateCompany.dto';
 
 @ApiTags('Company')
 @Controller('company')
 export class CompanyController {
-  constructor(
-    private readonly companysService: CompanysService,
-  ) {}
+  constructor(private readonly companysService: CompanysService) {}
 
   // GetAll
   @Get('')
@@ -38,8 +39,8 @@ export class CompanyController {
   // Delete by id
   @Delete(':id')
   async deleteById(
-    @Param('id', ParseIntPipe) id: number)
-    : Promise<DeleteResult> {
+    @Param('id', ParseIntPipe) id: number,
+  ): Promise<DeleteResult> {
     return this.companysService.deleteById(id);
   }
 
@@ -49,4 +50,12 @@ export class CompanyController {
     return this.companysService.post(company);
   }
 
+  // Update a Company
+  @Patch(':id')
+  async update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() req: UpdateCompanyDto,
+  ): Promise<Companys> {
+    return this.companysService.update(id, req);
+  }
 }

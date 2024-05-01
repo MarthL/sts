@@ -4,6 +4,7 @@ import {
   Param,
   HttpException,
   ParseIntPipe,
+  NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, Like } from 'typeorm';
@@ -12,12 +13,15 @@ import ProjectsResponseDto from './dto/projectsResponse.dto';
 import CreateProjectDto from './dto/createProject.dto';
 import { updateProjectDto } from 'src/projects/dto/updateProjectDto.dto';
 import { plainToClass } from 'class-transformer';
+import { Status } from 'src/status/status.entity';
 
 @Injectable()
 export class ProjectsService {
   constructor(
     @InjectRepository(Projects)
     private projectsRepository: Repository<Projects>,
+    @InjectRepository(Status)
+    private statusRepository: Repository<Status>,
   ) {}
 
   // GetAll
@@ -43,6 +47,7 @@ export class ProjectsService {
   ): Promise<ProjectsResponseDto | HttpException> {
     const project = await this.projectsRepository.findOne({
       where: { id },
+      relations: ['company'],
     });
     if (!project) {
       throw new HttpException('Project not found', 404);
@@ -57,14 +62,39 @@ export class ProjectsService {
   }
 
   // Patch
-  async patch(
-    @Param('id', ParseIntPipe) id: number,
-    @Body() updateReq: updateProjectDto,
-  ): Promise<any> {
-    return this.projectsRepository.update(id, updateReq);
+  async patch(id: number, updateReq: updateProjectDto): Promise<any> {
+    const { statusId, ...updateFields } = updateReq;
+
+    const project = await this.projectsRepository.findOne({
+      where: { id: id },
+    });
+    if (!project) {
+      throw new NotFoundException(`Project with ID ${id} not found`);
+    }
+
+    if (statusId !== undefined) {
+      const status = await this.statusRepository.findOne({
+        where: { id: statusId },
+      });
+      if (status) {
+        project.status = status;
+      }
+    }
+
+    Object.assign(project, updateFields);
+
+    return this.projectsRepository.save(project);
   }
 
-  async deleteById(id: number): Promise<any> {
-    return this.projectsRepository.delete(id);
+  // Delete
+  async deleteById(id: number): Promise<ProjectsResponseDto> {
+    const project = await this.projectsRepository.findOne({
+      where: { id },
+    });
+    if (!project) {
+      throw new HttpException('Project not found', 404);
+    }
+    await this.projectsRepository.delete(id);
+    return plainToClass(ProjectsResponseDto, project);
   }
 }

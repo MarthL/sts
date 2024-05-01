@@ -10,20 +10,21 @@ import { Job } from './job/job.entity';
 import { JobField } from './job-field/job-field.entity';
 import { Clients } from './clients/clients.entity';
 import { Citys } from './citys/citys.entity';
+import { Companys } from './companys/company.entity';
+import { Status } from './status/status.entity';
 
 import { AuthModule } from './auth/auth.module';
 import { ProjectsModule } from './projects/projects.module';
 import { UsersModule } from './users/users.module';
 import { JobModule } from './job/job.module';
 import { PassportModule } from '@nestjs/passport';
-
 import { JwtStrategy } from './auth/jwt.strategy';
-import { Companys } from './companys/company.entity';
 import { CompanysModule } from './companys/company.module';
 import { JobFieldModule } from './job-field/job-field.module';
 import { ConfigModule } from '@nestjs/config';
 import { ClientsModule } from './clients/clients.module';
 import { CitysModule } from './citys/citys.module';
+import { StatusModule } from './status/status.module';
 
 import { ServeStaticModule } from '@nestjs/serve-static';
 
@@ -51,7 +52,16 @@ import { join } from 'path';
       password: process.env.PASSWORD || null,
       username: process.env.DBUSERNAME,
       database: process.env.DBNAME,
-      entities: [Projects, Users, Job, JobField, Clients, Companys, Citys],
+      entities: [
+        Projects,
+        Users,
+        Job,
+        JobField,
+        Clients,
+        Companys,
+        Citys,
+        Status,
+      ],
       synchronize: true,
     }),
     TypeOrmModule.forFeature([Projects, Users]),
@@ -63,6 +73,7 @@ import { join } from 'path';
     ClientsModule,
     CompanysModule,
     CitysModule,
+    StatusModule,
   ],
   controllers: [AuthController],
   providers: [JwtStrategy, AuthService, AuthLogin],
