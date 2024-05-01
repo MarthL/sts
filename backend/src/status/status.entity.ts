@@ -10,4 +10,7 @@ import {
 export class Status {
   @PrimaryGeneratedColumn()
   id: number;
+
+  @Column()
+  name: string;
 }
