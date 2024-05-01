@@ -38,19 +38,16 @@ export class CompanysService {
       where: {
         id: companyId,
       },
-      relations: ['projects'], // Assurez-vous de charger les projets liés
+      relations: ['projects'],
     });
 
     if (!company) {
       throw new HttpException('Company not found', HttpStatus.NOT_FOUND);
     }
 
-    const companyResponseDto = plainToClass(CompanyResponseDto, {
-      ...company,
-      projectsIds: company.projects.map((project) => project.id), // Mappez les projets à leurs ID
-    });
+    const companyResponse = plainToClass(CompanyResponseDto, company);
 
-    return companyResponseDto;
+    return companyResponse;
   }
 
   //deleteById

@@ -17,7 +17,7 @@ export class CompanyResponseDto {
   @MaxLength(50)
   name: string;
 
-  @IsOptional()
-  @IsArray()
-  projectsIds: number[];
+  // @IsOptional()
+  // @IsArray()
+  // projectsIds: number[];
 }

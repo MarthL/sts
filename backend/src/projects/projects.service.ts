@@ -43,6 +43,7 @@ export class ProjectsService {
   ): Promise<ProjectsResponseDto | HttpException> {
     const project = await this.projectsRepository.findOne({
       where: { id },
+      relations: ['company'],
     });
     if (!project) {
       throw new HttpException('Project not found', 404);
