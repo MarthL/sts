@@ -19,7 +19,7 @@ export class CitysController {
 
   @Get()
   @ApiQuery({ name: 'search', required: false, type: String })
-  async getAll(@Query("search") search: string): Promise<Citys[]> {
+  async getAll(@Query('search') search: string): Promise<Citys[]> {
     return this.citysService.getCitys(search);
   }
 

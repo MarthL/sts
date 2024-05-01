@@ -1,5 +1,6 @@
 import { MaxLength } from 'class-validator';
 import { Users } from '../users/users.entity';
+import { Projects } from 'src/projects/projects.entity';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
 @Entity()
@@ -13,4 +14,7 @@ export class Companys {
 
   @OneToMany(() => Users, (user) => user.company)
   users: Users[];
+
+  @OneToMany(() => Projects, (project) => project.company, { cascade: true })
+  projects: Projects[];
 }
