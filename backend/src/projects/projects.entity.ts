@@ -7,6 +7,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Companys } from '../companys/company.entity';
+import { Status } from 'src/status/status.entity';
 
 @Entity()
 export class Projects {
@@ -26,4 +27,7 @@ export class Projects {
   @ManyToOne(() => Companys, (company) => company.projects)
   @JoinColumn({ name: 'company_id' })
   company?: Companys;
+
+  @ManyToOne(() => Status)
+  status?: Status;
 }

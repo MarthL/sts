@@ -6,6 +6,7 @@ import {
   IsString,
   IsOptional,
 } from 'class-validator';
+import { Status } from 'src/status/status.entity';
 
 export default class ProjectsResponseDto {
   @IsNotEmpty()
@@ -24,4 +25,7 @@ export default class ProjectsResponseDto {
   @IsOptional()
   @IsNumber()
   company_id: number;
+
+  @IsOptional()
+  status: Status;
 }

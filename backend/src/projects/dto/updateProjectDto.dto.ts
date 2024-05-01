@@ -1,5 +1,6 @@
 import { Exclude } from 'class-transformer';
-import { IsNotEmpty, MaxLength } from 'class-validator';
+import { IsNotEmpty, IsOptional, MaxLength, IsNumber } from 'class-validator';
+import { Status } from 'src/status/status.entity';
 
 @Exclude()
 export class updateProjectDto {
@@ -13,4 +14,8 @@ export class updateProjectDto {
 
   @IsNotEmpty()
   description: string;
+
+  @IsOptional()
+  @IsNumber()
+  statusId: number;
 }
