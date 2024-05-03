@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Project } from '../../../api/projects';
 import { getProjectById, editProjectPicture, exportProjectPicture } from '../../../api/projects';
 import { ErrorLabel } from '../../atoms/ErrorLabel/ErrorLabel';
@@ -56,6 +56,10 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ openModal, handleClo
   const { id } = useParams<{ id: string }>();
   const [project, setProject] = useState<Project>();
   const [projectPicture, setProjectPicture] = useState<any>('');
+  const [fileName, setFileName] = useState<string | null>(null);
+
+
+  const inputFileRef = useRef<HTMLInputElement>(null);
 
   const navigate = useNavigate();
 
@@ -138,13 +142,27 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ openModal, handleClo
                     type="file"
                     id="project_picture"
                     accept="image/*"
+                    ref={inputFileRef}
+                    style={{ display: 'none' }} // cache l'input
                     onChange={(e) => {
                       const file = e.target.files?.[0];
                       if (file) {
                         setProjectPicture(file);
+                        setFileName(file.name);
                       }
                     }}
                   />
+                  <label htmlFor="contained-button-file">
+                    <Button
+                      color='secondary'
+                      variant="contained"
+                      component="span"
+                      onClick={() => inputFileRef.current && inputFileRef.current.click()}  // ouvre l'explorateur de fichiers
+                    >
+                      Upload
+                    </Button>
+                  </label>
+                  {fileName && <Typography variant='body1' >{fileName}</Typography>}
                 </Grid>
               </Grid>
               <Grid item sx={{ display: 'flex', justifyContent: 'center' }}>
