@@ -17,6 +17,7 @@ import { useNavigate } from 'react-router-dom';
 import { Divider, Switch } from '@mui/material';
 import { WbSunny } from '@mui/icons-material';
 import { ModeNight } from '@mui/icons-material';
+import { useLocation } from 'react-router-dom';
 
 interface Navbar {
   isDarkTheme: boolean,
@@ -73,6 +74,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 export const NavBar: React.FC<Navbar> = ({ isDarkTheme, toggleTheme }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [open, setOpen] = React.useState(() => {
     const savedState = localStorage.getItem('navbarOpen');
     return savedState ? JSON.parse(savedState) : false;
@@ -98,7 +100,7 @@ export const NavBar: React.FC<Navbar> = ({ isDarkTheme, toggleTheme }) => {
         <Divider />
         <List>
           <ListItem disablePadding onClick={() => navigate('/')}>
-            <ListItemButton>
+            <ListItemButton selected={location.pathname === "/"}>
               <ListItemIcon>
                 <Home />
               </ListItemIcon>
@@ -106,7 +108,7 @@ export const NavBar: React.FC<Navbar> = ({ isDarkTheme, toggleTheme }) => {
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding onClick={() => navigate('/users')}>
-            <ListItemButton>
+            <ListItemButton selected={location.pathname === "/users"}>
               <ListItemIcon>
                 <People />
               </ListItemIcon>
@@ -114,7 +116,7 @@ export const NavBar: React.FC<Navbar> = ({ isDarkTheme, toggleTheme }) => {
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding onClick={() => navigate('/profile')}>
-            <ListItemButton>
+            <ListItemButton selected={location.pathname === "/profile"}>
               <ListItemIcon>
                 <Person />
               </ListItemIcon>
@@ -122,7 +124,7 @@ export const NavBar: React.FC<Navbar> = ({ isDarkTheme, toggleTheme }) => {
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding onClick={() => navigate('/stats')}>
-            <ListItemButton>
+            <ListItemButton selected={location.pathname === "/stats"}>
               <ListItemIcon>
                 <QueryStats />
               </ListItemIcon>
