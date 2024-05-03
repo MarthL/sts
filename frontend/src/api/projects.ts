@@ -65,7 +65,7 @@ export async function editProjectPicture(id: number, data: File) {
 }
 
 export async function exportProjectPicture(projectPicture: string) {
-  return axiosClient.get(`/uploads/${projectPicture}`, { responseType: 'blob' })
+  return axiosClient.get(`/uploads/project-photo/${projectPicture}`, { responseType: 'blob' })
     .then((response) => {
       const imageUrl = URL.createObjectURL(response.data);
       return imageUrl;

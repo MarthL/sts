@@ -81,7 +81,7 @@ export async function editProfilePicture(id: number, data: File) {
 }
 
 export async function exportProfilePicture(profilePicture: string) {
-  return axiosClient.get(`/uploads/${profilePicture}`, { responseType: 'blob' })
+  return axiosClient.get(`/uploads/profile-photos/${profilePicture}`, { responseType: 'blob' })
     .then((response) => {
       const imageUrl = URL.createObjectURL(response.data);
       return imageUrl;
