@@ -8,6 +8,7 @@ import {
 } from 'typeorm';
 import { Companys } from '../companys/company.entity';
 import { Status } from 'src/status/status.entity';
+import { Users } from 'src/users/users.entity';
 
 @Entity()
 export class Projects {
@@ -30,4 +31,7 @@ export class Projects {
 
   @ManyToOne(() => Status)
   status?: Status;
+
+  @ManyToOne(() => Users)
+  collaborators: Users[];
 }

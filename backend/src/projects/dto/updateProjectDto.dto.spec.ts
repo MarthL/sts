@@ -5,7 +5,7 @@ import { randomInt } from 'crypto';
 describe('updateProjectDto', () => {
   it('should pass validation when all properties are present', async () => {
     const dto = new updateProjectDto();
-    dto.id = randomInt(10);
+    // dto.id = randomInt(10);
     dto.project_name = 'Test Project';
     dto.description = 'This is a test project';
     const errors = await validate(dto);
@@ -14,7 +14,7 @@ describe('updateProjectDto', () => {
 
   it('should fail validation when project_name is missing', async () => {
     const dto = new updateProjectDto();
-    dto.id = randomInt(10);
+    // dto.id = randomInt(10);
     dto.description = 'This is a test project';
     const errors = await validate(dto);
     expect(errors.length).toBeGreaterThan(0);
@@ -22,7 +22,7 @@ describe('updateProjectDto', () => {
 
   it('should fail validation when description is missing', async () => {
     const dto = new updateProjectDto();
-    dto.id = randomInt(10);
+    // dto.id = randomInt(10);
     dto.project_name = 'Test Project';
     const errors = await validate(dto);
     expect(errors.length).toBeGreaterThan(0);

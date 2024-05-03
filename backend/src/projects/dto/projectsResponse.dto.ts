@@ -5,8 +5,10 @@ import {
   MaxLength,
   IsString,
   IsOptional,
+  IsArray,
 } from 'class-validator';
 import { Status } from 'src/status/status.entity';
+import { Users } from 'src/users/users.entity';
 
 export default class ProjectsResponseDto {
   @IsNotEmpty()
@@ -28,4 +30,8 @@ export default class ProjectsResponseDto {
 
   @IsOptional()
   status: Status;
+
+  @IsArray()
+  @IsOptional()
+  collaborators: Users[];
 }

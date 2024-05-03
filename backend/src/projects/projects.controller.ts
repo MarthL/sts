@@ -52,6 +52,7 @@ export class ProjectsController {
     @Param('id') id: number,
     @Body() updateReq: updateProjectDto,
   ): Promise<updateProjectDto> {
+    console.log(updateProjectDto);
     return await this.projectsService.patch(id, updateReq);
   }
 }

@@ -14,6 +14,7 @@ import CreateProjectDto from './dto/createProject.dto';
 import { updateProjectDto } from 'src/projects/dto/updateProjectDto.dto';
 import { plainToClass } from 'class-transformer';
 import { Status } from 'src/status/status.entity';
+import { Users } from 'src/users/users.entity';
 
 @Injectable()
 export class ProjectsService {
@@ -22,6 +23,8 @@ export class ProjectsService {
     private projectsRepository: Repository<Projects>,
     @InjectRepository(Status)
     private statusRepository: Repository<Status>,
+    @InjectRepository(Users)
+    private usersRepository: Repository<Users>,
   ) {}
 
   // GetAll
@@ -63,7 +66,7 @@ export class ProjectsService {
 
   // Patch
   async patch(id: number, updateReq: updateProjectDto): Promise<any> {
-    const { statusId, ...updateFields } = updateReq;
+    const { statusId, collaborators, ...updateFields } = updateReq;
 
     const project = await this.projectsRepository.findOne({
       where: { id: id },
@@ -72,18 +75,42 @@ export class ProjectsService {
       throw new NotFoundException(`Project with ID ${id} not found`);
     }
 
-    if (statusId !== undefined) {
+    let isModified = false;
+
+    if (statusId !== undefined && statusId !== null) {
       const status = await this.statusRepository.findOne({
         where: { id: statusId },
       });
       if (status) {
         project.status = status;
+        isModified = true;
       }
     }
 
-    Object.assign(project, updateFields);
+    if (collaborators !== undefined && collaborators !== null) {
+      for (const collaboratorId of collaborators) {
+        const collaborator = await this.usersRepository.findOne({
+          where: { id: collaboratorId },
+        });
+        if (collaborator) {
+          if (!project.collaborators) {
+            project.collaborators = [];
+          }
+          project.collaborators.push(collaborator);
+        }
+      }
+    }
 
-    return this.projectsRepository.save(project);
+    if (Object.keys(updateFields).length > 0) {
+      Object.assign(project, updateFields);
+      isModified = true;
+    }
+
+    if (isModified) {
+      return this.projectsRepository.save(project);
+    } else {
+      return project;
+    }
   }
 
   // Delete
