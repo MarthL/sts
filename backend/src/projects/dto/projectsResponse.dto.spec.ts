@@ -1,6 +1,7 @@
 import { validate } from 'class-validator';
 import ProjectsResponseDto from './projectsResponse.dto';
 import { randomInt } from 'crypto';
+import { Projects } from '../projects.entity';
 
 describe('ProjectsResponseDto', () => {
   it('should pass validation when all properties are present', async () => {
@@ -37,17 +38,17 @@ describe('ProjectsResponseDto', () => {
   });
 
   it('should fail validation when ID is not a number', async () => {
-    let dto = new ProjectsResponseDto();
+    const dto = new ProjectsResponseDto();
     Object.defineProperty(dto, 'id', {
-        get: function() {
-          return this._id + '';
-        },
-        set: function(value) {
-          this._id = value;
-        },
-        enumerable: true,
-        configurable: true
-      });
+      get: function () {
+        return this._id + '';
+      },
+      set: function (value) {
+        this._id = value;
+      },
+      enumerable: true,
+      configurable: true,
+    });
     dto.id = 1;
     dto.description = 'This is a test project';
     dto.project_name = 'Test Project';

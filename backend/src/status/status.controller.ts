@@ -25,7 +25,7 @@ export class StatusController {
   }
 
   @Get(':id')
-  async getJobById(@Param('id', ParseIntPipe) id: number) {
+  async getStatusById(@Param('id', ParseIntPipe) id: number) {
     return await this.statusService.getStatusById(id);
   }
 
