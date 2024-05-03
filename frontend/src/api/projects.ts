@@ -4,6 +4,7 @@ export interface Project {
   id: number;
   project_name: string;
   description: string;
+  photo_url?: string;
 };
 
 export async function getProjects(search?: string) {
@@ -34,9 +35,43 @@ export async function postProject(data: Project) {
   })
     .then((response) => {
       console.log('response.data : ', response.data)
+      if(response.data.file) {
+        editProjectPicture(response.data.id, response.data.project_picture)
+      }
       return response.data;
     })
     .catch((error) => {
       console.log(error);
+    })
+}
+
+export async function editProjectPicture(id: number, data: File) {
+  const formData = new FormData();
+  formData.append('file', data);
+  formData.append('fileName', data.name);
+  const fileName = data.name;
+  const type = data.type;
+  return axiosClient.post('projects/' + id + '/project-photo', formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    },
+  })
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => {
+      console.error(error)
+    })
+}
+
+export async function exportProjectPicture(projectPicture: string) {
+  return axiosClient.get(`/uploads/project-photo/${projectPicture}`, { responseType: 'blob' })
+    .then((response) => {
+      const imageUrl = URL.createObjectURL(response.data);
+      return imageUrl;
+    })
+    .catch((error) => {
+      console.error(error);
+      return '';
     })
 }

@@ -42,8 +42,8 @@ import { join } from 'path';
       signOptions: { expiresIn: '3h' },
     }),
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'uploads', 'profile-photos'),
-      serveRoot: '/uploads',
+      rootPath: join(__dirname, '..', 'uploads'),
+      serveRoot: '/uploads/',
     }),
     TypeOrmModule.forRoot({
       type: 'mysql',

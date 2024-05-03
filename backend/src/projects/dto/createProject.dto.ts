@@ -24,4 +24,7 @@ export default class createProjectDto {
   @IsOptional()
   @IsNumber()
   statusId: number;
+
+  @IsOptional()
+  project_picture: string;
 }

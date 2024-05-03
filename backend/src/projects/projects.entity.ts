@@ -34,4 +34,7 @@ export class Projects {
 
   @ManyToOne(() => Users)
   collaborators: Users[];
+
+  @Column({ nullable: true, default: null })
+  photo_url: string;
 }

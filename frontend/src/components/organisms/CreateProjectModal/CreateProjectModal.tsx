@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Project } from '../../../api/projects';
-import { getProjectById } from '../../../api/projects';
+import { getProjectById, editProjectPicture, exportProjectPicture } from '../../../api/projects';
 import { ErrorLabel } from '../../atoms/ErrorLabel/ErrorLabel';
 import { useForm, FormProvider, Resolver } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
@@ -55,6 +55,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ openModal, handleClo
   const [description, setDescription] = useState('');
   const { id } = useParams<{ id: string }>();
   const [project, setProject] = useState<Project>();
+  const [projectPicture, setProjectPicture] = useState<any>('');
 
   const navigate = useNavigate();
 
@@ -63,6 +64,9 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ openModal, handleClo
       const projectId = response.id;
       setProjectName(data.project_name);
       setDescription(data.description);
+      if (projectPicture) {
+        editProjectPicture(projectId, projectPicture);
+      }
       Swal.fire({
         title: 'Project Created Successfully!',
         icon: 'success',
@@ -79,6 +83,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ openModal, handleClo
     });
     handleCloseModal();
   });
+
   return (
     <>
       <Modal open={openModal} onClose={handleCloseModal}>
@@ -102,10 +107,10 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ openModal, handleClo
           <Typography variant="h5" mb={3} sx={{ textAlign: "center" }}>Project Creation Form</Typography>
           <FormProvider {...methods}>
             <form onSubmit={onSubmit}>
-              <Grid container sx={{display: 'flex', flexDirection: 'column'}}>
-                <Grid item mb={2} sx={{display: 'flex', justifyContent: 'center', width: '100%'}}>
+              <Grid container sx={{ display: 'flex', flexDirection: 'column' }}>
+                <Grid item mb={2} sx={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
                   <TextField
-                    sx={{width: '75%'}}
+                    sx={{ width: '75%' }}
                     label='Project name'
                     size='small'
                     id="input-project-name"
@@ -115,11 +120,11 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ openModal, handleClo
                   />
                   {errors?.project_name && <ErrorLabel message={errors.project_name.message || ''} />}
                 </Grid>
-                <Grid item mb={2} sx={{display: 'flex', justifyContent: 'center', width: '100%'}}>
+                <Grid item mb={2} sx={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
                   <TextField
                     rows={4}
                     multiline
-                    sx={{width: '75%'}}
+                    sx={{ width: '75%' }}
                     label='Description'
                     id="input-description"
                     placeholder="Your description field"
@@ -128,8 +133,21 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ openModal, handleClo
                   />
                   {errors?.description && <ErrorLabel message={errors.description.message || ''} />}
                 </Grid>
+                <Grid item display={'flex'} justifyContent={'center'} mb={5} mt={5}>
+                  <input
+                    type="file"
+                    id="project_picture"
+                    accept="image/*"
+                    onChange={(e) => {
+                      const file = e.target.files?.[0];
+                      if (file) {
+                        setProjectPicture(file);
+                      }
+                    }}
+                  />
+                </Grid>
               </Grid>
-              <Grid item sx={{display: 'flex', justifyContent: 'center'}}>
+              <Grid item sx={{ display: 'flex', justifyContent: 'center' }}>
                 <Button variant="contained" type='submit'>Submit</Button>
               </Grid>
             </form>
