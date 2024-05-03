@@ -7,7 +7,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, Like } from 'typeorm';
+import { Repository, Like, UpdateResult } from 'typeorm';
 import { Projects } from './projects.entity';
 import ProjectsResponseDto from './dto/projectsResponse.dto';
 import CreateProjectDto from './dto/createProject.dto';
@@ -123,5 +123,23 @@ export class ProjectsService {
     }
     await this.projectsRepository.delete(id);
     return plainToClass(ProjectsResponseDto, project);
+  }
+
+  async updateProjectPicture(
+    projectId: number,
+    fileUrl: string,
+  ): Promise<UpdateResult> {
+    const project = await this.projectsRepository.findOne({
+      where: {
+        id: projectId,
+      },
+    });
+    if (!project) {
+      throw new HttpException('Project not found', 404);
+    }
+    let updateQuery = {};
+    updateQuery = { ...updateQuery, photo_url: fileUrl };
+
+    return this.projectsRepository.update(project?.id, updateQuery);
   }
 }

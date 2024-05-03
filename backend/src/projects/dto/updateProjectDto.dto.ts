@@ -16,4 +16,7 @@ export class updateProjectDto {
 
   @IsOptional()
   collaborators: number[];
+
+  @IsOptional()
+  project_picture: string;
 }

@@ -8,6 +8,8 @@ import {
   Delete,
   Body,
   ParseIntPipe,
+  UseInterceptors,
+  UploadedFile,
 } from '@nestjs/common';
 import { ApiTags, ApiQuery } from '@nestjs/swagger';
 import { ProjectsService } from './projects.service';
@@ -16,6 +18,8 @@ import createProjectDto from './dto/createProject.dto';
 import ProjectsResponseDto from './dto/projectsResponse.dto';
 import { updateProjectDto } from './dto/updateProjectDto.dto';
 import { HttpException } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
+import * as multer from 'multer';
 
 @ApiTags('Projects')
 @Controller('/projects')
@@ -54,5 +58,27 @@ export class ProjectsController {
   ): Promise<updateProjectDto> {
     console.log(updateProjectDto);
     return await this.projectsService.patch(id, updateReq);
+  }
+
+  // Upload profile photo
+  @Post(':projectId/project-photo')
+  @UseInterceptors(
+    FileInterceptor('file', {
+      storage: multer.diskStorage({
+        destination: './uploads/project-photo',
+        filename: (req, file, cb) => {
+          console.log('fileName : ', file.originalname);
+          cb(null, file.originalname);
+        },
+      }),
+    }),
+  )
+  async uploadProfilePhoto(
+    @Param('projectId') projectId: number,
+    @UploadedFile() file: Express.Multer.File,
+    @Body('fileName') fileName: string,
+  ) {
+    console.log('upload started');
+    return this.projectsService.updateProjectPicture(projectId, fileName);
   }
 }

@@ -22,7 +22,6 @@ import { DeleteResult, UpdateResult } from 'typeorm';
 import { UseInterceptors } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import * as multer from 'multer';
-import * as path from 'path';
 
 @ApiTags('Users')
 @Controller('users')
