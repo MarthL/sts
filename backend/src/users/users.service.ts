@@ -9,7 +9,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { DeleteResult, Repository } from 'typeorm';
 import { Users } from './users.entity';
 import { CreateUserDto } from './dto/create-userDto.dto';
-import { UserResponseDto } from 'src/users/dto/userResponseDto.dto';
+import { UserResponseDto } from '../users/dto/userResponseDto.dto';
 import * as bcrypt from 'bcryptjs';
 import { plainToClass } from 'class-transformer';
 import { UpdateResult } from 'typeorm';

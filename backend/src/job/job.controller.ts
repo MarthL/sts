@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { JobService } from './job.service';
-import { CreateJobDto } from 'src/job/dto/createJobDto.dto';
+import { CreateJobDto } from '../job/dto/createJobDto.dto';
 
 @ApiTags('Job')
 @Controller('/jobs')

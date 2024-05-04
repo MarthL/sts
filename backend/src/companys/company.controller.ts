@@ -11,8 +11,8 @@ import {
   Patch,
 } from '@nestjs/common';
 import { CompanysService } from './company.service';
-import { CompanyResponseDto } from 'src/companys/dto/companyResponse.dto';
-import { CreateCompanyDto } from 'src/companys/dto/createCompany.dto';
+import { CompanyResponseDto } from '../companys/dto/companyResponse.dto';
+import { CreateCompanyDto } from '../companys/dto/createCompany.dto';
 import { DeleteResult, UpdateResult } from 'typeorm';
 import { Companys } from './company.entity';
 import { UpdateCompanyDto } from './dto/updateCompany.dto';

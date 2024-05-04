@@ -3,10 +3,9 @@ import { StatusController } from './status.controller';
 import { StatusService } from './status.service';
 import { Status } from './status.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { JobFieldModule } from 'src/job-field/job-field.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Status]), JobFieldModule],
+  imports: [TypeOrmModule.forFeature([Status])],
   controllers: [StatusController],
   providers: [StatusService],
 })

@@ -11,10 +11,10 @@ import { Repository, Like, UpdateResult } from 'typeorm';
 import { Projects } from './projects.entity';
 import ProjectsResponseDto from './dto/projectsResponse.dto';
 import CreateProjectDto from './dto/createProject.dto';
-import { updateProjectDto } from 'src/projects/dto/updateProjectDto.dto';
+import { updateProjectDto } from '../projects/dto/updateProjectDto.dto';
 import { plainToClass } from 'class-transformer';
-import { Status } from 'src/status/status.entity';
-import { Users } from 'src/users/users.entity';
+import { Status } from '../status/status.entity';
+import { Users } from '../users/users.entity';
 
 @Injectable()
 export class ProjectsService {

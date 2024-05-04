@@ -7,8 +7,8 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Companys } from '../companys/company.entity';
-import { Status } from 'src/status/status.entity';
-import { Users } from 'src/users/users.entity';
+import { Status } from '../status/status.entity';
+import { Users } from '../users/users.entity';
 
 @Entity()
 export class Projects {

@@ -5,7 +5,7 @@ import {
   MaxLength,
   IsNumber,
 } from 'class-validator';
-import { Status } from 'src/status/status.entity';
+import { Status } from '../../status/status.entity';
 
 export default class createProjectDto {
   @IsNotEmpty()

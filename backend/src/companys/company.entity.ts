@@ -1,6 +1,6 @@
 import { MaxLength } from 'class-validator';
 import { Users } from '../users/users.entity';
-import { Projects } from 'src/projects/projects.entity';
+import { Projects } from '../projects/projects.entity';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
 @Entity()

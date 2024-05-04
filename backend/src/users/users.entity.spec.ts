@@ -5,6 +5,7 @@ import { getRepositoryToken } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Users } from './users.entity';
 import { Job } from '../job/job.entity';
+import { Projects } from '../projects/projects.entity';
 import { plainToClass } from 'class-transformer';
 import { UserResponseDto } from './dto/userResponseDto.dto';
 

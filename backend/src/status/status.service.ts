@@ -2,8 +2,6 @@ import { Injectable, HttpException, Body } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Status } from './status.entity';
-import { JobResponseDto } from 'src/job/dto/jobResponseDto.dto';
-import { CreateJobDto } from 'src/job/dto/createJobDto.dto';
 import { plainToClass } from 'class-transformer';
 import { CreateStatusDto } from './dto/createStatusDto.dto';
 

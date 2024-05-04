@@ -3,8 +3,8 @@ import { ProjectsController } from './projects.controller';
 import { ProjectsService } from './projects.service';
 import { Projects } from './projects.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Status } from 'src/status/status.entity';
-import { Users } from 'src/users/users.entity';
+import { Status } from '../status/status.entity';
+import { Users } from '../users/users.entity';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Projects, Status, Users])],

@@ -1,16 +1,16 @@
 import { validate } from 'class-validator';
 import { JobField } from './job-field.entity';
 import { randomInt } from 'crypto';
-import { Job } from 'src/job/job.entity';
+import { Job } from '../job/job.entity';
 import { JobResponseDto } from '../job/dto/jobResponseDto.dto';
 import { plainToClass } from 'class-transformer';
 import { Repository, DataSource } from 'typeorm';
-import { UsersController } from 'src/users/users.controller';
-import { UsersService } from 'src/users/users.service';
-import { AuthLogin } from 'src/auth/authlogin.service';
-import { AuthService } from 'src/auth/auth.service';
+import { UsersController } from '../users/users.controller';
+import { UsersService } from '../users/users.service';
+import { AuthLogin } from '../auth/authlogin.service';
+import { AuthService } from '../auth/auth.service';
 import { JwtService } from '@nestjs/jwt';
-import { Users } from 'src/users/users.entity';
+import { Users } from '../users/users.entity';
 
 describe('jobFieldEntity', () => {
   // it('should be valid when all properties are set', async () => {

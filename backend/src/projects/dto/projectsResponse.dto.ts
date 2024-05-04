@@ -7,8 +7,8 @@ import {
   IsOptional,
   IsArray,
 } from 'class-validator';
-import { Status } from 'src/status/status.entity';
-import { Users } from 'src/users/users.entity';
+import { Status } from '../../status/status.entity';
+import { Users } from '../../users/users.entity';
 
 export default class ProjectsResponseDto {
   @IsNotEmpty()

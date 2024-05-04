@@ -10,7 +10,6 @@ import {
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { StatusService } from './status.service';
-import { CreateUserDto } from 'src/users/dto/create-userDto.dto';
 import { CreateStatusDto } from './dto/createStatusDto.dto';
 
 @ApiTags('Status')

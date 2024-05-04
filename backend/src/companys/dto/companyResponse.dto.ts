@@ -6,7 +6,7 @@ import {
   IsOptional,
   IsArray,
 } from 'class-validator';
-import { Projects } from 'src/projects/projects.entity';
+import { Projects } from '../../projects/projects.entity';
 
 export class CompanyResponseDto {
   @IsNumber()

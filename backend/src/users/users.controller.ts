@@ -16,8 +16,8 @@ import {
 import { UsersService } from './users.service';
 import { AuthLogin } from './../auth/authlogin.service';
 import { CreateUserDto } from './dto/create-userDto.dto';
-import { UserLoginDto } from 'src/users/dto/user-loginDto.dto';
-import { UserResponseDto } from 'src/users/dto/userResponseDto.dto';
+import { UserLoginDto } from '../users/dto/user-loginDto.dto';
+import { UserResponseDto } from '../users/dto/userResponseDto.dto';
 import { DeleteResult, UpdateResult } from 'typeorm';
 import { UseInterceptors } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
