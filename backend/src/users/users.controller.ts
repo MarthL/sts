@@ -112,7 +112,6 @@ export class UsersController {
       storage: multer.diskStorage({
         destination: './uploads/profile-photos',
         filename: (req, file, cb) => {
-          console.log('fileName : ', file.originalname);
           cb(null, file.originalname);
         },
       }),

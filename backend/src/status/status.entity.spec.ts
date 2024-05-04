@@ -38,7 +38,7 @@ describe('StatusEntity', () => {
     const result = await statusRepository.save(status);
     const checkDto = plainToClass(CreateStatusDto, result);
     const errors = await validate(checkDto);
-    console.log(errors);
+    console.error(errors);
     expect((await errors).length).toBe(0);
   });
 

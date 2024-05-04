@@ -87,7 +87,6 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
 
   const methods = useForm();
   const onsubmit = async (data: any) => {
-    console.log('click submit')
     const userHasConfirmed = await confirmModal();
     if (userHasConfirmed) {
       user?.id ? sendForm(user.id, data) : console.error(`Datas :  ${data} cannot be send, missing id user`)

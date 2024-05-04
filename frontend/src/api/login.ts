@@ -11,6 +11,6 @@ export function logIn(username: FormDataEntryValue, password: FormDataEntryValue
       return response;
     })
     .catch((error) => {
-      console.log(error);
+      console.error(error);
     });
 }

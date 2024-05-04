@@ -14,7 +14,7 @@ export async function getProjects(search?: string) {
       return response.data;
     })
     .catch((error) => {
-    console.log(error);
+    console.error(error);
   });
 }
 
@@ -24,7 +24,7 @@ export async function getProjectById(id: number) {
       return response.data
     })
     .catch((error) => {
-      console.log(error);
+      console.error(error);
     })
 }
 
@@ -34,14 +34,14 @@ export async function postProject(data: Project) {
     description: data.description
   })
     .then((response) => {
-      console.log('response.data : ', response.data)
+      console.error('response.data : ', response.data)
       if(response.data.file) {
         editProjectPicture(response.data.id, response.data.project_picture)
       }
       return response.data;
     })
     .catch((error) => {
-      console.log(error);
+      console.error(error);
     })
 }
 

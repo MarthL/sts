@@ -34,7 +34,6 @@ export const CustomAutoComplete = (props: CustomAutoCompleteProps) => {
   const handleInputChange = (event: any) => {
     if (event !== null) {
       getCitiesCollection(event.target.value).then((res) => {
-        console.log('get cities collection event.target.value : ', event.target.value)
         setSuggestions(res);
       })
         .catch((error) => {

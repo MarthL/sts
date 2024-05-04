@@ -17,6 +17,6 @@ export async function getCitiesCollection(search?: string) {
   .then((response) => {
     return response.data;
   }).catch((error) => {
-    console.log(error);
+    console.error(error);
   })
 }

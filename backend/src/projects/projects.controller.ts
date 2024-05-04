@@ -56,7 +56,6 @@ export class ProjectsController {
     @Param('id') id: number,
     @Body() updateReq: updateProjectDto,
   ): Promise<updateProjectDto> {
-    console.log(updateProjectDto);
     return await this.projectsService.patch(id, updateReq);
   }
 
@@ -67,7 +66,6 @@ export class ProjectsController {
       storage: multer.diskStorage({
         destination: './uploads/project-photo',
         filename: (req, file, cb) => {
-          console.log('fileName : ', file.originalname);
           cb(null, file.originalname);
         },
       }),
@@ -78,7 +76,6 @@ export class ProjectsController {
     @UploadedFile() file: Express.Multer.File,
     @Body('fileName') fileName: string,
   ) {
-    console.log('upload started');
     return this.projectsService.updateProjectPicture(projectId, fileName);
   }
 }

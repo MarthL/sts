@@ -21,7 +21,6 @@ export const LoginPage = () => {
             localStorage.setItem('token', res.data.accessToken.accessToken);
             localStorage.setItem('name', email);
             getAllUsers(email).then((response: any) => {
-              console.log('id', response[0]?.id);
               localStorage.setItem('id', response[0]?.id)
             })
               .catch((error) => {
@@ -31,7 +30,7 @@ export const LoginPage = () => {
           }
         })
         .catch((error) => {
-          console.log(error)
+          console.error(error);
         });
     }
   };

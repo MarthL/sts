@@ -24,7 +24,7 @@ export async function getUserLogged(username: string) {
     return response.data;
   })
   .catch((error) => {
-  console.log(error);
+  console.error(error);
 });
 }
 
@@ -35,7 +35,7 @@ export async function getAllUsers(search?: string) {
     return response.data;
   })
   .catch((error) => { 
-    console.log(error)
+    console.error(error)
   })
 }
 
@@ -60,13 +60,9 @@ export async function editUser(id: number, data: any) {
 }
 
 export async function editProfilePicture(id: number, data: File) {
-  console.log('start function : ', data)
   const formData = new FormData();
   formData.append('file', data);
   formData.append('fileName', data.name);
-  console.log('data :', data);
-  const fileName = data.name;
-  const type = data.type;
   return axiosClient.post('users/' + id + '/profile-photo', formData, {
     headers: {
       'Content-Type': 'multipart/form-data'
