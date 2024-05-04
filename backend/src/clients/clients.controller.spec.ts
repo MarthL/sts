@@ -1,6 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ClientsController } from './clients.controller';
 import { ClientsService } from './clients.service';
+import { DeleteResult } from 'typeorm';
 
 describe('Clients Controller', () => {
   let controller: ClientsController;
@@ -36,13 +37,13 @@ describe('Clients Controller', () => {
     expect(service.getClients).toHaveBeenCalled();
   });
 
-  // it('should get client by id', async () => {
-  //   let result;
-  //   jest.spyOn(service, 'getClientById').mockResolvedValue(result);
-  //   expect(await controller.getClientById(1)).toBe(result);
-  //   expect(service.getClientById).toHaveBeenCalled();
-  //   expect(service.getClientById).toHaveBeenCalledWith(1);
-  // });
+  it('should delete a client', async () => {
+    const id = 1;
+    jest.spyOn(service, 'deleteById').mockResolvedValue(id as any);
+    expect(await controller.deleteById(id)).toBe(id);
+    expect(service.deleteById).toHaveBeenCalled();
+    expect(service.deleteById).toHaveBeenCalledWith(id);
+  });
 
   it('should create a client', async () => {
     const client = { name: 'client' } as any;
