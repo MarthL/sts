@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Test, TestingModule } from '@nestjs/testing';
 import { validate } from 'class-validator';
 import { getRepositoryToken } from '@nestjs/typeorm';
@@ -8,6 +7,8 @@ import { Job } from '../job/job.entity';
 import { Projects } from '../projects/projects.entity';
 import { plainToClass } from 'class-transformer';
 import { UserResponseDto } from './dto/userResponseDto.dto';
+import { Citys } from '../citys/citys.entity';
+import { Companys } from '../companys/company.entity';
 
 describe('userEntity', () => {
   let userRepository: Repository<Users>;
@@ -51,6 +52,24 @@ describe('userEntity', () => {
     expect((await errors).length).toBeGreaterThan(0);
   });
 
+  it('should have correct relations', async () => {
+    const user = new Users();
+    const job = new Job();
+    const project = new Projects();
+    const company = new Companys();
+    const city = new Citys();
+
+    user.job = job;
+    user.projectsCollection = [project];
+    user.company = company;
+    user.city = city;
+
+    expect(user.job).toBe(job);
+    expect(user.projectsCollection).toEqual([project]);
+    expect(user.company).toBe(company);
+    expect(user.city).toBe(city);
+  });
+
   it('Validating id property', async () => {
     const user = new Users();
     user.password = 'tp';
@@ -62,7 +81,6 @@ describe('userEntity', () => {
     expect((await errors).length).toBe(0);
   });
 
-  // to continue
   it('Should validate and create a user with a job', async () => {
     const newJob = new Job();
     newJob.id = 1;
@@ -79,5 +97,42 @@ describe('userEntity', () => {
 
     expect(errors.length).toBe(0);
     expect(checkDto.job_id).toBe(newJob.id);
+  });
+
+  it('Should validate and create a user with a company', async () => {
+    const newCompany = new Companys();
+    newCompany.id = 1;
+    newCompany.name = 'random company';
+
+    const user = new Users();
+    user.id = 1;
+    user.username = 'johnDoe';
+    user.password = 'tryit';
+    user.company = newCompany;
+
+    const checkDto = plainToClass(UserResponseDto, user);
+    const errors = await validate(checkDto);
+
+    expect(errors.length).toBe(0);
+    expect(checkDto.company_id).toBe(newCompany.id);
+  });
+
+  it('Should validate and create a user with a city', async () => {
+    const newCity = new Citys();
+    newCity.id = 1;
+    newCity.city_name = 'random city';
+
+    const user = new Users();
+    user.id = 1;
+    user.username = 'johnDoe';
+    user.password = 'tryit';
+    user.city = newCity;
+    user.city = newCity;
+
+    const checkDto = plainToClass(UserResponseDto, user);
+    const errors = await validate(checkDto);
+
+    expect(errors.length).toBe(0);
+    expect(checkDto.city_id).toBe(newCity.id);
   });
 });
