@@ -7,5 +7,6 @@ export class CreateJobDto {
   job_title: string;
 
   @IsOptional()
-  job_field: JobField;
+  @IsInt()
+  job_field: number;
 }

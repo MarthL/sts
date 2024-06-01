@@ -10,5 +10,6 @@ export class JobResponseDto {
   job_title: string;
 
   @IsOptional()
-  jobField: JobField;
+  @IsInt()
+  jobField: number;
 }

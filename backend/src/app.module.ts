@@ -62,6 +62,7 @@ import { join } from 'path';
         Citys,
         Status,
       ],
+      migrations: ['migrations/*.js'],
       synchronize: true,
     }),
     TypeOrmModule.forFeature([Projects, Users]),
