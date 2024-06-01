@@ -35,14 +35,18 @@ export const ProjectPage: React.FC<any> = () => {
         </Paper>
       </Box>
       <Grid container mt={5}>
-        <Grid xs={6} item>
-          <Typography variant="body1">{project?.description}</Typography>
+        <Grid xs={5} item>
+          <Paper>
+            <Typography variant="body1">{project?.description}</Typography>
+          </Paper>
         </Grid>
         <Grid
-          xs={6}
+          xs={5}
           item
         >
-          <img src={photo} width={'contain'} alt="hero" />
+          <Paper>
+            <img src={photo} alt="hero" />
+          </Paper>
         </Grid>
       </Grid>
     </>

@@ -18,6 +18,7 @@ import { Divider, Switch } from '@mui/material';
 import { WbSunny } from '@mui/icons-material';
 import { ModeNight } from '@mui/icons-material';
 import { useLocation } from 'react-router-dom';
+import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
 
 interface Navbar {
   isDarkTheme: boolean,
@@ -88,7 +89,7 @@ export const NavBar: React.FC<Navbar> = ({ isDarkTheme, toggleTheme }) => {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <Drawer variant="permanent" open={open}>
+      <Drawer variant="permanent" open={open} sx={{ overflowY: 'hidden' }}>
         <DrawerHeader>
           <Box sx={{ mt: 1 }}>
             {open ? <Logo size={100} /> : null}
@@ -131,8 +132,16 @@ export const NavBar: React.FC<Navbar> = ({ isDarkTheme, toggleTheme }) => {
               <ListItemText primary={'Stats'} />
             </ListItemButton>
           </ListItem>
+          <ListItem disablePadding onClick={() => navigate('/clients')}>
+            <ListItemButton selected={location.pathname === "/clients"}>
+              <ListItemIcon>
+                <BusinessCenterIcon />
+              </ListItemIcon>
+              <ListItemText primary={'Clients'} />
+            </ListItemButton>
+          </ListItem>
           <Divider />
-          <Box flexGrow={1} height={'100%'}></Box>
+          <Box flexGrow={1} height={'80%'}></Box>
           <ListItem>
             <ListItemButton disableGutters>
               <ListItemIcon>

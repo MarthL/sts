@@ -11,6 +11,6 @@ export class JobField {
   @MaxLength(100)
   name: string;
 
-  @OneToMany(() => Job, (job) => job.jobField)
+  @OneToMany(() => Job, (job) => job.jobField, { cascade: true })
   Job: JobField[];
 }
