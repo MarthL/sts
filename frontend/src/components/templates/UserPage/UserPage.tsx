@@ -11,6 +11,7 @@ export const UserPage: React.FC<any> = () => {
   const [user, setUser] = useState<User>();
 
   useEffect(() => {
+    // TODO : replace with 404
     if (id !== undefined && localStorage.getItem('id') !== id) {
       getUserById(parseInt(id)).then((res) => {
         setUser(res);
@@ -21,10 +22,10 @@ export const UserPage: React.FC<any> = () => {
   }, []);
 
   return (
-    <> 
+    <>
 
       <Typography> it works !  </Typography>
-      
+
     </>
   )
 }
