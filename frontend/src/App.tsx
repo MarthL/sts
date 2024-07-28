@@ -93,6 +93,7 @@ function App() {
   const toggleTheme = () => {
     setIsDarkTheme((currentTheme) => !currentTheme);
     localStorage.getItem('theme') === 'dark' ? localStorage.setItem('theme', 'light') : localStorage.setItem('theme', 'dark');
+    window.location.reload();
   };
 
   const backgroundColor = isDarkTheme ? '#000000' : '#FFFFFF';
@@ -104,8 +105,10 @@ function App() {
     if (!localStorage.getItem('theme') || localStorage.getItem('theme') === 'light') {
       setIsDarkTheme(false);
       localStorage.setItem('theme', 'light');
+      document.documentElement.classList.remove('dark');
     } else {
       setIsDarkTheme(true);
+      document.documentElement.classList.add('dark');
     }
   }, [])
 

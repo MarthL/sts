@@ -17,16 +17,16 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart"
 const chartData = [
-  { browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },
-  { browser: "safari", visitors: 200, fill: "var(--color-safari)" },
-  { browser: "firefox", visitors: 287, fill: "var(--color-firefox)" },
-  { browser: "edge", visitors: 173, fill: "var(--color-edge)" },
-  { browser: "other", visitors: 190, fill: "var(--color-other)" },
+  { browser: "chrome", occupation: 10, fill: "var(--color-chrome)" },
+  { browser: "safari", occupation: 20, fill: "var(--color-safari)" },
+  { browser: "firefox", occupation: 50, fill: "var(--color-firefox)" },
+  { browser: "edge", occupation: 10, fill: "var(--color-edge)" },
+  { browser: "other", occupation: 5, fill: "var(--color-other)" },
 ]
 
 const chartConfig = {
-  visitors: {
-    label: "Visitors",
+  availability: {
+    label: "Availability",
   },
   chrome: {
     label: "Chrome",
@@ -51,8 +51,8 @@ const chartConfig = {
 } satisfies ChartConfig
 
 export function CircleChart() {
-  const totalVisitors = React.useMemo(() => {
-    return chartData.reduce((acc, curr) => acc + curr.visitors, 0)
+  const totalAvailability = React.useMemo(() => {
+    return chartData.reduce((acc, curr) => acc + curr.occupation, 0)
   }, [])
 
   const [isDarkTheme, setIsDarkTheme] = useState<boolean>(false);
@@ -80,7 +80,7 @@ export function CircleChart() {
             />
             <Pie
               data={chartData}
-              dataKey="visitors"
+              dataKey="occupation"
               nameKey="browser"
               innerRadius={60}
               strokeWidth={5}
@@ -100,14 +100,14 @@ export function CircleChart() {
                           y={viewBox.cy}
                           className="fill-foreground text-3xl font-bold"
                         >
-                          {totalVisitors.toLocaleString()}
+                          {totalAvailability.toLocaleString()} %
                         </tspan>
                         <tspan
                           x={viewBox.cx}
                           y={(viewBox.cy || 0) + 24}
                           className="fill-muted-foreground"
                         >
-                          Visitors
+                          Occupation
                         </tspan>
                       </text>
                     )
@@ -123,7 +123,7 @@ export function CircleChart() {
           Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
         </div>
         <div className="leading-none text-muted-foreground">
-          Showing total visitors for the last 6 months
+          Show history of projects he worked on
         </div>
       </CardFooter>
     </Card>
