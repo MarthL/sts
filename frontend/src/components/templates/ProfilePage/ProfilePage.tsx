@@ -4,6 +4,7 @@ import { getUserLogged } from '../../../api/users';
 import { Edit, Tune, Security } from '@mui/icons-material';
 import { ListItemProfile } from '../../molecules/ListItemProfile.tsx/ListItemProfile';
 import { EditProfile } from './EditProfile/EditProfile';
+import { AdvancedSettings } from './AdvancedSettings/AdvancedSettings';
 import { SecurityPassword } from './SecurityPassword/SecurityPassword';
 
 interface User {
@@ -54,7 +55,8 @@ export const ProfilePage: React.FC<any> = () => {
 
   const componentToRender = [
     <EditProfile user={user} />,
-    <SecurityPassword user={user} />
+    <SecurityPassword user={user} />,
+    <AdvancedSettings user={user} />
   ];
 
   return (

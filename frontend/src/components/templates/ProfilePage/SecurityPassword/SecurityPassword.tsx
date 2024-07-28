@@ -24,7 +24,14 @@ export const SecurityPassword: React.FC<SecurityPasswordProps> = ({ user }) => {
 
   return (
     <>
-      <div className="p-4 mb-4 bg-dark border border-gray-800 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+      <div className="grid grid-cols-1 px-4 xl:grid-cols-2 xl:gap-4">
+        <div className="mb-4 col-span-full xl:mb-2 pt-6 pb-6 px-4">
+          <h1 className="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">
+            Security & Password
+          </h1>
+        </div>
+      </div>
+      <div className="p-4 mb-4 bg-dark border border-gray-800 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800 xl:mb-0">
         <h3 className="mb-4 text-xl font-semibold dark:text-white">Password information</h3>
         <form action="#">
           <div className="grid grid-cols-6 gap-6">
