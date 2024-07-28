@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import { CircleChart } from '@/components/organisms/Piechart/Piechart';
 import { Masonry } from "@/components/organisms/Masonry/Masonry";
 import { Avatar } from "@mui/material";
+import { InputProfileCustom } from "@/components/atoms/InputForm/InputProfileCustom";
+import { TextField } from "@mui/material";
 
 export const UserPage: React.FC<any> = () => {
 
@@ -67,7 +69,7 @@ export const UserPage: React.FC<any> = () => {
           <h1 className="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">User settings</h1>
         </div>
         <div className="col-span-full xl:col-auto">
-          <div className="p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+          <div className="p-4 mb-4 bg-dark border border-gray-200 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-gray-800">
             <div className="items-center sm:flex xl:block 2xl:flex sm:space-x-4 xl:space-x-0 2xl:space-x-4">
               <Avatar
 
@@ -76,7 +78,7 @@ export const UserPage: React.FC<any> = () => {
                 onClick={() => (document.querySelector('input[id="photo"]') as HTMLInputElement)?.click()}
               />
               <div>
-                <h3 className="mb-1 text-xl font-bold text-gray-900 dark:text-white">{user?.username} {user?.family_name}</h3>
+                <h3 className="mb-1 text-xl font-bold dark:text-white">{user?.username} {user?.family_name}</h3>
                 <div className="mb-4 text-sm text-gray-500 dark:text-gray-400">
                   Insert job here
                 </div>
@@ -89,7 +91,7 @@ export const UserPage: React.FC<any> = () => {
               </div>
             </div>
           </div>
-          <div className="p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+          <div className="p-4 mb-4 bg-dark border border-gray-200 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-gray-800">
             <h3 className="mb-4 text-xl font-semibold dark:text-white">Language & Time</h3>
             <div className="mb-4">
               <label htmlFor="settings-language" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select language</label>
@@ -119,7 +121,7 @@ export const UserPage: React.FC<any> = () => {
               <button className="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Save all</button>
             </div>
           </div>
-          <div className="p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+          <div className="p-4 mb-4 bg-dark border border-gray-200 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-gray-800">
             <div className="flow-root">
               <h3 className="text-xl font-semibold dark:text-white">Social accounts</h3>
               <ul className="divide-y divide-gray-200 dark:divide-gray-700">
@@ -137,7 +139,7 @@ export const UserPage: React.FC<any> = () => {
                       </a>
                     </div>
                     <div className="inline-flex items-center">
-                      <a href="#" className="px-3 py-2 mb-3 mr-3 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-primary-300 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Disconnect</a>
+                      <a href="#" className="px-3 py-2 mb-3 mr-3 text-sm font-medium text-center text-gray-900 bg-dark border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-primary-300 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Disconnect</a>
                     </div>
                   </div>
                 </li>
@@ -155,7 +157,7 @@ export const UserPage: React.FC<any> = () => {
                       </a>
                     </div>
                     <div className="inline-flex items-center">
-                      <a href="#" className="px-3 py-2 mb-3 mr-3 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-primary-300 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Disconnect</a>
+                      <a href="#" className="px-3 py-2 mb-3 mr-3 text-sm font-medium text-center text-gray-900 bg-dark border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-primary-300 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Disconnect</a>
                     </div>
                   </div>
                 </li>
@@ -201,7 +203,7 @@ export const UserPage: React.FC<any> = () => {
               </div>
             </div>
           </div>
-          <div className="p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+          <div className="p-4 mb-4 bg-dark border border-gray-200 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-gray-800">
             <div className="flow-root">
               <h3 className="text-xl font-semibold dark:text-white">Other accounts</h3>
               <ul className="mb-6 divide-y divide-gray-200 dark:divide-gray-700">
@@ -224,7 +226,7 @@ export const UserPage: React.FC<any> = () => {
                       </div>
                     </div>
                     <div className="inline-flex items-center w-auto xl:w-full 2xl:w-auto">
-                      <a href="#" className="w-full px-3 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-primary-300 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Disconnect</a>
+                      <a href="#" className="w-full px-3 py-2 text-sm font-medium text-center text-gray-900 bg-dark border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-primary-300 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Disconnect</a>
                     </div>
                   </div>
                 </li>
@@ -247,7 +249,7 @@ export const UserPage: React.FC<any> = () => {
                       </div>
                     </div>
                     <div className="inline-flex items-center w-auto xl:w-full 2xl:w-auto">
-                      <a href="#" className="w-full px-3 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-primary-300 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Disconnect</a>
+                      <a href="#" className="w-full px-3 py-2 text-sm font-medium text-center text-gray-900 bg-dark border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-primary-300 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Disconnect</a>
                     </div>
                   </div>
                 </li>
@@ -270,7 +272,7 @@ export const UserPage: React.FC<any> = () => {
                       </div>
                     </div>
                     <div className="inline-flex items-center w-auto xl:w-full 2xl:w-auto">
-                      <a href="#" className="w-full px-3 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-primary-300 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Disconnect</a>
+                      <a href="#" className="w-full px-3 py-2 text-sm font-medium text-center text-gray-900 bg-dark border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-primary-300 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Disconnect</a>
                     </div>
                   </div>
                 </li>
@@ -293,7 +295,7 @@ export const UserPage: React.FC<any> = () => {
                       </div>
                     </div>
                     <div className="inline-flex items-center w-auto xl:w-full 2xl:w-auto">
-                      <a href="#" className="w-full px-3 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-primary-300 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Disconnect</a>
+                      <a href="#" className="w-full px-3 py-2 text-sm font-medium text-center text-gray-900 bg-dark border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-primary-300 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Disconnect</a>
                     </div>
                   </div>
                 </li>
@@ -305,13 +307,19 @@ export const UserPage: React.FC<any> = () => {
           </div>
         </div>
         <div className="col-span-2">
-          <div className="p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+          <div className="p-4 mb-4 bg-dark border border-gray-200 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-gray-800">
             <h3 className="mb-4 text-xl font-semibold dark:text-white">General information</h3>
             <form action="#">
               <div className="grid grid-cols-6 gap-6">
                 <div className="col-span-6 sm:col-span-3">
-                  <label htmlFor="first-name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First Name</label>
-                  <input type="text" name="first-name" id="first-name" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Bonnie" required />
+                  {/* <label htmlFor="first-name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First Name</label>
+                  <input type="text" name="first-name" id="first-name" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Bonnie" required /> */}
+                  <TextField
+                    label={"Test"}
+                    fullWidth
+                    sx={{ margin: 'auto' }}
+                    InputLabelProps={{ shrink: true }}
+                  />
                 </div>
                 <div className="col-span-6 sm:col-span-3">
                   <label htmlFor="last-name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last Name</label>
@@ -363,7 +371,7 @@ export const UserPage: React.FC<any> = () => {
               </div>
             </form>
           </div>
-          <div className="p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+          <div className="p-4 mb-4 bg-dark border border-gray-200 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-gray-800">
             <h3 className="mb-4 text-xl font-semibold dark:text-white">Password information</h3>
             <form action="#">
               <div className="grid grid-cols-6 gap-6">
@@ -374,7 +382,7 @@ export const UserPage: React.FC<any> = () => {
                 <div className="col-span-6 sm:col-span-3">
                   <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">New password</label>
                   <input data-popover-target="popover-password" data-popover-placement="bottom" type="password" id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="••••••••" required />
-                  <div data-popover id="popover-password" role="tooltip" className="absolute z-10 invisible inline-block text-sm font-light text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-72 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-400">
+                  <div data-popover id="popover-password" role="tooltip" className="absolute z-10 invisible inline-block text-sm font-light text-gray-500 transition-opacity duration-300 bg-dark border border-gray-200 rounded-lg shadow-sm opacity-0 w-72 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-400">
                     <div className="p-3 space-y-2">
                       <h3 className="font-semibold text-gray-900 dark:text-white">Must have at least 6 characters</h3>
                       <div className="grid grid-cols-4 gap-2">
@@ -412,7 +420,7 @@ export const UserPage: React.FC<any> = () => {
               </div>
             </form>
           </div>
-          <div className="p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+          <div className="p-4 mb-4 bg-dark border border-gray-200 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-gray-800">
             <div className="flow-root">
               <h3 className="text-xl font-semibold dark:text-white">Sessions</h3>
               <ul className="divide-y divide-gray-200 dark:divide-gray-700">
@@ -430,7 +438,7 @@ export const UserPage: React.FC<any> = () => {
                       </p>
                     </div>
                     <div className="inline-flex items-center">
-                      <a href="#" className="px-3 py-2 mb-3 mr-3 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-primary-300 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Revoke</a>
+                      <a href="#" className="px-3 py-2 mb-3 mr-3 text-sm font-medium text-center text-gray-900 bg-dark border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-primary-300 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Revoke</a>
                     </div>
                   </div>
                 </li>
@@ -448,7 +456,7 @@ export const UserPage: React.FC<any> = () => {
                       </p>
                     </div>
                     <div className="inline-flex items-center">
-                      <a href="#" className="px-3 py-2 mb-3 mr-3 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-primary-300 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Revoke</a>
+                      <a href="#" className="px-3 py-2 mb-3 mr-3 text-sm font-medium text-center text-gray-900 bg-dark border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-primary-300 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Revoke</a>
                     </div>
                   </div>
                 </li>
@@ -462,7 +470,7 @@ export const UserPage: React.FC<any> = () => {
 
       </div>
       <div className="grid grid-cols-1 px-4 xl:grid-cols-2 xl:gap-4">
-        <div className="p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800 xl:mb-0">
+        <div className="p-4 mb-4 bg-dark border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800 xl:mb-0">
           <div className="flow-root">
             <h3 className="text-xl font-semibold dark:text-white">Alerts & Notifications</h3>
             <p className="text-sm font-normal text-gray-500 dark:text-gray-400">You can set up Themesberg to get notifications</p>
@@ -513,7 +521,7 @@ export const UserPage: React.FC<any> = () => {
             </div>
           </div>
         </div>
-        <div className="p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800 xl:mb-0">
+        <div className="p-4 mb-4 bg-dark border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800 xl:mb-0">
           <div className="flow-root">
             <h3 className="text-xl font-semibold dark:text-white">Email Notifications</h3>
             <p className="text-sm font-normal text-gray-500 dark:text-gray-400">You can set up Themesberg to get email notifications </p>
