@@ -19,6 +19,7 @@ async function bootstrap() {
     .addTag('Projects', 'Method related to the Projects of the API')
     .addTag('Users', 'Method related to the Projects of the API')
     .addTag('Job', 'Method related to the Jobs of the API')
+    .addTag('JobField', 'Method related to the JobFields of the API')
     .addTag('Auth', 'Authentication features')
     .build();
 

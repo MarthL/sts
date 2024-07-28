@@ -1,4 +1,5 @@
-import { IsNotEmpty, MaxLength } from 'class-validator';
+import { IsNotEmpty, MaxLength, IsOptional, IsInt } from 'class-validator';
+import { JobField } from '../../job-field/job-field.entity';
 
 export class JobResponseDto {
   @IsNotEmpty()
@@ -7,4 +8,8 @@ export class JobResponseDto {
 
   @IsNotEmpty()
   job_title: string;
+
+  @IsOptional()
+  @IsInt()
+  jobField: number;
 }
