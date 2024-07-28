@@ -9,9 +9,6 @@ import { getCitiesCollection, City } from '../../../../api/cities';
 import Swal from 'sweetalert2';
 import { InputProfileCustom } from '../../../atoms/InputForm/InputProfileCustom';
 import { CustomAutoComplete } from '../../../atoms/InputForm/CustomAutoComplete';
-import { InputAdornment } from '@mui/material';
-import { IconButton } from '@mui/material';
-import EditIcon from '@mui/icons-material/Edit';
 
 interface EditProfileProps {
   user: User | undefined;
