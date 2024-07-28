@@ -3,6 +3,7 @@
 import * as React from "react"
 import { TrendingUp } from "lucide-react"
 import { Label, Pie, PieChart } from "recharts"
+import { useEffect, useState } from "react"
 
 import {
   Card,
@@ -54,8 +55,19 @@ export function CircleChart() {
     return chartData.reduce((acc, curr) => acc + curr.visitors, 0)
   }, [])
 
+  const [isDarkTheme, setIsDarkTheme] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (!localStorage.getItem('theme') || localStorage.getItem('theme') === 'light') {
+      setIsDarkTheme(false);
+      localStorage.setItem('theme', 'light');
+    } else {
+      setIsDarkTheme(true);
+    }
+  }, []);
+
   return (
-    <Card className="flex flex-col">
+    <Card className={`bg-${isDarkTheme ? 'dark' : 'light'}`}>
       <CardContent className="flex-1 pb-0">
         <ChartContainer
           config={chartConfig}

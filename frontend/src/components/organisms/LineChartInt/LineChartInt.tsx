@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { useState, useEffect } from "react"
 import { CartesianGrid, Line, LineChart, XAxis } from "recharts"
 
 import {
@@ -136,8 +137,20 @@ export function LineChartInt() {
     []
   )
 
+  const [isDarkTheme, setIsDarkTheme] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (!localStorage.getItem('theme') || localStorage.getItem('theme') === 'light') {
+      setIsDarkTheme(false);
+      localStorage.setItem('theme', 'light');
+    } else {
+      setIsDarkTheme(true);
+    }
+  }, []);
+
+
   return (
-    <Card>
+    <Card className={`bg-${isDarkTheme ? 'dark' : 'light'}`}>
       <CardHeader className="flex flex-col items-stretch space-y-0 border-b p-0 sm:flex-row">
         <div className="flex flex-1 flex-col justify-center gap-1 px-6 py-5 sm:py-6">
           <CardTitle>Line Chart - Interactive</CardTitle>

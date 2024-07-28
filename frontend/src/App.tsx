@@ -13,7 +13,7 @@ import { StatsPage } from './components/templates/Stats/StatsPage';
 import { ClientsPage } from './components/templates/ClientsPage/ClientsPage';
 import { ThemeProvider, createTheme } from '@mui/material';
 import { lime, blue, } from '@mui/material/colors';
-
+import { useTheme } from '@mui/material';
 
 function App() {
 
