@@ -14,13 +14,13 @@ export const ListItemProfile: React.FC<ListItemProfileProps> = (props: ListItemP
 
   return (
     <>
-      <List sx={{ border:1, borderStyle:'solid', borderColor:'grey', my: 0, py: 0 }}>
+      <List sx={{ my: 0, py: 0 }}>
         <ListItem disablePadding>
           <ListItemButton
             selected={selectedIndex === index}
             onClick={() => handleListItemClick(index)}
           >
-            <ListItemIcon sx={{ml:15}}>
+            <ListItemIcon sx={{ ml: 15 }}>
               {icon}
             </ListItemIcon>
             <ListItemText primary={text} />
