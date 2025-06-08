@@ -13,6 +13,7 @@ import { StatsPage } from './components/templates/Stats/StatsPage';
 import { ClientsPage } from './components/templates/ClientsPage/ClientsPage';
 import { ThemeProvider, createTheme } from '@mui/material';
 import { lime, blue, } from '@mui/material/colors';
+import { NotFound } from './components/templates/NotFound/NotFound';
 import { useTheme } from '@mui/material';
 
 function App() {
@@ -131,6 +132,7 @@ function App() {
                       <Route path={"/project/:id"} element={<ProjectPage />} />
                       <Route path={'/users/:id'} element={<UserPage />} />
                       <Route path={'/stats'} element={<StatsPage />} />
+                      <Route path="*" element={<NotFound />} />
                     </Routes>
                   </Container>
                 </>
