@@ -11,6 +11,7 @@ import ScrollToPlugin from 'gsap/ScrollToPlugin';
 import { Project } from '../../../api/projects';
 import { TextBlock } from '../../atoms/TextBlock/TextBlock';
 import { TextField, Paper } from '@mui/material';
+import { ProjectsListHome } from '@/components/organisms/ProjectsListHome/ProjectsListHome';
 
 export const HomePage = () => {
 
@@ -21,7 +22,7 @@ export const HomePage = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState('');
-  const itemsPerPage = 20;
+  const itemsPerPage = 12;
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentProjects = projectsCollection.slice(indexOfFirstItem, indexOfLastItem);
@@ -32,7 +33,6 @@ export const HomePage = () => {
       gsap.to(window, { duration: 0.5, scrollTo: { y: 0 } });
     }
   };
-
 
   useEffect(() => {
     gsap.registerPlugin(ScrollToPlugin);
@@ -92,19 +92,7 @@ export const HomePage = () => {
         </Grid>
 
         <Grid container spacing={5}>
-          {
-            currentProjects.length > 0 ? (
-              currentProjects.map((project: Project) => (
-                <Grid key={project.id} item xs={12} sm={12} md={4} lg={4}>
-                  <CardProject id={project.id} project_name={project.project_name} description={project.description} photo_url={project.photo_url} ></CardProject>
-                </Grid>
-              ))
-            ) : (
-              <Grid container mt={5} display={'flex'} justifyContent={'center'}>
-                <Typography variant="h6" color={'primary'} >Aucun projet à afficher</Typography>
-              </Grid>
-            )
-          }
+          <ProjectsListHome projects={currentProjects} />
         </Grid>
         <Box sx={{ display: 'flex', justifyContent: 'center', width: '100%', mt: 5 }}>
           <Pagination
