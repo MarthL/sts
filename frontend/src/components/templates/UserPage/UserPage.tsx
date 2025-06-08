@@ -260,7 +260,7 @@ export const UserPage: React.FC<any> = () => {
                 <div className="col-span-6 sm:col-span-3">
                   <TextField
                     label={"Name"}
-                    value={user?.username}
+                    value={user?.username ?? ""}
                     fullWidth
                     disabled
                     sx={{ margin: 'auto' }}
@@ -270,7 +270,7 @@ export const UserPage: React.FC<any> = () => {
                 <div className="col-span-6 sm:col-span-3">
                   <TextField
                     label={"Family Name"}
-                    value={user?.family_name}
+                    value={user?.family_name ?? ""}
                     fullWidth
                     disabled
                     sx={{ margin: 'auto' }}
@@ -289,8 +289,8 @@ export const UserPage: React.FC<any> = () => {
                 </div>
                 <div className="col-span-6 sm:col-span-3">
                   <TextField
-                    label={"City"}
-                    value={user?.city?.city_name}
+                    label={"Citys"}
+                    value={user?.city?.city_name ?? ""}
                     fullWidth
                     disabled
                     sx={{ margin: 'auto' }}
@@ -300,7 +300,7 @@ export const UserPage: React.FC<any> = () => {
                 <div className="col-span-6 sm:col-span-3">
                   <TextField
                     label={"Phone"}
-                    value={user?.phone_number}
+                    value={user?.phone_number ?? ""}
                     fullWidth
                     disabled
                     sx={{ margin: 'auto' }}
@@ -310,7 +310,7 @@ export const UserPage: React.FC<any> = () => {
                 <div className="col-span-6 sm:col-span-3">
                   <TextField
                     label={"Email"}
-                    value={user?.email}
+                    value={user?.email ?? ""}
                     fullWidth
                     disabled
                     sx={{ margin: 'auto' }}

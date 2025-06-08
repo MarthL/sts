@@ -15,7 +15,7 @@ export interface User {
   },
   country: string,
   city?: City,
-  profile_picture: string,
+  profile_picture?: string,
 }
 
 export async function getUserLogged(username: string) {

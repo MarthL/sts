@@ -15,6 +15,7 @@ interface User {
   yop: number,
   email: string,
   phone_number: string,
+  profile_picture?: string,
   job?: {
     id?: number,
     job_title?: string,
@@ -56,7 +57,7 @@ export const ProfilePage: React.FC<any> = () => {
   const componentToRender = [
     <EditProfile user={user} />,
     <SecurityPassword user={user} />,
-    <AdvancedSettings user={user} />
+    <AdvancedSettings /> // todo : get User
   ];
 
   return (

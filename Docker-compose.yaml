@@ -1,19 +1,18 @@
 services:
+
   front:
     build:
-      context:
-        ./frontend
+      context: ./frontend
     restart: always
     volumes:
       - ./frontend:/app
-      - /app/node_modules
+      - node_modules_front:/app/node_modules
     depends_on:
-      - db
+    - db
     environment:
       DB_HOST: db
     ports:
       - "3000:3000"
-      - "5173:5173"
     networks:
       sts_network:
         ipv4_address: 172.22.0.20
@@ -64,6 +63,8 @@ services:
     build: ./backend
     restart: always
     environment:
+      DB_HOST: db
+      DB_PORT: 3306
       DB_USERNAME: youruser
       DB_PASSWORD: yourpassword
     volumes:
@@ -80,6 +81,7 @@ services:
 volumes:
   mysql:
   db_data:
+  node_modules_front:
 
 networks:
   sts_network:

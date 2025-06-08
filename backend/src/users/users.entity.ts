@@ -57,10 +57,10 @@ export class Users {
   @JoinColumn({ name: 'company_id' })
   company?: Companys;
 
-  @ManyToOne(() => Citys, (city) => city.users)
+  @ManyToOne(() => Citys, (city) => city.users, { nullable: true })
   @JoinColumn({ name: 'city_id' })
-  city: Citys;
+  city?: Citys;
 
   @Column({ nullable: true, default: null })
-  profile_picture: string;
+  profile_picture?: string;
 }

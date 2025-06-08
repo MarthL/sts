@@ -386,16 +386,6 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
 
                   <div className="col-span-6 sm:col-span-3">
                     <TextField
-                      label={"City"}
-                      value={user?.city?.city_name}
-                      fullWidth
-                      sx={{ margin: 'auto' }}
-                      InputLabelProps={{ shrink: true }}
-                    />
-                  </div>
-
-                  <div className="col-span-6 sm:col-span-3">
-                    <TextField
                       label={"Phone"}
                       value={user?.phone_number}
                       fullWidth
@@ -415,7 +405,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
                   <div className="col-span-6 sm:col-span-3">
                     <CustomAutoComplete
                       collection={cityCollection}
-                      label='City'
+                      label='Citys'
                       registerProps={'city'}
                       setValue={setCity}
                       value={city || null}

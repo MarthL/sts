@@ -50,7 +50,7 @@ export const CustomAutoComplete = (props: CustomAutoCompleteProps) => {
       value={value}
       getOptionLabel={(option: unknown) => {
         const city = option as City;
-        return city.city_name;
+        return `${city.city_name} (${city.zip_code})`;
       }}
       onChange={(event, selectedElement) => {
         if (selectedElement) {
