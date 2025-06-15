@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
-import { CalendarDays, User, Clock } from 'lucide-react';
+import { CalendarDays, User, Clock, ImageIcon } from 'lucide-react';
 import { Project } from '@/api/projects';
 import { cn } from '@/lib/utils';
-import { Link } from 'react-router-dom';
 
 interface CardProjectProps {
   project: Project;
@@ -13,6 +12,9 @@ interface CardProjectProps {
 }
 
 export const CardProject: React.FC<CardProjectProps> = ({ project, onClick }) => {
+  const [imageError, setImageError] = useState(false);
+  const [imageLoading, setImageLoading] = useState(true);
+
   const getStatusColor = (status: Project['status']) => {
     switch (status) {
       case 'active':
@@ -28,57 +30,92 @@ export const CardProject: React.FC<CardProjectProps> = ({ project, onClick }) =>
     }
   };
 
-  const getProgressColor = (progress: number) => {
-    if (progress >= 80) return 'bg-green-500';
-    if (progress >= 50) return 'bg-blue-500';
-    if (progress >= 30) return 'bg-yellow-500';
-    return 'bg-red-500';
+  const handleImageLoad = () => {
+    setImageLoading(false);
+  };
+
+  const handleImageError = () => {
+    setImageError(true);
+    setImageLoading(false);
   };
 
   return (
-    <Link to={`/project/${project?.id}`}>
-      <Card
-        className="group cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-primary/50 from-white to-gray-50/50 dark:bg-[#111111]"
-        onClick={onClick}
-      >
-        <CardHeader className="pb-3">
-          <div className="flex items-start justify-between">
-            <div className={cn("w-1 h-12 rounded-full mr-4", 'bg-gray-300')} />
-            <div className="flex-1">
-              <CardTitle className="text-lg font-bold text-white group-hover:text-primary transition-colors duration-300 ease-in-out">
-                {project?.project_name}
-              </CardTitle>
-              <Badge
-                variant="secondary"
-                className={cn("mt-2 text-xs font-medium", getStatusColor(project?.status))}
-              >
-                {project?.status && project?.status?.charAt(0).toUpperCase() + project?.status?.slice(1).replace('-', ' ')}
-              </Badge>
-            </div>
-          </div>
-        </CardHeader>
-
-        <CardContent className="space-y-4">
-          <p className="text-sm text-gray-600 line-clamp-2 leading-relaxed">
-            {project?.description}
-          </p>
-
-          <div className="space-y-2">
-            <div className="flex items-center justify-between text-xs text-gray-500">
-              <span>Progress</span>
-              <span className="font-medium">{project?.progress}%</span>
-            </div>
-            <Progress
-              value={project?.progress}
-              className="h-2"
+    <Card
+      className="group cursor-pointer transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:border-primary/50 bg-gradient-to-br dark:bg-[#111111] from-white to-gray-50/50 overflow-hidden"
+      onClick={onClick}
+    >
+      {/* Image Preview Section */}
+      <div className="relative h-48 overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 dark:bg-[#111111]">
+        {project.photo_url && !imageError ? (
+          <>
+            {imageLoading && (
+              <div className="absolute inset-0 flex items-center justify-center animate-pulse dark:bg-[#111111]">
+                <ImageIcon className="w-8 h-8 text-gray-400" />
+              </div>
+            )}
+            <img
+              src={project?.photo_url}
+              alt={project.project_name}
+              className={cn(
+                "w-full h-full object-cover transition-all duration-500 group-hover:scale-110",
+                imageLoading ? "opacity-0" : "opacity-100"
+              )}
+              onLoad={handleImageLoad}
+              onError={handleImageError}
             />
+          </>
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center dark:bg-[#111111] from-gray-100 to-gray-200">
+            <div className="text-center">
+              <ImageIcon className="w-12 h-12 text-gray-400 mx-auto mb-2" />
+              <p className="text-sm text-gray-500">No preview available</p>
+            </div>
           </div>
+        )}
 
-          {/* <div className="flex flex-wrap gap-1">
+        {/* <div className="absolute top-3 left-3">
+          <div className={cn("w-3 h-3 rounded-full shadow-lg", project.color || 'bg-gray-300')} />
+        </div> */}
+
+        {/* Status badge overlay */}
+        <div className="absolute top-3 right-3">
+          <Badge
+            variant="secondary"
+            className={cn("text-xs font-medium backdrop-blur-sm bg-white/90 dark:bg-[#111111]", getStatusColor(project.status))}
+          >
+            {project?.status && project?.status.charAt(0).toUpperCase() + project.status.slice(1).replace('-', ' ')}
+          </Badge>
+        </div>
+
+        {/* Progress overlay */}
+        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p- dark:bg-[#111111]">
+          <div className="flex items-center justify-between text-white text-xs mb-1">
+            <span>Progress</span>
+            <span className="font-medium">{project.progress}%</span>
+          </div>
+          <Progress
+            value={project.progress}
+            className="h-1.5 bg-white/20"
+          />
+        </div>
+      </div>
+
+      <CardHeader className="pb-3 dark:bg-[#111111]">
+        <CardTitle className="text-lg font-bold text-gray-900 group-hover:text-primary transition-colors line-clamp-1 dark:text-white">
+          {project?.project_name}
+        </CardTitle>
+      </CardHeader>
+
+      <CardContent className="space-y-4 dark:bg-[#111111]">
+        <p className="text-sm text-gray-600 line-clamp-2 leading-relaxed dark:text-white">
+          {project.description}
+        </p>
+
+        {/* <div className="flex flex-wrap gap-1">
           {project.tags.slice(0, 3).map((tag, index) => (
-            <Badge
-              key={index}
-              variant="outline"
+            <Badge 
+              key={index} 
+              variant="outline" 
               className="text-xs px-2 py-1 bg-white/50 hover:bg-white transition-colors"
             >
               {tag}
@@ -90,27 +127,26 @@ export const CardProject: React.FC<CardProjectProps> = ({ project, onClick }) =>
             </Badge>
           )}
         </div> */}
-        </CardContent>
+      </CardContent>
 
-        <CardFooter className="pt-0 pb-4">
-          <div className="w-full space-y-2">
-            <div className="flex items-center text-xs text-gray-500">
-              <User className="w-3 h-3 mr-1.5" />
-              <span>{project?.author}</span>
+      <CardFooter className="pt-0 pb-4 dark:bg-[#111111]">
+        <div className="w-full space-y-2">
+          <div className="flex items-center text-xs text-gray-500">
+            <User className="w-3 h-3 mr-1.5" />
+            <span>{project.author}</span>
+          </div>
+          <div className="flex items-center justify-between text-xs text-gray-500">
+            <div className="flex items-center">
+              <CalendarDays className="w-3 h-3 mr-1.5" />
+              <span>Created {project?.createdAt}</span>
             </div>
-            <div className="flex items-center justify-between text-xs text-gray-500">
-              <div className="flex items-center">
-                <CalendarDays className="w-3 h-3 mr-1.5" />
-                <span>Created {(project?.createdAt)}</span>
-              </div>
-              <div className="flex items-center">
-                <Clock className="w-3 h-3 mr-1.5" />
-                <span>Updated {(project?.updatedAt)}</span>
-              </div>
+            <div className="flex items-center">
+              <Clock className="w-3 h-3 mr-1.5" />
+              <span>Updated {project.updatedAt}</span>
             </div>
           </div>
-        </CardFooter>
-      </Card>
-    </Link>
+        </div>
+      </CardFooter>
+    </Card>
   );
 };
