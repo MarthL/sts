@@ -125,9 +125,6 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
 
   return (
     <>
-
-
-
       <FormProvider {...methods}>
         <div className="grid grid-cols-1 px-4 pt-6 xl:grid-cols-3 xl:gap-4">
           <div className="mb-4 col-span-full xl:mb-2">
@@ -135,7 +132,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
           </div>
           <div className="col-span-full xl:col-auto">
             <div className="p-4 mb-4 bg-dark border border-gray-800 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-gray-800">
-              <div className="items-center sm:flex xl:block 2xl:flex sm:space-x-4 xl:space-x-0 2xl:space-x-4">
+              <div className="flex flex-col items-center text-center space-y-3">
                 <input
                   style={{ opacity: 0, width: 0 }}
                   type="file"

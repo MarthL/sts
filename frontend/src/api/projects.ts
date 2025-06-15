@@ -1,10 +1,18 @@
 import { axiosClient } from "./axios";
+import { User } from "./users";
 
 export interface Project {
   id: number;
   project_name: string;
   description: string;
   photo_url?: string;
+  status?: string;
+  progress?: number;
+  startDate?: Date;
+  endDate?: Date;
+  budget?: number;
+  location?: string;
+  members?: [User];
 };
 
 export async function getProjects(search?: string) {

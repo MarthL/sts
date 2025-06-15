@@ -6,32 +6,58 @@ import * as path from 'path';
 export class MainSeeder implements Seeder {
   public async run(dataSource: DataSource): Promise<void> {
     const queryRunner = dataSource.createQueryRunner();
-    const filePath = path.join(__dirname, 'fixtures', 'seed.sql');
-    const sql = fs.readFileSync(filePath, 'utf8');
+
+    const sqlFiles = ['citys.sql', 'clients.sql'];
+    const tablesToTruncate = ['clients', 'citys'];
 
     await queryRunner.connect();
     await queryRunner.startTransaction();
 
-    try {
-      const statements = sql
-        .split(/;\s*[\r\n]+/)
-        .filter((stmt) => stmt.trim().length > 0)
-        .filter(
-          (stmt) =>
-            stmt.trim().length > 0 &&
-            !stmt.trim().startsWith('--') &&
-            !stmt.trim().startsWith('/*'),
-        );
+    // 🔥 Make all tables empty
+    for (const table of tablesToTruncate) {
+      console.log(`🧹 Cleaning table : ${table}`);
+      await queryRunner.query(`DELETE FROM \`${table}\`;`);
+    }
 
-      for (const statement of statements) {
-        await queryRunner.query(statement);
+    try {
+      for (const fileName of sqlFiles) {
+        const filePath = path.join(__dirname, 'fixtures', fileName);
+        console.log(`📄 Lecture du fichier : ${fileName}`);
+        const sql = fs.readFileSync(filePath, 'utf8');
+
+        const statements = sql
+          .split(/;\s*[\r\n]+/)
+          .map((stmt) => stmt.trim())
+          .filter(
+            (stmt) =>
+              stmt.length > 0 &&
+              !stmt.startsWith('--') &&
+              !stmt.startsWith('/*'),
+          );
+
+        for (const [index, statement] of statements.entries()) {
+          try {
+            console.log(
+              `➡️  [${fileName} - stmt ${
+                index + 1
+              }] Exécution : ${statement.slice(0, 80)}...`,
+            );
+            await queryRunner.query(statement);
+          } catch (stmtErr) {
+            console.error(
+              `❌ Erreur dans ${fileName}, requête ${index + 1} :`,
+              stmtErr,
+            );
+            throw stmtErr;
+          }
+        }
       }
 
       await queryRunner.commitTransaction();
-      console.log('✅ SQL seed exécuté avec succès');
+      console.log('✅ Tous les seeds SQL ont été exécutés avec succès');
     } catch (err) {
       await queryRunner.rollbackTransaction();
-      console.error('❌ Erreur lors du seeding SQL:', err);
+      console.error('❌ Erreur globale lors du seeding SQL:', err);
     } finally {
       await queryRunner.release();
     }

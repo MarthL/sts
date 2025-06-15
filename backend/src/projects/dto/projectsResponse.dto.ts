@@ -24,6 +24,19 @@ export default class ProjectsResponseDto {
   @IsString()
   description: string;
 
+  @IsString()
+  @IsOptional()
+  progress: string;
+
+  @IsOptional()
+  startDate: Date;
+
+  @IsOptional()
+  sendDate: Date;
+
+  @IsOptional()
+  budget: number;
+
   @IsOptional()
   @IsNumber()
   company_id: number;

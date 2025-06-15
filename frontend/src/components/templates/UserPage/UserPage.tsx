@@ -9,6 +9,7 @@ import { Avatar } from "@mui/material";
 import { InputProfileCustom } from "@/components/atoms/InputForm/InputProfileCustom";
 import { TextField } from "@mui/material";
 import { LineChartInt } from "@/components/organisms/LineChartInt/LineChartInt";
+import { ProfileMainInfos } from "@/components/organisms/Profile/ProfileMainInfos";
 
 export const UserPage: React.FC<any> = () => {
 
@@ -48,22 +49,7 @@ export const UserPage: React.FC<any> = () => {
           <h1 className="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">User settings</h1>
         </div>
         <div className="col-span-full xl:col-auto">
-          <div className="p-4 mb-4 bg-dark border border-gray-800 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-gray-800">
-            <div className="items-center sm:flex xl:block 2xl:flex sm:space-x-4 xl:space-x-0 2xl:space-x-4">
-              <Avatar
-
-                sx={{ width: '150px', height: '150px', cursor: 'pointer' }}
-                src={avatarFile}
-                onClick={() => (document.querySelector('input[id="photo"]') as HTMLInputElement)?.click()}
-              />
-              <div>
-                <h3 className="mb-1 text-xl font-bold dark:text-white">{user?.username} {user?.family_name}</h3>
-                <div className="mb-4 text-sm text-gray-500 dark:text-gray-400">
-                  {user?.job?.job_title}
-                </div>
-              </div>
-            </div>
-          </div>
+          <ProfileMainInfos user={user as User} />
           <div className="p-4 mb-4 bg-dark border border-gray-800 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-gray-800">
             <CircleChart />
           </div>
