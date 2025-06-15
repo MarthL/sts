@@ -21,7 +21,7 @@ const options: DataSourceOptions & SeederOptions = {
   password: process.env.PASSWORD || null,
   username: process.env.DBUSERNAME,
   database: process.env.DBNAME,
-  synchronize: false,
+  synchronize: true,
   entities: [Projects, Users, Job, JobField, Clients, Citys, Companys, Status],
   seeds: [MainSeeder],
 };

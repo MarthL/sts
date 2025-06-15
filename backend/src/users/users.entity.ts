@@ -33,8 +33,8 @@ export class Users {
   @Column('int', { nullable: true, default: null })
   yop: number;
 
-  @Column('varchar', { nullable: true, default: '', length: 12 })
-  @MaxLength(12)
+  @Column('varchar', { nullable: true, default: '' })
+  @MaxLength(15)
   phone_number: string;
 
   @Column('varchar', { nullable: true, default: null, length: 200 })

@@ -13,7 +13,13 @@ export interface Project {
   budget?: number;
   location?: string;
   members?: [User];
+  author?: string;
+  createdAt?: string;
+  updatedAt?: string;
+  tags?: null;
 };
+
+export type ProjectCreationData = Omit<Project, 'id' | 'createdAt' | 'updatedAt' | 'photo_url' | 'members'>;
 
 export async function getProjects(search?: string) {
   const param = search ? `?search=${search}` : ''
@@ -36,7 +42,7 @@ export async function getProjectById(id: number) {
     })
 }
 
-export async function postProject(data: Project) {
+export async function createProject(data: ProjectCreationData) {
   return axiosClient.post('/projects', {
     project_name: data.project_name,
     description: data.description

@@ -8,7 +8,7 @@
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "seed": "ts-node src/seeding/seed.ts",
+    "seed": "ts-node -r tsconfig-paths/register src/seeding/seed.ts",
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
@@ -72,6 +72,9 @@
     "ts-node": "^10.9.2",
     "tsconfig-paths": "4.1.1",
     "typescript": "^5.3"
+  },
+  "overrides": {
+    "@faker-js/faker": "8.4.1"
   },
   "jest": {
     "moduleFileExtensions": [

@@ -3,6 +3,7 @@ import {
   Entity,
   ManyToOne,
   ManyToMany,
+  JoinTable,
   JoinColumn,
   Column,
   PrimaryGeneratedColumn,
@@ -11,7 +12,7 @@ import { Companys } from '../companys/company.entity';
 import { Status } from '../status/status.entity';
 import { Users } from '../users/users.entity';
 
-@Entity()
+@Entity({ name: 'projects' })
 export class Projects {
   @PrimaryGeneratedColumn()
   id: number;
@@ -23,34 +24,32 @@ export class Projects {
   @Column('text')
   description: string;
 
-  @Column('float')
+  @Column({ type: 'int', default: 0 })
   progress: number;
 
-  @Column({ name: 'date', nullable: true })
+  @Column({ name: 'startDate', nullable: true })
   startDate: Date;
 
-  @Column({ name: 'date', nullable: true })
-  endtDate: Date;
+  @Column({ name: 'endDate', nullable: true })
+  endDate: Date;
 
-  @Column('float')
+  @Column({ type: 'float', default: 0 })
   budget?: number;
 
   @Column({ name: 'company_id', nullable: true })
   companyId: number;
 
-  @ManyToMany(() => Users, (member) => member.username)
-  @JoinColumn({ name: 'username' })
-  member: Users;
+  @ManyToMany(() => Users)
+  @JoinTable()
+  collaborators: Users[];
 
   @ManyToOne(() => Companys, (company) => company.projects)
   @JoinColumn({ name: 'company_id' })
   company?: Companys;
 
   @ManyToOne(() => Status)
+  @JoinColumn({ name: 'status_id' })
   status?: Status;
-
-  @ManyToOne(() => Users)
-  collaborators: Users[];
 
   @Column({ nullable: true, default: null })
   photo_url: string;

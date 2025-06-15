@@ -16,7 +16,7 @@ export const ProjectsListHome: React.FC<ProjectsListHomeProps> = ({ projects }) 
         projects.length > 0 ? (
           projects.map((project: Project) => (
             <Grid key={project.id} item xs={12} sm={12} md={4} lg={4}>
-              <CardProject id={project.id} project_name={project.project_name} description={project.description} photo_url={project.photo_url} ></CardProject>
+              <CardProject project={project}></CardProject>
             </Grid>
           ))
         ) : (

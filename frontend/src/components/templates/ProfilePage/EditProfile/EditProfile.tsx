@@ -131,7 +131,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
             <h1 className="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">User settings</h1>
           </div>
           <div className="col-span-full xl:col-auto">
-            <div className="p-4 mb-4 bg-dark border border-gray-800 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+            <div className="p-4 mb-4 bg-dark border border-gray-800 rounded-lg shadow-sm 2xl:col-span-2 dark:bg-[#111111] sm:p-6">
               <div className="flex flex-col items-center text-center space-y-3">
                 <input
                   style={{ opacity: 0, width: 0 }}
@@ -166,10 +166,10 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
                 </div>
               </div>
             </div>
-            <div className="p-4 mb-4 bg-dark border border-gray-800 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+            <div className="p-4 mb-4 bg-dark border border-gray-800 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-[#111111]">
               <CircleChart />
             </div>
-            <div className="p-4 mb-4 bg-dark border border-gray-800 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+            <div className="p-4 mb-4 bg-dark border border-gray-800 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-[#111111]">
               <div className="flow-root">
                 <h3 className="text-xl font-semibold dark:text-white">Social accounts</h3>
                 <ul className="divide-y divide-gray-200 dark:divide-gray-700">
@@ -187,7 +187,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
                         </a>
                       </div>
                       <div className="inline-flex items-center">
-                        <a href="#" className="px-3 py-2 mb-3 mr-3 text-sm font-medium text-center text-gray-900 bg-dark border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-primary-300 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Disconnect</a>
+                        <a href="#" className="px-3 py-2 mb-3 mr-3 text-sm font-medium text-center text-gray-900 bg-dark border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-primary-300 dark:bg-[#111111] dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Disconnect</a>
                       </div>
                     </div>
                   </li>
@@ -205,7 +205,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
                         </a>
                       </div>
                       <div className="inline-flex items-center">
-                        <a href="#" className="px-3 py-2 mb-3 mr-3 text-sm font-medium text-center text-gray-900 bg-dark border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-primary-300 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Disconnect</a>
+                        <a href="#" className="px-3 py-2 mb-3 mr-3 text-sm font-medium text-center text-gray-900 bg-dark border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-primary-300 dark:bg-[#111111] dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Disconnect</a>
                       </div>
                     </div>
                   </li>
@@ -248,7 +248,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
                 </ul>
               </div>
             </div>
-            <div className="p-4 mb-4 bg-dark border border-gray-800 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+            <div className="p-4 mb-4 bg-dark border border-gray-800 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-[#111111]">
               <div className="flow-root">
                 <h3 className="text-xl font-semibold dark:text-white">Other accounts</h3>
                 <ul className="mb-6 divide-y divide-gray-200 dark:divide-gray-700">
@@ -271,7 +271,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
                         </div>
                       </div>
                       <div className="inline-flex items-center w-auto xl:w-full 2xl:w-auto">
-                        <a href="#" className="w-full px-3 py-2 text-sm font-medium text-center text-gray-900 bg-dark border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-primary-300 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Disconnect</a>
+                        <a href="#" className="w-full px-3 py-2 text-sm font-medium text-center text-gray-900 bg-dark border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-primary-300 dark:bg-[#111111] dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Disconnect</a>
                       </div>
                     </div>
                   </li>
@@ -294,7 +294,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
                         </div>
                       </div>
                       <div className="inline-flex items-center w-auto xl:w-full 2xl:w-auto">
-                        <a href="#" className="w-full px-3 py-2 text-sm font-medium text-center text-gray-900 bg-dark border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-primary-300 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Disconnect</a>
+                        <a href="#" className="w-full px-3 py-2 text-sm font-medium text-center text-gray-900 bg-dark border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-primary-300 dark:bg-[#111111] dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Disconnect</a>
                       </div>
                     </div>
                   </li>
@@ -317,7 +317,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
                         </div>
                       </div>
                       <div className="inline-flex items-center w-auto xl:w-full 2xl:w-auto">
-                        <a href="#" className="w-full px-3 py-2 text-sm font-medium text-center text-gray-900 bg-dark border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-primary-300 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Disconnect</a>
+                        <a href="#" className="w-full px-3 py-2 text-sm font-medium text-center text-gray-900 bg-dark border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-primary-300 dark:bg-[#111111] dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Disconnect</a>
                       </div>
                     </div>
                   </li>
@@ -340,7 +340,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
                         </div>
                       </div>
                       <div className="inline-flex items-center w-auto xl:w-full 2xl:w-auto">
-                        <a href="#" className="w-full px-3 py-2 text-sm font-medium text-center text-gray-900 bg-dark border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-primary-300 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Disconnect</a>
+                        <a href="#" className="w-full px-3 py-2 text-sm font-medium text-center text-gray-900 bg-dark border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-primary-300 dark:bg-[#111111] dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Disconnect</a>
                       </div>
                     </div>
                   </li>
@@ -349,7 +349,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
             </div>
           </div>
           <div className="col-span-2">
-            <div className="p-4 mb-4 bg-dark border border-gray-800 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+            <div className="p-4 mb-4 bg-dark border border-gray-800 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-[#111111]">
               <h3 className="mb-4 text-xl font-semibold dark:text-white">General information</h3>
               <form onSubmit={methods.handleSubmit(onSubmit)} className='mb-5'>
                 <div className="grid grid-cols-6 gap-6">
@@ -444,7 +444,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({ user }) => {
               </form>
               <LineChartInt />
             </div>
-            <div className="p-4 mb-4 bg-dark border border-gray-800 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+            <div className="p-4 mb-4 bg-dark border border-gray-800 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-[#111111]">
               <div className="flow-root">
                 <h3 className="text-xl font-semibold dark:text-white">Sessions</h3>
                 <ul className="divide-y divide-gray-200 dark:divide-gray-700">

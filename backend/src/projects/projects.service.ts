@@ -33,11 +33,6 @@ export class ProjectsService {
       return this.projectsRepository.find();
     }
     return await this.projectsRepository.find({
-      select: {
-        id: true,
-        project_name: true,
-        description: true,
-      },
       where: {
         project_name: Like(`${search}%`),
       },
@@ -65,8 +60,8 @@ export class ProjectsService {
   }
 
   // Patch
-  async patch(id: number, updateReq: updateProjectDto): Promise<any> {
-    const { statusId, collaborators, ...updateFields } = updateReq;
+  async patch(id: number, updateReq: updateProjectDto): Promise<Projects> {
+    const { status, collaborators, ...updateFields } = updateReq;
 
     const project = await this.projectsRepository.findOne({
       where: { id: id },
@@ -77,9 +72,9 @@ export class ProjectsService {
 
     let isModified = false;
 
-    if (statusId !== undefined && statusId !== null) {
+    if (status !== undefined && status !== null) {
       const status = await this.statusRepository.findOne({
-        where: { id: statusId },
+        where: { id: project?.status?.id },
       });
       if (status) {
         project.status = status;
@@ -88,9 +83,9 @@ export class ProjectsService {
     }
 
     if (collaborators !== undefined && collaborators !== null) {
-      for (const collaboratorId of collaborators) {
+      for (const member of collaborators) {
         const collaborator = await this.usersRepository.findOne({
-          where: { id: collaboratorId },
+          where: { id: member?.id },
         });
         if (collaborator) {
           if (!project.collaborators) {

@@ -23,6 +23,10 @@ export default class createProjectDto {
 
   @IsOptional()
   @IsNumber()
+  progress?: number;
+
+  @IsOptional()
+  @IsNumber()
   statusId: number;
 
   @IsOptional()

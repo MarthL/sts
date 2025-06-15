@@ -40,7 +40,7 @@ export class UserResponseDto {
 
   @IsOptional()
   @IsString()
-  @MaxLength(12)
+  @MaxLength(15)
   phone_number?: string;
 
   @IsOptional()

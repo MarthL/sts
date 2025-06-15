@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import React from "react";
 import { Progress } from "@/components/ui/progress";
+import { Link } from "react-router-dom";
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
 
 
@@ -30,15 +31,26 @@ export const ProjectPage: React.FC<any> = () => {
   useEffect(() => {
     if (id !== undefined) {
       getProjectById(parseInt(id)).then((res) => {
+        if (!res) {
+          console.warn("Project not found or API returned undefined");
+          return;
+        }
+
         setProject(res);
+        console.log(res);
+
         if (res.photo_url) {
           exportProjectPicture(res.photo_url).then((url) => {
             setPhoto(url);
-          })
+          });
         }
-      })
+      }).catch((err) => {
+        console.error("Error fetching project:", err);
+      });
     }
-  }, [])
+  }, []);
+
+
   return (
     <>
       <div className="min-h-screen bg-[#0a0a0a] text-white">
@@ -46,15 +58,16 @@ export const ProjectPage: React.FC<any> = () => {
           <div className="max-w-7xl mx-auto px-6 py-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-4">
-                {/* <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={handleGoBack}
-                  className="text-gray-400 hover:text-white hover:bg-gray-800"
-                >
-                  <ArrowLeft className="h-4 w-4 mr-2" />
-                  Back to Projects
-                </Button> */}
+                <Link to="/">
+                  {<Button
+                    variant="ghost"
+                    size="lg"
+                    className="text-gray-400 hover:text-white hover:bg-gray-800"
+                  >
+                    <ArrowLeft className="h-4 w-4 mr-2" />
+                    Back to Projects
+                  </Button>}
+                </Link>
               </div>
               <div className="flex items-center space-x-2">
                 <Button variant="ghost" size="sm" className="text-gray-400 hover:text-white">
@@ -71,7 +84,7 @@ export const ProjectPage: React.FC<any> = () => {
         {/* Hero Section */}
         <div className="relative h-80 overflow-hidden">
           <img
-            src={project?.photo_url || "https://picsum.photos/500/300"}
+            src={project?.photo_url ?? "https://picsum.photos/500/300"}
             alt={project?.project_name}
             className="w-full h-full object-cover"
           />
@@ -117,12 +130,12 @@ export const ProjectPage: React.FC<any> = () => {
                     <div className="text-center p-4 bg-gray-900/50 rounded-lg">
                       <Calendar className="h-6 w-6 text-[#9ACD32] mx-auto mb-2" />
                       <div className="text-sm text-gray-400">Start Date</div>
-                      <div className="font-semibold text-white">{(project?.startDate?.getDate())}</div>
+                      <div className="font-semibold text-white">{project?.startDate && new Date(project.startDate).toLocaleDateString('fr-FR')}</div>
                     </div>
                     <div className="text-center p-4 bg-gray-900/50 rounded-lg">
                       <Clock className="h-6 w-6 text-[#9ACD32] mx-auto mb-2" />
                       <div className="text-sm text-gray-400">End Date</div>
-                      <div className="font-semibold text-white">{(project?.endDate?.getDate())}</div>
+                      <div className="font-semibold text-white"> {project?.endDate && new Date(project.endDate).toLocaleDateString('fr-FR')}</div>
                     </div>
                     <div className="text-center p-4 bg-gray-900/50 rounded-lg">
                       <MapPin className="h-6 w-6 text-[#9ACD32] mx-auto mb-2" />
