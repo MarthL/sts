@@ -15,6 +15,7 @@ import { ThemeProvider, createTheme } from '@mui/material';
 import { lime, blue, } from '@mui/material/colors';
 import { NotFound } from './components/templates/NotFound/NotFound';
 import { useTheme } from '@mui/material';
+import ScrollToTop from './hooks/ScrollToTop';
 
 function App() {
 
@@ -119,6 +120,7 @@ function App() {
       <div style={{ backgroundColor, minHeight: '100vh', display: 'flex', overflowX: 'hidden' }}>
         <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
           <Router>
+            <ScrollToTop />
             <NavBar isDarkTheme={isDarkTheme} toggleTheme={toggleTheme} />
             <div style={{ flexGrow: 1, padding: '20px' }}>
               {isConnected ? (
