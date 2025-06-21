@@ -5,14 +5,43 @@ import { Project } from "../../../api/projects"
 import { exportProjectPicture } from "../../../api/projects";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Calendar, MapPin, Users, Clock, Star, Share2, Bookmark, CheckCircle2, ExternalLink } from 'lucide-react';
+import { ArrowLeft, Calendar, MapPin, Users, Clock, Star, Share2, Bookmark, CheckCircle2, ExternalLink, UserPlus } from 'lucide-react';
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import React from "react";
 import { Progress } from "@/components/ui/progress";
 import { Link } from "react-router-dom";
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
+import { useToast } from "@/hooks/use-toast";
+import AssignmentModal from './AssignmentModal';
 
+
+interface AssignmentData {
+  userId: string;
+  pricingMode: 'tjm' | 'fixed';
+  tjm?: number;
+  hourlyRate?: number;
+  fixedPrice?: number;
+  occupationPercentage: number;
+  startDate: string;
+  endDate: string;
+  role: string;
+  notes: string;
+}
+
+interface TeamMember {
+  id: string;
+  name: string;
+  role: string;
+  avatar: string;
+  initials: string;
+  pricingMode?: 'tjm' | 'fixed';
+  tjm?: number;
+  fixedPrice?: number;
+  occupationPercentage?: number;
+  startDate?: string;
+  endDate?: string;
+}
 
 export const ProjectPage: React.FC<any> = () => {
 
@@ -27,6 +56,8 @@ export const ProjectPage: React.FC<any> = () => {
   const { id } = useParams<{ id: string }>();
   const [project, setProject] = useState<Project>();
   const [photo, setPhoto] = useState<any>('');
+  const [isJoining, setIsJoining] = useState(false);
+  const [isAssignmentModalOpen, setIsAssignmentModalOpen] = useState(false);
 
   useEffect(() => {
     if (id !== undefined) {
@@ -50,6 +81,60 @@ export const ProjectPage: React.FC<any> = () => {
     }
   }, []);
 
+  const handleAssignUser = (assignmentData: AssignmentData) => {
+    // In a real app, this would make an API call
+    console.log('Assigning user:', assignmentData);
+
+    // For demo purposes, we'll add a mock user to the team
+    const newTeamMember: TeamMember = {
+      id: Date.now().toString(),
+      name: 'Nouvel Utilisateur', // This would come from the selected user
+      role: assignmentData.role,
+      avatar: 'https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+      initials: 'NU',
+      pricingMode: assignmentData.pricingMode,
+      tjm: assignmentData.pricingMode === 'tjm' ? assignmentData.tjm : undefined,
+      fixedPrice: assignmentData.pricingMode === 'fixed' ? assignmentData.fixedPrice : undefined,
+      occupationPercentage: assignmentData.pricingMode === 'tjm' ? assignmentData.occupationPercentage : undefined,
+      startDate: assignmentData.startDate,
+      endDate: assignmentData.endDate
+    };
+
+    const handleJoinProject = async () => {
+      setIsJoining(true);
+
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1500));
+
+      setProject(prev => {
+        if (!prev) return prev; // on ne touche rien si le projet est undefined
+
+        return {
+          ...prev,
+          isJoined: true,
+          participants: (prev.participants ?? 0) + 1,
+        };
+      });
+      setIsJoining(false);
+
+      const { toast } = useToast();
+      toast({
+        title: "Successfully joined project!",
+        description: "You are now part of the Akkodis Digital Innovation Hub project.",
+      });
+      setProject((prev) => {
+        if (!prev) return prev;
+        return {
+          ...prev,
+          isJoined: true,
+          participants: (prev.participants ?? 0) + 1,
+        };
+      });
+    };
+  };
+
+
+
 
   return (
     <>
@@ -70,6 +155,13 @@ export const ProjectPage: React.FC<any> = () => {
                 </Link>
               </div>
               <div className="flex items-center space-x-2">
+                <Button
+                  onClick={() => setIsAssignmentModalOpen(true)}
+                  className="bg-[#9ACD32] hover:bg-[#8BC34A] text-black font-semibold"
+                >
+                  <UserPlus className="h-4 w-4" />
+                  Assigner une personne
+                </Button>
                 <Button variant="ghost" size="sm" className="text-gray-400 hover:text-white">
                   <Share2 className="h-4 w-4" />
                 </Button>
@@ -328,6 +420,14 @@ export const ProjectPage: React.FC<any> = () => {
             </div>
           </div>
         </div>
+        {project &&
+          <AssignmentModal
+            isOpen={isAssignmentModalOpen}
+            onClose={() => setIsAssignmentModalOpen(false)}
+            onAssign={handleAssignUser}
+            projectTitle={project.project_name}
+          />
+        }
       </div>
     </>
   );

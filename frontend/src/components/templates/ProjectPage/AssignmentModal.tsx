@@ -23,7 +23,7 @@ interface User {
   department: string;
   skills: string[];
   defaultTjm: number;
-  availability: number; // percentage
+  availability: number;
   currentProjects: number;
 }
 
@@ -299,10 +299,10 @@ export default function AssignmentModal({ isOpen, onClose, onAssign, projectTitl
             {[1, 2, 3].map((step) => (
               <div key={step} className="flex items-center">
                 <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold ${step === currentStep
-                    ? 'bg-[#9ACD32] text-black'
-                    : step < currentStep
-                      ? 'bg-green-600 text-white'
-                      : 'bg-gray-700 text-gray-400'
+                  ? 'bg-[#9ACD32] text-black'
+                  : step < currentStep
+                    ? 'bg-green-600 text-white'
+                    : 'bg-gray-700 text-gray-400'
                   }`}>
                   {step < currentStep ? <CheckCircle2 className="h-4 w-4" /> : step}
                 </div>
@@ -334,8 +334,8 @@ export default function AssignmentModal({ isOpen, onClose, onAssign, projectTitl
                   <Card
                     key={user.id}
                     className={`cursor-pointer transition-all duration-200 ${selectedUser?.id === user.id
-                        ? 'bg-[#9ACD32]/20 border-[#9ACD32]'
-                        : 'bg-gray-900/50 border-gray-700 hover:border-gray-600'
+                      ? 'bg-[#9ACD32]/20 border-[#9ACD32]'
+                      : 'bg-gray-900/50 border-gray-700 hover:border-gray-600'
                       }`}
                     onClick={() => handleUserSelect(user)}
                   >

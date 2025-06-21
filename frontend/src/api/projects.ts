@@ -17,6 +17,7 @@ export interface Project {
   createdAt?: string;
   updatedAt?: string;
   tags?: null;
+  participants?: number;
 };
 
 export type ProjectCreationData = Omit<Project, 'id' | 'createdAt' | 'updatedAt' | 'photo_url' | 'members'>;
