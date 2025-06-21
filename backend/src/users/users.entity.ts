@@ -6,12 +6,14 @@ import {
   ManyToOne,
   JoinTable,
   JoinColumn,
+  OneToMany,
 } from 'typeorm';
 import { Job } from '../job/job.entity';
 import { Projects } from '../projects/projects.entity';
 import { Companys } from '../companys/company.entity';
 import { Citys } from '../citys/citys.entity';
 import { MaxLength } from 'class-validator';
+import { UserProject } from 'src/user-project/user-project.entity';
 
 @Entity()
 export class Users {
@@ -45,13 +47,12 @@ export class Users {
   @MaxLength(255)
   address: string;
 
+  @OneToMany(() => UserProject, (userProject) => userProject.user)
+  userProjects: UserProject[];
+
   @ManyToOne(() => Job, (job) => job.users)
   @JoinColumn({ name: 'job_id' })
   job?: Job;
-
-  @ManyToMany(() => Projects)
-  @JoinTable()
-  projectsCollection: Projects[];
 
   @ManyToOne(() => Companys, (company) => company.users)
   @JoinColumn({ name: 'company_id' })

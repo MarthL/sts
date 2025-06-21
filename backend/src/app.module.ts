@@ -26,6 +26,8 @@ import { ConfigModule } from '@nestjs/config';
 import { ClientsModule } from './clients/clients.module';
 import { CitysModule } from './citys/citys.module';
 import { StatusModule } from './status/status.module';
+import { UserProject } from './user-project/user-project.entity';
+import { UserProjectModule } from './user-project/user-project.module';
 
 import { ServeStaticModule } from '@nestjs/serve-static';
 
@@ -62,6 +64,7 @@ import { join } from 'path';
         Companys,
         Citys,
         Status,
+        UserProject,
       ],
       migrations: ['migrations/*.js'],
       synchronize: true,
@@ -76,6 +79,7 @@ import { join } from 'path';
     CompanysModule,
     CitysModule,
     StatusModule,
+    UserProjectModule,
   ],
   controllers: [AuthController],
   providers: [JwtStrategy, AuthService, AuthLogin],

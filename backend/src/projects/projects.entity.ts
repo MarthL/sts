@@ -7,10 +7,12 @@ import {
   JoinColumn,
   Column,
   PrimaryGeneratedColumn,
+  OneToMany,
 } from 'typeorm';
 import { Companys } from '../companys/company.entity';
 import { Status } from '../status/status.entity';
 import { Users } from '../users/users.entity';
+import { UserProject } from 'src/user-project/user-project.entity';
 
 @Entity({ name: 'projects' })
 export class Projects {
@@ -39,9 +41,8 @@ export class Projects {
   @Column({ name: 'company_id', nullable: true })
   companyId: number;
 
-  @ManyToMany(() => Users)
-  @JoinTable()
-  collaborators: Users[];
+  @OneToMany(() => UserProject, (userProject) => userProject.project)
+  userProjects: UserProject[];
 
   @ManyToOne(() => Companys, (company) => company.projects)
   @JoinColumn({ name: 'company_id' })
