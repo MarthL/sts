@@ -46,33 +46,27 @@ export const CardProject: React.FC<CardProjectProps> = ({ project, onClick }) =>
     >
       {/* Image Preview Section */}
       <div className="relative h-48 overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 dark:bg-[#111111]">
-        {project.photo_url && !imageError ? (
-          <>
-            {imageLoading && (
-              <div className="absolute inset-0 flex items-center justify-center animate-pulse dark:bg-[#111111]">
-                <ImageIcon className="w-8 h-8 text-gray-400" />
-              </div>
-            )}
-            <img
-              src={project?.photo_url}
-              alt={project.project_name}
-              className={cn(
-                "w-full h-full object-cover transition-all duration-500 group-hover:scale-110",
-                imageLoading ? "opacity-0" : "opacity-100"
-              )}
-              onLoad={handleImageLoad}
-              onError={handleImageError}
-            />
-          </>
-        ) : (
-          <div className="absolute inset-0 flex items-center justify-center dark:bg-[#111111] from-gray-100 to-gray-200">
-            <div className="text-center">
-              <ImageIcon className="w-12 h-12 text-gray-400 mx-auto mb-2" />
-              <p className="text-sm text-gray-500">No preview available</p>
+        <>
+          {imageLoading && (
+            <div className="absolute inset-0 flex items-center justify-center animate-pulse dark:bg-[#111111]">
+              <ImageIcon className="w-8 h-8 text-gray-400" />
             </div>
-          </div>
-        )}
-
+          )}
+          <img
+            src={
+              project?.photo_url
+                ? project.photo_url
+                : `https://picsum.photos/seed/${project.id}/400/300`
+            }
+            alt={project.project_name}
+            className={cn(
+              "w-full h-full object-cover transition-all duration-500 group-hover:scale-110",
+              imageLoading ? "opacity-0" : "opacity-100"
+            )}
+            onLoad={handleImageLoad}
+            onError={handleImageError}
+          />
+        </>
         {/* <div className="absolute top-3 left-3">
           <div className={cn("w-3 h-3 rounded-full shadow-lg", project.color || 'bg-gray-300')} />
         </div> */}
